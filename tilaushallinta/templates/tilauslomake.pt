@@ -1,0 +1,55 @@
+<metal:main metal:use-macro="load: master.pt">
+    <metal:main metal:fill-slot="title">Tilaus</metal:main>
+
+    <metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" href="static/tilauslomake.css"/>
+    </metal:main>
+
+    <div metal:fill-slot="content">
+
+        <form id="lomake">
+            <table id="lomake_table">
+                <tr>
+                    <td><h2>Uusi tilaus</h2></td>
+                </tr>
+
+                <tr>
+                    <td><h3>Tilaaja</h3></td> <td><h3>Kohde</h3></td>
+                </tr>
+                <tr>
+                    <td>Nimi:<br><input name="tilaaja_nimi"></td> <td>Nimi:<br><input name="kohde_nimi"></td>
+                </tr>
+                <tr>
+                    <td>Yritys:<br><input name="tilaaja_yritys"></td> <td>Yritys:<br><input name="kohde_yritys"></td>
+                </tr>
+                <tr>
+                    <td>Osoite1:<br><input name="tilaaja_osoite1"></td> <td>Osoite1:<br><input name="kohde_osoite1"></td>
+                </tr>
+                <tr>
+                    <td>Osoite2:<br><input name="tilaaja_osoite2"></td> <td>Osoite2:<br><input name="kohde_osoite2"></td>
+                </tr>
+                <tr>
+                    <td>Puhelin:<br><input name="tilaaja_puh"></td> <td>Puhelin:<br><input name="kohde_puh"></td>
+                </tr>
+                <tr>
+                    <td>Sähköposti:<br><input name="tilaaja_email"></td> <td>Sähköposti:<br><input name="kohde_email"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">Työn kuvaus:<br><textarea name="tyo"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input type="submit" value="Tee tilaus"></td>
+                </tr>
+            </table>
+
+
+
+        </form>
+    </div>
+</metal:main>
