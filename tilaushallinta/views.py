@@ -4,16 +4,17 @@ from pyramid.response import Response
 from pyramid.view import view_config
 
 from .models import (
+    DBSession,
+
     Tilaus,
     Tilaaja,
-    Kohde
+    Kohde,
+
+    Paivaraportti,
+    Tavara
 )
 
 from sqlalchemy.exc import DBAPIError
-
-from .models import (
-    DBSession,
-    )
 
 
 @view_config(route_name='home', renderer='templates/home.pt')
@@ -21,7 +22,7 @@ def view_home(request):
     return {}
 
 
-@view_config(route_name='tilaukset', renderer='templates/tilaukset_list.pt')
+@view_config(route_name='order_list', renderer='templates/order_list.pt')
 def view_tilaukset_list(request):
     tilaukset = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).all()
 
@@ -31,7 +32,28 @@ def view_tilaukset_list(request):
     for tilaus in tilaukset:
         if tilaus.id is not lastid:
             latest.append(tilaus)
+            lastid = tilaus.id
+    latest.reverse()
     return {"tilaukset": latest}
+
+@view_config(route_name='order_details', renderer='templates/order_details.pt')
+def order_details(request):
+    id = request.matchdict['id']
+    tilaus = DBSession.query(Tilaus).filter(Tilaus.id == id).order_by(Tilaus.uuid.desc()).first()
+
+    if 'data' in request.POST.keys():
+        if request.POST['data'] == 'paivaraportti':
+            next_id = 0
+            if DBSession.query(Paivaraportti).count() > 0:
+                next_id = DBSession.query(Paivaraportti).order_by(Paivaraportti.id.desc()).first().id+1
+
+            tilaus.paivaraportit.append(Paivaraportti(id=next_id, date=datetime.datetime.now(),
+                                                      teksti=request.POST['kuvaus'],
+                                                      tunnit=request.POST['tunnit'],
+                                                      matkat=request.POST['matkat'],
+                                                      muut=request.POST['muut']))
+
+    return {'tilaus': tilaus}
 
 
 @view_config(route_name='tilaus', renderer='templates/tilauslomake.pt')

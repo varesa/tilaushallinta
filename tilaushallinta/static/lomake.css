@@ -1,0 +1,30 @@
+#table_lomake {
+    width: 100%;
+}
+
+#table_lomake tr {
+    width: 100%;
+}
+
+#table_lomake tr td {
+    width: 50%;
+    padding: 10px;
+}
+
+#table_lomake tr td input, #table_lomake tr td textarea {
+    width: 100%;
+}
+
+
+#table_paivaraportit tr td textarea, #table_paivaraportit tr td input{
+    width: 100%;
+    height: 100%;
+}
+
+.raportti_col1 {
+
+}
+
+.raportti_col2 {
+    width: 100px;
+}

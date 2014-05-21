@@ -2,7 +2,6 @@
     <metal:main metal:fill-slot="title">Tilauslista</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-
     </metal:main>
 
     <metal:main metal:fill-slot="content">
@@ -16,7 +15,7 @@
                     <td>Tilaaja</td>
                     <td>Kohteen osoite</td>
                 </tr>
-                <tr tal:repeat="tilaus tilaukset" onclick="alert('clicked')">
+                <tr tal:repeat="tilaus tilaukset" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
                     <td>${tilaus.id}&nbsp;&nbsp;&nbsp;</td>
                     <td>${tilaus.tilaaja.nimi}, ${tilaus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;</td>
                     <td>${tilaus.kohde.osoite1} ${tilaus.kohde.osoite2}</td>

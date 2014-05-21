@@ -2,7 +2,7 @@
     <metal:main metal:fill-slot="title">...</metal:main>
 
     <!--<metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="static/tilauslomake.css"/>
+        <link rel="stylesheet" href="static/lomake.css"/>
     </metal:main>-->
 
     <div metal:fill-slot="content">

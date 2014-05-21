@@ -2,13 +2,13 @@
     <metal:main metal:fill-slot="title">Tilaus</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="/static/tilauslomake.css"/>
+        <link rel="stylesheet" href="/static/lomake.css"/>
     </metal:main>
 
     <div metal:fill-slot="content">
 
         <form id="lomake" method="POST" action="/tilaus_submit">
-            <table id="lomake_table">
+            <table id="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>
                 </tr>
@@ -47,9 +47,7 @@
                     <td colspan="2"><input type="submit" value="Tee tilaus"></td>
                 </tr>
             </table>
-
-
-
         </form>
+
     </div>
 </metal:main>
