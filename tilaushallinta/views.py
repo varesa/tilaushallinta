@@ -21,6 +21,19 @@ def view_home(request):
     return {}
 
 
+@view_config(route_name='tilaukset', renderer='templates/tilaukset_list.pt')
+def view_tilaukset_list(request):
+    tilaukset = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).all()
+
+    latest = []
+    lastid = None
+
+    for tilaus in tilaukset:
+        if tilaus.id is not lastid:
+            latest.append(tilaus)
+    return {"tilaukset": latest}
+
+
 @view_config(route_name='tilaus', renderer='templates/tilauslomake.pt')
 def view_tilaus(request):
     return {}
@@ -58,7 +71,7 @@ def view_tilaus_submit(request):
 
         next_id = 0
         if DBSession.query(Tilaus).count() > 0:
-            next_id = DBSession.query(Tilaus).order_by(Tilaus.id.desc()).first().id
+            next_id = DBSession.query(Tilaus).order_by(Tilaus.id.desc()).first().id+1
 
         tilaus = Tilaus(id=next_id, date=datetime.datetime.now(),
                         tilaaja=tilaaja, kohde=kohde,
