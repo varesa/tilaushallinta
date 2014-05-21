@@ -2,12 +2,12 @@
     <metal:main metal:fill-slot="title">Tilaus</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="static/tilauslomake.css"/>
+        <link rel="stylesheet" href="/static/tilauslomake.css"/>
     </metal:main>
 
     <div metal:fill-slot="content">
 
-        <form id="lomake">
+        <form id="lomake" method="POST" action="/tilaus_submit">
             <table id="lomake_table">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>

@@ -107,7 +107,7 @@ class Tilaus(Base):
     kohde_id = Column(Integer, ForeignKey("kohteet.uuid"))
     kohde = relationship("Kohde", backref="tilaukset")
 
-    muut_yhteys = Column(Text)
+    muut_yhteysh = Column(Text)
 
     tyo = Column(Text)
 

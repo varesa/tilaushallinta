@@ -6,10 +6,10 @@
 
     <title><metal:content metal:define-slot="title"/></title>
 
-    <link rel="stylesheet" href="static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
 
-    <script type="text/javascript" src="static/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="static/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
 
     <metal:main metal:define-slot="head_custom"/>
 </head>
@@ -17,11 +17,11 @@
     <div class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Yritys</a>
+                <a href="/" class="navbar-brand">Yritys</a>
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a>Uusi tilaus</a></li>
+                    <li><a href="/tilaus">Uusi tilaus</a></li>
                     <li><a>Tilausten hallinta</a></li>
                 </ul>
             </div>
