@@ -1,0 +1,9 @@
+ <div class="navbar-header">
+    <a href="/" class="navbar-brand">Yritys</a>
+</div>
+<div>
+    <ul class="nav navbar-nav">
+        <li><a href="/tilaus">Uusi tilaus</a></li>
+        <li><a href="/tilaukset">Tilausten hallinta</a></li>
+    </ul>
+</div>
