@@ -84,13 +84,13 @@
                             <td class="raportti_col2">
                                 <table>
                                     <tr>
-                                        <td>Tunnit:</td><td><input name="tunnit"></td>
+                                        <td>Tunnit:</td><td><input name="tunnit" value="0"></td>
                                     </tr>
                                     <tr>
-                                        <td>Matkat:</td><td><input name="matkat"></td>
+                                        <td>Matkat:</td><td><input name="matkat" value="0"></td>
                                     </tr>
                                     <tr>
-                                        <td>Muut:</td><td><input name="muut"></td>
+                                        <td>Muut:</td><td><input name="muut" value="0"></td>
                                     </tr>
                                 </table>
                             </td>
