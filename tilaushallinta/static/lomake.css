@@ -28,3 +28,36 @@
 .raportti_col2 {
     width: 100px;
 }
+
+.table_tavarat {}
+
+.tavara_col1 {
+    width: 100px;
+}
+
+.tavara_col2, .tavara_col2 input {
+    width: 100%;
+}
+
+.tavara_col3, .tavara_col4 {
+    text-align: right;
+    width: 25px;
+}
+
+.tavara_col5 {
+    text-align: right;
+    width: 75px;
+}
+
+.tavara_col5 input {
+    width: 75px;
+}
+
+.add_button {
+    width: 100%;
+}
+
+.asterisk {
+    color: red;
+}
+
