@@ -107,6 +107,37 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Tavarat</h3>
+                <table class="table" id="table_tavarat">
+                    <tr>
+                        <th>Koodi</th>
+                        <th>Nimike</th>
+                        <th>A</th>
+                        <th>T</th>
+                        <th>Määrä</th>
+                    </tr>
+                    <tr tal:repeat="tavara tilaus.tavarat">
+                        <td class="tavara_col1"><input value="${tavara.koodi}"></td>
+                        <td class="tavara_col2"><input value="${tavara.nimi}"></td>
+                        <td class="tavara_col3"><input type="checkbox" ${'checked' if 'A' in tavara.tyyppi else ''}></td>
+                        <td class="tavara_col4"><input type="checkbox" ${'checked' if 'T' in tavara.tyyppi else ''}></td>
+                        <td class="tavara_col5"><input value="${tavara.maara}"></td>
+                    </tr>
+                    <form method="POST">
+                        <input type="hidden" name="data" value="tavara">
+                        <tr>
+                            <td class="tavara_col1"><input name="koodi"></td>
+                            <td class="tavara_col2"><input name="nimi"></td>
+                            <td class="tavara_col3"><input name="A" type="checkbox"></td>
+                            <td class="tavara_col4"><input name="T" type="checkbox"></td>
+                            <td class="tavara_col5"><input name="maara"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <input class="add_button" type="submit" value="Lisää uusi">
+                            </td>
+                        </tr>
+                    </form>
+                </table>
             </div>
         </div>
     </metal:main>

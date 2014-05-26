@@ -52,7 +52,17 @@ def order_details(request):
                                                       tunnit=request.POST['tunnit'],
                                                       matkat=request.POST['matkat'],
                                                       muut=request.POST['muut']))
-
+        if request.POST['data'] == 'tavara':
+            next_id = 0
+            if DBSession.query(Tavara).count() > 0:
+                next_id = DBSession.query(Tavara).order_by(Tavara.id.desc()).first().id+1
+            tilaus.tavarat.append(Tavara(id=next_id, date=datetime.datetime.now(),
+                                         koodi=request.POST['koodi'],
+                                         nimi=request.POST['nimi'],
+                                         tyyppi="" +
+                                                ('A' if ('A' in request.POST.keys()) else '') +
+                                                ('T' if ('T' in request.POST.keys()) else ''),
+                                         maara=request.POST['maara']))
     return {'tilaus': tilaus}
 
 
