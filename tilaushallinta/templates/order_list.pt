@@ -16,7 +16,8 @@
                     <td>Kohteen osoite</td>
                 </tr>
                 <tr tal:repeat="tilaus tilaukset" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
-                    <td>${tilaus.id}&nbsp;&nbsp;&nbsp;</td>
+                    <!--<td>${str(tilaus.id).zfill(3)}&nbsp;&nbsp;&nbsp;</td>-->
+                    <td>${tilaus.date.strftime("%y%m%d-%H%M")}</td>
                     <td>${tilaus.tilaaja.nimi}, ${tilaus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;</td>
                     <td>${tilaus.kohde.osoite1} ${tilaus.kohde.osoite2}</td>
                 </tr>
