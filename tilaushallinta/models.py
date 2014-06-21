@@ -106,7 +106,7 @@ class Vesikalusteiden_tklista(Base):
     id = Column(Integer)
     date = Column(DateTime)
 
-    kohde_id = Column(Integer, ForeignKey("kohde.uuid"))
+    kohde_id = Column(Integer, ForeignKey("kohteet.uuid"))
 
     este = Column(Text)
     sov_aika = Column(Text)
