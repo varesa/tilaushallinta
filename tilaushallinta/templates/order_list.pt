@@ -11,9 +11,9 @@
             </div>
             <table class="table table-hover">
                 <tr>
-                    <td>#</td>
-                    <td>Tilaaja</td>
-                    <td>Kohteen osoite</td>
+                    <th>#</th>
+                    <th>Tilaaja</th>
+                    <th>Kohteen osoite</th>
                 </tr>
                 <tr tal:repeat="tilaus tilaukset" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
                     <!--<td>${str(tilaus.id).zfill(3)}&nbsp;&nbsp;&nbsp;</td>-->
