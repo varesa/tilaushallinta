@@ -316,6 +316,8 @@ class Tilaus(Base):
 
     tyo = Column(Text)
 
+    maksuaika = Column(Integer)
+
     paivaraportit = relationship("Paivaraportti")
     tavarat = relationship("Tavara")
     

@@ -105,10 +105,17 @@ def view_tilaus_submit(request):
         if DBSession.query(Tilaus).count() > 0:
             next_id = DBSession.query(Tilaus).order_by(Tilaus.id.desc()).first().id+1
 
+        maksuaika = None
+        if int(request.POST['maksuaika']) != 7:
+            maksuaika = 14
+        else:
+            maksuaika = int(request.POST['maksuaika'])
+
         tilaus = Tilaus(id=next_id, date=datetime.datetime.now(),
                         tilaaja=tilaaja, kohde=kohde,
                         muut_yhteysh=request.POST['muut_yhteysh'],
-                        tyo=request.POST['tyo'])
+                        tyo=request.POST['tyo'],
+                        maksuaika=maksuaika)
         DBSession.add(tilaus)
 
         return Response(str(request.POST))
