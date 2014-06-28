@@ -5,6 +5,9 @@ from pyramid.response import Response
 from pyramid.request import Request
 from pyramid.view import view_config
 
+from pyramid.events import subscriber
+from pyramid.events import BeforeRender
+
 from sqlalchemy import Table
 from sqlalchemy.exc import NoSuchTableError
 
@@ -22,11 +25,17 @@ from .models import (
 
 from sqlalchemy.exc import DBAPIError
 
+@subscriber(BeforeRender)
+def add_login_status(event):
+    event['logged_in'] = False
 
 @view_config(route_name='home', renderer='templates/home.pt')
 def view_home(request):
     return {}
 
+@view_config(route_name='login', renderer='templates/login.pt')
+def view_login(request):
+    return {}
 
 @view_config(route_name='order_list', renderer='templates/order_list.pt')
 def view_tilaukset_list(request):

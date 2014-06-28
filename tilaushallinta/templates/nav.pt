@@ -7,4 +7,11 @@
         <li><a href="/tilaukset">Tilausten hallinta</a></li>
         <li><a href="/db">DB</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right" tal:condition="logged_in">
+        <li>Käyttäjä: ${user.full_name}</li>
+        <li><a href="/logout">Kirjaudu ulos</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" tal:condition="not:logged_in">
+        <li><a href="/login">Kirjaudu sisään</a></li>
+    </ul>
 </div>
