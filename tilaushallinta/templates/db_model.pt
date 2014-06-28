@@ -1,0 +1,28 @@
+<metal:main metal:use-macro="load: master.pt">
+    <metal:main metal:fill-slot="title">...</metal:main>
+
+    <!--<metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" href="static/lomake.css"/>
+    </metal:main>-->
+
+    <div metal:fill-slot="content">
+        <table>
+            <tr>
+                <th>&nbsp;</th>
+                <th>UUID&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>ID&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>Date&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>Data&nbsp;&nbsp;&nbsp;&nbsp;</th>
+
+            </tr>
+            <tr tal:repeat="row rows">
+                <td><input type="checkbox" name="${row[0]}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>${row[0]}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>${row[1]}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>${row[2].isoformat(' ')}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td><a href="/db/${model}/${row[1]}">${str(row[3:])}</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+</metal:main>

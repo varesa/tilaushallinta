@@ -15,6 +15,11 @@
     width: 100%;
 }
 
+#table_lomake tr td .short {
+    width: 25%;
+    float: right;
+}
+
 #table_lomake tr td input[type="checkbox"] {
     width: auto !important;
 }

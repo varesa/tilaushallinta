@@ -10,16 +10,27 @@
             <div class="panel-body">
                 <h2>Perustiedot</h2>
                 <table id="table_lomake">
-                    <form>
+                    <form method="post">
+                        <input type="hidden" name="data" value="perustiedot">
+                        
+                        <input type="hidden" name="tilaaja_id" value="${tilaus.tilaaja.id}">
+                        <input type="hidden" name="tilaaja_uuid" value="${tilaus.tilaaja.uuid}">
+                        
+                        <input type="hidden" name="kohde_id" value="${tilaus.kohde.id}">
+                        <input type="hidden" name="kohde_uuid" value="${tilaus.kohde.uuid}">
+                        
+                        <input type="hidden" name="tilaus_id" value="${tilaus.id}">
+                        <input type="hidden" name="tilaus_uuid" value="${tilaus_uuid}">
+                        
                         <tr>
                             <td><h3>Tilaaja</h3></td> <td><h3>Kohde</h3></td>
                         </tr>
                         <tr>
-                            <td>Nimi:<br><input name="tilaaja_nimi" value="${tilaus.tilaaja.nimi}"></td>
-                            <td>Nimi:<br><input name="kohde_nimi" value="${tilaus.tilaaja.nimi}"></td>
+                            <td>Nimi:<br><input name="tilaaja_nimi" value="${tilaus.kohde.nimi}"></td>
+                            <td>Nimi:<br><input name="kohde_nimi" value="${tilaus.kohde.nimi}"></td>
                         </tr>
                         <tr>
-                            <td>Yritys:<br><input name="tilaaja_yritys" value="${tilaus.tilaaja.yritys}"></td>
+                            <td>Yritys:<br><input name="tilaaja_yritys" value="${tilaus.kohde.yritys}"></td>
                             <td>Yritys:<br><input name="kohde_yritys"  value="${tilaus.kohde.yritys}"></td>
                         </tr>
                         <tr>
@@ -42,12 +53,16 @@
                         <tr>
                             <td colspan="2">
                                 Muut yhteyshenkilöt:<br>
-                                <textarea name="muut_yhteysh" value="${tilaus.muut_yhteysh}"></textarea>
+                                <textarea name="muut_yhteysh">${tilaus.muut_yhteysh}</textarea>
                             </td>
                         </tr>
 
                         <tr>
-                            <td colspan="2">Työn kuvaus:<br><textarea name="tyo" value="${tilaus.tyo}"></textarea></td>
+                            <td colspan="2">Työn kuvaus:<br><textarea name="tyo">${tilaus.tyo}</textarea></td>
+                        </tr>
+
+                        <tr>
+                            <td>Maksuaika: <input type="number" class="short" name="maksuaika" value="${tilaus.maksuaika}"></td>
                         </tr>
 
                         <tr>

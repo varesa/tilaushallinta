@@ -1,0 +1,23 @@
+<metal:main metal:use-macro="load: master.pt">
+    <metal:main metal:fill-slot="title">...</metal:main>
+
+    <!--<metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" href="static/lomake.css"/>
+    </metal:main>-->
+
+    <div metal:fill-slot="content">
+        <table>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Name</th>
+                <th># of entries</th>
+            </tr>
+            <tr tal:repeat="model models">
+                <td><input type="checkbox" name="${model.name}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td><a href="/db/${model.name}">${model.name}</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>${model.count}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+
+</metal:main>

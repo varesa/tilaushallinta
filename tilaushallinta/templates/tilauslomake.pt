@@ -62,7 +62,7 @@
                 </tr>
 
                 <tr>
-                    <td><input type="checkbox" id="checkbox_ehdot"> <label for="checkbox_ehdot">Hyväksyn ehdot</label></td>
+                    <td><input type="checkbox" id="checkbox_ehdot"> <label for="checkbox_ehdot">Hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a></label></td>
                     <td><input type="checkbox" id="checkbox_maksu" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu</label></td>
                 </tr>
 

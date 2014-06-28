@@ -5,5 +5,6 @@
     <ul class="nav navbar-nav">
         <li><a href="/tilaus">Uusi tilaus</a></li>
         <li><a href="/tilaukset">Tilausten hallinta</a></li>
+        <li><a href="/db">DB</a></li>
     </ul>
 </div>
