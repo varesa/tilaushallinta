@@ -21,6 +21,7 @@ def main(global_config, **settings):
     config.add_route('home', '/')
     config.add_route('order_list', '/tilaukset')
     config.add_route('order_details', '/tilaukset/{id}')
+    config.add_route('show_text', '/texts/{name}')
 
     config.add_route('tilaus', '/tilaus')
     config.add_route('tilaus_submit', '/tilaus_submit')

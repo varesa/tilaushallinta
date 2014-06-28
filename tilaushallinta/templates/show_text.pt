@@ -1,0 +1,10 @@
+<metal:main metal:use-macro="load: master.pt">
+    <metal:main metal:fill-slot="title">Tilauksen tiedot</metal:main>
+
+    <metal:main metal:fill-slot="head_custom">
+    </metal:main>
+
+    <metal:main metal:fill-slot="content">
+        <div id="text">${structure: text}</div>
+    </metal:main>
+</metal:main>

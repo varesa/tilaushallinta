@@ -1,4 +1,5 @@
 import datetime
+import os.path
 
 from pyramid.response import Response
 from pyramid.view import view_config
@@ -121,3 +122,14 @@ def view_tilaus_submit(request):
         return Response(str(request.POST))
     except KeyError:
         return Response("Virheellinen lomake")
+
+@view_config(route_name='show_text', renderer='templates/show_text.pt')
+def show_text(request):
+    name = request.matchdict['name']
+    if name and len(name) > 0:
+        name.replace('..', '')
+        filename = 'tilaushallinta/texts/' + name + '.txt'
+        if os.path.exists(filename):
+            file = open(filename, "r")
+            return {'text': file.read()}
+    return Response('Virheellinen tiedosto')
