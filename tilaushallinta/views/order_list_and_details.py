@@ -1,43 +1,17 @@
 import datetime
-import os.path
 
-from pyramid.response import Response
-from pyramid.request import Request
 from pyramid.view import view_config
+from pyramid.request import Request
+from pyramid.response import Response
 
-from pyramid.events import subscriber
-from pyramid.events import BeforeRender
+from ..models import DBSession
+from ..models import Tilaaja
+from ..models import Kohde
+from ..models import Tilaus
+from ..models import Tavara
+from ..models import Paivaraportti
 
-from sqlalchemy import Table
-from sqlalchemy.exc import NoSuchTableError
-
-from .models import (
-    DBSession,
-    Base,
-
-    Tilaus,
-    Tilaaja,
-    Kohde,
-
-    Paivaraportti,
-    Tavara
-)
-
-from sqlalchemy.exc import DBAPIError
-
-@subscriber(BeforeRender)
-def add_login_status(event):
-    event['logged_in'] = False
-
-@view_config(route_name='home', renderer='templates/home.pt')
-def view_home(request):
-    return {}
-
-@view_config(route_name='login', renderer='templates/login.pt')
-def view_login(request):
-    return {}
-
-@view_config(route_name='order_list', renderer='templates/order_list.pt')
+@view_config(route_name='order_list', renderer='../templates/order_list.pt')
 def view_tilaukset_list(request):
     tilaukset = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).all()
 
@@ -51,8 +25,8 @@ def view_tilaukset_list(request):
     latest.reverse()
     return {"tilaukset": latest}
 
-@view_config(route_name='order_details', renderer='templates/order_details.pt')
-def order_details(request):
+@view_config(route_name='order_details', renderer='../templates/order_details.pt')
+def view_order_details(request):
     id = request.matchdict['id']
     tilaus = DBSession.query(Tilaus).filter_by(id=id).order_by(Tilaus.uuid.desc()).first()
 
@@ -162,112 +136,4 @@ def order_details(request):
                                                 ('T' if ('T' in request.POST.keys()) else ''),
                                          maara=request.POST['maara']))
 
-
-    print(tilaus.muut_yhteysh)
     return {'tilaus': tilaus, 'tilaus_uuid': tilaus.uuid}
-
-
-@view_config(route_name='tilaus', renderer='templates/tilauslomake.pt')
-def view_tilaus(request):
-    return {}
-
-
-@view_config(route_name='tilaus_submit')
-def view_tilaus_submit(request):
-    try:
-
-        next_id = 0
-        if DBSession.query(Tilaaja).count() > 0:
-            next_id = DBSession.query(Tilaaja).order_by(Tilaaja.id.desc()).first().id+1
-
-        tilaaja = Tilaaja(id=next_id, date=datetime.datetime.now(),
-                          nimi=request.POST['tilaaja_nimi'],
-                          yritys=request.POST['tilaaja_yritys'],
-                          osoite1=request.POST['tilaaja_osoite1'],
-                          osoite2=request.POST['tilaaja_osoite2'],
-                          puhelin=request.POST['tilaaja_puh'],
-                          email=request.POST['tilaaja_email'])
-        DBSession.add(tilaaja)
-
-        next_id = 0
-        if DBSession.query(Kohde).count() > 0:
-            next_id = DBSession.query(Kohde).order_by(Kohde.id.desc()).first().id+1
-
-        kohde = Kohde(id=next_id, date=datetime.datetime.now(),
-                          nimi=request.POST['kohde_nimi'],
-                          yritys=request.POST['kohde_yritys'],
-                          osoite1=request.POST['kohde_osoite1'],
-                          osoite2=request.POST['kohde_osoite2'],
-                          puhelin=request.POST['kohde_puh'],
-                          email=request.POST['kohde_email'])
-        DBSession.add(kohde)
-
-        next_id = 0
-        if DBSession.query(Tilaus).count() > 0:
-            next_id = DBSession.query(Tilaus).order_by(Tilaus.id.desc()).first().id+1
-
-        maksuaika = None
-        if (not 'maksuaika' in request.POST.keys()) or int(request.POST['maksuaika']) != 7:
-            maksuaika = 14
-        else:
-            maksuaika = int(request.POST['maksuaika'])
-
-        tilaus = Tilaus(id=next_id, date=datetime.datetime.now(),
-                        tilaaja=tilaaja, kohde=kohde,
-                        muut_yhteysh=request.POST['muut_yhteysh'],
-                        tyo=request.POST['tyo'],
-                        maksuaika=maksuaika)
-        DBSession.add(tilaus)
-
-        #return Response(str(request.POST))
-        return request.invoke_subrequest(Request.blank('/texts/tilattu'))
-    except KeyError:
-        return Response("Virheellinen käsiteltäessä lomaketta")
-
-@view_config(route_name='show_text', renderer='templates/show_text.pt')
-def show_text(request):
-    name = request.matchdict['name']
-    if name and len(name) > 0:
-        name.replace('..', '')
-        filename = 'tilaushallinta/texts/' + name + '.txt'
-        if os.path.exists(filename):
-            file = open(filename, "r")
-            return {'text': file.read()}
-    return Response('Virheellinen tiedosto')
-
-@view_config(route_name='db', renderer='templates/db.pt')
-def db(request):
-    models = []
-    for table in Base.metadata.tables.keys():
-        count = DBSession.execute(Table(table, Base.metadata, autoload=True).count()).scalar()
-        models.append({'name': table, 'count': count})
-    return {'models': models}
-
-@view_config(route_name='db_model', renderer='templates/db_model.pt')
-def db_model(request):
-    try:
-        model = request.matchdict['name']
-
-        table = Table(model, Base.metadata, autoload=True)
-        select = table.select()
-
-        rows = DBSession.execute(select).fetchall()
-
-        return {'model': model, 'rows': rows}
-    except NoSuchTableError:
-        return Response("Virheellinen kysely")
-
-@view_config(route_name='db_model_row', renderer='templates/db_model_row.pt')
-def db_model_row(request):
-    try:
-        model = request.matchdict['name']
-        id = request.matchdict['id']
-
-        table = Table(model, Base.metadata, autoload=True)
-        select = table.select('id='+id)
-
-        rows = DBSession.execute(select).fetchall()
-
-        return {'model': model, 'rows': rows}
-    except NoSuchTableError:
-        return Response("Virheellinen kysely")
