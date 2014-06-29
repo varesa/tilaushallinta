@@ -1,3 +1,8 @@
+#
+# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Author: Esa Varemo
+#
+
 import unittest
 import transaction
 
@@ -5,7 +10,7 @@ from pyramid import testing
 
 from .models import DBSession
 
-
+"""
 class TestMyViewSuccessCondition(unittest.TestCase):
     def setUp(self):
         self.config = testing.setUp()
@@ -53,3 +58,5 @@ class TestMyViewFailureCondition(unittest.TestCase):
         request = testing.DummyRequest()
         info = my_view(request)
         self.assertEqual(info.status_int, 500)
+
+"""

@@ -1,4 +1,9 @@
- <div class="navbar-header">
+ <!--
+# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Author: Esa Varemo
+-->
+
+<div class="navbar-header">
     <a href="/" class="navbar-brand">Yritys</a>
 </div>
 <div>
