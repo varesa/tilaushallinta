@@ -25,6 +25,13 @@ def view_tilaukset_list(request):
     latest.reverse()
     return {"tilaukset": latest}
 
+def compare_sets(list):
+    difference = False
+    for val1, val2 in list:
+        if val1 != val2:
+            difference = True
+    return difference
+
 @view_config(route_name='order_details', renderer='../templates/order_details.pt')
 def view_order_details(request):
     id = request.matchdict['id']
@@ -39,17 +46,14 @@ def view_order_details(request):
             # Check for differences in "Tilaaja" model
 
             tilaaja_old = DBSession.query(Tilaaja).filter_by(uuid=tilaaja_uuid).first()
-            tilaaja_differs = False
-            for val1, val2 in (
+            tilaaja_differs = compare_sets(
                     (tilaaja_old.nimi,request.POST['tilaaja_nimi']),
                     (tilaaja_old.yritys, request.POST['tilaaja_yritys']),
                     (tilaaja_old.osoite1, request.POST['tilaaja_osoite1']),
                     (tilaaja_old.osoite2, request.POST['tilaaja_osoite2']),
                     (tilaaja_old.puhelin, request.POST['tilaaja_puh']),
                     (tilaaja_old.email, request.POST['tilaaja_email'])
-            ):
-                if val1 != val2:
-                    tilaaja_differs = True
+            )
             
             tilaaja = None
             if tilaaja_differs:
@@ -65,17 +69,14 @@ def view_order_details(request):
             # Check for differences in "Kohde" model
 
             kohde_old = DBSession.query(Kohde).filter_by(uuid=kohde_uuid).first()
-            kohde_differs = False
-            for val1, val2 in (
+            kohde_differs = compare_sets(
                     (kohde_old.nimi, request.POST['kohde_nimi']),
                     (kohde_old.yritys, request.POST['kohde_yritys']),
                     (kohde_old.osoite1, request.POST['kohde_osoite1']),
                     (kohde_old.osoite2, request.POST['kohde_osoite2']),
                     (kohde_old.puhelin, request.POST['kohde_puh']),
                     (kohde_old.email, request.POST['kohde_email'])
-            ):
-                if val1 != val2:
-                    kohde_differs = True
+            )
 
             kohde = None
             if kohde_differs:
@@ -91,14 +92,11 @@ def view_order_details(request):
             # Check for differences in the "Tilaus" model
 
             tilaus_old = DBSession.query(Tilaus).filter_by(uuid=tilaus_uuid).first()
-            tilaus_differs = False
-            for val1, val2 in (
+            tilaus_differs = compare_sets(
                     (tilaus_old.muut_yhteysh, request.POST['muut_yhteysh']),
                     (tilaus_old.tyo, request.POST['tyo']),
                     (tilaus_old.maksuaika, request.POST['maksuaika'])
-            ):
-                if val1 != val2:
-                    tilaus_differs = True
+            )
 
             if (tilaaja is not None) or (kohde is not None) or tilaus_differs:
                 tilaaja = DBSession.query(Tilaaja).filter_by(id=tilaaja_old.id).order_by(Tilaaja.uuid.desc()).first()
