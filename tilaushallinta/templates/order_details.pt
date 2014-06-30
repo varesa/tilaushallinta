@@ -25,17 +25,17 @@
                         <input type="hidden" name="kohde_uuid" value="${tilaus.kohde.uuid}">
                         
                         <input type="hidden" name="tilaus_id" value="${tilaus.id}">
-                        <input type="hidden" name="tilaus_uuid" value="${tilaus_uuid}">
+                        <input type="hidden" name="tilaus_uuid" value="${tilaus.uuid}">
                         
                         <tr>
                             <td><h3>Tilaaja</h3></td> <td><h3>Kohde</h3></td>
                         </tr>
                         <tr>
-                            <td>Nimi:<br><input name="tilaaja_nimi" value="${tilaus.kohde.nimi}"></td>
+                            <td>Nimi:<br><input name="tilaaja_nimi" value="${tilaus.tilaaja.nimi}"></td>
                             <td>Nimi:<br><input name="kohde_nimi" value="${tilaus.kohde.nimi}"></td>
                         </tr>
                         <tr>
-                            <td>Yritys:<br><input name="tilaaja_yritys" value="${tilaus.kohde.yritys}"></td>
+                            <td>Yritys:<br><input name="tilaaja_yritys" value="${tilaus.tilaaja.yritys}"></td>
                             <td>Yritys:<br><input name="kohde_yritys"  value="${tilaus.kohde.yritys}"></td>
                         </tr>
                         <tr>

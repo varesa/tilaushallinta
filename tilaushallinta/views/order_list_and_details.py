@@ -52,12 +52,12 @@ def view_order_details(request):
 
             tilaaja_old = DBSession.query(Tilaaja).filter_by(uuid=tilaaja_uuid).first()
             tilaaja_differs = compare_sets(
-                    (tilaaja_old.nimi,request.POST['tilaaja_nimi']),
-                    (tilaaja_old.yritys, request.POST['tilaaja_yritys']),
-                    (tilaaja_old.osoite1, request.POST['tilaaja_osoite1']),
-                    (tilaaja_old.osoite2, request.POST['tilaaja_osoite2']),
-                    (tilaaja_old.puhelin, request.POST['tilaaja_puh']),
-                    (tilaaja_old.email, request.POST['tilaaja_email'])
+                ((tilaaja_old.nimi, request.POST['tilaaja_nimi']),
+                (tilaaja_old.yritys, request.POST['tilaaja_yritys']),
+                (tilaaja_old.osoite1, request.POST['tilaaja_osoite1']),
+                (tilaaja_old.osoite2, request.POST['tilaaja_osoite2']),
+                (tilaaja_old.puhelin, request.POST['tilaaja_puh']),
+                (tilaaja_old.email, request.POST['tilaaja_email']))
             )
             
             tilaaja = None
@@ -75,12 +75,12 @@ def view_order_details(request):
 
             kohde_old = DBSession.query(Kohde).filter_by(uuid=kohde_uuid).first()
             kohde_differs = compare_sets(
-                    (kohde_old.nimi, request.POST['kohde_nimi']),
-                    (kohde_old.yritys, request.POST['kohde_yritys']),
-                    (kohde_old.osoite1, request.POST['kohde_osoite1']),
-                    (kohde_old.osoite2, request.POST['kohde_osoite2']),
-                    (kohde_old.puhelin, request.POST['kohde_puh']),
-                    (kohde_old.email, request.POST['kohde_email'])
+                ((kohde_old.nimi, request.POST['kohde_nimi']),
+                (kohde_old.yritys, request.POST['kohde_yritys']),
+                (kohde_old.osoite1, request.POST['kohde_osoite1']),
+                (kohde_old.osoite2, request.POST['kohde_osoite2']),
+                (kohde_old.puhelin, request.POST['kohde_puh']),
+                (kohde_old.email, request.POST['kohde_email']))
             )
 
             kohde = None
@@ -98,9 +98,9 @@ def view_order_details(request):
 
             tilaus_old = DBSession.query(Tilaus).filter_by(uuid=tilaus_uuid).first()
             tilaus_differs = compare_sets(
-                    (tilaus_old.muut_yhteysh, request.POST['muut_yhteysh']),
-                    (tilaus_old.tyo, request.POST['tyo']),
-                    (tilaus_old.maksuaika, request.POST['maksuaika'])
+                ((tilaus_old.muut_yhteysh, request.POST['muut_yhteysh']),
+                (tilaus_old.tyo, request.POST['tyo']),
+                (tilaus_old.maksuaika, request.POST['maksuaika']))
             )
 
             if (tilaaja is not None) or (kohde is not None) or tilaus_differs:
