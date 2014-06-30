@@ -22,7 +22,7 @@ class User(Base):
 
     isAdmin = Column(Boolean)
 
-    def encrypt_password(self, password, salt=None):
+    def hash_password(self, password, salt=None):
         if salt is None:
             salt = self.password # Get salt from beginning of the password
         return bcrypt.hashpw(password, salt)
