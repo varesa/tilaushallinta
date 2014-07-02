@@ -17,8 +17,9 @@ class User(Base):
     dateCreated = Column(DateTime)
 
     username = Column(Text)
-    password = Column(Text)
-    password_salt = Column(Text)
+    password_hash = Column(Text)
+
+    email = Column(Text)
 
     isAdmin = Column(Boolean)
 
