@@ -11,7 +11,7 @@ from sqlalchemy.exc import NoSuchTableError
 
 from ..models import Base, DBSession
 
-@view_config(route_name='db', renderer='../templates/db.pt')
+@view_config(route_name='db', renderer='../templates/db_database.pt')
 def view_db(request):
     models = []
     for table in Base.metadata.tables.keys():
@@ -33,7 +33,7 @@ def view_db_model(request):
     except NoSuchTableError:
         return Response("Virheellinen kysely")
 
-@view_config(route_name='db_model_row', renderer='../templates/db_model_row.pt')
+@view_config(route_name='db_model_row', renderer='../templates/db_row.pt')
 def view_db_model_row(request):
     try:
         model = request.matchdict['name']
