@@ -17,19 +17,21 @@ class User(Base):
     dateCreated = Column(DateTime)
 
     username = Column(Text)
-    password = Column(Text)
+    password_hash = Column(Text)
 
     email = Column(Text)
 
     isAdmin = Column(Boolean)
 
-    def hash_password(self, password, salt=None):
-        if salt is None:
-            salt = self.password # Get salt from beginning of the password
+    def hash_password(self, password, new=False):
+        if new:
+            salt = bcrypt.gensalt()
+        else:
+            salt = self.password_hash
         return bcrypt.hashpw(password, salt)
 
     def set_password(self, password):
-        self.password = self.encrypt_password(password, salt=bcrypt.gensalt())
+        self.password_hash = self.encrypt_password(password, new=True)
 
     def verify_password(self, password):
-        return self.password == self.encrypt_password(password)
+        return self.password == self.hash_password(password)
