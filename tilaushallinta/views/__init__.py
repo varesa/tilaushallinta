@@ -14,3 +14,4 @@ from .login_management import view_login, view_logout
 from .order import view_tilaus, view_tilaus_submit
 from .order_list_and_details import view_tilaukset_list, view_order_details
 from .utils import view_show_text
+from .admin import view_admin

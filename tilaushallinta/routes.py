@@ -18,6 +18,8 @@ def configure_routes(config):
     config.add_route('tilaus', '/tilaus')
     config.add_route('tilaus_submit', '/tilaus_submit')
 
+    config.add_route('admin', '/admin')
+
     config.add_route('db', '/db')
     config.add_route('db_model', '/db/{name}')
     config.add_route('db_model_row', '/db/{name}/{id}')
