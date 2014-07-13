@@ -1,9 +1,25 @@
+html, body {
+    height: 100%;
+}
+
 .sidebar {
     float: left;
+
     width: 200px;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+    margin-right: 32px;
+}
+
+.sidebar ul li {
+    list-style-type: none;
 }
 
 .content {
     float: left;
     width: auto;
+
+    /*padding: 15px;*/
 }

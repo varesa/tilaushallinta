@@ -7,22 +7,20 @@
     <metal:main metal:fill-slot="title">...</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="static/admin.css"/>
+        <link rel="stylesheet" href="/static/admin.css"/>
     </metal:main>
 
-    <div metal:fill-slot="content">
-        <div class="container">
-            <div class="sidebar">
-                <ul>
-                    <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                    <li><a>Item 3</a></li>
-                </ul>
+    <metal:main metal:fill-slot="content">
+        <!--<div class="container">-->
+            <div class="panel panel-default sidebar">
+                <div class="panel-body">
+                    <metal:main metal:use-macro="load: admin_nav.pt"/>
+                </div>
             </div>
             <div class="content">
-                <p>Content</p>
+                <metal:main metal:define-slot="admin-content"/>
             </div>
-        </div>
-    </div>
+        <!--</div>-->
+    </metal:main>
 
 </metal:main>
