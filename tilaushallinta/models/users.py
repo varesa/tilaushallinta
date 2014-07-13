@@ -18,7 +18,8 @@ class User(Base):
 
     username = Column(Text)
     password = Column(Text)
-    password_salt = Column(Text)
+
+    email = Column(Text)
 
     isAdmin = Column(Boolean)
 
