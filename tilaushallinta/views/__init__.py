@@ -8,7 +8,7 @@
 ##########################################################
 
 from .common import add_login_status
-from .db_viewer import view_admin_db, view_admin_db_model, view_admin_db_row
+from .admin_db import view_admin_db, view_admin_db_model, view_admin_db_row
 from .home import view_home
 from .login_management import view_login, view_logout
 from .order import view_tilaus, view_tilaus_submit
