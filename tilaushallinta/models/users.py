@@ -35,4 +35,4 @@ class User(Base):
         self.password_hash = self.hash_password(password, new=True)
 
     def verify_password(self, password):
-        return self.password == self.hash_password(password)
+        return self.password_hash == self.hash_password(password)
