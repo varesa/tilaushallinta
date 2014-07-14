@@ -4,6 +4,7 @@
 #
 
 from pyramid.view import view_config
+from pyramid.request import Request
 from ..models import DBSession, User
 from datetime import datetime
 
@@ -56,7 +57,7 @@ def view_admin_users_new(request):
 
             DBSession.add(user)
 
-            return view_admin_users(request)
+            return request.invoke_subrequest(Request.blank('/admin/users'))
         else:
             return {'errors': errors}
 
