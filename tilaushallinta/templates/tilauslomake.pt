@@ -25,23 +25,29 @@
             });
 
             function check_input() {
-                var status = true;
+                var invalid = false;
                 $(".required input, .required textarea").each(function(index, element) {
-                    if($(element).attr("type") == 'checkbox') {
+                    if($(element).prop("type") == 'checkbox') {
+                        console.log("checkbox found")
                         if(!$(element).prop("checked")) {
-                            status = false;
+                            invalid = true;
+                            console.log("Checkbox empty");
                         }
-                    } else if($(element).attr("type") == 'textarea') {
-                        if($(element).text().length == 0) {
-                            status = false;
+                    } else if($(element).prop("type") == 'textarea') {
+                        console.log("textarea found");
+                        if($(element).val().length == 0) {
+                            invalid = true;
+                            console.log("Textarea empty");
                         }
-                    } else if($(element).attr("type") == 'text') {
-                        if($(element).value().length == 0) {
-                            status = false;
+                    } else if($(element).prop("type") == 'text') {
+                        console.log("textfield found");
+                        if($(element).val().length == 0) {
+                            invalid = true;
+                            console.log("Text field empty");
                         }
                     }
                 });
-                return status;
+                return !invalid;
             }
         </script>
     </metal:main>
