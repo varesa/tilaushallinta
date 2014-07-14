@@ -23,3 +23,7 @@ html, body {
 
     /*padding: 15px;*/
 }
+
+.content .table {
+    min-width: 600px;
+}

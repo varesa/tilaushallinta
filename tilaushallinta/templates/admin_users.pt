@@ -2,7 +2,7 @@
     <metal:main metal:fill-slot="admin-content">
         <div class="panel panel-default">
             <div class="panel-heading">Käyttäjät</div>
-            <div class="panel-body">
+            <!--<div class="panel-body">-->
                 <table class="table table-hover">
                     <tr>
                         <th>#&nbsp;&nbsp;</th>
@@ -10,7 +10,7 @@
                         <th>Sähköposti&nbsp;&nbsp;</th>
                     </tr>
                 </table>
-            </div>
+           <!--</div>-->
         </div>
     </metal:main>
 </metal:main>
