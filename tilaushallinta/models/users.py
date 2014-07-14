@@ -17,10 +17,11 @@ class User(Base):
     id = Column(Integer)
     dateCreated = Column(DateTime)
 
-    username = Column(Text)
-    password_hash = Column(Text)
+    name = Column(Text)
 
     email = Column(Text)
+    password_hash = Column(Text)
+
 
     isAdmin = Column(Boolean)
 

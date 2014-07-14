@@ -9,6 +9,11 @@
                         <th>Nimi&nbsp;&nbsp;</th>
                         <th>Sähköposti&nbsp;&nbsp;</th>
                     </tr>
+                    <tr tal:repeat="user users">
+                        <td>${user.id}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                    </tr>
                 </table>
            <!--</div>-->
         </div>
