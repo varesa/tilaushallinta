@@ -1,5 +1,7 @@
 <ul>
-    <li><a>Käyttäjät</a></li>
-    <li><a>Item 2</a></li>
-    <li><a>Item 3</a></li>
+    <li><strong>Ylläpito</strong></li>
+    <li><a href="/admin/users">Käyttäjät</a></li>
+    <li><br></li>
+    <li><strong>Kehitystyökalut</strong></li>
+    <li><a href="/admin/db">Tietokanta</a></li>
 </ul>
