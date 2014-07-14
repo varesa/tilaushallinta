@@ -2,20 +2,22 @@
     <metal:main metal:fill-slot="admin-content">
         <div class="panel panel-default">
             <div class="panel-heading">Käyttäjät</div>
-            <!--<div class="panel-body">-->
+            <form>
                 <table class="table table-hover">
                     <tr>
+                        <th></th>
                         <th>#&nbsp;&nbsp;</th>
                         <th>Nimi&nbsp;&nbsp;</th>
                         <th>Sähköposti&nbsp;&nbsp;</th>
                     </tr>
                     <tr tal:repeat="user users">
+                        <td><input type="checkbox" name="user-${user.id}"></td>
                         <td>${user.id}</td>
                         <td>${user.name}</td>
                         <td>${user.email}</td>
                     </tr>
                 </table>
-           <!--</div>-->
+            </form>
         </div>
     </metal:main>
 </metal:main>
