@@ -13,7 +13,7 @@
         <li><a href="/admin">Ylläpito</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right" tal:condition="logged_in">
-        <li>Käyttäjä: ${user.full_name}</li>
+        <li><a>Käyttäjä: ${user}</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right" tal:condition="not:logged_in">
