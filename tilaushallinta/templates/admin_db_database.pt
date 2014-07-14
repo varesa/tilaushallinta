@@ -4,12 +4,6 @@
 -->
 
 <metal:main metal:use-macro="load: admin.pt">
-    <metal:main metal:fill-slot="title">...</metal:main>
-
-    <!--<metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="static/lomake.css"/>
-    </metal:main>-->
-
     <div metal:fill-slot="admin-content">
         <div class="panel panel-default">
             <table class="table table-hover">

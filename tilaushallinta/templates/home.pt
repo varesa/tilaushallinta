@@ -4,7 +4,7 @@
 -->
 
 <metal:main metal:use-macro="load: master.pt">
-    <metal:main metal:fill-slot="title">...</metal:main>
+    <metal:main metal:fill-slot="title">LSVTekniikka</metal:main>
 
     <!--<metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" href="static/lomake.css"/>
