@@ -6,7 +6,7 @@
 <metal:main metal:use-macro="load: admin.pt">
     <div metal:fill-slot="admin-content">
         <div class="btn-group">
-            <button class="btn btn-default" onclick='window.location.href="/admin/user/create"'>Lisää</button>
+            <button class="btn btn-default" onclick='window.location.href="/admin/users/new"'>Lisää</button>
             <button class="btn btn-default">Muokkaa</button>
             <button class="btn btn-default">Poista</button>
         </div>

@@ -4,33 +4,25 @@
 -->
 
 <metal:main metal:use-macro="load: admin.pt">
+    <metal:main metal:fill-slot="admin-head_custom">
+        <link rel="stylesheet" type="text/css" href="/static/lomake.css">
+    </metal:main>
     <div metal:fill-slot="admin-content">
-        <div class="btn-group">
-            <button class="btn btn-default" onclick='window.location.href="/admin/user/create"'>Lisää</button>
-            <button class="btn btn-default">Muokkaa</button>
-            <button class="btn btn-default">Poista</button>
-        </div>
-
-        <br><br>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Käyttäjät</div>
-            <form>
-                <table class="table table-hover">
-                    <tr>
-                        <th></th>
-                        <th>#&nbsp;&nbsp;</th>
-                        <th>Nimi&nbsp;&nbsp;</th>
-                        <th>Sähköposti&nbsp;&nbsp;</th>
-                    </tr>
-                    <tr tal:repeat="user users">
-                        <td><input type="checkbox" name="user-${user.id}"></td>
-                        <td>${user.id}</td>
-                        <td>${user.name}</td>
-                        <td>${user.email}</td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+        <h2>Uusi käyttäjä</h2>
+        <form method="post">
+            <input type="hidden" name="data" value="user">
+            <table id="table_lomake">
+                <tr>
+                    <td>Sähköpostiosoite:<input name="email" type="email"></td>
+                    <td>Salasana:<input name="password" type="password"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="admin" id="checkbox_admin">&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Lisää käyttäjä"> </td>
+                </tr>
+            </table>
+        </form>
     </div>
 </metal:main>

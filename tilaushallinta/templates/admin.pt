@@ -8,6 +8,7 @@
 
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" href="/static/admin.css"/>
+        <metal:main metal:define-slot="admin-head_custom"></metal:main>
     </metal:main>
 
     <metal:main metal:fill-slot="content">
