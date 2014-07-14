@@ -34,7 +34,8 @@ def view_login(request):
 
     return {}
 
-@view_config(route_name='logout', renderer='../templates/login.pt')
+@view_config(route_name='logout')
 def view_logout(request):
-    return {}
+    headers = forget(request)
+    return HTTPFound('/', headers=headers)
 

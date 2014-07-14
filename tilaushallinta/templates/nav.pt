@@ -12,11 +12,15 @@
         <li><a href="/tilaukset">Tilausten hallinta</a></li>
         <li><a href="/admin">Ylläpito</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right" tal:condition="logged_in">
-        <li><a>Käyttäjä: ${user}</a></li>
+    <?python
+        from pyramid.security import authenticated_userid
+        userid = authenticated_userid(request)
+    ?>
+    <ul class="nav navbar-nav navbar-right" tal:condition="userid">
+        <li><a>Käyttäjä: ${userid}</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right" tal:condition="not:logged_in">
+    <ul class="nav navbar-nav navbar-right" tal:condition="not:userid">
         <li><a href="/login">Kirjaudu sisään</a></li>
     </ul>
 </div>
