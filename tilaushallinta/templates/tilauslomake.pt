@@ -13,18 +13,42 @@
                 var pattern =  /([^<]*)(.*)/;
                 var lines = $(".required");
                 lines.each(function(index, element) {
-                    var matches = pattern.exec($(element).html());
-                    var label = matches[1];
-                    var rest = matches[2];
-                    $(element).html(label + '<span class="asterisk">*</span>' + rest);
-                })
+                    if($(element).children("label").length) {
+                        $(element).children("label").append('<span class="asterisk">*</span>');
+                    } else {
+                        var matches = pattern.exec($(element).html());
+                        var label = matches[1];
+                        var rest = matches[2];
+                        $(element).html(label + '<span class="asterisk">*</span>' + rest);
+                    }
+                });
             });
+
+            function check_input() {
+                var status = true;
+                $(".required input, .required textarea").each(function(index, element) {
+                    if($(element).attr("type") == 'checkbox') {
+                        if(!$(element).prop("checked")) {
+                            status = false;
+                        }
+                    } else if($(element).attr("type") == 'textarea') {
+                        if($(element).text().length == 0) {
+                            status = false;
+                        }
+                    } else if($(element).attr("type") == 'text') {
+                        if($(element).value().length == 0) {
+                            status = false;
+                        }
+                    }
+                });
+                return status;
+            }
         </script>
     </metal:main>
 
     <div metal:fill-slot="content">
 
-        <form id="lomake" method="POST" action="/tilaus_submit">
+        <form id="lomake" method="POST" action="/tilaus_submit" onsubmit="return check_input()">
             <table id="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>
@@ -67,7 +91,7 @@
                 </tr>
 
                 <tr>
-                    <td><input type="checkbox" id="checkbox_ehdot" tabindex="15"> <label for="checkbox_ehdot">Hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a></label></td>
+                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="15"> <label for="checkbox_ehdot">Hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a></label></td>
                     <td><input type="checkbox" id="checkbox_maksu" tabindex="16" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu</label></td>
                 </tr>
 
