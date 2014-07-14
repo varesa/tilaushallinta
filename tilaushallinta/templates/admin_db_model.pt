@@ -21,12 +21,12 @@
                     <th>Data&nbsp;&nbsp;&nbsp;&nbsp;</th>
 
                 </tr>
-                <tr tal:repeat="row rows">
+                <tr tal:repeat="row rows" onclick='window.location.href="/admin/db/${model}/${row[1]}"'>
                     <td><input type="checkbox" name="${row[0]}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>${row[0]}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>${row[1]}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>${row[2].isoformat(' ')}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td><a href="/admin/db/${model}/${row[1]}">${str(row[3:])}</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>>${str(row[3:])}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 </tr>
             </table>
         </div>

@@ -18,9 +18,9 @@
                     <th>Name</th>
                     <th># of entries</th>
                 </tr>
-                <tr tal:repeat="model models">
+                <tr tal:repeat="model models" onclick='window.location.href="/admin/db/${model.name}"'>
                     <td><input type="checkbox" name="${model.name}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td><a href="/admin/db/${model.name}">${model.name}</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>${model.name}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>${model.count}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 </tr>
             </table>
