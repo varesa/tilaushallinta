@@ -19,8 +19,8 @@
                     <td><input type="checkbox" name="${row[0]}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>${row[0]}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>${row[1]}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td>${row[2].isoformat(' ')}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td>>${str(row[3:])}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><?python if row[2]: row[2].isoformat(' ') ?>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>${str(row[3:])}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 </tr>
             </table>
         </div>

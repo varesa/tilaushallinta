@@ -13,6 +13,9 @@
             <input type="hidden" name="data" value="user">
             <table id="table_lomake">
                 <tr>
+                    <td colspan="2">Nimi: <input type="text" name="name"></td>
+                </tr>
+                <tr>
                     <td>Sähköpostiosoite:<input name="email" type="email"></td>
                     <td>Salasana:<input name="password" type="password"></td>
                 </tr>

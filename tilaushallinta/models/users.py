@@ -15,15 +15,14 @@ class User(Base):
 
     uuid = Column(Integer, primary_key=True)
     id = Column(Integer)
-    dateCreated = Column(DateTime)
+    date = Column(DateTime)
 
     name = Column(Text)
 
     email = Column(Text)
     password_hash = Column(Text)
 
-
-    isAdmin = Column(Boolean)
+    admin = Column(Boolean)
 
     def hash_password(self, password, new=False):
         if new:
@@ -33,7 +32,7 @@ class User(Base):
         return bcrypt.hashpw(password.encode('utf-8'), salt)
 
     def set_password(self, password):
-        self.password_hash = self.encrypt_password(password, new=True)
+        self.password_hash = self.hash_password(password, new=True)
 
     def verify_password(self, password):
         return self.password == self.hash_password(password)
