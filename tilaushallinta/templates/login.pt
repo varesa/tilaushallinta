@@ -15,11 +15,12 @@
             <div class="panel-body">
                 <table>
                     <form method="post" action="/login">
+                        <input type="hidden" name="login" value="yes">
                         <tr>
                             <td colspan="2"><p tal:condition="exists: error" id="error">${error}</p></td>
                         </tr>
                         <tr>
-                            <td>Käyttäjätunnus:<input type="text" name="username"></td>
+                            <td>Sähköposti:<input type="text" name="email"></td>
                             <td>Salasana:<input type="password" name="password"></td>
                         </tr>
                         <tr>
