@@ -24,3 +24,5 @@ def configure_routes(config):
     config.add_route('admin_db', '/admin/db')
     config.add_route('admin_db_model', '/admin/db/{name}')
     config.add_route('admin_db_row', '/admin/db/{name}/{id}')
+
+    config.add_route('assertfail', '/assertfail')
