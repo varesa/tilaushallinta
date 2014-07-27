@@ -20,7 +20,7 @@
                     <th>Nimi</th>
                     <th>Kohteen osoite</th>
                 </tr>
-                <tr tal:repeat="kohde kohteet" onclick="window.location.href='/kohteet/' + ${tilaus.id}">
+                <tr tal:repeat="kohde kohteet" onclick="window.location.href='/kohteet/' + ${kohde.id}">
                     <!--<td>${str(kohde.id).zfill(3)}&nbsp;&nbsp;&nbsp;</td>-->
                     <td>${kohde.date.strftime("%y%m%d-%H%M")}</td>
                     <td>${kohde.nimi}, ${kohde.yritys}&nbsp;&nbsp;&nbsp;</td>
