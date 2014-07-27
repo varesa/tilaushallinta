@@ -31,28 +31,28 @@
                             <td><h3>Tilaaja</h3></td> <td><h3>Kohde</h3></td>
                         </tr>
                         <tr>
-                            <td>Nimi:<br><input name="tilaaja_nimi" value="${tilaus.tilaaja.nimi}"></td>
-                            <td>Nimi:<br><input name="kohde_nimi" value="${tilaus.kohde.nimi}"></td>
+                            <td>Nimi:<br><input readonly name="tilaaja_nimi" value="${tilaus.tilaaja.nimi}"></td>
+                            <td>Nimi:<br><input readonly name="kohde_nimi" value="${tilaus.kohde.nimi}"></td>
                         </tr>
                         <tr>
-                            <td>Yritys:<br><input name="tilaaja_yritys" value="${tilaus.tilaaja.yritys}"></td>
-                            <td>Yritys:<br><input name="kohde_yritys"  value="${tilaus.kohde.yritys}"></td>
+                            <td>Yritys:<br><input readonly name="tilaaja_yritys" value="${tilaus.tilaaja.yritys}"></td>
+                            <td>Yritys:<br><input readonly name="kohde_yritys"  value="${tilaus.kohde.yritys}"></td>
                         </tr>
                         <tr>
-                            <td>Osoite1:<br><input name="tilaaja_osoite1" value="${tilaus.tilaaja.osoite1}"></td>
-                            <td>Osoite1:<br><input name="kohde_osoite1" value="${tilaus.kohde.osoite1}"></td>
+                            <td>Osoite1:<br><input readonly name="tilaaja_osoite1" value="${tilaus.tilaaja.osoite1}"></td>
+                            <td>Osoite1:<br><input readonly name="kohde_osoite1" value="${tilaus.kohde.osoite1}"></td>
                         </tr>
                         <tr>
-                            <td>Osoite2:<br><input name="tilaaja_osoite2" value="${tilaus.tilaaja.osoite2}"></td>
-                            <td>Osoite2:<br><input name="kohde_osoite2" value="${tilaus.kohde.osoite2}"></td>
+                            <td>Osoite2:<br><input readonly name="tilaaja_osoite2" value="${tilaus.tilaaja.osoite2}"></td>
+                            <td>Osoite2:<br><input readonly name="kohde_osoite2" value="${tilaus.kohde.osoite2}"></td>
                         </tr>
                         <tr>
-                            <td>Puhelin:<br><input name="tilaaja_puh" value="${tilaus.tilaaja.puhelin}"></td>
-                            <td>Puhelin:<br><input name="kohde_puh" value="${tilaus.kohde.puhelin}"></td>
+                            <td>Puhelin:<br><input readonly name="tilaaja_puh" value="${tilaus.tilaaja.puhelin}"></td>
+                            <td>Puhelin:<br><input readonly name="kohde_puh" value="${tilaus.kohde.puhelin}"></td>
                         </tr>
                         <tr>
-                            <td>Sähköposti:<br><input name="tilaaja_email" value="${tilaus.tilaaja.email}"></td>
-                            <td>Sähköposti:<br><input name="kohde_email" value="${tilaus.kohde.email}"></td>
+                            <td>Sähköposti:<br><input readonly name="tilaaja_email" value="${tilaus.tilaaja.email}"></td>
+                            <td>Sähköposti:<br><input readonly name="kohde_email" value="${tilaus.kohde.email}"></td>
                         </tr>
 
                         <tr>
@@ -67,11 +67,11 @@
                         </tr>
 
                         <tr>
-                            <td>Maksuaika: <input type="number" class="short" name="maksuaika" value="${tilaus.maksuaika}"></td>
+                            <td>Maksuaika: <input readonly type="number" class="short" name="maksuaika" value="${tilaus.maksuaika}"></td>
                         </tr>
 
                         <tr>
-                            <td><input type="reset" value="Kumoa"><td><input type="submit" value="Päivitä"></td></td>
+                            <td><input readonly type="reset" value="Kumoa"><td><input readonly type="submit" value="Päivitä"></td></td>
                         </tr>
                     </form>
                 </table>
