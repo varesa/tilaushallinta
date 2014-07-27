@@ -28,7 +28,7 @@
                         <input type="hidden" name="tilaus_uuid" value="${tilaus.uuid}">
                         
                         <tr>
-                            <td><h3>Tilaaja</h3></td> <td><h3>Kohde</h3></td>
+                            <td><h3>Laskutus</h3></td> <td><h3>Työ</h3></td>
                         </tr>
                         <tr>
                             <td>Nimi:<br><input readonly name="tilaaja_nimi" value="${tilaus.tilaaja.nimi}"></td>
