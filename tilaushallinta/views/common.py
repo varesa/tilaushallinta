@@ -5,7 +5,15 @@
 
 from pyramid.events import subscriber
 from pyramid.events import BeforeRender
+from pyramid.security import authenticated_userid
+
+from ..models import DBSession, User
 
 @subscriber(BeforeRender)
 def add_login_status(event):
-    event['logged_in'] = False
+    userid = authenticated_userid(event['request'])
+    if userid:
+        event['logged_in'] = True
+        event['user'] = userid #DBSession.query(User).filter_by(email=userid)
+    else:
+        event['logged_in'] = False

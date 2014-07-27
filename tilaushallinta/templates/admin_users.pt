@@ -1,0 +1,36 @@
+<!--!
+# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Author: Esa Varemo
+-->
+
+<metal:main metal:use-macro="load: admin.pt">
+    <div metal:fill-slot="admin-content">
+        <div class="btn-group">
+            <button class="btn btn-default" onclick='window.location.href="/admin/users/new"'>Lisää</button>
+            <button class="btn btn-default">Muokkaa</button>
+            <button class="btn btn-default">Poista</button>
+        </div>
+
+        <br><br>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Käyttäjät</div>
+            <form>
+                <table class="table table-hover">
+                    <tr>
+                        <th></th>
+                        <th>#&nbsp;&nbsp;</th>
+                        <th>Nimi&nbsp;&nbsp;</th>
+                        <th>Sähköposti&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr tal:repeat="user users">
+                        <td><input type="checkbox" name="user-${user.id}"></td>
+                        <td>${user.id}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</metal:main>

@@ -1,0 +1,31 @@
+<!--!
+# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Author: Esa Varemo
+-->
+
+<metal:main metal:use-macro="load: admin.pt">
+    <metal:main metal:fill-slot="admin-head_custom">
+        <link rel="stylesheet" type="text/css" href="/static/lomake.css">
+    </metal:main>
+    <div metal:fill-slot="admin-content">
+        <h2>Uusi käyttäjä</h2>
+        <form method="post">
+            <input type="hidden" name="data" value="user">
+            <table id="table_lomake">
+                <tr>
+                    <td colspan="2">Nimi: <input type="text" name="name"></td>
+                </tr>
+                <tr>
+                    <td>Sähköpostiosoite:<input name="email" type="email"></td>
+                    <td>Salasana:<input name="password" type="password"></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="admin" id="checkbox_admin">&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Lisää käyttäjä"> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</metal:main>

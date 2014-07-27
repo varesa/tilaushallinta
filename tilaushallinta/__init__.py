@@ -4,12 +4,17 @@
 #
 
 from pyramid.config import Configurator
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
+
 from sqlalchemy import engine_from_config
 
 from .models import (
     DBSession,
     Base,
     )
+
+from .routes import configure_routes
 
 
 def main(global_config, **settings):
@@ -18,27 +23,18 @@ def main(global_config, **settings):
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
+
+    authn_policy = AuthTktAuthenticationPolicy('g&hjK/(%SS', hashalg='sha512')
+    authz_policy = ACLAuthorizationPolicy()
+
     config = Configurator(settings=settings)
     config.include('pyramid_chameleon')
+    config.set_authentication_policy(authn_policy)
+    config.set_authorization_policy(authz_policy)
 
     config.add_static_view('static', 'static', cache_max_age=3600)
 
-    config.add_route('home', '/')
-
-    config.add_route('login', '/login')
-    config.add_route('logout', '/logout')
-
-    config.add_route('order_list', '/tilaukset')
-    config.add_route('order_details', '/tilaukset/{id}')
-
-    config.add_route('show_text', '/texts/{name}')
-
-    config.add_route('tilaus', '/tilaus')
-    config.add_route('tilaus_submit', '/tilaus_submit')
-
-    config.add_route('db', '/db')
-    config.add_route('db_model', '/db/{name}')
-    config.add_route('db_model_row', '/db/{name}/{id}')
+    configure_routes(config)
 
     config.scan()
     return config.make_wsgi_app()

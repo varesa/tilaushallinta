@@ -1,10 +1,10 @@
-<!--
+<!--!
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Author: Esa Varemo
 -->
 
 <metal:main metal:use-macro="load: master.pt">
-    <metal:main metal:fill-slot="title">Tilaus</metal:main>
+    <metal:main metal:fill-slot="title">Tee tilaus</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" href="/static/lomake.css"/>
@@ -13,18 +13,48 @@
                 var pattern =  /([^<]*)(.*)/;
                 var lines = $(".required");
                 lines.each(function(index, element) {
-                    var matches = pattern.exec($(element).html());
-                    var label = matches[1];
-                    var rest = matches[2];
-                    $(element).html(label + '<span class="asterisk">*</span>' + rest);
-                })
+                    if($(element).children("label").length) {
+                        $(element).children("label").append('<span class="asterisk">*</span>');
+                    } else {
+                        var matches = pattern.exec($(element).html());
+                        var label = matches[1];
+                        var rest = matches[2];
+                        $(element).html(label + '<span class="asterisk">*</span>' + rest);
+                    }
+                });
             });
+
+            function check_input() {
+                var invalid = false;
+                $(".required input, .required textarea").each(function(index, element) {
+                    if($(element).prop("type") == 'checkbox') {
+                        console.log("checkbox found")
+                        if(!$(element).prop("checked")) {
+                            invalid = true;
+                            console.log("Checkbox empty");
+                        }
+                    } else if($(element).prop("type") == 'textarea') {
+                        console.log("textarea found");
+                        if($(element).val().length == 0) {
+                            invalid = true;
+                            console.log("Textarea empty");
+                        }
+                    } else if($(element).prop("type") == 'text') {
+                        console.log("textfield found");
+                        if($(element).val().length == 0) {
+                            invalid = true;
+                            console.log("Text field empty");
+                        }
+                    }
+                });
+                return !invalid;
+            }
         </script>
     </metal:main>
 
     <div metal:fill-slot="content">
 
-        <form id="lomake" method="POST" action="/tilaus_submit">
+        <form id="lomake" method="POST" action="/tilaus_submit" onsubmit="return check_input()">
             <table id="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>
@@ -34,45 +64,45 @@
                     <td><h3>Tilaaja</h3></td> <td><h3>Kohde</h3></td>
                 </tr>
                 <tr>
-                    <td class="required">Nimi:<br><input name="tilaaja_nimi"></td>
-                    <td class="required">Nimi:<br><input name="kohde_nimi"></td>
+                    <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>
+                    <td class="required">Nimi:<br><input name="kohde_nimi"   tabindex="7"></td>
                 </tr>
                 <tr>
-                    <td>Yritys:<br><input name="tilaaja_yritys"></td>
-                    <td>Yritys:<br><input name="kohde_yritys"></td>
+                    <td>Yritys:<br><input name="tilaaja_yritys" tabindex="2"></td>
+                    <td>Yritys:<br><input name="kohde_yritys"   tabindex="8"></td>
                 </tr>
                 <tr>
-                    <td class="required">Osoite1:<br><input name="tilaaja_osoite1"></td>
-                    <td class="required">Osoite1:<br><input name="kohde_osoite1"></td>
+                    <td class="required">Osoite1:<br><input name="tilaaja_osoite1" tabindex="3"></td>
+                    <td class="required">Osoite1:<br><input name="kohde_osoite1"   tabindex="9"></td>
                 </tr>
                 <tr>
-                    <td class="required">Osoite2:<br><input name="tilaaja_osoite2"></td>
-                    <td class="required">Osoite2:<br><input name="kohde_osoite2"></td>
+                    <td class="required">Osoite2:<br><input name="tilaaja_osoite2" tabindex="4"></td>
+                    <td class="required">Osoite2:<br><input name="kohde_osoite2"   tabindex="10"></td>
                 </tr>
                 <tr>
-                    <td class="required">Puhelin:<br><input name="tilaaja_puh"></td>
-                    <td>Puhelin:<br><input name="kohde_puh"></td>
+                    <td class="required">Puhelin:<br><input name="tilaaja_puh" tabindex="5"></td>
+                    <td>Puhelin:                 <br><input name="kohde_puh"   tabindex="11"></td>
                 </tr>
                 <tr>
-                    <td class="required">Sähköposti:<br><input name="tilaaja_email"></td>
-                    <td>Sähköposti:<br><input name="kohde_email"></td>
-                </tr>
-
-                <tr>
-                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh"></textarea></td>
+                    <td class="required">Sähköposti:<br><input name="tilaaja_email" tabindex="6"></td>
+                    <td>Sähköposti:                 <br><input name="kohde_email"   tabindex="12"></td>
                 </tr>
 
                 <tr>
-                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo"></textarea></td>
+                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh" tabindex="13"></textarea></td>
                 </tr>
 
                 <tr>
-                    <td><input type="checkbox" id="checkbox_ehdot"> <label for="checkbox_ehdot">Hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a></label></td>
-                    <td><input type="checkbox" id="checkbox_maksu" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu</label></td>
+                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="14"></textarea></td>
                 </tr>
 
                 <tr>
-                    <td colspan="2"><input type="submit" value="Tee tilaus"></td>
+                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="15"> <label for="checkbox_ehdot">Hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a></label></td>
+                    <td><input type="checkbox" id="checkbox_maksu" tabindex="16" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu</label></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input type="submit"  tabindex="17" value="Tee tilaus"></td>
                 </tr>
             </table>
         </form>

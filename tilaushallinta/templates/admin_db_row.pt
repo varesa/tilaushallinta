@@ -1,15 +1,9 @@
-<!--
+<!--!
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Author: Esa Varemo
 -->
 
 <metal:main metal:use-macro="load: master.pt">
-    <metal:main metal:fill-slot="title">...</metal:main>
-
-    <!--<metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="static/lomake.css"/>
-    </metal:main>-->
-
     <div metal:fill-slot="content">
         <div class="panel panel-default" tal:repeat="row rows">
             <div class="panel-body">

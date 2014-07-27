@@ -1,0 +1,38 @@
+/*
+# This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Author: Esa Varemo
+*/
+
+/* Common/admin.pt */
+
+html, body {
+    height: 100%;
+}
+
+.sidebar {
+    float: left;
+
+    width: 200px;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+    margin-right: 32px;
+}
+
+.sidebar ul li {
+    list-style-type: none;
+}
+
+.content {
+    float: left;
+    width: auto;
+
+    /*padding: 15px;*/
+}
+
+/* admin/users */
+
+.content .table, .content .btn-group {
+    min-width: 600px;
+}
