@@ -93,7 +93,7 @@ class Vesikalusteiden_tklista(Base):
     k_viemliitos_tp = Column(Text)
     k_viemliitos_selitys = Column(Text)
 
-    k_extra1_tila = Column(Text) # Extra/custom fields
+    k_extra1_tila = Column(Text) # Extra/freeform fields
     k_extra1_tp = Column(Text)
     k_extra1_selitys = Column(Text)
 
@@ -155,7 +155,7 @@ class Vesikalusteiden_tklista(Base):
     wc1_kvpatteri_tp = Column(Text)
     wc1_kvpatteri_selitys = Column(Text)
 
-    wc1_extra1_tila = Column(Text)
+    wc1_extra1_tila = Column(Text) # Extra/freeform fields
     wc1_extra1_tp = Column(Text)
     wc1_extra1_selitys = Column(Text)
 
@@ -191,7 +191,7 @@ class Vesikalusteiden_tklista(Base):
     wc2_allassekottaja_tp = Column(Text)
     wc2_allassekottaja_selitys = Column(Text)
 
-    wc2_extra1_tila = Column(Text)
+    wc2_extra1_tila = Column(Text) # Extra/freeform fields
     wc2_extra1_tp = Column(Text)
     wc2_extra1_selitys = Column(Text)
 
