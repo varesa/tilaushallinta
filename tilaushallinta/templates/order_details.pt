@@ -82,7 +82,7 @@
                 <h3>Päiväraportit</h3>
                 <table class="table" id="table_paivaraportit">
                     <tr tal:repeat="raportti tilaus.paivaraportit">
-                        <td class="raportti_col1"><textarea>${raportti.teksti}</textarea></td>
+                        <td class="raportti_col1">${raportti.date.strftime("%d.%m.%y %H:%M")}<textarea>${raportti.teksti}</textarea></td>
                         <td class="raportti_col2">
                             <table>
                                 <tr>
@@ -97,10 +97,11 @@
                             </table>
                         </td>
                     </tr>
-                    <form method="post">
+                    <a name="paivaraportit"></a>
+                    <form method="post" action="#paivaraportit">
                         <input type="hidden" name="data" value="paivaraportti">
                         <tr>
-                            <td class="raportti_col1"><textarea name="kuvaus"></textarea></td>
+                            <td class="raportti_col1">${current_date.strftime("%d.%m.%y %H:%M")}<textarea name="kuvaus"></textarea></td>
                             <td class="raportti_col2">
                                 <table>
                                     <tr>
@@ -142,7 +143,8 @@
                         <td class="tavara_col4"><input type="checkbox" ${'checked' if 'T' in tavara.tyyppi else ''}></td>
                         <td class="tavara_col5"><input value="${tavara.maara}"></td>
                     </tr>
-                    <form method="POST">
+                    <a name="tavarat"></a>
+                    <form method="POST" action="#tavarat">
                         <input type="hidden" name="data" value="tavara">
                         <tr>
                             <td class="tavara_col1"><input name="koodi"></td>

@@ -139,4 +139,6 @@ def view_order_details(request):
                                                 ('T' if ('T' in request.POST.keys()) else ''),
                                          maara=request.POST['maara']))
 
-    return {'tilaus': tilaus, 'tilaus_uuid': tilaus.uuid}
+    current_date = datetime.datetime.now()
+
+    return {'tilaus': tilaus, 'tilaus_uuid': tilaus.uuid, 'current_date': current_date}
