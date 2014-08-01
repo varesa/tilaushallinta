@@ -61,7 +61,7 @@
                 </tr>
 
                 <tr>
-                    <td><h3>Tilaaja</h3></td> <td><h3>Kohde</h3></td>
+                    <td><h3>Laskutus</h3></td> <td><h3>Työ</h3></td>
                 </tr>
                 <tr>
                     <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>
