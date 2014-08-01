@@ -13,7 +13,7 @@ from pyramid.scripts.common import parse_vars
 
 from ..models import (
     DBSession,
-    #MyModel,
+    User,
     Base,
     )
 
@@ -40,6 +40,9 @@ def main(argv=sys.argv):
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
-    """with transaction.manager:
-        model = MyModel(name='one', value=1)
-        DBSession.add(model)"""
+
+    with transaction.manager:
+        if DBSession.query(User).filter_by(name='admin').count() == 0:
+            admin = User(name='Admin', email='admin', admin=True)
+            admin.set_password('adminpwd123')
+            DBSession.add(admin)
