@@ -13,11 +13,15 @@
 
     <metal:main metal:fill-slot="content">
         <!--<div class="container">-->
-            <div class="panel panel-default sidebar">
-                <div class="panel-body">
-                    <metal:main metal:use-macro="load: admin_nav.pt"/>
+            <div class="sidebar">
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <metal:main metal:use-macro="load: admin_nav.pt"/>
+                    </div>
                 </div>
             </div>
+
             <div class="content">
                 <metal:main metal:define-slot="admin-content"/>
             </div>
