@@ -61,7 +61,7 @@
                 </tr>
 
                 <tr>
-                    <td><h3>Laskutustiedot</h3></td> <td><h3>Työn kohteen tiedot</h3></td>
+                    <td><h3>Laskutustiedot / Tilaaja</h3></td> <td><h3>Työn kohteen tiedot</h3></td>
                 </tr>
                 <tr>
                     <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>
@@ -89,6 +89,7 @@
                 </tr>
                 <tr>
                     <td>Sähköiset laskutustiedot:<br><textarea name="slaskutus" tabindex="7"></textarea></td>
+                    <td><input type="checkbox" id="checkbox_tiedot_samat"> <label for="checkbox_tiedot_samat">Samat kuin laskutustiedot</label></td>
                 </tr>
                 <tr>
                     <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh" tabindex="14"></textarea></td>
