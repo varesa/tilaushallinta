@@ -61,7 +61,7 @@
                 </tr>
 
                 <tr>
-                    <td><h3>Laskutus</h3></td> <td><h3>Työ</h3></td>
+                    <td><h3>Laskutustiedot</h3></td> <td><h3>Työn kohteen tiedot</h3></td>
                 </tr>
                 <tr>
                     <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>
@@ -99,8 +99,8 @@
                 </tr>
 
                 <tr>
-                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="15"> <label for="checkbox_ehdot">Hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a></label></td>
-                    <td><input type="checkbox" id="checkbox_maksu" tabindex="16" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu</label></td>
+                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="15"> <label for="checkbox_ehdot">Olen lukenut ja hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a> sekä voimassa olevan <a>hinnaston</a></label></td>
+                    <td><input type="checkbox" id="checkbox_maksu" tabindex="16" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu (7pv netto)</label></td>
                 </tr>
 
                 <tr>
