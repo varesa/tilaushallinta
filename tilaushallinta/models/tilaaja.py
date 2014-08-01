@@ -23,3 +23,5 @@ class Tilaaja(Base):
 
     puhelin = Column(Text)
     email = Column(Text)
+
+    slaskutus = Column(Text)
