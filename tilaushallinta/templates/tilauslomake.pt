@@ -65,35 +65,37 @@
                 </tr>
                 <tr>
                     <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>
-                    <td class="required">Nimi:<br><input name="kohde_nimi"   tabindex="7"></td>
+                    <td class="required">Nimi:<br><input name="kohde_nimi"   tabindex="8"></td>
                 </tr>
                 <tr>
                     <td>Yritys:<br><input name="tilaaja_yritys" tabindex="2"></td>
-                    <td>Yritys:<br><input name="kohde_yritys"   tabindex="8"></td>
+                    <td>Yritys:<br><input name="kohde_yritys"   tabindex="9"></td>
                 </tr>
                 <tr>
                     <td class="required">Osoite1:<br><input name="tilaaja_osoite1" tabindex="3"></td>
-                    <td class="required">Osoite1:<br><input name="kohde_osoite1"   tabindex="9"></td>
+                    <td class="required">Osoite1:<br><input name="kohde_osoite1"   tabindex="10"></td>
                 </tr>
                 <tr>
                     <td class="required">Osoite2:<br><input name="tilaaja_osoite2" tabindex="4"></td>
-                    <td class="required">Osoite2:<br><input name="kohde_osoite2"   tabindex="10"></td>
+                    <td class="required">Osoite2:<br><input name="kohde_osoite2"   tabindex="11"></td>
                 </tr>
                 <tr>
                     <td class="required">Puhelin:<br><input name="tilaaja_puh" tabindex="5"></td>
-                    <td>Puhelin:                 <br><input name="kohde_puh"   tabindex="11"></td>
+                    <td>Puhelin:                 <br><input name="kohde_puh"   tabindex="12"></td>
                 </tr>
                 <tr>
                     <td class="required">Sähköposti:<br><input name="tilaaja_email" tabindex="6"></td>
-                    <td>Sähköposti:                 <br><input name="kohde_email"   tabindex="12"></td>
+                    <td>Sähköposti:                 <br><input name="kohde_email"   tabindex="13"></td>
+                </tr>
+                <tr>
+                    <td>Sähköiset laskutustiedot:<br><textarea name="slaskutus" tabindex="7"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh" tabindex="14"></textarea></td>
                 </tr>
 
                 <tr>
-                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh" tabindex="13"></textarea></td>
-                </tr>
-
-                <tr>
-                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="14"></textarea></td>
+                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="15"></textarea></td>
                 </tr>
 
                 <tr>
