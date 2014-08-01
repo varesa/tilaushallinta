@@ -20,6 +20,11 @@ from .routes import configure_routes
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+
+    if '<password>' in settings['sqlalchemy.url']:
+        with open('dbpassword') as pwd:
+            settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<password>', pwd.readline())
+
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
