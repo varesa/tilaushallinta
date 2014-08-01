@@ -3,7 +3,7 @@
 # Author: Esa Varemo
 #
 
-from pyramid.view import view_config
+from pyramid.view import view_config, forbidden_view_config
 from pyramid.security import remember, forget
 from pyramid.httpexceptions import HTTPFound
 from ..models import DBSession, User
@@ -12,8 +12,10 @@ err_no_username = "Anna sähköposti/tunnus\n"
 err_no_password = "Anna salasana\n"
 err_invalid_login = "Virheellinen sähköposti/salasana\n"
 
-@view_config(route_name='login', renderer='../templates/login.pt')
+@forbidden_view_config(renderer='../templates/login.pt')
+@view_config(route_name='login', renderer='../templates/login.pt', permission='open')
 def view_login(request):
+    print(request.matched_route)
     errors = ""
     if 'login' in request.POST.keys():
         if not 'email' in request.POST.keys() or len(request.POST['email']) == 0:
@@ -25,8 +27,8 @@ def view_login(request):
         if not user:
             errors += err_invalid_login
 
-        if not user.verify_password(request.POST['password']):
-            errors += err_invalid_login
+            if not user.verify_password(request.POST['password']):
+                errors += err_invalid_login
 
         if not errors:
             headers = remember(request, request.POST['email'])

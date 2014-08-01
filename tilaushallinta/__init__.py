@@ -14,6 +14,8 @@ from .models import (
     Base,
     )
 
+from .root import Root
+from .views.login_management import view_login
 from .routes import configure_routes
 
 
@@ -32,10 +34,12 @@ def main(global_config, **settings):
     authn_policy = AuthTktAuthenticationPolicy('g&hjK/(%SS', hashalg='sha512')
     authz_policy = ACLAuthorizationPolicy()
 
-    config = Configurator(settings=settings)
+    config = Configurator(settings=settings, root_factory=Root)
     config.include('pyramid_chameleon')
     config.set_authentication_policy(authn_policy)
     config.set_authorization_policy(authz_policy)
+
+    config.set_default_permission("authenticated")
 
     config.add_static_view('static', 'static', cache_max_age=3600)
 
