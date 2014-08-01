@@ -11,14 +11,15 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Uusi <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="/tilaus">Uusi tilaus</a></li>
-                <li><a>Uusi huoltosopimus</a></li>
-                <li><a>VKK</a></li>
+                <li><a href="/tilaus">Tilaus</a></li>
+                <li><a href="#">Huoltosopimus</a></li>
+                <li><a href="#">VKK</a></li>
             </ul>
         </li>
 
         <li><a href="/tilaukset">Tilaukset</a></li>
-        <li><a>Huoltosopimukset</a></li>
+        <li><a href="#">Huoltosopimukset</a></li>
+        <li><a href="#">VKKt</a></li>
         <li><a href="/kohteet">Työkohteet</a></li>
         <li><a href="/admin">Ylläpito</a></li>
     </ul>
