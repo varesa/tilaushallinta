@@ -4,7 +4,7 @@
 #
 
 from pyramid.view import view_config
-from pyramid.request import Request
+from pyramid.httpexceptions import HTTPFound
 from ..models import DBSession, User
 from datetime import datetime
 
@@ -57,7 +57,7 @@ def view_admin_users_new(request):
 
             DBSession.add(user)
 
-            return request.invoke_subrequest(Request.blank('/admin/users'))
+            return HTTPFound(request.route_url('admin_users'))
         else:
             return {'errors': errors}
 
