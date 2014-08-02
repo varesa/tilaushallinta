@@ -12,8 +12,8 @@ class Laitteet(Base):
     __tablename__ = 'laitteet'
 
     uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
-    date = Column(DateTime)
+    id = Column(Integer, nullable=False)
+    date = Column(DateTime, nullable=False)
 
     # Lämmönjakohuone
 
@@ -64,8 +64,8 @@ class Vesikalusteiden_tklista(Base):
     __tablename__ = 'vk_tklistat'
 
     uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
-    date = Column(DateTime)
+    id = Column(Integer, nullable=False)
+    date = Column(DateTime, nullable=False)
 
     kohde_id = Column(Integer, ForeignKey("kohteet.uuid"))
 

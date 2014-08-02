@@ -14,8 +14,8 @@ class User(Base):
     __tablename__ = 'users'
 
     uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
-    date = Column(DateTime)
+    id = Column(Integer, nullable=False)
+    date = Column(DateTime, nullable=False)
 
     name = Column(Text)
 

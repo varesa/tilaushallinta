@@ -13,8 +13,8 @@ class Kohde(Base):
     __tablename__ = 'kohteet'
 
     uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
-    date = Column(DateTime)
+    id = Column(Integer, nullable=False)
+    date = Column(DateTime, nullable=False)
 
     laitteet_id = Column(Integer, ForeignKey("laitteet.uuid"))
     laitteet = relationship("Laitteet", backref="kohde")

@@ -45,8 +45,8 @@ class Tilaus(Base):
     __tablename__ = 'tilaukset'
 
     uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
-    date = Column(DateTime)
+    id = Column(Integer, nullable=False)
+    date = Column(DateTime, nullable=False)
 
     tilaaja_id = Column(Integer, ForeignKey("tilaajat.uuid"))
     tilaaja = relationship("Tilaaja", backref="tilaukset")

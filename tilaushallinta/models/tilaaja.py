@@ -12,8 +12,8 @@ class Tilaaja(Base):
     __tablename__ = 'tilaajat'
 
     uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
-    date = Column(DateTime)
+    id = Column(Integer, nullable=False)
+    date = Column(DateTime, nullable=False)
 
     nimi = Column(Text)
     yritys = Column(Text)
