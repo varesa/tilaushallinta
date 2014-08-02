@@ -19,7 +19,10 @@
                     <form method="post" action="/login">
                         <input type="hidden" name="login" value="yes">
                         <tr>
-                            <td colspan="2"><p tal:condition="exists: error" id="error">${error}</p></td>
+                            <td colspan="2">
+                                <div tal:condition="python: warning" class="alert alert-warning" role="alert">${warning}</div>
+                                <div tal:condition="python: errors" class="alert alert-danger" role="alert">${structure: errors}</div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Sähköposti:<input type="text" name="email"></td>

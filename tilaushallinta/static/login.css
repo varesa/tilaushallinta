@@ -21,10 +21,6 @@ input {
     width: 100%;
 }
 
-#error {
-    color: red;
-}
-
 #login_text {
     text-align: center;
 }

@@ -29,10 +29,18 @@ class User(Base):
             salt = bcrypt.gensalt()
         else:
             salt = self.password_hash  # bcrypt stores salt in the beginning of the hash
-        return bcrypt.hashpw(password.encode('utf-8'), salt.encode('utf-8'))
+        if not isinstance(salt, bytes):
+            salt = salt.encode('utf-8')
+
+        return bcrypt.hashpw(password.encode('utf-8'), salt)
 
     def set_password(self, password):
         self.password_hash = self.hash_password(password, new=True)
 
     def verify_password(self, password):
-        return self.password_hash == self.hash_password(password)
+        if isinstance(self.password_hash, bytes):
+            password_hash = self.password_hash
+        else:
+            password_hash = self.password_hash.encode('utf-8')
+
+        return password_hash == self.hash_password(password)
