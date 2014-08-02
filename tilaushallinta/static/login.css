@@ -24,3 +24,11 @@ input {
 #error {
     color: red;
 }
+
+#login_text {
+    text-align: center;
+}
+
+#table_login_form tr td{
+    padding-bottom: 16px;
+}
