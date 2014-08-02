@@ -28,8 +28,8 @@ class User(Base):
         if new:
             salt = bcrypt.gensalt()
         else:
-            salt = self.password_hash # bcrypt stores salt in the beginning of the hash
-        return bcrypt.hashpw(password.encode('utf-8'), salt)
+            salt = self.password_hash  # bcrypt stores salt in the beginning of the hash
+        return bcrypt.hashpw(password.encode('utf-8'), salt.encode('utf-8'))
 
     def set_password(self, password):
         self.password_hash = self.hash_password(password, new=True)
