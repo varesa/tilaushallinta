@@ -66,4 +66,5 @@ def view_admin_users_new(request):
 
 @view_config(route_name='admin_users_edit', renderer='../templates/admin_users_edit.pt')
 def view_admin_users_edit(request):
-    return {}
+    user = DBSession.query(User).filter_by(id=request.matchdict['id']).order_by(User.date.desc()).first()
+    return {'user': user}

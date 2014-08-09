@@ -23,7 +23,7 @@
                         <th>Nimi&nbsp;&nbsp;</th>
                         <th>Sähköposti&nbsp;&nbsp;</th>
                     </tr>
-                    <tr tal:repeat="user users">
+                    <tr tal:repeat="user users" onclick="document.location.href='/admin/users/${user.id}'">
                         <td><input type="checkbox" name="user-${user.id}"></td>
                         <td>${user.id}</td>
                         <td>${user.name}</td>
