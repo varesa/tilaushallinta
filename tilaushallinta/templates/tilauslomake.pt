@@ -59,7 +59,6 @@
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>
                 </tr>
-
                 <tr>
                     <td><h3>Laskutustiedot / Tilaaja</h3></td> <td><h3>Työn kohteen tiedot</h3></td>
                 </tr>
@@ -98,7 +97,9 @@
                 <tr>
                     <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="15"></textarea></td>
                 </tr>
-
+                <tr>
+                    <td colspan="2">Viitenumero:<br><input name="viitenumero"></td>
+                </tr>
                 <tr>
                     <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="15"> <label for="checkbox_ehdot">Olen lukenut ja hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a> sekä voimassa olevan <a>hinnaston</a></label></td>
                     <td><input type="checkbox" id="checkbox_maksu" tabindex="16" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu (7pv netto)</label></td>

@@ -48,6 +48,8 @@ class Tilaus(Base):
     id = Column(Integer, nullable=False)
     date = Column(DateTime, nullable=False)
 
+    viitenumero = Column(Text)
+
     tilaaja_id = Column(Integer, ForeignKey("tilaajat.uuid"))
     tilaaja = relationship("Tilaaja", backref="tilaukset")
 

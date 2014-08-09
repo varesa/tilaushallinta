@@ -69,9 +69,12 @@
                         <tr>
                             <td>Maksuaika: <input readonly type="number" class="short" name="maksuaika" value="${tilaus.maksuaika}"></td>
                         </tr>
+                         <tr>
+                            <td colspan="2">Viitenumero:<br><input name="viitenumero" value="${tilaus.viitenumero}"></td>
+                        </tr>
 
                         <tr>
-                            <td><input readonly type="reset" value="Kumoa"><td><input readonly type="submit" value="Päivitä"></td></td>
+                            <td><input type="reset" value="Kumoa"><td><input type="submit" value="Päivitä"></td></td>
                         </tr>
                     </form>
                 </table>

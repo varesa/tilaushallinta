@@ -64,7 +64,8 @@ def view_tilaus_submit(request):
                         tilaaja=tilaaja, kohde=kohde,
                         muut_yhteysh=request.POST['muut_yhteysh'],
                         tyo=request.POST['tyo'],
-                        maksuaika=maksuaika)
+                        maksuaika=maksuaika,
+                        viitenumero=request.POST['viitenumero'])
         DBSession.add(tilaus)
 
         #return Response(str(request.POST))
