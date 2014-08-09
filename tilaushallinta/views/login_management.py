@@ -17,7 +17,7 @@ err_invalid_login = "Virheellinen sähköposti/salasana\n"
 def view_login(request):
     warning = ""
     if request.matched_route.path != "/login":
-        warning = "Sinun täytyy olla kirjautuneena sisään"
+        warning = "Et ole kirjautunut sisään (tai oikeutesi eivät riitä)"
     errors = []
     if 'login' in request.POST.keys():
         if not 'email' in request.POST.keys() or len(request.POST['email']) == 0:
@@ -35,7 +35,11 @@ def view_login(request):
 
             if not errors:
                 headers = remember(request, request.POST['email'])
-                return HTTPFound("/", headers=headers)
+                if request.matched_route.path != "/login":
+                    url = request.matched_route.path
+                else:
+                    url = '/'
+                return HTTPFound(url, headers=headers)
 
     return {'errors': '<br>'.join(errors), 'warning': warning}
 
