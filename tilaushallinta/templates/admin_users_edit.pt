@@ -13,13 +13,15 @@
             <input type="hidden" name="data" value="user">
             <table id="table_lomake">
                 <tr>
-                    <td colspan="2">Nimi: <input type="text" name="name" value="${user.name}"></td>
+                    <td tal:condition="python: locked" colspan="2">Nimi: <input type="text" name="name" value="${user.name}" disabled></td>
+                    <td tal:condition="python: not locked" colspan="2">Nimi: <input type="text" name="name" value="${user.name}"></td>
                 </tr>
                 <tr>
-                    <td>Sähköpostiosoite:<input name="email" type="email" value="${user.email}"></td>
+                    <td tal:condition="python: locked">Sähköpostiosoite:<input name="email" type="email" value="${user.email}" disabled></td>
+                    <td tal:condition="python: not locked">Sähköpostiosoite:<input name="email" type="email" value="${user.email}"></td>
                     <td>Salasana:<input name="password" type="password" value="1231231234"></td>
                 </tr>
-                <tr>
+                <tr tal:condition="python: not locked">
                     <td tal:condition="python: user.admin"><input type="checkbox" name="admin" id="checkbox_admin" checked>&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
                     <td tal:condition="python: not user.admin"><input type="checkbox" name="admin" id="checkbox_admin">&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
                 </tr>
