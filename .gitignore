@@ -2,3 +2,4 @@
 tilaushallinta.egg-info/*
 tilaushallinta.sqlite
 dbpassword
+alembic.ini
