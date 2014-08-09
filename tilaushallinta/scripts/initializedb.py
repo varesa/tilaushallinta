@@ -46,7 +46,7 @@ def main(argv=sys.argv):
         if DBSession.query(User).count() == 0:
             id = 0
         else:
-            id = DBSession.query(User).sort_by(User.id.desc()).first()+1
+            id = DBSession.query(User).order_by(User.id.desc()).first().id +1
         if DBSession.query(User).filter_by(name='admin').count() == 0:
             admin = User(id=id, date=datetime.now(),
                          name='Admin', email='admin', admin=True)
