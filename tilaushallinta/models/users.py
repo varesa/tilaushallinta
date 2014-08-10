@@ -23,8 +23,8 @@ class User(Base):
     email = Column(Text)
     password_hash = Column(Text)
 
-    admin = Column(Boolean)
-    vuosihuoltosopimukset = Column(Boolean)
+    admin = Column(Boolean, default=False)
+    vuosihuoltosopimukset = Column(Boolean, default=False)
 
     def hash_password(self, password, new=False):
         if new:
