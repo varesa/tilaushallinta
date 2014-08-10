@@ -22,12 +22,15 @@
                     <td tal:condition="python: not locked">Sähköpostiosoite:<input name="email" type="email" value="${user.email}"></td>
                     <td>Salasana:<input name="password" type="password" value="1231231234"></td>
                 </tr>
-                <tr tal:condition="python: not locked">
-                    <td tal:condition="python: user.admin"><input type="checkbox" name="admin" id="checkbox_admin" checked>&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
-                    <td tal:condition="python: not user.admin"><input type="checkbox" name="admin" id="checkbox_admin">&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
+                <tr tal:condition="not: locked">
+                    <td tal:condition="user.admin"><input type="checkbox" name="admin" id="checkbox_admin" checked>&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
+                    <td tal:condition="not: user.admin"><input type="checkbox" name="admin" id="checkbox_admin">&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
+
+                    <td tal:condition="user.vuosihuoltosopimukset"><input type="checkbox" name="vuosihuoltosopimukset" id="vhs" checked>&nbsp;&nbsp;&nbsp;<label for="checkbox_vhs">Huoltosopimukset</label></td>
+                    <td tal:condition="not: user.vuosihuoltosopimukset"><input type="checkbox" name="vuosihuoltosopimukset" id="vhs">&nbsp;&nbsp;&nbsp;<label for="checkbox_vhs">Huoltosopimukset</label></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Lisää käyttäjä"> </td>
+                    <td colspan="2"><input type="submit" value="Muokkaa"> </td>
                 </tr>
             </table>
         </form>

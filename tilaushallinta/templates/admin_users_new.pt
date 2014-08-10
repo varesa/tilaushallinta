@@ -22,6 +22,7 @@
                 </tr>
                 <tr>
                     <td><input type="checkbox" name="admin" id="checkbox_admin">&nbsp;&nbsp;&nbsp;<label for="checkbox_admin">Pääkäyttäjä</label></td>
+                    <td><input type="checkbox" name="vuosihuoltosopimukset" id="vhs">&nbsp;&nbsp;&nbsp;<label for="checkbox_vhs">Huoltosopimukset</label></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="Lisää käyttäjä"> </td>

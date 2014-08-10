@@ -32,7 +32,8 @@ def view_admin_users_new(request):
     errors = ""
 
     post = request.POST
-    keys = post.keys()
+    keys = list(post.keys())
+
     if 'data' in keys:
         if not 'name' in keys or len(post['name']) == 0:
             errors += err_missing_name
@@ -46,17 +47,22 @@ def view_admin_users_new(request):
         else:
             admin = False
 
+        if 'vuosihuoltosopimukset' in keys:
+            vhs = True
+        else:
+            vhs = False
+
         if not errors:
             next_id = 0
             if DBSession.query(User).count() > 0:
                 next_id = DBSession.query(User).order_by(User.id.desc()).first().id+1
 
-            user = User(id=next_id, date=datetime.now(),
+            """user = User(id=next_id, date=datetime.now(),
                         email=post['email'], name=post['name'],
-                        admin=admin)
+                        admin=admin, vuosihuoltosopimukset=vhs)
             user.set_password(post['password'])
 
-            DBSession.add(user)
+            DBSession.add(user)"""
 
             return HTTPFound(request.route_url('admin_users'))
         else:
