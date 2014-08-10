@@ -14,8 +14,8 @@ from ..models import DBSession, User
 def add_login_status(event):
     userid = authenticated_userid(event['request'])
     if userid:
-        event['logged_in'] = True
-        event['user'] = DBSession.query(User).filter_by(email=userid).first()
+        event['session_logged_in'] = True
+        event['session_user'] = DBSession.query(User).filter_by(email=userid).first()
     else:
-        event['logged_in'] = False
-        event['user'] = None
+        event['session_logged_in'] = False
+        event['session_user'] = None
