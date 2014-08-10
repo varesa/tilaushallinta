@@ -13,4 +13,6 @@ def get_user_groups(userid, request):
         groups = []
         if user.admin:
             groups.append('group:admin')
+        if user.vuosihuoltosopimukset:
+            groups.append('group:vuosihuoltosopimukset')
         return groups

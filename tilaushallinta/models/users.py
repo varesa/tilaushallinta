@@ -24,6 +24,7 @@ class User(Base):
     password_hash = Column(Text)
 
     admin = Column(Boolean)
+    vuosihuoltosopimukset = Column(Boolean)
 
     def hash_password(self, password, new=False):
         if new:
