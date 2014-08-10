@@ -16,6 +16,7 @@ from .models import (
     )
 
 from .root import Root
+from .security import get_user_groups
 from .views.login_management import view_login
 from .routes import configure_routes
 
@@ -32,7 +33,7 @@ def main(global_config, **settings):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
 
-    authn_policy = AuthTktAuthenticationPolicy('g&hjK/(%SS', hashalg='sha512')
+    authn_policy = AuthTktAuthenticationPolicy('g&hjK/(%SS', callback=get_user_groups, hashalg='sha512')
     authz_policy = ACLAuthorizationPolicy()
 
     config = Configurator(settings=settings, root_factory=Root)
