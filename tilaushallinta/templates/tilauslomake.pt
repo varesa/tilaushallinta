@@ -99,7 +99,7 @@
                     <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="15"></textarea></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Viitenumero:<br><input name="viitenumero"></td>
+                    <td colspan="2" tabindex="16">Viitenumero:<br><input name="viitenumero"></td>
                 </tr>
                 <tr>
                     <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="15"> <label for="checkbox_ehdot">Olen lukenut ja hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a> sekä voimassa olevan <a>hinnaston</a></label></td>
