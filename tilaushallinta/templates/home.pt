@@ -13,7 +13,11 @@
 
     <div metal:fill-slot="content">
         <div style="text-align: center;">
-            <h2>Welcome!</h2>
+            <br><br>
+            <img src="/static/lsvtekniikka_bitmap.png" class="center-block">
+
+            <h2>Tilausten hallinta</h2>
+
         </div>
     </div>
 
