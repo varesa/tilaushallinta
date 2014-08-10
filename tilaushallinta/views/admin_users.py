@@ -57,12 +57,12 @@ def view_admin_users_new(request):
             if DBSession.query(User).count() > 0:
                 next_id = DBSession.query(User).order_by(User.id.desc()).first().id+1
 
-            """user = User(id=next_id, date=datetime.now(),
+            user = User(id=next_id, date=datetime.now(),
                         email=post['email'], name=post['name'],
                         admin=admin, vuosihuoltosopimukset=vhs)
             user.set_password(post['password'])
 
-            DBSession.add(user)"""
+            DBSession.add(user)
 
             return HTTPFound(request.route_url('admin_users'))
         else:
