@@ -42,8 +42,8 @@ def main(argv=sys.argv):
 
     if '<password>' in settings['sqlalchemy.url']:
         with open('dbpassword') as pwd:
-            settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<password>', pwd.readline())
-
+            settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<password>', pwd.readline().strip())
+    
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
