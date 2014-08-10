@@ -8,7 +8,8 @@ import datetime
 
 from pyramid.view import view_config
 from pyramid.response import Response
-from pyramid.request import Request
+from pyramid.httpexceptions import HTTPFound
+
 
 from ..models import DBSession
 from ..models import Tilaaja
@@ -70,6 +71,6 @@ def view_tilaus_submit(request):
         DBSession.add(tilaus)
 
         #return Response(str(request.POST))
-        return request.invoke_subrequest(Request.blank('/texts/tilattu'))
+        return HTTPFound('/texts/tilattu')
     except KeyError:
         return Response("Virheellinen käsiteltäessä lomaketta")
