@@ -18,6 +18,7 @@ class Tilaaja(Base):
 
     nimi = Column(Text)
     yritys = Column(Text)
+    ytunnus = Column(Text)
 
     osoite = Column(Text)
     postinumero = Column(Text)

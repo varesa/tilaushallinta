@@ -72,46 +72,50 @@
                     <td>Yritys:<br><input name="kohde_yritys"   tabindex="9"></td>
                 </tr>
                 <tr>
-                    <td class="required">Osoite:<br><input name="tilaaja_osoite" tabindex="3"></td>
-                    <td class="required">Osoite:<br><input name="kohde_osoite"   tabindex="10"></td>
+                    <td>Y-tunnus:<br><input name="tilaaja_ytunnus" tabindex="3"></td>
+                    <td>Y-tunnus:<br><input name="kohde_ytunnus"   tabindex="10"></td>
                 </tr>
                 <tr>
-                    <td class="required">Postinumero:<br><input name="tilaaja_postinumero" tabindex="4"></td>
-                    <td class="required">Postinumero:<br><input name="kohde_postinumero"   tabindex="11"></td>
+                    <td class="required">Osoite:<br><input name="tilaaja_osoite" tabindex="4"></td>
+                    <td class="required">Osoite:<br><input name="kohde_osoite"   tabindex="11"></td>
                 </tr>
                 <tr>
-                    <td class="required">Postitoimipaikka:<br><input name="tilaaja_postitoimipaikka" tabindex="5"></td>
-                    <td class="required">Postitoimipaikka:<br><input name="kohde_postitoimipaikka"   tabindex="12"></td>
+                    <td class="required">Postinumero:<br><input name="tilaaja_postinumero" tabindex="5"></td>
+                    <td class="required">Postinumero:<br><input name="kohde_postinumero"   tabindex="12"></td>
                 </tr>
                 <tr>
-                    <td class="required">Puhelin:<br><input name="tilaaja_puh" tabindex="6"></td>
-                    <td>Puhelin:                 <br><input name="kohde_puh"   tabindex="13"></td>
+                    <td class="required">Postitoimipaikka:<br><input name="tilaaja_postitoimipaikka" tabindex="6"></td>
+                    <td class="required">Postitoimipaikka:<br><input name="kohde_postitoimipaikka"   tabindex="13"></td>
                 </tr>
                 <tr>
-                    <td>Sähköposti:              <br><input name="tilaaja_email" tabindex="7"></td>
-                    <td>Sähköposti:              <br><input name="kohde_email"   tabindex="14"></td>
+                    <td class="required">Puhelin:<br><input name="tilaaja_puh" tabindex="7"></td>
+                    <td>Puhelin:                 <br><input name="kohde_puh"   tabindex="14"></td>
                 </tr>
                 <tr>
-                    <td>Sähköiset laskutustiedot:<br><textarea name="slaskutus" tabindex="8"></textarea></td>
+                    <td>Sähköposti:              <br><input name="tilaaja_email" tabindex="8"></td>
+                    <td>Sähköposti:              <br><input name="kohde_email"   tabindex="15"></td>
+                </tr>
+                <tr>
+                    <td>Sähköiset laskutustiedot:<br><textarea name="slaskutus" tabindex="9"></textarea></td>
                     <td><input type="checkbox" id="checkbox_tiedot_samat"> <label for="checkbox_tiedot_samat">Samat kuin laskutustiedot</label></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh" tabindex="15"></textarea></td>
+                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh" tabindex="16"></textarea></td>
                 </tr>
 
                 <tr>
-                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="16"></textarea></td>
+                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="17"></textarea></td>
                 </tr>
                 <tr>
-                    <td colspan="2" tabindex="17">Viitenumero:<br><input name="viitenumero"></td>
+                    <td colspan="2" tabindex="18">Viitenumero:<br><input name="viitenumero"></td>
                 </tr>
                 <tr>
-                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="18"> <label for="checkbox_ehdot">Olen lukenut ja hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a> sekä voimassa olevan <a>hinnaston</a></label></td>
-                    <td><input type="checkbox" id="checkbox_maksu" tabindex="19" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu (7pv netto)</label></td>
+                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="19"> <label for="checkbox_ehdot">Olen lukenut ja hyväksyn <a href="/texts/tilausehdot" target="_blank">ehdot</a> sekä voimassa olevan <a>hinnaston</a></label></td>
+                    <td><input type="checkbox" id="checkbox_maksu" tabindex="20" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu (7pv netto)</label></td>
                 </tr>
 
                 <tr>
-                    <td colspan="2"><input type="submit"  tabindex="20" value="Tee tilaus"></td>
+                    <td colspan="2"><input type="submit"  tabindex="21" value="Tee tilaus"></td>
                 </tr>
             </table>
         </form>

@@ -40,6 +40,10 @@
                             <td>Yritys:<br><input readonly name="kohde_yritys"  value="${tilaus.kohde.yritys}"></td>
                         </tr>
                         <tr>
+                            <td>Y-tunnus:<br><input readonly name="tilaaja_ytunnus" value="${tilaus.tilaaja.ytunnus}"></td>
+                            <td>Y-tunnus:<br><input readonly name="kohde_ytunnus"  value="${tilaus.kohde.ytunnus}"></td>
+                        </tr>
+                        <tr>
                             <td>Osoite:<br><input readonly name="tilaaja_osoite" value="${tilaus.tilaaja.osoite}"></td>
                             <td>Osoite:<br><input readonly name="kohde_osoite" value="${tilaus.kohde.osoite}"></td>
                         </tr>
