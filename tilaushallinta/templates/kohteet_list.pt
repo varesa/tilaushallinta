@@ -25,7 +25,7 @@
                     <!--<td>${str(kohde.id).zfill(3)}&nbsp;&nbsp;&nbsp;</td>-->
                     <td>${kohde.date.strftime("%y%m%d-%H%M")}</td>
                     <td>${kohde.nimi}, ${kohde.yritys}&nbsp;&nbsp;&nbsp;</td>
-                    <td>${kohde.osoite1} ${kohde.osoite2}</td>
+                    <td>${kohde.osoite}, ${kohde.postinumero} ${kohde.postitoimipaikka}</td>
                 </tr>
             </table>
         </div>
