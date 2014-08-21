@@ -109,7 +109,8 @@ def view_order_details(request):
             tilaus_differs = compare_sets(
                 ((tilaus_old.muut_yhteysh, request.POST['muut_yhteysh']),
                 (tilaus_old.tyo, request.POST['tyo']),
-                (tilaus_old.maksuaika, request.POST['maksuaika']))
+                (tilaus_old.maksuaika, request.POST['maksuaika']),
+                (tilaus.viitenumero, request.POST['viitenumero']))
             )
 
             if (tilaaja is not None) or (kohde is not None) or tilaus_differs:
@@ -120,7 +121,8 @@ def view_order_details(request):
                                 tilaaja=tilaaja, kohde=kohde,
                                 muut_yhteysh=request.POST['muut_yhteysh'],
                                 tyo=request.POST['tyo'],
-                                maksuaika=request.POST['maksuaika'])
+                                maksuaika=request.POST['maksuaika'],
+                                viitenumero=request.POST['viitenumero'])
                 DBSession.add(tilaus_uusi)
 
                 tilaus = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).first()
