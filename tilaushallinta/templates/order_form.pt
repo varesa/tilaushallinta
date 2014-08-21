@@ -68,8 +68,8 @@
                     <td class="required">Nimi:<br><input name="kohde_nimi"   tabindex="8"></td>
                 </tr>
                 <tr>
-                    <td>Yritys:<br><input name="tilaaja_yritys" tabindex="2"></td>
-                    <td>Yritys:<br><input name="kohde_yritys"   tabindex="9"></td>
+                    <td>Yritys:            <br><input name="tilaaja_yritys" tabindex="2"></td>
+                    <td>Yritys (taloyhtiö):<br><input name="kohde_yritys"   tabindex="9"></td>
                 </tr>
                 <tr>
                     <td>Y-tunnus:<br><input name="tilaaja_ytunnus" tabindex="3"></td>
