@@ -84,8 +84,8 @@
                     <td>Puhelin:                 <br><input name="kohde_puh"   tabindex="12"></td>
                 </tr>
                 <tr>
-                    <td class="required">Sähköposti:<br><input name="tilaaja_email" tabindex="6"></td>
-                    <td>Sähköposti:                 <br><input name="kohde_email"   tabindex="13"></td>
+                    <td>Sähköposti:              <br><input name="tilaaja_email" tabindex="6"></td>
+                    <td>Sähköposti:              <br><input name="kohde_email"   tabindex="13"></td>
                 </tr>
                 <tr>
                     <td>Sähköiset laskutustiedot:<br><textarea name="slaskutus" tabindex="7"></textarea></td>
