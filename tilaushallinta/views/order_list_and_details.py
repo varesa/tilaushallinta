@@ -55,8 +55,9 @@ def view_order_details(request):
             tilaaja_differs = compare_sets(
                 ((tilaaja_old.nimi, request.POST['tilaaja_nimi']),
                 (tilaaja_old.yritys, request.POST['tilaaja_yritys']),
-                (tilaaja_old.osoite1, request.POST['tilaaja_osoite1']),
-                (tilaaja_old.osoite2, request.POST['tilaaja_osoite2']),
+                (tilaaja_old.osoite, request.POST['tilaaja_osoite']),
+                (tilaaja_old.postitoimipaikka, request.POST['tilaaja_postitoimipaikka']),
+                (tilaaja_old.postinumero, request.POST['tilaaja_postinumero']),
                 (tilaaja_old.puhelin, request.POST['tilaaja_puh']),
                 (tilaaja_old.email, request.POST['tilaaja_email']))
             )
@@ -66,8 +67,9 @@ def view_order_details(request):
                 tilaaja = Tilaaja(id=tilaaja_old.id, date=datetime.datetime.now(),
                                   nimi=request.POST['tilaaja_nimi'],
                                   yritys=request.POST['tilaaja_yritys'],
-                                  osoite1=request.POST['tilaaja_osoite1'],
-                                  osoite2=request.POST['tilaaja_osoite2'],
+                                  osoite=request.POST['tilaaja_osoite'],
+                                  postitoimipaikka=request.POST['tilaaja_postitoimipaikka'],
+                                  postinumero=request.POST['tilaaja_postinumero'],
                                   puhelin=request.POST['tilaaja_puh'],
                                   email=request.POST['tilaaja_email'])
                 DBSession.add(tilaaja)
@@ -78,8 +80,9 @@ def view_order_details(request):
             kohde_differs = compare_sets(
                 ((kohde_old.nimi, request.POST['kohde_nimi']),
                 (kohde_old.yritys, request.POST['kohde_yritys']),
-                (kohde_old.osoite1, request.POST['kohde_osoite1']),
-                (kohde_old.osoite2, request.POST['kohde_osoite2']),
+                (kohde_old.osoite, request.POST['kohde_osoite']),
+                (kohde_old.postitoimipaikka, request.POST['kohde_postitoimipaikka']),
+                (kohde_old.postinumero, request.POST['kohde_postinumero']),
                 (kohde_old.puhelin, request.POST['kohde_puh']),
                 (kohde_old.email, request.POST['kohde_email']))
             )
@@ -89,8 +92,9 @@ def view_order_details(request):
                 kohde = Kohde(id=kohde_old.id, date=datetime.datetime.now(),
                               nimi=request.POST['kohde_nimi'],
                               yritys=request.POST['kohde_yritys'],
-                              osoite1=request.POST['kohde_osoite1'],
-                              osoite2=request.POST['kohde_osoite2'],
+                              osoite=request.POST['kohde_osoite'],
+                              postitoimipaikka=request.POST['kohde_postitoimipaikka'],
+                              postinumero=request.POST['kohde_postinumero'],
                               puhelin=request.POST['kohde_puh'],
                               email=request.POST['kohde_email'])
                 DBSession.add(kohde)

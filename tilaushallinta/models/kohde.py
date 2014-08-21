@@ -25,8 +25,9 @@ class Kohde(Base):
     nimi = Column(Text)
     yritys = Column(Text)
 
-    osoite1 = Column(Text)
-    osoite2 = Column(Text)
+    osoite = Column(Text)
+    postinumero = Column(Text)
+    postitoimipaikka = Column(Text)
 
     puhelin = Column(Text)
     email = Column(Text)

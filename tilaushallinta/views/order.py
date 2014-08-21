@@ -33,8 +33,9 @@ def view_tilaus_submit(request):
         tilaaja = Tilaaja(id=next_id, date=datetime.datetime.now(),
                           nimi=request.POST['tilaaja_nimi'],
                           yritys=request.POST['tilaaja_yritys'],
-                          osoite1=request.POST['tilaaja_osoite1'],
-                          osoite2=request.POST['tilaaja_osoite2'],
+                          osoite=request.POST['tilaaja_osoite'],
+                          postitoimipaikka=request.POST['tilaaja_postitoimipaikka'],
+                          postinumero=request.POST['tilaaja_postinumero'],
                           puhelin=request.POST['tilaaja_puh'],
                           email=request.POST['tilaaja_email'])
         DBSession.add(tilaaja)
@@ -46,8 +47,9 @@ def view_tilaus_submit(request):
         kohde = Kohde(id=next_id, date=datetime.datetime.now(),
                           nimi=request.POST['kohde_nimi'],
                           yritys=request.POST['kohde_yritys'],
-                          osoite1=request.POST['kohde_osoite1'],
-                          osoite2=request.POST['kohde_osoite2'],
+                          osoite=request.POST['kohde_osoite'],
+                          postitoimipaikka=request.POST['kohde_postitoimipaikka'],
+                          postinumero=request.POST['kohde_postinumero'],
                           puhelin=request.POST['kohde_puh'],
                           email=request.POST['kohde_email'])
         DBSession.add(kohde)
