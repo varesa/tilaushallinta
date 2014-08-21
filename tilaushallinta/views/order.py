@@ -17,7 +17,7 @@ from ..models import Kohde
 from ..models import Tilaus
 
 
-@view_config(route_name='tilaus', renderer='../templates/tilauslomake.pt')
+@view_config(route_name='tilaus', renderer='../templates/order_form.pt')
 def view_tilaus(request):
     return {}
 
