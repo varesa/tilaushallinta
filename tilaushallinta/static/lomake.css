@@ -42,6 +42,8 @@
     width: 100px;
 }
 
+
+
 .table_tavarat {}
 
 .tavara_col1 {
@@ -52,18 +54,27 @@
     width: 100%;
 }
 
-.tavara_col3, .tavara_col4 {
+.tavara_col3 {
+    text-align: right;
+    width: 90px;
+}
+
+.tavara_col3 input {
+    width: 90px;
+}
+
+.tavara_col4 {
+    text-align: right;
+    width: 75px;
+}
+
+.tavara_col4 input {
+    width: 75px;
+}
+
+.tavara_col5, .tavara_col6 {
     text-align: right;
     width: 25px;
-}
-
-.tavara_col5 {
-    text-align: right;
-    width: 75px;
-}
-
-.tavara_col5 input {
-    width: 75px;
 }
 
 .add_button {

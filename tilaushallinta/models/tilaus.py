@@ -38,8 +38,10 @@ class Tavara(Base):
     koodi = Column(Text)
     nimi = Column(Text)
 
-    tyyppi = Column(Text)
+    hinta = Column(Float)
     maara = Column(Integer)
+
+    tyyppi = Column(Text)
 
 
 class Tilaus(Base):
