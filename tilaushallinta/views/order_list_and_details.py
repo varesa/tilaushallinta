@@ -186,21 +186,21 @@ def update_tavarat(request, tilaus):
     tavarat = remove_empty_tavarat(tavarat)
 
     tavarat_new = []
-    for tavara_id, tavara in tavarat.items():
-        for tavara_old in tilaus.tavarat:
-            if tavara_id == tavara_old.id:
-                if tavarat_check_difference_dict_object(tavara, tavara_old):
-                    tavara_new = tavarat_new_from_dict(tavara, tavara_id=tavara_id)
-                    DBSession.add(tavara_new)
-                    tavarat_new.append(tavara_new)
-                else:
-                    tavarat_new.append(tavara_old)
-
-        if 'n' in tavara_id:
-
+    for tavara_id, tavara in tavarat.items():  # Loop throug received list of items
+        if 'n' in tavara_id:                        # If 'n' -> we are creating a new item
             tavara_new = tavarat_new_from_dict(tavara)
             DBSession.add(tavara_new)
             tavarat_new.append(tavara_new)
+        else:                                       # Else look for an existing one
+            for tavara_old in tilaus.tavarat:
+                if tavara_id == tavara_old.id:
+                    if tavarat_check_difference_dict_object(tavara, tavara_old):        # If different -> create new
+                        tavara_new = tavarat_new_from_dict(tavara, tavara_id=tavara_id)
+                        DBSession.add(tavara_new)
+                        tavarat_new.append(tavara_new)
+                    else:                                                               # If same -> reuse
+                        tavarat_new.append(tavara_old)
+
 
     tilaus_uusi = Tilaus(id=tilaus.id, date=datetime.datetime.now(),
                          tilaaja=tilaus.tilaaja, kohde=tilaus.kohde,
