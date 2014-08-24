@@ -43,6 +43,10 @@ def view_order_details(request):
     id = request.matchdict['id']
     tilaus = DBSession.query(Tilaus).filter_by(id=id).order_by(Tilaus.uuid.desc()).first()
 
+    #########################################################
+    # Form data sent for updating the basic order information
+    #########################################################
+
     if 'data' in request.POST.keys():
         if request.POST['data'] == 'perustiedot':
             tilaus_uuid = request.POST['tilaus_uuid']
@@ -127,6 +131,9 @@ def view_order_details(request):
 
                 tilaus = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).first()
 
+        ###########################################
+        # Form data sent for updating daily reports
+        ###########################################
 
         if request.POST['data'] == 'paivaraportti':
             next_id = 0
@@ -138,8 +145,13 @@ def view_order_details(request):
                                                       tunnit=request.POST['tunnit'],
                                                       matkat=request.POST['matkat'],
                                                       muut=request.POST['muut']))
-        if request.POST['data'] == 'tavara':
-            next_id = 0
+
+        ############################################
+        # Form data sent for updating the items list
+        ############################################
+
+        if request.POST['data'] == 'tavarat':
+            """next_id = 0
             if DBSession.query(Tavara).count() > 0:
                 next_id = DBSession.query(Tavara).order_by(Tavara.id.desc()).first().id+1
             tilaus.tavarat.append(Tavara(id=next_id, date=datetime.datetime.now(),
@@ -148,7 +160,29 @@ def view_order_details(request):
                                          tyyppi="" +
                                                 ('A' if ('A' in request.POST.keys()) else '') +
                                                 ('T' if ('T' in request.POST.keys()) else ''),
-                                         maara=request.POST['maara']))
+                                         maara=request.POST['maara']))"""
+
+            tavarat_tmp = {}
+            for key, value in request.POST.iteritems():
+                if '-' not in key:
+                    continue
+
+                tavara_id, field = key.split('-')
+                if tavara_id not in tavarat_tmp.keys():
+                    tavarat_tmp[tavara_id] = {}
+
+                tavarat_tmp[tavara_id][field] = value
+
+            tavarat = {}
+            for tavara_id, value in tavarat_tmp.items():
+                if (value['koodi'] != "" or
+                        value['nimi'] != "" or
+                        value['maara'] != "" or
+                        value['hinta'] != ""):
+                    tavarat[tavara_id] = value
+
+            import json
+            print(json.dumps(tavarat, indent=4))
 
     current_date = datetime.datetime.now()
 

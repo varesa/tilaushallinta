@@ -140,41 +140,57 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Tavarat</h3>
-                <table class="table" id="table_tavarat">
-                    <tr>
-                        <th>Koodi</th>
-                        <th>Nimike</th>
-                        <th>Hinta</th>
-                        <th>Määrä</th>
-                        <th>A</th>
-                        <th>T</th>
-                    </tr>
-                    <tr tal:repeat="tavara tilaus.tavarat">
-                        <td class="tavara_col1"><input value="${tavara.koodi}"></td>
-                        <td class="tavara_col2"><input value="${tavara.nimi}"></td>
-                        <td class="tavara_col3"><input value="${tavara.hinta}"></td>
-                        <td class="tavara_col4"><input value="${tavara.maara}"></td>
-                        <td class="tavara_col5"><input type="checkbox" ${'checked' if 'A' in tavara.tyyppi else ''}></td>
-                        <td class="tavara_col6"><input type="checkbox" ${'checked' if 'T' in tavara.tyyppi else ''}></td>
-                    </tr>
-                    <a name="tavarat"></a>
-                    <form method="POST" action="#tavarat">
-                        <input type="hidden" name="data" value="tavara">
+                <form method="post">
+                    <input type="hidden" name="data" value="tavarat">
+                    <table class="table" id="table_tavarat">
                         <tr>
-                            <td class="tavara_col1"><input name="koodi"></td>
-                            <td class="tavara_col2"><input name="nimi"></td>
-                            <td class="tavara_col3"><input name="hinta"></td>
-                            <td class="tavara_col4"><input name="maara"></td>
-                            <td class="tavara_col5"><input name="A" type="checkbox"></td>
-                            <td class="tavara_col6"><input name="T" type="checkbox"></td>
+                            <th>Koodi</th>
+                            <th>Nimike</th>
+                            <th>Hinta</th>
+                            <th>Määrä</th>
+                            <th>A</th>
+                            <th>T</th>
+                        </tr>
+                        <tr tal:repeat="tavara tilaus.tavarat">
+                            <td class="tavara_col1"><input name="${tavara.id}-koodi" value="${tavara.koodi}"></td>
+                            <td class="tavara_col2"><input name="${tavara.id}-nimi" value="${tavara.nimi}"></td>
+                            <td class="tavara_col3"><input name="${tavara.id}-hinta" value="${tavara.hinta}"></td>
+                            <td class="tavara_col4"><input name="${tavara.id}-maara" value="${tavara.maara}"></td>
+                            <td class="tavara_col5"><input name="${tavara.id}-A" type="checkbox" ${'checked' if 'A' in tavara.tyyppi else ''}></td>
+                            <td class="tavara_col6"><input name="${tavara.id}-T" type="checkbox" ${'checked' if 'T' in tavara.tyyppi else ''}></td>
+                        </tr>
+                        <a name="tavarat"></a>
+                        <tr>
+                            <td class="tavara_col1"><input name="n1-koodi"></td>
+                            <td class="tavara_col2"><input name="n1-nimi"></td>
+                            <td class="tavara_col3"><input name="n1-hinta"></td>
+                            <td class="tavara_col4"><input name="n1-maara"></td>
+                            <td class="tavara_col5"><input name="n1-A" type="checkbox"></td>
+                            <td class="tavara_col6"><input name="n1-T" type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td class="tavara_col1"><input name="n2-koodi"></td>
+                            <td class="tavara_col2"><input name="n2-nimi"></td>
+                            <td class="tavara_col3"><input name="n2-hinta"></td>
+                            <td class="tavara_col4"><input name="n2-maara"></td>
+                            <td class="tavara_col5"><input name="n2-A" type="checkbox"></td>
+                            <td class="tavara_col6"><input name="n2-T" type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td class="tavara_col1"><input name="n3-koodi"></td>
+                            <td class="tavara_col2"><input name="n3-nimi"></td>
+                            <td class="tavara_col3"><input name="n3-hinta"></td>
+                            <td class="tavara_col4"><input name="n3-maara"></td>
+                            <td class="tavara_col5"><input name="n3-A" type="checkbox"></td>
+                            <td class="tavara_col6"><input name="n3-T" type="checkbox"></td>
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <input class="add_button" type="submit" value="Lisää uusi">
+                                <button class="save_button">Tallenna</button>
                             </td>
                         </tr>
-                    </form>
-                </table>
+                    </table>
+                </form>
             </div>
         </div>
     </metal:main>
