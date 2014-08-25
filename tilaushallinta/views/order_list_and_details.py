@@ -247,4 +247,4 @@ def view_order_details(request):
     # Re-read the order to get possible changes
     tilaus = DBSession.query(Tilaus).filter_by(id=order_id).order_by(Tilaus.uuid.desc()).first()
 
-    return {'tilaus': tilaus, 'tilaus_uuid': tilaus.uuid, 'current_date': current_date}
+    return {'tilaus': tilaus, 'current_date': current_date}
