@@ -29,7 +29,7 @@ def main(global_config, **settings):
         with open('dbpassword') as pwd:
             settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<password>', pwd.readline().strip())
 
-    engine = engine_from_config(settings, 'sqlalchemy.')
+    engine = engine_from_config(settings, 'sqlalchemy.', pool_recycle=3600)
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
 
