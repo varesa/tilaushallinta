@@ -17,11 +17,6 @@ class Kohde(Base):
     id = Column(Integer, nullable=False)
     date = Column(DateTime, nullable=False)
 
-    laitteet_id = Column(Integer, ForeignKey("laitteet.uuid"))
-    laitteet = relationship("Laitteet", backref="kohde")
-
-    vk_tklistat = relationship("Vesikalusteiden_tklista")
-
     nimi = Column(Text)
     yritys = Column(Text)
     ytunnus = Column(Text)

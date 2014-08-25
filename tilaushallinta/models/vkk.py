@@ -17,10 +17,9 @@ class Vesikalustekartoitus(Base):
     id = Column(Integer, nullable=False)
     date = Column(DateTime, nullable=False)
 
-
     # Property relationships
     kohde_id = Column(Integer, ForeignKey('kohteet.id'))
-    kohde = relationship("Kohde")
+    kohde = relationship("Kohde", backref="vesikalustekartoitukset")
 
     # Relationships down
     asunnot = relationship("VKK_Asunto")
