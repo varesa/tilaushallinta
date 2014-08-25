@@ -12,6 +12,7 @@ from sqlalchemy.exc import NoSuchTableError
 
 from ..models import Base, DBSession
 
+
 @view_config(route_name='admin_db', renderer='../templates/admin_db_database.pt')
 def view_admin_db(request):
     models = []
@@ -19,6 +20,7 @@ def view_admin_db(request):
         count = DBSession.execute(Table(table, Base.metadata, autoload=True).count()).scalar()
         models.append({'name': table, 'count': count})
     return {'models': models}
+
 
 @view_config(route_name='admin_db_model', renderer='../templates/admin_db_model.pt')
 def view_admin_db_model(request):
@@ -33,6 +35,7 @@ def view_admin_db_model(request):
         return {'model': model, 'rows': rows}
     except NoSuchTableError:
         return Response("Virheellinen kysely")
+
 
 @view_config(route_name='admin_db_row', renderer='../templates/admin_db_row.pt')
 def view_admin_db_row(request):

@@ -10,6 +10,7 @@ from pyramid.security import authenticated_userid
 
 from ..models import DBSession, User
 
+
 @subscriber(BeforeRender)
 def add_login_status(event):
     userid = authenticated_userid(event['request'])

@@ -46,14 +46,14 @@ def view_tilaus_submit(request):
             next_id = DBSession.query(Kohde).order_by(Kohde.id.desc()).first().id+1
 
         kohde = Kohde(id=next_id, date=datetime.datetime.now(),
-                          nimi=request.POST['kohde_nimi'],
-                          yritys=request.POST['kohde_yritys'],
-                          ytunnus=request.POST['kohde_ytunnus'],
-                          osoite=request.POST['kohde_osoite'],
-                          postitoimipaikka=request.POST['kohde_postitoimipaikka'],
-                          postinumero=request.POST['kohde_postinumero'],
-                          puhelin=request.POST['kohde_puh'],
-                          email=request.POST['kohde_email'])
+                      nimi=request.POST['kohde_nimi'],
+                      yritys=request.POST['kohde_yritys'],
+                      ytunnus=request.POST['kohde_ytunnus'],
+                      osoite=request.POST['kohde_osoite'],
+                      postitoimipaikka=request.POST['kohde_postitoimipaikka'],
+                      postinumero=request.POST['kohde_postinumero'],
+                      puhelin=request.POST['kohde_puh'],
+                      email=request.POST['kohde_email'])
         DBSession.add(kohde)
 
         next_id = 0

@@ -7,8 +7,6 @@
 import datetime
 
 from pyramid.view import view_config
-from pyramid.request import Request
-from pyramid.response import Response
 
 from ..models import DBSession
 from ..models import Tilaaja
@@ -16,6 +14,7 @@ from ..models import Kohde
 from ..models import Tilaus
 from ..models import Tavara
 from ..models import Paivaraportti
+
 
 @view_config(route_name='order_list', renderer='../templates/order_list.pt')
 def view_tilaukset_list(request):
@@ -30,6 +29,7 @@ def view_tilaukset_list(request):
             lastid = tilaus.id
     latest.reverse()
     return {"tilaukset": latest}
+
 
 def compare_sets(list):
     difference = False

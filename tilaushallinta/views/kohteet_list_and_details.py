@@ -9,6 +9,7 @@ from pyramid.view import view_config
 from ..models import DBSession
 from ..models import Kohde
 
+
 @view_config(route_name='kohteet_list', renderer='../templates/kohteet_list.pt')
 def view_kohteet_list(request):
     kohteet = DBSession.query(Kohde).order_by(Kohde.uuid.desc()).all()
@@ -22,6 +23,7 @@ def view_kohteet_list(request):
             lastid = kohde.id
     latest.reverse()
     return {"kohteet": latest}
+
 
 @view_config(route_name='kohteet_details', renderer='../templates/kohteet_details.pt')
 def view_order_details(request):

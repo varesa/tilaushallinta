@@ -44,6 +44,7 @@ def view_login(request):
 
     return {'errors': '<br>'.join(errors), 'warning': warning}
 
+
 @view_config(route_name='logout')
 def view_logout(request):
     headers = forget(request)
