@@ -193,14 +193,13 @@ def update_tavarat(request, tilaus):
             tavarat_new.append(tavara_new)
         else:                                       # Else look for an existing one
             for tavara_old in tilaus.tavarat:
-                if tavara_id == tavara_old.id:
+                if int(tavara_id) == int(tavara_old.id):
                     if tavarat_check_difference_dict_object(tavara, tavara_old):        # If different -> create new
                         tavara_new = tavarat_new_from_dict(tavara, tavara_id=tavara_id)
                         DBSession.add(tavara_new)
                         tavarat_new.append(tavara_new)
                     else:                                                               # If same -> reuse
                         tavarat_new.append(tavara_old)
-
 
     tilaus_uusi = Tilaus(id=tilaus.id, date=datetime.datetime.now(),
                          tilaaja=tilaus.tilaaja, kohde=tilaus.kohde,
@@ -209,9 +208,6 @@ def update_tavarat(request, tilaus):
                          viitenumero=tilaus.viitenumero,
                          tavarat=tavarat_new, paivaraportit=tilaus.paivaraportit)
     DBSession.add(tilaus_uusi)
-    import json
-
-    print(json.dumps(tavarat, indent=4))
 
 
 @view_config(route_name='order_details', renderer='../templates/order_details.pt')
