@@ -140,7 +140,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Tavarat</h3>
-                <form method="post">
+                <form method="post" action="#tavarat">
                     <input type="hidden" name="data" value="tavarat">
                     <table class="table" id="table_tavarat">
                         <tr>
