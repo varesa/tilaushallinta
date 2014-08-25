@@ -172,7 +172,7 @@ def tavarat_new_from_dict(tavara_dict, tavara_id=None):
 
     return Tavara(id=tavara_id, date=datetime.datetime.now(),
                   koodi=tavara_dict['koodi'], nimi=tavara_dict['nimi'],
-                  maara=tavara_dict['maara'], hinta=tavara_dict['hinta'],
+                  maara=int(tavara_dict['maara']), hinta=float(tavara_dict['hinta']),
                   tyyppi=(
                       "" +
                       ('A' if ('A' in tavara_dict.keys()) else '') +
