@@ -17,13 +17,13 @@ from ..models import Kohde
 from ..models import Tilaus
 
 
-@view_config(route_name='tilaus', renderer='../templates/order_form.pt')
-def view_tilaus(request):
+@view_config(route_name='order_new', renderer='../templates/order_new.pt')
+def view_order_new(request):
     return {}
 
 
-@view_config(route_name='tilaus_submit')
-def view_tilaus_submit(request):
+@view_config(route_name='order_submit')
+def view_order_submit(request):
     try:
 
         next_id = 0
@@ -77,4 +77,4 @@ def view_tilaus_submit(request):
         #return Response(str(request.POST))
         return HTTPFound('/texts/tilattu')
     except KeyError:
-        return Response("Virheellinen käsiteltäessä lomaketta")
+        return Response("Virhe käsiteltäessä lomaketta")

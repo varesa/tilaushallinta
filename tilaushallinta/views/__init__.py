@@ -12,9 +12,9 @@ from .common import add_login_status
 from .admin_db import view_admin_db, view_admin_db_model, view_admin_db_row
 from .home import view_home
 from .login_management import view_login, view_logout
-from .order import view_tilaus, view_tilaus_submit
+from .order import view_order_new, view_order_submit
 from .order_list_and_details import view_tilaukset_list, view_order_details
 from .utils import view_show_text
 from .admin import view_admin
 from .admin_users import view_admin_users, view_admin_users_new, view_admin_users_edit
-from .debug import view_assertfail
+from .admin_assert import view_admin_assertfail

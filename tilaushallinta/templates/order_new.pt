@@ -55,7 +55,7 @@
 
     <div metal:fill-slot="content">
 
-        <form id="lomake" method="POST" action="/tilaus_submit" onsubmit="return check_input()">
+        <form id="lomake" method="POST" action="/tilaukset/submit" onsubmit="return check_input()">
             <table id="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>

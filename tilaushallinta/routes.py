@@ -11,16 +11,20 @@ def configure_routes(config):
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')
 
+    config.add_route('order__new', '/tilaukset/uusi')
+    config.add_route('order__submit', '/tilaukset/submit')
     config.add_route('order_list', '/tilaukset')
     config.add_route('order_details', '/tilaukset/{id}')
 
     config.add_route('kohteet_list', '/kohteet')
     config.add_route('kohteet_details', '/kohteet/{id}')
 
-    config.add_route('show_text', '/texts/{name}')
+    config.add_route('vkk_new', '/vkkt/uusi')
+    config.add_route('vkk_submit', '/vkkt/submit')
+    config.add_route('vkk_list', '/vkkt')
+    config.add_route('vkk_details', '/vkkt/{id}')
 
-    config.add_route('tilaus', '/tilaus')
-    config.add_route('tilaus_submit', '/tilaus_submit')
+    config.add_route('show_text', '/texts/{name}')
 
     config.add_route('admin', '/admin')
     config.add_route('admin_users', '/admin/users')
@@ -31,4 +35,4 @@ def configure_routes(config):
     config.add_route('admin_db_model', '/admin/db/{name}')
     config.add_route('admin_db_row', '/admin/db/{name}/{id}')
 
-    config.add_route('assertfail', '/assertfail')
+    config.add_route('admin_assertfail', '/admin/assertfail')
