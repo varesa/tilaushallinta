@@ -11,8 +11,8 @@ def configure_routes(config):
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')
 
-    config.add_route('order__new', '/tilaukset/uusi')
-    config.add_route('order__submit', '/tilaukset/submit')
+    config.add_route('order_new', '/tilaukset/uusi')
+    config.add_route('order_submit', '/tilaukset/submit')
     config.add_route('order_list', '/tilaukset')
     config.add_route('order_details', '/tilaukset/{id}')
 
