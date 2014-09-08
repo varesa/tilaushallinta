@@ -4,6 +4,9 @@
 # Copyright Esa Varemo 2014
 #
 
+import string
+import random
+
 from pyramid.config import Configurator
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
@@ -33,7 +36,18 @@ def main(global_config, **settings):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
 
-    authn_policy = AuthTktAuthenticationPolicy('g&hjK/(%SS', callback=get_user_groups, hashalg='sha512')
+    try:
+        with open('auth_token') as token_file:
+            token = token_file.readline().strip()
+    except FileNotFoundError:
+        with open('auth_token', 'w') as token_file:
+            new_token = ''.join([random.choice(string.ascii_letters + string.digits + string.punctuation) for n in range(30)])
+            print("Generated new auth secret")
+            token_file.write(new_token)
+            token = new_token
+
+
+    authn_policy = AuthTktAuthenticationPolicy(secret=token, callback=get_user_groups, hashalg='sha512')
     authz_policy = ACLAuthorizationPolicy()
 
     config = Configurator(settings=settings, root_factory=Root)

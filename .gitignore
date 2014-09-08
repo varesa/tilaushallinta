@@ -2,4 +2,5 @@
 tilaushallinta.egg-info/*
 tilaushallinta.sqlite
 dbpassword
+auth_token
 alembic.ini
