@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <td>Sähköposti:<br><input readonly name="tilaaja_email"></td>
-                            <td>Sähköposti:<br><input readonly name="kohde_email" value="${tilaus.kohde.email}"></td>
+                            <td>Sähköposti:<br><input readonly name="kohde_email" value="${kohde.email}"></td>
                         </tr>
 
                         <tr>
