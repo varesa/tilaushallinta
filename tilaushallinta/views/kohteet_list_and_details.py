@@ -25,7 +25,7 @@ def view_kohteet_list(request):
     return {"kohteet": latest}
 
 
-@view_config(route_name='kohteet_details', renderer='../templates/kohteet_details.pt')
+@view_config(route_name='kohteet_details', renderer='../templates/kohde_details.pt')
 def view_order_details(request):
     id = request.matchdict['id']
     kohde = DBSession.query(Kohde).filter_by(id=id).order_by(Kohde.uuid.desc()).first()
