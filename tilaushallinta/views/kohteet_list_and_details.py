@@ -10,7 +10,7 @@ from ..models import DBSession
 from ..models import Kohde
 
 
-@view_config(route_name='kohteet_list', renderer='../templates/kohteet_list.pt')
+@view_config(route_name='kohteet_list', renderer='../templates/kohde_list.pt')
 def view_kohteet_list(request):
     kohteet = DBSession.query(Kohde).order_by(Kohde.uuid.desc()).all()
 
