@@ -130,7 +130,7 @@ def update_perustiedot(request, tilaus):
     return tilaus
 
 
-def update_paivaraportit(request, tilaus):
+"""def update_paivaraportit(request, tilaus):
     next_id = 0
     if DBSession.query(Paivaraportti).count() > 0:
         next_id = DBSession.query(Paivaraportti).order_by(Paivaraportti.id.desc()).first().id + 1
@@ -139,6 +139,80 @@ def update_paivaraportit(request, tilaus):
                                               tunnit=request.POST['tunnit'],
                                               matkat=request.POST['matkat'],
                                               muut=request.POST['muut']))
+"""
+
+
+def add_paivaraportti(tilaus):
+    next_id = 0
+    if DBSession.query(Paivaraportti).count() > 0:
+        next_id = DBSession.query(Paivaraportti).order_by(Paivaraportti.id.desc()).first().id + 1
+    tilaus.paivaraportit.append(Paivaraportti(id=next_id, date=datetime.datetime.now()))
+
+
+def raportit_form_to_dict(request):
+    raportit = {}
+    for key, value in request.POST.iteritems():
+        if '-' not in key:
+            continue
+
+        raportti_id, field = key.split('-')
+        if raportti_id not in raportit.keys():
+            raportit[raportti_id] = {}
+
+        raportit[raportti_id][field] = value
+
+    return raportit
+
+
+def string_to_float_or_zero(str):
+    try:
+        return float(str)
+    except:
+        return 0
+
+
+def raportit_check_difference_dict_object(raportti_dict, raportti_object):
+    return compare_sets((
+        (raportti_dict['teksti'], raportti_object.teksti),
+        (raportti_dict['matkat'], raportti_object.matkat),
+        (raportti_dict['tunnit'], raportti_object.tunnit),
+        (raportti_dict['muut'], raportti_object.muut)
+    ))
+
+
+def raportit_new_from_dict(raportti_dict, raportti_id):
+    return Paivaraportti(id=int(raportti_id), date=datetime.datetime.now(),
+                         teksti=raportti_dict['teksti'],
+                         matkat=string_to_float_or_zero(raportti_dict['matkat']),
+                         tunnit=string_to_float_or_zero(raportti_dict['tunnit']),
+                         muut=string_to_float_or_zero(raportti_dict['muut']))
+
+
+def save_paivaraportit(request, tilaus):
+    raportit_request = raportit_form_to_dict(request)
+
+    raportit_new = []
+    changes_done = False
+
+    print("Trying to save something...")
+
+    for raportti_id, raportti_new in raportit_request.items():
+        for raportti_old in tilaus.paivaraportit:
+            if int(raportti_old.id) == int(raportti_id):
+                if raportit_check_difference_dict_object(raportti_new, raportti_old):
+                    raportit_new.append(raportit_new_from_dict(raportti_new, raportti_id))
+                    changes_done = True
+                else:
+                    raportit_new.append(raportti_old)
+
+    if changes_done:
+        tilaus_uusi = Tilaus(id=tilaus.id, date=datetime.datetime.now(),
+                             tilaaja=tilaus.tilaaja, kohde=tilaus.kohde,
+                             muut_yhteysh=tilaus.muut_yhteysh,
+                             tyo=tilaus.tyo, maksuaika=tilaus.maksuaika,
+                             viitenumero=tilaus.viitenumero,
+                             tavarat=tilaus.tavarat, paivaraportit=raportit_new)
+        DBSession.add(tilaus_uusi)
 
 
 def tavarat_form_to_dict(request):
@@ -181,7 +255,7 @@ def tavarat_new_from_dict(tavara_dict, tavara_id=None):
     )
 
 
-def update_tavarat(request, tilaus):
+def save_tavarat(request, tilaus):
     tavarat = tavarat_form_to_dict(request)
     tavarat = remove_empty_tavarat(tavarat)
 
@@ -229,14 +303,18 @@ def view_order_details(request):
         ###########################################
 
         if request.POST['data'] == 'paivaraportti':
-            update_paivaraportit(request, tilaus)
+            if 'save' in request.POST.keys():
+                save_paivaraportit(request, tilaus)
+            elif 'add' in request.POST.keys():
+                add_paivaraportti(tilaus)
+            #update_paivaraportit(request, tilaus)
 
         ############################################
         # Form data sent for updating the items list
         ############################################
 
         if request.POST['data'] == 'tavarat':
-            update_tavarat(request, tilaus)
+            save_tavarat(request, tilaus)
 
     current_date = datetime.datetime.now()
 
