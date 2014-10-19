@@ -92,27 +92,27 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Päiväraportit</h3>
+                <a name="paivaraportit"></a>
                 <table class="table" id="table_paivaraportit">
-                    <tr tal:repeat="raportti tilaus.paivaraportit">
-                        <td class="raportti_col1">${raportti.date.strftime("%d.%m.%y %H:%M")}<textarea>${raportti.teksti}</textarea></td>
-                        <td class="raportti_col2">
-                            <table>
-                                <tr>
-                                    <td>Tunnit:</td><td><input value="${raportti.tunnit}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Matkat:</td><td><input value="${raportti.matkat}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Muut:</td><td><input value="${raportti.muut}"></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <a name="paivaraportit"></a>
                     <form method="post" action="#paivaraportit">
+                        <tr tal:repeat="raportti tilaus.paivaraportit">
+                            <td class="raportti_col1">${raportti.date.strftime("%d.%m.%y %H:%M")}<textarea name="${raportti.id}-teksti">${raportti.teksti}</textarea></td>
+                            <td class="raportti_col2">
+                                <table>
+                                    <tr>
+                                        <td>Tunnit:</td><td><input name="${raportti.id}-tunnit" value="${raportti.tunnit}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Matkat:</td><td><input name="${raportti.id}-matkat" value="${raportti.matkat}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Muut:</td><td><input name="${raportti.id}-muut" value="${raportti.muut}"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
                         <input type="hidden" name="data" value="paivaraportti">
-                        <tr>
+                        <!--<tr>
                             <td class="raportti_col1">${current_date.strftime("%d.%m.%y %H:%M")}<textarea name="kuvaus"></textarea></td>
                             <td class="raportti_col2">
                                 <table>
@@ -127,10 +127,13 @@
                                     </tr>
                                 </table>
                             </td>
-                        </tr>
+                        </tr>-->
                         <tr>
-                            <td colspan="2">
-                                <input type="submit" value="Lisää">
+                            <td>
+                                <input type="submit" name="save" value="Tallenna">
+                            </td>
+                            <td>
+                                <input type="submit" name="add" value="Lisää">
                             </td>
                         </tr>
                     </form>
