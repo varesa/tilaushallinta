@@ -1,0 +1,40 @@
+<!--!
+# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Copyright Esa Varemo 2014
+-->
+
+<metal:main metal:use-macro="load: master.pt">
+    <metal:main metal:fill-slot="title">Profiilin tiedot</metal:main>
+    <metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" type="text/css" href="/static/lomake.css">
+    </metal:main>
+
+    <div metal:fill-slot="content">
+        <h2>Käyttäjäprofiilin tiedot</h2>
+        <form method="post">
+            <input type="hidden" name="data" value="user_info">
+            <table class="table_lomake">
+                <tr>
+                    <td>Nimi: <input type="text" name="name" value="${user.name}"></td>
+                    <td>Sähköpostiosoite:<input name="email" type="email" value="${user.email}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Muokkaa" disabled></td>
+                </tr>
+            </table>
+        </form>
+        <div style="height:64px"></div>
+        <form method="post">
+            <input type="hidden" name="data" value="user_password">
+            <table class="table_lomake">
+                <tr>
+                    <td colspan="2">Salasana:<input name="password" type="password" value=";notapassword;"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Vaihda"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</metal:main>

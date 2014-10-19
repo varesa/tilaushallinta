@@ -6,7 +6,8 @@
 
 import bcrypt
 
-from sqlalchemy import Column, Text, Integer, DateTime, Boolean
+from sqlalchemy import Column, Text, Integer, DateTime, Boolean, ForeignKey
+from sqlalchemy.orm import relationship
 
 from .meta import Base
 
@@ -22,6 +23,9 @@ class User(Base):
 
     email = Column(Text)
     password_hash = Column(Text)
+
+    #tilaaja_id = Column(Integer, ForeignKey('tilaajat.id'))
+    #tilaajatiedot = relationship("Tilaaja")
 
     admin = Column(Boolean, default=False)
     vuosihuoltosopimukset = Column(Boolean, default=False)

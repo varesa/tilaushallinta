@@ -27,7 +27,7 @@
 </div>
 <div>
     <ul class="nav navbar-nav navbar-right" tal:condition="session_logged_in">
-        <li><a>Käyttäjä: ${session_user.name}</a></li>
+        <li><a href="/profiili">Käyttäjä: ${session_user.name}</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right" tal:condition="not: session_logged_in">

@@ -3,29 +3,29 @@
 # Author: Esa Varemo
 */
 
-#table_lomake {
+.table_lomake {
     width: 100%;
 }
 
-#table_lomake tr {
+.table_lomake tr {
     width: 100%;
 }
 
-#table_lomake tr td {
+.table_lomake tr td {
     width: 50%;
     padding: 15px;
 }
 
-#table_lomake tr td input, #table_lomake tr td textarea {
+.table_lomake tr td input, .table_lomake tr td textarea {
     width: 100%;
 }
 
-#table_lomake tr td .short {
+.table_lomake tr td .short {
     width: 25%;
     float: right;
 }
 
-#table_lomake tr td input[type="checkbox"] {
+.table_lomake tr td input[type="checkbox"] {
     width: auto !important;
 }
 

@@ -25,6 +25,7 @@ class Vesikalustekartoitus(Base):
     asunnot = relationship("VKK_Asunto")
 
 
+# noinspection PyPep8Naming
 class VKK_Asunto(Base):
     __tablename__ = 'vkk_asunnot'
 
@@ -42,6 +43,7 @@ class VKK_Asunto(Base):
     huoneet = relationship("VKK_Huone")
 
 
+# noinspection PyPep8Naming
 class VKK_Huone(Base):
     __tablename__ = 'vkk_huoneet'
 
@@ -59,6 +61,7 @@ class VKK_Huone(Base):
     kalusteet = relationship("VKK_Kaluste")
 
 
+# noinspection PyPep8Naming
 class VKK_Kaluste(Base):
     __tablename__ = 'vkk_kalusteet'
 
