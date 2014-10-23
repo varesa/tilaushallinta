@@ -164,24 +164,24 @@ def raportit_form_to_dict(request):
     return raportit
 
 
-def string_to_float_or_zero(str):
+def string_to_float_or_zero(string):
     try:
-        return float(str)
-    except:
+        return float(string)
+    except ValueError:
         return 0
 
 
 def raportit_check_difference_dict_object(raportti_dict, raportti_object):
     return compare_sets((
         (raportti_dict['teksti'], raportti_object.teksti),
-        (raportti_dict['matkat'], raportti_object.matkat),
-        (raportti_dict['tunnit'], raportti_object.tunnit),
-        (raportti_dict['muut'], raportti_object.muut)
+        (string_to_float_or_zero(raportti_dict['matkat']), raportti_object.matkat),
+        (string_to_float_or_zero(raportti_dict['tunnit']), raportti_object.tunnit),
+        (string_to_float_or_zero(raportti_dict['muut']), raportti_object.muut)
     ))
 
 
-def raportit_new_from_dict(raportti_dict, raportti_id):
-    return Paivaraportti(id=int(raportti_id), date=datetime.datetime.now(),
+def raportit_new_from_dict(raportti_dict, raportti_id, raportti_date):
+    return Paivaraportti(id=int(raportti_id), date=raportti_date,
                          teksti=raportti_dict['teksti'],
                          matkat=string_to_float_or_zero(raportti_dict['matkat']),
                          tunnit=string_to_float_or_zero(raportti_dict['tunnit']),
@@ -194,13 +194,11 @@ def save_paivaraportit(request, tilaus):
     raportit_new = []
     changes_done = False
 
-    print("Trying to save something...")
-
     for raportti_id, raportti_new in raportit_request.items():
         for raportti_old in tilaus.paivaraportit:
             if int(raportti_old.id) == int(raportti_id):
                 if raportit_check_difference_dict_object(raportti_new, raportti_old):
-                    raportit_new.append(raportit_new_from_dict(raportti_new, raportti_id))
+                    raportit_new.append(raportit_new_from_dict(raportti_new, raportti_id, raportti_old.date))
                     changes_done = True
                 else:
                     raportit_new.append(raportti_old)
@@ -320,5 +318,8 @@ def view_order_details(request):
 
     # Re-read the order to get possible changes
     tilaus = DBSession.query(Tilaus).filter_by(id=order_id).order_by(Tilaus.uuid.desc()).first()
+
+    for x in tilaus.paivaraportit:
+        print(str(x) + ", .date= " + str(x.date))
 
     return {'tilaus': tilaus, 'current_date': current_date}

@@ -95,7 +95,10 @@
                 <a name="paivaraportit"></a>
                 <table class="table" id="table_paivaraportit">
                     <form method="post" action="#paivaraportit">
-                        <tr tal:repeat="raportti tilaus.paivaraportit">
+                        <?python
+                            from operator import attrgetter
+                        ?>
+                        <tr tal:repeat="raportti sorted(tilaus.paivaraportit, key=attrgetter('date'), reverse=False)">
                             <td class="raportti_col1">${raportti.date.strftime("%d.%m.%y %H:%M")}<textarea name="${raportti.id}-teksti">${raportti.teksti}</textarea></td>
                             <td class="raportti_col2">
                                 <table>
