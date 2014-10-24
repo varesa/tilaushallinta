@@ -23,6 +23,11 @@ def view_tilaukset_list(request):
     latest = []
     lastid = None
 
+    tilaukset = sorted(tilaukset, key=lambda tilaus: (tilaus.id, tilaus.uuid), reverse=True)
+    """
+    Sort like: tilaus3v3, tilaus3v2, tilaus3v1, tilaus2v2, tilaus2v1, ...
+    First of every major number is the latest
+    """
     for tilaus in tilaukset:
         if tilaus.id is not lastid:
             latest.append(tilaus)
