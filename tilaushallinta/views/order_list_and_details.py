@@ -176,6 +176,13 @@ def string_to_float_or_zero(string):
         return 0
 
 
+def string_to_int_or_zero(string):
+    try:
+        return int(string)
+    except ValueError:
+        return 0
+
+
 def raportit_check_difference_dict_object(raportti_dict, raportti_object):
     return compare_sets((
         (raportti_dict['teksti'], raportti_object.teksti),
@@ -249,13 +256,13 @@ def tavarat_new_from_dict(tavara_dict, tavara_id=None):
 
     return Tavara(id=tavara_id, date=datetime.datetime.now(),
                   koodi=tavara_dict['koodi'], nimi=tavara_dict['nimi'],
-                  maara=int(tavara_dict['maara']), hinta=float(tavara_dict['hinta']),
+                  maara=string_to_int_or_zero(tavara_dict['maara']), hinta=string_to_float_or_zero(tavara_dict['hinta']),
                   tyyppi=(
                       "" +
                       ('A' if ('A' in tavara_dict.keys()) else '') +
                       ('T' if ('T' in tavara_dict.keys()) else '')
                   )
-    )
+  )
 
 
 def save_tavarat(request, tilaus):
