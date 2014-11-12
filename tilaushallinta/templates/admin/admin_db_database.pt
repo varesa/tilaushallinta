@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014
 -->
 
-<metal:main metal:use-macro="load: admin.pt">
+<metal:main metal:use-macro="load: admin_master.pt">
     <div metal:fill-slot="admin-content">
         <div class="panel panel-default">
             <table class="table table-hover">

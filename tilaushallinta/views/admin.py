@@ -7,6 +7,6 @@
 from pyramid.view import view_config
 
 
-@view_config(route_name='admin', renderer='../templates/admin.pt')
+@view_config(route_name='admin', renderer='../templates/admin/admin_master.pt')
 def view_admin(request):
     return {}

@@ -16,7 +16,7 @@ from ..models import Tavara
 from ..models import Paivaraportti
 
 
-@view_config(route_name='order_list', renderer='../templates/order_list.pt')
+@view_config(route_name='order_list', renderer='../templates/orders/order_list.pt')
 def view_tilaukset_list(request):
     tilaukset = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).all()
 
@@ -294,7 +294,7 @@ def save_tavarat(request, tilaus):
     DBSession.add(tilaus_uusi)
 
 
-@view_config(route_name='order_details', renderer='../templates/order_details.pt')
+@view_config(route_name='order_details', renderer='../templates/orders/order_details.pt')
 def view_order_details(request):
     order_id = request.matchdict['id']
     tilaus = DBSession.query(Tilaus).filter_by(id=order_id).order_by(Tilaus.uuid.desc()).first()

@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014
 -->
 
-<metal:main metal:use-macro="load: admin.pt">
+<metal:main metal:use-macro="load: admin_master.pt">
     <metal:main metal:fill-slot="admin-head_custom">
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
     </metal:main>
