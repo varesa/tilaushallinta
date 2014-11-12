@@ -8,7 +8,7 @@
     <metal:main metal:fill-slot="title">Tilauksen tiedot</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="/static/lomake.css">
+        <link rel="stylesheet" href="/static/css/lomake.css">
     </metal:main>
 
     <metal:main metal:fill-slot="content">

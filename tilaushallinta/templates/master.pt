@@ -12,10 +12,10 @@
 
     <title><metal:content metal:define-slot="title"/></title>
 
-    <link rel="stylesheet" href="/static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/libs/bootstrap-3.1.1-dist/css/bootstrap.min.css">
 
-    <script type="text/javascript" src="/static/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/static/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/libs/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/static/libs/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
 
     <metal:main metal:define-slot="head_custom"/>
 </head>

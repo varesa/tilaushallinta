@@ -8,7 +8,7 @@
     <metal:main metal:fill-slot="title">Kirjautuminen</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="/static/login.css"/>
+        <link rel="stylesheet" href="/static/css/login.css"/>
     </metal:main>
 
     <div metal:fill-slot="content">

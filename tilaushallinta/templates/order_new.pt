@@ -8,59 +8,37 @@
     <metal:main metal:fill-slot="title">Tee tilaus</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="/static/lomake.css"/>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var pattern =  /([^<]*)(.*)/;
-                var lines = $(".required");
-                lines.each(function(index, element) {
-                    if($(element).children("label").length) {
-                        $(element).children("label").append('<span class="asterisk">*</span>');
-                    } else {
-                        var matches = pattern.exec($(element).html());
-                        var label = matches[1];
-                        var rest = matches[2];
-                        $(element).html(label + '<span class="asterisk">*</span>' + rest);
-                    }
-                });
-            });
-
-            function check_input() {
-                var invalid = false;
-                $(".required input, .required textarea").each(function(index, element) {
-                    if($(element).prop("type") == 'checkbox') {
-                        console.log("checkbox found")
-                        if(!$(element).prop("checked")) {
-                            invalid = true;
-                            console.log("Checkbox empty");
-                        }
-                    } else if($(element).prop("type") == 'textarea') {
-                        console.log("textarea found");
-                        if($(element).val().length == 0) {
-                            invalid = true;
-                            console.log("Textarea empty");
-                        }
-                    } else if($(element).prop("type") == 'text') {
-                        console.log("textfield found");
-                        if($(element).val().length == 0) {
-                            invalid = true;
-                            console.log("Text field empty");
-                        }
-                    }
-                });
-                return !invalid;
-            }
-        </script>
+        <link rel="stylesheet" href="/static/css/lomake.css"/>
     </metal:main>
 
     <div metal:fill-slot="content">
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Aikaisemmat tilaukset</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Valitse</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
         <form id="lomake" method="POST" action="/tilaukset/submit" onsubmit="return check_input()">
             <table class="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>
                 </tr>
                 <tr>
-                    <td><h3>Laskutustiedot / Tilaaja</h3></td> <td><h3>Työn kohteen tiedot</h3></td>
+                    <td><span class="colheader-left">Laskutustiedot / Tilaaja</span><span class="colheader-sub-right"><a onclick="show_history('tilaaja')">Valitse...</a></span></td>
+                    <td><span class="colheader-left">Työn kohteen tiedot</span><span class="colheader-sub-right"><a onclick="show_history('kohde')">Valitse...</a></span></td>
                 </tr>
                 <tr>
                     <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>

@@ -8,7 +8,7 @@
     <metal:main metal:fill-slot="title">Uusi VKK</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="/static/admin.css"/>
+        <link rel="stylesheet" href="/static/css/admin.css"/>
         <metal:main metal:define-slot="admin-head_custom"></metal:main>
     </metal:main>
 

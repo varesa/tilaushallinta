@@ -3,6 +3,9 @@
 # Author: Esa Varemo
 */
 
+
+/* Table structure */
+
 .table_lomake {
     width: 100%;
 }
@@ -29,6 +32,24 @@
     width: auto !important;
 }
 
+.colheader-left {
+    display: inline-block;
+    width: 75%;
+
+    text-align: left;
+    font-size: 28px;
+}
+
+.colheader-sub-right {
+    display: inline-block;
+    width: 25%;
+
+    text-align: right;
+}
+
+
+/* Raportit */
+
 #table_paivaraportit tr td textarea, #table_paivaraportit tr td input{
     width: 100%;
     height: 100%;
@@ -43,6 +64,7 @@
 }
 
 
+/* Tavarat */
 
 .table_tavarat {}
 
@@ -76,6 +98,8 @@
     text-align: right;
     width: 25px;
 }
+
+/* */
 
 .save_button {
     width: 100%;

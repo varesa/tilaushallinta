@@ -7,7 +7,7 @@
 <metal:main metal:use-macro="load: master.pt">
     <metal:main metal:fill-slot="title">Profiilin tiedot</metal:main>
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" type="text/css" href="/static/lomake.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
     </metal:main>
 
     <div metal:fill-slot="content">
