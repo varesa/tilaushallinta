@@ -19,6 +19,9 @@ def configure_routes(config):
     config.add_route('kohteet_list', '/kohteet')
     config.add_route('kohteet_details', '/kohteet/{id}')
 
+    config.add_route('json_newest_tilaajat', '/json/tilaajat_newest')
+    config.add_route('json_newest_kohteet', '/json/kohteet_newest')
+
     config.add_route('vkk_new', '/vkkt/uusi')
     config.add_route('vkk_submit', '/vkkt/submit')
     config.add_route('vkk_list', '/vkkt')

@@ -15,25 +15,13 @@ from ..models import Tilaus
 from ..models import Tavara
 from ..models import Paivaraportti
 
+from .utils import get_latest_ids
+
 
 @view_config(route_name='order_list', renderer='../templates/orders/order_list.pt')
 def view_tilaukset_list(request):
-    tilaukset = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).all()
-
-    latest = []
-    lastid = None
-
-    tilaukset = sorted(tilaukset, key=lambda tilaus: (tilaus.id, tilaus.uuid), reverse=True)
-    """
-    Sort like: tilaus3v3, tilaus3v2, tilaus3v1, tilaus2v2, tilaus2v1, ...
-    First of every major number is the latest
-    """
-    for tilaus in tilaukset:
-        if tilaus.id is not lastid:
-            latest.append(tilaus)
-            lastid = tilaus.id
-    latest.reverse()
-    return {"tilaukset": latest}
+    tilaukset = get_latest_ids(DBSession.query(Tilaus).all())
+    return {"tilaukset": tilaukset}
 
 
 def compare_sets(list):

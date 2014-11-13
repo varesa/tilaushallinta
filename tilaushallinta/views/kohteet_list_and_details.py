@@ -9,20 +9,13 @@ from pyramid.view import view_config
 from ..models import DBSession
 from ..models import Kohde
 
+from .utils import get_latest_ids
+
 
 @view_config(route_name='kohteet_list', renderer='../templates/kohde_list.pt')
 def view_kohteet_list(request):
-    kohteet = DBSession.query(Kohde).order_by(Kohde.uuid.desc()).all()
-
-    latest = []
-    lastid = None
-
-    for kohde in kohteet:
-        if kohde.id is not lastid:
-            latest.append(kohde)
-            lastid = kohde.id
-    latest.reverse()
-    return {"kohteet": latest}
+    kohteet = get_latest_ids(DBSession.query(Kohde).all())
+    return {"kohteet": kohteet}
 
 
 @view_config(route_name='kohteet_details', renderer='../templates/kohde_details.pt')

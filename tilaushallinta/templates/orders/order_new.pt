@@ -9,6 +9,8 @@
 
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" href="/static/css/lomake.css"/>
+        <script type="text/javascript" src="/static/js/form_input_validation.js"></script>
+        <script type="text/javascript" src="/static/js/neworder_history_modal.js"></script>
     </metal:main>
 
     <div metal:fill-slot="content">
@@ -20,7 +22,18 @@
                         <h4 class="modal-title">Aikaisemmat tilaukset</h4>
                     </div>
                     <div class="modal-body">
-                        <p>One fine body&hellip;</p>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>&nbsp;&nbsp;</th>
+                                <th>Yhteyshenkilö/Yritys&nbsp;&nbsp;</th>
+                                <th>Osoite&nbsp;&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <td><input type="radio"></td>
+                                <td>Minä, ABC&nbsp;&nbsp;</td>
+                                <td>Ylitie 363, h54654 kaibtnz&nbsp;&nbsp;</td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Valitse</button>

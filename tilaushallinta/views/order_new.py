@@ -25,7 +25,6 @@ def view_order_new(request):
 @view_config(route_name='order_submit')
 def view_order_submit(request):
     try:
-
         next_id = 0
         if DBSession.query(Tilaaja).count() > 0:
             next_id = DBSession.query(Tilaaja).order_by(Tilaaja.id.desc()).first().id+1

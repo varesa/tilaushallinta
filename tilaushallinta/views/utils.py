@@ -4,19 +4,27 @@
 # Copyright Esa Varemo 2014
 #
 
-import os
 
-from pyramid.view import view_config
-from pyramid.response import Response
+def get_latest_ids(arr):
+    """
+    Sort an list of database objects, returning the latest (highest uuid) of every objects (id)
+    :param arr: list to be sorted
+    :type arr: list
+    :return: sorted and filtered list
+    :rtype: list
+    """
 
+    latest = []
+    lastid = None
 
-@view_config(route_name='show_text', renderer='../templates/show_text.pt')
-def view_show_text(request):
-    name = request.matchdict['name']
-    if name and len(name) > 0:
-        name.replace('..', '')
-        filename = 'tilaushallinta/texts/' + name + '.txt'
-        if os.path.exists(filename):
-            file = open(filename, "r")
-            return {'text': file.read()}
-    return Response('Virheellinen tiedosto')
+    arr_sorted = sorted(arr, key=lambda obj: (obj.id, obj.uuid), reverse=True)
+    """
+    Sort like: tilaus3v3, tilaus3v2, tilaus3v1, tilaus2v2, tilaus2v1, ...
+    First of every major number is the latest
+    """
+    for obj in arr_sorted:
+        if obj.id is not lastid:
+            latest.append(obj)
+            lastid = obj.id
+    latest.reverse()
+    return latest
