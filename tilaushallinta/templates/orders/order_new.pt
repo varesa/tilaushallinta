@@ -22,16 +22,11 @@
                         <h4 class="modal-title">Aikaisemmat tilaukset</h4>
                     </div>
                     <div class="modal-body">
-                        <table class="table table-striped">
+                        <table id="table_history" class="table table-striped">
                             <tr>
                                 <th>&nbsp;&nbsp;</th>
                                 <th>Yhteyshenkilö/Yritys&nbsp;&nbsp;</th>
                                 <th>Osoite&nbsp;&nbsp;</th>
-                            </tr>
-                            <tr>
-                                <td><input type="radio"></td>
-                                <td>Minä, ABC&nbsp;&nbsp;</td>
-                                <td>Ylitie 363, h54654 kaibtnz&nbsp;&nbsp;</td>
                             </tr>
                         </table>
                     </div>
@@ -50,8 +45,8 @@
                     <td><h2>Uusi tilaus</h2></td>
                 </tr>
                 <tr>
-                    <td><span class="colheader-left">Laskutustiedot / Tilaaja</span><span class="colheader-sub-right"><a onclick="show_history('tilaaja')">Valitse...</a></span></td>
-                    <td><span class="colheader-left">Työn kohteen tiedot</span><span class="colheader-sub-right"><a onclick="show_history('kohde')">Valitse...</a></span></td>
+                    <td><span class="colheader-left">Laskutustiedot / Tilaaja</span><span class="colheader-sub-right"><a onclick="show_history('tilaaja')">Valitse edellisistä</a></span></td>
+                    <td><span class="colheader-left">Työn kohteen tiedot</span><span class="colheader-sub-right"><a onclick="show_history('kohde')">Valitse edellisistä</a></span></td>
                 </tr>
                 <tr>
                     <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>
