@@ -32,36 +32,8 @@
                             <td><h3>Laskutus</h3></td> <td><h3>Työ</h3></td>
                         </tr>
                         <tr>
-                            <td>Nimi:<br><input readonly name="tilaaja_nimi" value="${tilaus.tilaaja.nimi}"></td>
-                            <td>Nimi:<br><input readonly name="kohde_nimi" value="${tilaus.kohde.nimi}"></td>
-                        </tr>
-                        <tr>
-                            <td>Yritys:<br><input readonly name="tilaaja_yritys" value="${tilaus.tilaaja.yritys}"></td>
-                            <td>Yritys:<br><input readonly name="kohde_yritys"  value="${tilaus.kohde.yritys}"></td>
-                        </tr>
-                        <tr>
-                            <td>Y-tunnus:<br><input readonly name="tilaaja_ytunnus" value="${tilaus.tilaaja.ytunnus}"></td>
-                            <td>Y-tunnus:<br><input readonly name="kohde_ytunnus"  value="${tilaus.kohde.ytunnus}"></td>
-                        </tr>
-                        <tr>
-                            <td>Osoite:<br><input readonly name="tilaaja_osoite" value="${tilaus.tilaaja.osoite}"></td>
-                            <td>Osoite:<br><input readonly name="kohde_osoite" value="${tilaus.kohde.osoite}"></td>
-                        </tr>
-                        <tr>
-                            <td>Postitoimipaikka:<br><input readonly name="tilaaja_postitoimipaikka" value="${tilaus.tilaaja.postitoimipaikka}"></td>
-                            <td>Postitoimipaikka:<br><input readonly name="kohde_postitoimipaikka" value="${tilaus.kohde.postitoimipaikka}"></td>
-                        </tr>
-                        <tr>
-                            <td>Postinumero:<br><input readonly name="tilaaja_postinumero" value="${tilaus.tilaaja.postinumero}"></td>
-                            <td>Postinumero:<br><input readonly name="kohde_postinumero" value="${tilaus.kohde.postinumero}"></td>
-                        </tr>
-                        <tr>
-                            <td>Puhelin:<br><input readonly name="tilaaja_puh" value="${tilaus.tilaaja.puhelin}"></td>
-                            <td>Puhelin:<br><input readonly name="kohde_puh" value="${tilaus.kohde.puhelin}"></td>
-                        </tr>
-                        <tr>
-                            <td>Sähköposti:<br><input readonly name="tilaaja_email" value="${tilaus.tilaaja.email}"></td>
-                            <td>Sähköposti:<br><input readonly name="kohde_email" value="${tilaus.kohde.email}"></td>
+                            <td><metal:main tal:define="readonly True" metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
+                            <td><metal:main tal:define="readonly True" metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
                         </tr>
 
                         <tr>

@@ -22,7 +22,7 @@
 <body>
     <div class="navbar navbar-inverse">
         <div class="container">
-            <metal:main metal:use-macro="load: nav.pt"></metal:main>
+            <metal:main metal:use-macro="load: snippets/nav.pt"></metal:main>
         </div>
     </div>
 
