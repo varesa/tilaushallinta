@@ -7,7 +7,7 @@
 from .meta import Base, DBSession
 
 from .kohde import Kohde
-from .vkk import Vesikalustekartoitus, VKK_Asunto, VKK_Huone, VKK_Kaluste
+#from .vkk import Vesikalustekartoitus, VKK_Asunto, VKK_Huone, VKK_Kaluste
 from .tilaaja import Tilaaja
 from .tilaus import Tilaus, Tavara, Paivaraportti
 from .users import User
