@@ -31,7 +31,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Valitse</button>
+                        <button type="button" class="btn btn-primary" onclick="load_order()">Valitse</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
                     </div>
                 </div><!-- /.modal-content -->
@@ -40,6 +40,8 @@
 
 
         <form id="lomake" method="POST" action="/tilaukset/submit" onsubmit="return check_input()">
+            <input type="hidden" name="tilaaja_uuid">
+            <input type="hidden" name="kohde_uuid">
             <table class="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>
@@ -49,36 +51,8 @@
                     <td><span class="colheader-left">Työn kohteen tiedot</span><span class="colheader-sub-right"><a onclick="show_history('kohde')">Valitse edellisistä</a></span></td>
                 </tr>
                 <tr>
-                    <td class="required">Nimi:<br><input name="tilaaja_nimi" tabindex="1"></td>
-                    <td class="required">Nimi:<br><input name="kohde_nimi"   tabindex="9"></td>
-                </tr>
-                <tr>
-                    <td>Yritys:            <br><input name="tilaaja_yritys" tabindex="2"></td>
-                    <td>Yritys (taloyhtiö):<br><input name="kohde_yritys"   tabindex="10"></td>
-                </tr>
-                <tr>
-                    <td>Y-tunnus:<br><input name="tilaaja_ytunnus" tabindex="3"></td>
-                    <td>Y-tunnus:<br><input name="kohde_ytunnus"   tabindex="11"></td>
-                </tr>
-                <tr>
-                    <td class="required">Osoite:<br><input name="tilaaja_osoite" tabindex="4"></td>
-                    <td class="required">Osoite:<br><input name="kohde_osoite"   tabindex="12"></td>
-                </tr>
-                <tr>
-                    <td class="required">Postinumero:<br><input name="tilaaja_postinumero" tabindex="5"></td>
-                    <td class="required">Postinumero:<br><input name="kohde_postinumero"   tabindex="13"></td>
-                </tr>
-                <tr>
-                    <td class="required">Postitoimipaikka:<br><input name="tilaaja_postitoimipaikka" tabindex="6"></td>
-                    <td class="required">Postitoimipaikka:<br><input name="kohde_postitoimipaikka"   tabindex="14"></td>
-                </tr>
-                <tr>
-                    <td class="required">Puhelin:<br><input name="tilaaja_puh" tabindex="7"></td>
-                    <td>Puhelin:                 <br><input name="kohde_puh"   tabindex="15"></td>
-                </tr>
-                <tr>
-                    <td>Sähköposti:              <br><input name="tilaaja_email" tabindex="8"></td>
-                    <td>Sähköposti:              <br><input name="kohde_email"   tabindex="16"></td>
+                    <td><metal:main metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
+                    <td><metal:main metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
                 </tr>
                 <tr>
                     <td>Sähköiset laskutustiedot:<br><textarea name="slaskutus" tabindex="9"></textarea></td>

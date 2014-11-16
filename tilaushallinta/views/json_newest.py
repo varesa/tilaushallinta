@@ -11,9 +11,11 @@ def view_newest_tilaajat(request):
     tilaajat_list = []
 
     for tilaaja in tilaajat:
-        tilaajat_list.append({'uuid': tilaaja.uuid, 'id': tilaaja.id, 'nimi': tilaaja.nimi, 'yritys': tilaaja.yritys,
-                     'osoite': tilaaja.osoite, 'postinumero': tilaaja.postinumero,
-                     'postitoimipaikka': tilaaja.postitoimipaikka})
+        tilaajat_list.append({'uuid': tilaaja.uuid, 'id': tilaaja.id,
+                              'nimi': tilaaja.nimi, 'yritys': tilaaja.yritys, 'ytunnus': tilaaja.ytunnus,
+                              'osoite': tilaaja.osoite, 'postinumero': tilaaja.postinumero,
+                              'postitoimipaikka': tilaaja.postitoimipaikka,
+                              'puhelin': tilaaja.puhelin, 'email': tilaaja.email})
     return tilaajat_list
 
 
@@ -23,7 +25,9 @@ def view_newest_kohteet(request):
     kohteet_list = []
 
     for kohde in kohteet:
-        kohteet_list.append({'uuid': kohde.uuid, 'id': kohde.id, 'nimi': kohde.nimi, 'yritys': kohde.yritys,
-                     'osoite': kohde.osoite, 'postinumero': kohde.postinumero,
-                     'postitoimipaikka': kohde.postitoimipaikka})
+        kohteet_list.append({'uuid': kohde.uuid, 'id': kohde.id,
+                             'nimi': kohde.nimi, 'yritys': kohde.yritys, 'ytunnus': kohde.ytunnus,
+                             'osoite': kohde.osoite, 'postinumero': kohde.postinumero,
+                             'postitoimipaikka': kohde.postitoimipaikka,
+                             'puhelin': kohde.puhelin, 'email': kohde.email})
     return kohteet_list

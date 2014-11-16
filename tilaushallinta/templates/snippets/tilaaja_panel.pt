@@ -1,25 +1,32 @@
 <div tal:define="compact compact|False; readonly readonly|False">
-    Nimi:<br>
-    <input name="tilaaja_nimi"      value="${tilaus.tilaaja.nimi|None}" readonly="${None if not readonly else 'readonly'}">
+    <span>
+        Nimi:<br><input name="tilaaja_nimi"      value="${tilaus.tilaaja.nimi|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
     <br tal:condition="not: compact"></br>
-    Yritys:<br>
-    <input name="tilaaja_yritys"    value="${tilaus.tilaaja.yritys|None}" readonly="${None if not readonly else 'readonly'}">
+    <span>
+        Yritys:<br><input name="tilaaja_yritys"    value="${tilaus.tilaaja.yritys|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
     <br tal:condition="not: compact"></br>
-    Y-tunnus:<br>
-    <input name="tilaaja_ytunnus"   value="${tilaus.tilaaja.ytunnus|None}" readonly="${None if not readonly else 'readonly'}">
+    <span>
+        Y-tunnus:<br><input name="tilaaja_ytunnus"   value="${tilaus.tilaaja.ytunnus|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
     <br tal:condition="not: compact"></br>
-    Osoite:<br>
-    <input name="tilaaja_osoite"    value="${tilaus.tilaaja.osoite|None}" readonly="${None if not readonly else 'readonly'}">
+    <span class="required">
+        Osoite:<br><input name="tilaaja_osoite"    value="${tilaus.tilaaja.osoite|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
     <br tal:condition="not: compact"></br>
-    Postitoimipaikka:<br>
-    <input name="tilaaja_postitoimipaikka"  value="${tilaus.tilaaja.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
+    <span class="required">Postitoimipaikka:<br><input name="tilaaja_postitoimipaikka"  value="${tilaus.tilaaja.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
     <br tal:condition="not: compact"></br>
-    Postinumero:<br>
-    <input name="tilaaja_postinumero"       value="${tilaus.tilaaja.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
+    <span class="required">
+        Postinumero:<br><input name="tilaaja_postinumero"       value="${tilaus.tilaaja.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
     <br tal:condition="not: compact"></br>
-    Puhelin:<br>
-    <input name="tilaaja_puh"       value="${tilaus.tilaaja.puhelin|None}" readonly="${None if not readonly else 'readonly'}">
+    <span class="required">
+        Puhelin:<br><input name="tilaaja_puhelin"       value="${tilaus.tilaaja.puhelin|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
     <br tal:condition="not: compact"></br>
-    Sähköposti:<br>
-    <input name="tilaaja_email"     value="${tilaus.tilaaja.email|None}" readonly="${None if not readonly else 'readonly'}">
+    <span>
+        Sähköposti:<br><input name="tilaaja_email"     value="${tilaus.tilaaja.email|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
 </div>

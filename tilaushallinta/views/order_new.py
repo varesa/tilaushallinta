@@ -36,7 +36,7 @@ def view_order_submit(request):
                           osoite=request.POST['tilaaja_osoite'],
                           postitoimipaikka=request.POST['tilaaja_postitoimipaikka'],
                           postinumero=request.POST['tilaaja_postinumero'],
-                          puhelin=request.POST['tilaaja_puh'],
+                          puhelin=request.POST['tilaaja_puhelin'],
                           email=request.POST['tilaaja_email'])
         DBSession.add(tilaaja)
 
@@ -51,7 +51,7 @@ def view_order_submit(request):
                       osoite=request.POST['kohde_osoite'],
                       postitoimipaikka=request.POST['kohde_postitoimipaikka'],
                       postinumero=request.POST['kohde_postinumero'],
-                      puhelin=request.POST['kohde_puh'],
+                      puhelin=request.POST['kohde_puhelin'],
                       email=request.POST['kohde_email'])
         DBSession.add(kohde)
 
