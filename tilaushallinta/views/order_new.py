@@ -25,35 +25,45 @@ def view_order_new(request):
 @view_config(route_name='order_submit')
 def view_order_submit(request):
     try:
-        next_id = 0
-        if DBSession.query(Tilaaja).count() > 0:
-            next_id = DBSession.query(Tilaaja).order_by(Tilaaja.id.desc()).first().id+1
+        if len(request.POST['tilaaja_uuid']):
+            tilaaja = DBSession.query(Tilaaja).filter_by(uuid=int(request.POST['tilaaja_uuid'])).first()
+            if not tilaaja:
+                return Response('Virhe ladatessa aikaisemman tilauksen tietoja')
+        else:
+            next_id = 0
+            if DBSession.query(Tilaaja).count() > 0:
+                next_id = DBSession.query(Tilaaja).order_by(Tilaaja.id.desc()).first().id+1
 
-        tilaaja = Tilaaja(id=next_id, date=datetime.datetime.now(),
-                          nimi=request.POST['tilaaja_nimi'],
-                          yritys=request.POST['tilaaja_yritys'],
-                          ytunnus=request.POST['tilaaja_ytunnus'],
-                          osoite=request.POST['tilaaja_osoite'],
-                          postitoimipaikka=request.POST['tilaaja_postitoimipaikka'],
-                          postinumero=request.POST['tilaaja_postinumero'],
-                          puhelin=request.POST['tilaaja_puhelin'],
-                          email=request.POST['tilaaja_email'])
-        DBSession.add(tilaaja)
+            tilaaja = Tilaaja(id=next_id, date=datetime.datetime.now(),
+                              nimi=request.POST['tilaaja_nimi'],
+                              yritys=request.POST['tilaaja_yritys'],
+                              ytunnus=request.POST['tilaaja_ytunnus'],
+                              osoite=request.POST['tilaaja_osoite'],
+                              postitoimipaikka=request.POST['tilaaja_postitoimipaikka'],
+                              postinumero=request.POST['tilaaja_postinumero'],
+                              puhelin=request.POST['tilaaja_puhelin'],
+                              email=request.POST['tilaaja_email'])
+            DBSession.add(tilaaja)
 
-        next_id = 0
-        if DBSession.query(Kohde).count() > 0:
-            next_id = DBSession.query(Kohde).order_by(Kohde.id.desc()).first().id+1
+        if len(request.POST['kohde_uuid']):
+            kohde = DBSession.query(Kohde).filter_by(uuid=int(request.POST['kohde_uuid'])).first()
+            if not kohde:
+                return Response('Virhe ladatessa aikaisemman tilauksen tietoja')
+        else:
+            next_id = 0
+            if DBSession.query(Kohde).count() > 0:
+                next_id = DBSession.query(Kohde).order_by(Kohde.id.desc()).first().id+1
 
-        kohde = Kohde(id=next_id, date=datetime.datetime.now(),
-                      nimi=request.POST['kohde_nimi'],
-                      yritys=request.POST['kohde_yritys'],
-                      ytunnus=request.POST['kohde_ytunnus'],
-                      osoite=request.POST['kohde_osoite'],
-                      postitoimipaikka=request.POST['kohde_postitoimipaikka'],
-                      postinumero=request.POST['kohde_postinumero'],
-                      puhelin=request.POST['kohde_puhelin'],
-                      email=request.POST['kohde_email'])
-        DBSession.add(kohde)
+            kohde = Kohde(id=next_id, date=datetime.datetime.now(),
+                          nimi=request.POST['kohde_nimi'],
+                          yritys=request.POST['kohde_yritys'],
+                          ytunnus=request.POST['kohde_ytunnus'],
+                          osoite=request.POST['kohde_osoite'],
+                          postitoimipaikka=request.POST['kohde_postitoimipaikka'],
+                          postinumero=request.POST['kohde_postinumero'],
+                          puhelin=request.POST['kohde_puhelin'],
+                          email=request.POST['kohde_email'])
+            DBSession.add(kohde)
 
         next_id = 0
         if DBSession.query(Tilaus).count() > 0:
