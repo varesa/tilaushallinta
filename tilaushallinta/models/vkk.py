@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship
 
 from .meta import Base
 
-
+"""
 class Vesikalustekartoitus(Base):
     __tablename__ = 'vesikalustekartoitukset'
 
@@ -18,7 +18,7 @@ class Vesikalustekartoitus(Base):
     date = Column(DateTime, nullable=False)
 
     # Property relationships
-    kohde_id = Column(Integer, ForeignKey('kohteet.id'))
+    kohde_id = Column(Integer, ForeignKey('kohteet.uuid'))
     kohde = relationship("Kohde", backref="vesikalustekartoitukset")
 
     # Relationships down
@@ -77,3 +77,4 @@ class VKK_Kaluste(Base):
     koodi = Column(Text)
     maara = Column(Integer, nullable=False)
     tila = Column(Enum("Korjaus", "Vaihto", "Ok", name="enum_kaluste_tila"), nullable=False)
+    """
