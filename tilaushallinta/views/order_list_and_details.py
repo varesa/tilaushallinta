@@ -41,73 +41,40 @@ def remove_empty_tavarat(tavarat_tmp):
     return tavarat
 
 
-def update_perustiedot(request, tilaus): # TODO: Remove redundant checks
-    tilaus_uuid = request.POST['tilaus_uuid']
-    tilaaja_uuid = request.POST['tilaaja_uuid']
-    kohde_uuid = request.POST['kohde_uuid']
-    # Check for differences in "Tilaaja" model
-    tilaaja_old = DBSession.query(Tilaaja).filter_by(uuid=tilaaja_uuid).first()
-    tilaaja_differs = compare_sets(
-        ((tilaaja_old.nimi, request.POST['tilaaja_nimi']),
-         (tilaaja_old.yritys, request.POST['tilaaja_yritys']),
-         (tilaaja_old.ytunnus, request.POST['tilaaja_ytunnus']),
-         (tilaaja_old.osoite, request.POST['tilaaja_osoite']),
-         (tilaaja_old.postitoimipaikka, request.POST['tilaaja_postitoimipaikka']),
-         (tilaaja_old.postinumero, request.POST['tilaaja_postinumero']),
-         (tilaaja_old.puhelin, request.POST['tilaaja_puh']),
-         (tilaaja_old.email, request.POST['tilaaja_email']))
-    )
-    tilaaja = None
-    if tilaaja_differs:
-        tilaaja.nimi = request.POST['tilaaja_nimi']
-        tilaaja.yritys = request.POST['tilaaja_yritys']
-        tilaaja.ytunnus = request.POST['tilaaja_ytunnus']
-        tilaaja.osoite = request.POST['tilaaja_osoite']
-        tilaaja.postitoimipaikka = request.POST['tilaaja_postitoimipaikka']
-        tilaaja.postinumero = request.POST['tilaaja_postinumero']
-        tilaaja.puhelin = request.POST['tilaaja_puh']
-        tilaaja.email = request.POST['tilaaja_email']
+def update_perustiedot(request, tilaus):
+    tilaus_id = request.POST['tilaus_id']
+    tilaaja_id = request.POST['tilaaja_id']
+    kohde_id = request.POST['kohde_id']
 
 
-    # Check for differences in "Kohde" model
-    kohde_old = DBSession.query(Kohde).filter_by(uuid=kohde_uuid).first()
-    kohde_differs = compare_sets(
-        ((kohde_old.nimi, request.POST['kohde_nimi']),
-         (kohde_old.yritys, request.POST['kohde_yritys']),
-         (kohde_old.ytunnus, request.POST['kohde_ytunnus']),
-         (kohde_old.osoite, request.POST['kohde_osoite']),
-         (kohde_old.postitoimipaikka, request.POST['kohde_postitoimipaikka']),
-         (kohde_old.postinumero, request.POST['kohde_postinumero']),
-         (kohde_old.puhelin, request.POST['kohde_puh']),
-         (kohde_old.email, request.POST['kohde_email']))
-    )
-    kohde = None
-    if kohde_differs:
-        kohde.nimi = request.POST['kohde_nimi']
-        kohde.yritys = request.POST['kohde_yritys']
-        kohde.ytunnus = request.POST['kohde_ytunnus']
-        kohde.osoite = request.POST['kohde_osoite']
-        kohde.postitoimipaikka = request.POST['kohde_postitoimipaikka']
-        kohde.postinumero = request.POST['kohde_postinumero']
-        kohde.puhelin = request.POST['kohde_puh']
-        kohde.email = request.POST['kohde_email']
+    tilaaja = DBSession.query(Tilaaja).filter_by(id=tilaaja_id).first()
 
-    # Check for differences in the "Tilaus" model
-    tilaus_old = DBSession.query(Tilaus).filter_by(uuid=tilaus_uuid).first()
-    tilaus_differs = compare_sets(
-        ((tilaus_old.muut_yhteysh, request.POST['muut_yhteysh']),
-         (tilaus_old.tyo, request.POST['tyo']),
-         (tilaus_old.maksuaika, request.POST['maksuaika']),
-         (tilaus.viitenumero, request.POST['viitenumero']))
-    )
-    if tilaus_differs:
+    tilaaja.nimi = request.POST['tilaaja_nimi']
+    tilaaja.yritys = request.POST['tilaaja_yritys']
+    tilaaja.ytunnus = request.POST['tilaaja_ytunnus']
+    tilaaja.osoite = request.POST['tilaaja_osoite']
+    tilaaja.postitoimipaikka = request.POST['tilaaja_postitoimipaikka']
+    tilaaja.postinumero = request.POST['tilaaja_postinumero']
+    tilaaja.puhelin = request.POST['tilaaja_puh']
+    tilaaja.email = request.POST['tilaaja_email']
 
-        tilaus_old.muut_yhteysh = request.POST['muut_yhteysh']
-        tilaus_old.tyo = request.POST['tyo']
-        tilaus_old.maksuaika = request.POST['maksuaika']
-        tilaus_old.viitenumero = request.POST['viitenumero']
 
-        tilaus = DBSession.query(Tilaus).order_by(Tilaus.uuid.desc()).first()
+    kohde = DBSession.query(Kohde).filter_by(id=kohde_id).first()
+
+    kohde.nimi = request.POST['kohde_nimi']
+    kohde.yritys = request.POST['kohde_yritys']
+    kohde.ytunnus = request.POST['kohde_ytunnus']
+    kohde.osoite = request.POST['kohde_osoite']
+    kohde.postitoimipaikka = request.POST['kohde_postitoimipaikka']
+    kohde.postinumero = request.POST['kohde_postinumero']
+    kohde.puhelin = request.POST['kohde_puh']
+    kohde.email = request.POST['kohde_email']
+
+
+    tilaus.muut_yhteysh = request.POST['muut_yhteysh']
+    tilaus.tyo = request.POST['tyo']
+    tilaus.maksuaika = request.POST['maksuaika']
+    tilaus.viitenumero = request.POST['viitenumero']
 
     return tilaus
 
@@ -154,7 +121,7 @@ def raportit_check_difference_dict_object(raportti_dict, raportti_object):
     ))
 
 
-def raportit_new_from_dict(raportti_dict, raportti_id, raportti_date):
+def raportti_new_from_dict(raportti_dict, raportti_id, raportti_date):
     return Paivaraportti(id=int(raportti_id), date=raportti_date,
                          teksti=raportti_dict['teksti'],
                          matkat=string_to_float_or_zero(raportti_dict['matkat']),
@@ -162,25 +129,21 @@ def raportit_new_from_dict(raportti_dict, raportti_id, raportti_date):
                          muut=string_to_float_or_zero(raportti_dict['muut']))
 
 
+def raportti_modify_from_dict(raportti_id, raportti_dict):
+    raportti = DBSession.query(Paivaraportti).filter_by(id=raportti_id).first()
+    raportti.teksti = raportti_dict['teksti']
+    raportti.matkat = string_to_float_or_zero(raportti_dict['matkat'])
+    raportti.tunnit = string_to_float_or_zero(raportti_dict['tunnit'])
+    raportti.muut = string_to_float_or_zero(raportti_dict['muut'])
+
+
 def save_paivaraportit(request, tilaus):
     raportit_request = raportit_form_to_dict(request)
-
-    raportit_new = []
-    changes_done = False
 
     for raportti_id, raportti_new in raportit_request.items():
         for raportti_old in tilaus.paivaraportit:
             if int(raportti_old.id) == int(raportti_id):
-                if raportit_check_difference_dict_object(raportti_new, raportti_old): # TODO: modify_from_dict()?
-                    raportti_old.teksti = raportti_new['teksti']
-                    raportti_old.matkat = string_to_float_or_zero(raportti_new['matkat'])
-                    raportti_old.tunnit = string_to_float_or_zero(raportti_new['tunnit'])
-                    raportti_old.muut = string_to_float_or_zero(raportti_new['muut'])
-                    changes_done = True
-                raportit_new.append(raportti_old)
-
-    if changes_done:
-        tilaus.paivaraportit = raportit_new
+                raportti_modify_from_dict(raportti_id, raportti_new)
 
 
 def tavarat_form_to_dict(request):
@@ -197,63 +160,46 @@ def tavarat_form_to_dict(request):
     return tavarat
 
 
-def tavarat_check_difference_dict_object(tavara_dict, tavara_object):
-    return compare_sets((
-        (tavara_dict['koodi'], tavara_object.koodi),
-        (tavara_dict['nimi'], tavara_object.nimi),
-        (tavara_dict['maara'], tavara_object.maara),
-        (tavara_dict['hinta'], tavara_object.hinta)
-    ))
-
-
-def tavarat_new_from_dict(tavara_dict, tavara_id=None):
-    if tavara_id is None:
-        tavara_id = 0
-        if DBSession.query(Tavara).count() > 0:
-            tavara_id = DBSession.query(Tavara).order_by(Tavara.id.desc()).first().id + 1
-
-    return Tavara(id=tavara_id, date=datetime.datetime.now(),
+def tavara_new_from_dict(tavara_dict):
+    return Tavara(date=datetime.datetime.now(),
                   koodi=tavara_dict['koodi'], nimi=tavara_dict['nimi'],
                   maara=string_to_int_or_zero(tavara_dict['maara']), hinta=string_to_float_or_zero(tavara_dict['hinta']),
                   tyyppi=(
                       "" +
                       ('A' if ('A' in tavara_dict.keys()) else '') +
                       ('T' if ('T' in tavara_dict.keys()) else '')
-                  )
-  )
+                  ))
+
+
+def tavara_modify_from_dict(tavara_id, tavara_dict):
+    tavara = DBSession.query(Tavara).filter_by(id=tavara_id).first()
+    tavara.koodi = tavara_dict['koodi']
+    tavara.nimi = tavara_dict['nimi']
+    tavara.maara = string_to_int_or_zero(tavara_dict['maara'])
+    tavara.hinta = string_to_float_or_zero(tavara_dict['hinta'])
+    tavara.tyyppi = (
+        "" +
+        ('A' if ('A' in tavara_dict.keys()) else '') +
+        ('T' if ('T' in tavara_dict.keys()) else '')
+    )
 
 
 def save_tavarat(request, tilaus):
-    tavarat = tavarat_form_to_dict(request)
-    tavarat = remove_empty_tavarat(tavarat)
+    tavarat = remove_empty_tavarat(tavarat_form_to_dict(request))
 
-    tavarat_new = []
-    for tavara_id, tavara in tavarat.items():  # Loop throug received list of items
+    for tavara_id, tavara_dict in tavarat.items():  # Loop throug received list of items
         if 'n' in tavara_id:                        # If 'n' -> we are creating a new item
-            tavara_new = tavarat_new_from_dict(tavara)
-            DBSession.add(tavara_new)
-            tavarat_new.append(tavara_new)
-        else:                                       # Else look for an existing one
-            for tavara_old in tilaus.tavarat: # TODO: Create modify_from_dict?
-                if int(tavara_id) == int(tavara_old.id):
-                    tavara_old.koodi = tavara['koodi']
-                    tavara_old.nimi = tavara['nimi']
-                    tavara_old.maara = string_to_int_or_zero(tavara['maara'])
-                    tavara_old.hinta = string_to_float_or_zero(tavara['hinta'])
-                    tavara_old.tyyppi = (
-                        "" +
-                        ('A' if ('A' in tavara.keys()) else '') +
-                        ('T' if ('T' in tavara.keys()) else '')
-                    )
-                    tavarat_new.append(tavara_old)
-
-    tilaus.tavarat = tavarat_new
-
+            tavara = tavara_new_from_dict(tavara_dict)
+            DBSession.add(tavara)
+            tilaus.tavarat.append(tavara)
+        else:
+            tavara_modify_from_dict(tavara_id, tavara_dict)
+                    
 
 @view_config(route_name='order_details', renderer='../templates/orders/order_details.pt')
 def view_order_details(request):
     order_id = request.matchdict['id']
-    tilaus = DBSession.query(Tilaus).filter_by(id=order_id).order_by(Tilaus.uuid.desc()).first()
+    tilaus = DBSession.query(Tilaus).filter_by(id=order_id).first()
 
     if 'data' in request.POST.keys():
 
@@ -262,7 +208,7 @@ def view_order_details(request):
         #########################################################
 
         if request.POST['data'] == 'perustiedot':
-            tilaus = update_perustiedot(request, tilaus)
+            update_perustiedot(request, tilaus)
 
         ###########################################
         # Form data sent for updating daily reports
@@ -283,9 +229,6 @@ def view_order_details(request):
             save_tavarat(request, tilaus)
 
     current_date = datetime.datetime.now()
-
-    # Re-read the order to get possible changes
-    tilaus = DBSession.query(Tilaus).filter_by(id=order_id).order_by(Tilaus.uuid.desc()).first()
 
     for x in tilaus.paivaraportit:
         print(str(x) + ", .date= " + str(x.date))
