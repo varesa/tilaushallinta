@@ -31,7 +31,7 @@ def change_password(user, newpassword):
 @view_config(route_name='user_profile', renderer='../templates/user_profile.pt')
 def view_admin_users(request):
     email = authenticated_userid(request)
-    user = DBSession.query(User).filter_by(email=email).order_by(User.uuid.desc()).first()
+    user = DBSession.query(User).filter_by(email=email).first()
 
     if 'data' in request.POST.keys():
         if request.POST['data'] == 'user_info':
@@ -47,55 +47,3 @@ def view_admin_users(request):
 err_missing_name = "Käyttäjän nimi puuttuu"
 err_missing_email = "Käyttäjän sähköpostiosoite puuttuu"
 err_missing_pass = "Käyttäjän salasana puuttuu"
-
-
-"""@view_config(route_name='admin_users_new', renderer='../templates/admin_users_new.pt')
-def view_admin_users_new(request):
-    errors = ""
-
-    post = request.POST
-    keys = list(post.keys())
-
-    if 'data' in keys:
-        if not 'name' in keys or len(post['name']) == 0:
-            errors += err_missing_name
-        if not 'email' in keys or len(post['email']) == 0:
-            errors += err_missing_email
-        if not 'password' in keys or len(post['password']) == 0:
-            errors += err_missing_pass
-
-        if 'admin' in keys:
-            admin = True
-        else:
-            admin = False
-
-        if 'vuosihuoltosopimukset' in keys:
-            vhs = True
-        else:
-            vhs = False
-
-        if not errors:
-            next_id = 0
-            if DBSession.query(User).count() > 0:
-                next_id = DBSession.query(User).order_by(User.id.desc()).first().id+1
-
-            user = User(id=next_id, date=datetime.now(),
-                        email=post['email'], name=post['name'],
-                        admin=admin, vuosihuoltosopimukset=vhs)
-            user.set_password(post['password'])
-
-            DBSession.add(user)
-
-            return HTTPFound(request.route_url('admin_users'))
-        else:
-            return {'errors': errors}
-
-    return {}
-
-
-@view_config(route_name='admin_users_edit', renderer='../templates/admin_users_edit.pt')
-def view_admin_users_edit(request):
-    user = DBSession.query(User).filter_by(id=request.matchdict['id']).order_by(User.date.desc()).first()
-
-    locked = True if user.email == "admin" else False
-    return {'user': user, 'locked': locked}"""

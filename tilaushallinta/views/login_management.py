@@ -27,7 +27,7 @@ def view_login(request):
             errors.append(err_no_password)
 
         if not errors:
-            user = DBSession.query(User).filter_by(email=request.POST['email']).order_by(User.uuid.desc()).first()
+            user = DBSession.query(User).filter_by(email=request.POST['email']).first()
             if not user:
                 errors.append(err_invalid_login)
             else:

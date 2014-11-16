@@ -25,16 +25,12 @@ def view_order_new(request):
 @view_config(route_name='order_submit')
 def view_order_submit(request):
     try:
-        if len(request.POST['tilaaja_uuid']):
-            tilaaja = DBSession.query(Tilaaja).filter_by(uuid=int(request.POST['tilaaja_uuid'])).first()
+        if len(request.POST['tilaaja_id']):
+            tilaaja = DBSession.query(Tilaaja).filter_by(id=int(request.POST['tilaaja_id'])).first()
             if not tilaaja:
                 return Response('Virhe ladatessa aikaisemman tilauksen tietoja')
         else:
-            next_id = 0
-            if DBSession.query(Tilaaja).count() > 0:
-                next_id = DBSession.query(Tilaaja).order_by(Tilaaja.id.desc()).first().id+1
-
-            tilaaja = Tilaaja(id=next_id, date=datetime.datetime.now(),
+            tilaaja = Tilaaja(date=datetime.datetime.now(),
                               nimi=request.POST['tilaaja_nimi'],
                               yritys=request.POST['tilaaja_yritys'],
                               ytunnus=request.POST['tilaaja_ytunnus'],
@@ -45,16 +41,12 @@ def view_order_submit(request):
                               email=request.POST['tilaaja_email'])
             DBSession.add(tilaaja)
 
-        if len(request.POST['kohde_uuid']):
-            kohde = DBSession.query(Kohde).filter_by(uuid=int(request.POST['kohde_uuid'])).first()
+        if len(request.POST['kohde_id']):
+            kohde = DBSession.query(Kohde).filter_by(id=int(request.POST['kohde_id'])).first()
             if not kohde:
                 return Response('Virhe ladatessa aikaisemman tilauksen tietoja')
         else:
-            next_id = 0
-            if DBSession.query(Kohde).count() > 0:
-                next_id = DBSession.query(Kohde).order_by(Kohde.id.desc()).first().id+1
-
-            kohde = Kohde(id=next_id, date=datetime.datetime.now(),
+            kohde = Kohde(date=datetime.datetime.now(),
                           nimi=request.POST['kohde_nimi'],
                           yritys=request.POST['kohde_yritys'],
                           ytunnus=request.POST['kohde_ytunnus'],
@@ -65,17 +57,13 @@ def view_order_submit(request):
                           email=request.POST['kohde_email'])
             DBSession.add(kohde)
 
-        next_id = 0
-        if DBSession.query(Tilaus).count() > 0:
-            next_id = DBSession.query(Tilaus).order_by(Tilaus.id.desc()).first().id+1
-
         maksuaika = None
         if (not 'maksuaika' in request.POST.keys()) or int(request.POST['maksuaika']) != 7:
             maksuaika = 14
         else:
             maksuaika = int(request.POST['maksuaika'])
 
-        tilaus = Tilaus(id=next_id, date=datetime.datetime.now(),
+        tilaus = Tilaus(date=datetime.datetime.now(),
                         tilaaja=tilaaja, kohde=kohde,
                         muut_yhteysh=request.POST['muut_yhteysh'],
                         tyo=request.POST['tyo'],
@@ -83,7 +71,6 @@ def view_order_submit(request):
                         viitenumero=request.POST['viitenumero'])
         DBSession.add(tilaus)
 
-        #return Response(str(request.POST))
         return HTTPFound('/texts/tilattu')
     except KeyError:
         return Response("Virhe käsiteltäessä lomaketta")

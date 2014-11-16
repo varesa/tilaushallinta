@@ -20,7 +20,6 @@
                         <input type="hidden" name="data" value="perustiedot">
 
                         <input type="hidden" name="kohde_id" value="${kohde.id}">
-                        <input type="hidden" name="kohde_uuid" value="${kohde.uuid}">
 
                         <tr>
                             <td><h3>Laskutus</h3></td> <td><h3>Työ</h3></td>

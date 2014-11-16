@@ -9,16 +9,15 @@ from sqlalchemy.orm import relationship
 
 from .meta import Base
 
-"""
+
 class Vesikalustekartoitus(Base):
     __tablename__ = 'vesikalustekartoitukset'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     # Property relationships
-    kohde_id = Column(Integer, ForeignKey('kohteet.uuid'))
+    kohde_id = Column(Integer, ForeignKey('kohteet.id'))
     kohde = relationship("Kohde", backref="vesikalustekartoitukset")
 
     # Relationships down
@@ -29,12 +28,11 @@ class Vesikalustekartoitus(Base):
 class VKK_Asunto(Base):
     __tablename__ = 'vkk_asunnot'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     # Up relationships support
-    vkk_uuid = Column(Integer, ForeignKey('vesikalustekartoitukset.uuid'))
+    vkk_id = Column(Integer, ForeignKey('vesikalustekartoitukset.id'))
 
     # Properties
     numero = Column(Text)
@@ -47,12 +45,11 @@ class VKK_Asunto(Base):
 class VKK_Huone(Base):
     __tablename__ = 'vkk_huoneet'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     # Up relationships support
-    asunto_uuid = Column(Integer, ForeignKey('vkk_asunnot.uuid'))
+    asunto_id = Column(Integer, ForeignKey('vkk_asunnot.id'))
 
     # Properties
     nimi = Column(Text, nullable=False)
@@ -65,16 +62,14 @@ class VKK_Huone(Base):
 class VKK_Kaluste(Base):
     __tablename__ = 'vkk_kalusteet'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     # Up relationships support
-    huone_uuid = Column(Integer, ForeignKey('vkk_huoneet.uuid'))
+    huone_id = Column(Integer, ForeignKey('vkk_huoneet.id'))
 
     # Properties
     nimi = Column(Text, nullable=False)
     koodi = Column(Text)
     maara = Column(Integer, nullable=False)
     tila = Column(Enum("Korjaus", "Vaihto", "Ok", name="enum_kaluste_tila"), nullable=False)
-    """

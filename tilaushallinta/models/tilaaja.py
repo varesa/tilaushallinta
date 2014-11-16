@@ -12,8 +12,7 @@ from .meta import Base
 class Tilaaja(Base):
     __tablename__ = 'tilaajat'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     nimi = Column(Text)

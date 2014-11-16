@@ -59,12 +59,12 @@ function load_order() {
 
     console.log(order);
 
-    var fields = ["uuid", "nimi", "yritys", "ytunnus", "osoite", "postinumero", "postitoimipaikka", "puhelin", "email"];
+    var fields = ["id", "nimi", "yritys", "ytunnus", "osoite", "postinumero", "postitoimipaikka", "puhelin", "email"];
     for(var i = 0; i < fields.length; i++) {
         $('input[name="' + selection_type + "_" + fields[i] + '"]').val(order[fields[i]]);
         $('input[name="' + selection_type + "_" + fields[i] + '"]').prop("readonly", true);
     }
-    $('input[name="' + selection_type + '_uuid"]').val(order['uuid']);
+    $('input[name="' + selection_type + '_id"]').val(order['id']);
 
     $('.modal').modal('hide');
 }

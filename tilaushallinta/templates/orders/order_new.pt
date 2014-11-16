@@ -40,8 +40,8 @@
 
 
         <form id="lomake" method="POST" action="/tilaukset/submit" onsubmit="return check_input()">
-            <input type="hidden" name="tilaaja_uuid">
-            <input type="hidden" name="kohde_uuid">
+            <input type="hidden" name="tilaaja_id">
+            <input type="hidden" name="kohde_id">
             <table class="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>

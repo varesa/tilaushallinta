@@ -15,8 +15,7 @@ from .meta import Base
 class User(Base):
     __tablename__ = 'users'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     name = Column(Text)

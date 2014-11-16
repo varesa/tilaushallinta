@@ -13,11 +13,10 @@ from .meta import Base
 class Paivaraportti(Base):
     __tablename__ = 'paivarapotit'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime)
 
-    tilaus_id = Column(Integer, ForeignKey("tilaukset.uuid"))
+    tilaus_id = Column(Integer, ForeignKey("tilaukset.id"))
 
     teksti = Column(Text)
 
@@ -29,11 +28,10 @@ class Paivaraportti(Base):
 class Tavara(Base):
     __tablename__ = 'tavarat'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime)
 
-    tilaus_id = Column(Integer, ForeignKey("tilaukset.uuid"))
+    tilaus_id = Column(Integer, ForeignKey("tilaukset.id"))
 
     koodi = Column(Text)
     nimi = Column(Text)
@@ -47,16 +45,15 @@ class Tavara(Base):
 class Tilaus(Base):
     __tablename__ = 'tilaukset'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     viitenumero = Column(Text)
 
-    tilaaja_id = Column(Integer, ForeignKey("tilaajat.uuid"))
+    tilaaja_id = Column(Integer, ForeignKey("tilaajat.id"))
     tilaaja = relationship("Tilaaja", backref="tilaukset")
 
-    kohde_id = Column(Integer, ForeignKey("kohteet.uuid"))
+    kohde_id = Column(Integer, ForeignKey("kohteet.id"))
     kohde = relationship("Kohde", backref="tilaukset")
 
     muut_yhteysh = Column(Text)

@@ -9,18 +9,16 @@ from pyramid.view import view_config
 from ..models import DBSession
 from ..models import Kohde
 
-from .utils import get_latest_ids
-
 
 @view_config(route_name='kohteet_list', renderer='../templates/kohde_list.pt')
 def view_kohteet_list(request):
-    kohteet = get_latest_ids(DBSession.query(Kohde).all())
+    kohteet = DBSession.query(Kohde).all()
     return {"kohteet": kohteet}
 
 
 @view_config(route_name='kohteet_details', renderer='../templates/kohde_details.pt')
 def view_order_details(request):
     id = request.matchdict['id']
-    kohde = DBSession.query(Kohde).filter_by(id=id).order_by(Kohde.uuid.desc()).first()
+    kohde = DBSession.query(Kohde).filter_by(id=id).first()
 
-    return {'kohde': kohde, 'kohde_uuid': kohde.uuid}
+    return {'kohde': kohde, 'kohde_id': kohde.id} # TODO: check if kohde_id is required

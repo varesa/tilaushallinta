@@ -13,8 +13,7 @@ from .meta import Base
 class Kohde(Base):
     __tablename__ = 'kohteet'
 
-    uuid = Column(Integer, primary_key=True)
-    id = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
     nimi = Column(Text)

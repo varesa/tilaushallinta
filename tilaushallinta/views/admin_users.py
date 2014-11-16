@@ -12,7 +12,7 @@ from datetime import datetime
 
 @view_config(route_name='admin_users', renderer='../templates/admin/admin_users.pt')
 def view_admin_users(request):
-    users = DBSession.query(User).order_by(User.uuid.desc()).all()
+    users = DBSession.query(User).order_by(User.id.desc()).all()
 
     latest = []
     lastid = None
@@ -55,11 +55,7 @@ def view_admin_users_new(request):
             vhs = False
 
         if not errors:
-            next_id = 0
-            if DBSession.query(User).count() > 0:
-                next_id = DBSession.query(User).order_by(User.id.desc()).first().id+1
-
-            user = User(id=next_id, date=datetime.now(),
+            user = User(date=datetime.now(),
                         email=post['email'], name=post['name'],
                         admin=admin, vuosihuoltosopimukset=vhs)
             user.set_password(post['password'])
@@ -75,7 +71,7 @@ def view_admin_users_new(request):
 
 @view_config(route_name='admin_users_edit', renderer='../templates/admin/admin_users_edit.pt')
 def view_admin_users_edit(request):
-    user = DBSession.query(User).filter_by(id=request.matchdict['id']).order_by(User.date.desc()).first()
+    user = DBSession.query(User).filter_by(id=request.matchdict['id']).first()
 
     locked = True if user.email == "admin" else False
     return {'user': user, 'locked': locked}
