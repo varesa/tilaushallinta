@@ -11,6 +11,7 @@ from .meta import Base
 
 
 class Vesikalustekartoitus(Base):
+    __versioned__ = {}
     __tablename__ = 'vesikalustekartoitukset'
 
     id = Column(Integer, primary_key=True)
@@ -26,6 +27,7 @@ class Vesikalustekartoitus(Base):
 
 # noinspection PyPep8Naming
 class VKK_Asunto(Base):
+    __versioned__ = {}
     __tablename__ = 'vkk_asunnot'
 
     id = Column(Integer, primary_key=True)
@@ -43,6 +45,7 @@ class VKK_Asunto(Base):
 
 # noinspection PyPep8Naming
 class VKK_Huone(Base):
+    __versioned__ = {}
     __tablename__ = 'vkk_huoneet'
 
     id = Column(Integer, primary_key=True)
@@ -60,6 +63,7 @@ class VKK_Huone(Base):
 
 # noinspection PyPep8Naming
 class VKK_Kaluste(Base):
+    __versioned__ = {}
     __tablename__ = 'vkk_kalusteet'
 
     id = Column(Integer, primary_key=True)

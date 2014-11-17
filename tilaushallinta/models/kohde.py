@@ -11,6 +11,7 @@ from .meta import Base
 
 
 class Kohde(Base):
+    __versioned__ = {}
     __tablename__ = 'kohteet'
 
     id = Column(Integer, primary_key=True)

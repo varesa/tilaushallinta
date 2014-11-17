@@ -6,6 +6,10 @@
 
 from .meta import Base, DBSession
 
+from sqlalchemy_continuum import make_versioned
+
+make_versioned()
+
 from .kohde import Kohde
 from .vkk import Vesikalustekartoitus, VKK_Asunto, VKK_Huone, VKK_Kaluste
 from .tilaaja import Tilaaja

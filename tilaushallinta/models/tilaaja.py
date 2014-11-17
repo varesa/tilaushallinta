@@ -10,6 +10,7 @@ from .meta import Base
 
 
 class Tilaaja(Base):
+    __versioned__ = {}
     __tablename__ = 'tilaajat'
 
     id = Column(Integer, primary_key=True)

@@ -11,6 +11,7 @@ from .meta import Base
 
 
 class Paivaraportti(Base):
+    __versioned__ = {}
     __tablename__ = 'paivarapotit'
 
     id = Column(Integer, primary_key=True)
@@ -26,6 +27,7 @@ class Paivaraportti(Base):
 
 
 class Tavara(Base):
+    __versioned__ = {}
     __tablename__ = 'tavarat'
 
     id = Column(Integer, primary_key=True)
@@ -43,6 +45,7 @@ class Tavara(Base):
 
 
 class Tilaus(Base):
+    __versioned__ = {}
     __tablename__ = 'tilaukset'
 
     id = Column(Integer, primary_key=True)
