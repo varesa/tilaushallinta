@@ -4,9 +4,11 @@
 # Copyright Esa Varemo 2014
 #
 
+from sqlalchemy.orm import configure_mappers
+from sqlalchemy_continuum import make_versioned
+
 from .meta import Base, DBSession
 
-from sqlalchemy_continuum import make_versioned
 
 make_versioned()
 
@@ -15,3 +17,5 @@ from .vkk import Vesikalustekartoitus, VKK_Asunto, VKK_Huone, VKK_Kaluste
 from .tilaaja import Tilaaja
 from .tilaus import Tilaus, Tavara, Paivaraportti
 from .users import User
+
+configure_mappers()

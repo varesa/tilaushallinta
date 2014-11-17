@@ -6,8 +6,7 @@
 
 import bcrypt
 
-from sqlalchemy import Column, Text, Integer, DateTime, Boolean, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Text, Integer, DateTime, Boolean
 
 from .meta import Base
 

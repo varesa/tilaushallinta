@@ -4,8 +4,7 @@
 # Copyright Esa Varemo 2014
 #
 
-from sqlalchemy import Column, Integer, Text, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, Text, DateTime
 
 from .meta import Base
 
