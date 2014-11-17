@@ -49,12 +49,8 @@ def main(argv=sys.argv):
     Base.metadata.create_all(engine)
 
     with transaction.manager:
-        if DBSession.query(User).count() == 0:
-            id = 0
-        else:
-            id = DBSession.query(User).order_by(User.id.desc()).first().id +1
         if DBSession.query(User).filter_by(name='admin').count() == 0:
-            admin = User(id=id, date=datetime.now(),
+            admin = User(date=datetime.now(),
                          name='Admin', email='admin', admin=True)
             admin.set_password('adminpwd123')
             DBSession.add(admin)
