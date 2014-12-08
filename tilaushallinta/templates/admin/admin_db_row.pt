@@ -4,8 +4,8 @@
 # Copyright Esa Varemo 2014
 -->
 
-<metal:main metal:use-macro="load: master.pt">
-    <div metal:fill-slot="content">
+<metal:main metal:use-macro="load: admin_master.pt">
+    <div metal:fill-slot="admin-content">
         <div class="panel panel-default" tal:repeat="row rows">
             <div class="panel-body">
                 <b>ID:</b><br>${row[0]}<br><br>

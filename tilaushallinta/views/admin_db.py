@@ -37,7 +37,7 @@ def view_admin_db_model(request):
         return Response("Virheellinen kysely")
 
 
-@view_config(route_name='admin_db_row', renderer='../templates/admin_db_row.pt')
+@view_config(route_name='admin_db_row', renderer='../templates/admin/admin_db_row.pt')
 def view_admin_db_row(request):
     try:
         model = request.matchdict['name']

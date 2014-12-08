@@ -15,7 +15,7 @@
                     <th>Data&nbsp;&nbsp;&nbsp;&nbsp;</th>
 
                 </tr>
-                <tr tal:repeat="row rows" onclick='window.location.href="/admin/db/${model}/${row[1]}"'>
+                <tr tal:repeat="row rows" onclick='window.location.href="/admin/db/${model}/${row[0]}"'>
                     <td><input type="checkbox" name="${row[0]}">&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>${row[0]}&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td><?python if row[1]: row[1].isoformat(' ') ?>&nbsp;&nbsp;&nbsp;&nbsp;</td>
