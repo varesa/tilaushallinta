@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014
 #
 
-from sqlalchemy import Column, Integer, Float, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, Float, Text, DateTime, ForeignKey, String
 from sqlalchemy.orm import relationship
 
 from .meta import Base
@@ -55,7 +55,7 @@ class Tilaus(Base):
     TILA_HYVAKSYTTY = "HYVAKSYTTY"
     TILA_ALOITETTU = "ALOITETTU"
     TILA_VALMIS = "VALMIS"
-    tila = Column(Text, nullable=False, default=TILA_UUSI)
+    tila = Column(String(15), nullable=False, default=TILA_UUSI)
 
     viitenumero = Column(Text)
 
