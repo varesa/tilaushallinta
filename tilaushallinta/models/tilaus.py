@@ -51,6 +51,12 @@ class Tilaus(Base):
     id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
+    TILA_UUSI = "UUSI"
+    TILA_HYVAKSYTTY = "HYVAKSYTTY"
+    TILA_ALOITETTU = "ALOITETTU"
+    TILA_VALMIS = "VALMIS"
+    tila = Column(Text, nullable=False, default=TILA_UUSI)
+
     viitenumero = Column(Text)
 
     tilaaja_id = Column(Integer, ForeignKey("tilaajat.id"))
