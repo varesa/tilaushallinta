@@ -51,9 +51,9 @@ function show_history(type) {
 
     var url = "";
     if(type == "tilaaja") {
-        url = '/json/tilaajat_newest'
+        url = '/json/tilaajat'
     } else {
-        url = '/json/kohteet_newest'
+        url = '/json/kohteet'
     }
 
     $.get(url, populate_modal);

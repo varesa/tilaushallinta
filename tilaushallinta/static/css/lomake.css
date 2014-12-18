@@ -10,6 +10,30 @@
     width: 100%;
 }
 
+#table_top {
+    position: relative;
+    height: 32px;
+}
+
+#table_title {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#table_title h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#table_order_status {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 .table_lomake tr {
     width: 100%;
 }

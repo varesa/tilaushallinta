@@ -15,12 +15,13 @@ def configure_routes(config):
     config.add_route('order_submit', '/tilaukset/submit')
     config.add_route('order_list', '/tilaukset')
     config.add_route('order_details', '/tilaukset/{id}')
+    config.add_route('order_setstate', '/tilaukset/{id}/setstate')
 
     config.add_route('kohteet_list', '/kohteet')
     config.add_route('kohteet_details', '/kohteet/{id}')
 
-    config.add_route('json_newest_tilaajat', '/json/tilaajat_newest')
-    config.add_route('json_newest_kohteet', '/json/kohteet_newest')
+    config.add_route('json_tilaajat', '/json/tilaajat')
+    config.add_route('json_kohteet', '/json/kohteet')
 
     config.add_route('vkk_new', '/vkkt/uusi')
     config.add_route('vkk_submit', '/vkkt/submit')

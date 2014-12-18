@@ -9,21 +9,32 @@
 
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" href="/static/css/lomake.css">
+        <script type="text/javascript" src="/static/js/order_state.js"></script>
     </metal:main>
 
     <metal:main metal:fill-slot="content">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h2>Perustiedot</h2>
+                <div id="table_top">
+                    <div id="table_title"><h2>Perustiedot</h2></div>
+                    <div id="table_order_status">Tila:
+                        <select id="order_state_select" onclick="order_state_changed()">
+                            <option selected="${'selected' if tilaus.tila == 'UUSI' else None}" value="UUSI">Uusi</option>
+                            <option selected="${'selected' if tilaus.tila == 'HYVAKSYTTY' else None}" value="HYVAKSYTTY">Hyväksytty</option>
+                            <option selected="${'selected' if tilaus.tila == 'ALOITETTU' else None}" value="ALOITETTU">Aloitettu</option>
+                            <option selected="${'selected' if tilaus.tila == 'VALMIS' else None}" value="VALMIS">Valmis</option>
+                        </select>
+                        <input type="button" value="Vaihda" onclick="order_change_state()" disabled>
+                    </div>
+                </div>
                 <table class="table_lomake">
                     <form method="post">
                         <input type="hidden" name="data" value="perustiedot">
                         
                         <input type="hidden" name="tilaaja_id" value="${tilaus.tilaaja.id}">
-                        
                         <input type="hidden" name="kohde_id" value="${tilaus.kohde.id}">
-                        
                         <input type="hidden" name="tilaus_id" value="${tilaus.id}">
+                        <input type="hidden" name="tilaus_originalstate" value="${tilaus.tila}">
                         
                         <tr>
                             <td><h3>Laskutus</h3></td> <td><h3>Työ</h3></td>
@@ -84,22 +95,6 @@
                             </td>
                         </tr>
                         <input type="hidden" name="data" value="paivaraportti">
-                        <!--<tr>
-                            <td class="raportti_col1">${current_date.strftime("%d.%m.%y %H:%M")}<textarea name="kuvaus"></textarea></td>
-                            <td class="raportti_col2">
-                                <table>
-                                    <tr>
-                                        <td>Tunnit:</td><td><input name="tunnit" value="0"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Matkat:</td><td><input name="matkat" value="0"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Muut:</td><td><input name="muut" value="0"></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>-->
                         <tr>
                             <td>
                                 <input type="submit" name="save" value="Tallenna">

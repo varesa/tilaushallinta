@@ -19,16 +19,49 @@ from ..models import Tilaus
 
 @view_config(route_name='order_new', renderer='../templates/orders/order_new.pt')
 def view_order_new(request):
+    """
+    View method that shows the ordering form
+    :param request: pyramid request
+    :return: None
+    """
     return {}
+
+
+def update_object(prefix, object, data):
+    """
+    Modify the data of an object from form data
+    :param prefix: prefix of the form fields, e.g. tilaaja/kohde
+    :type prefix: str
+    :param object: object to modify
+    :type object: Tilaaja or Kohde
+    :param data: form data to pull new values from
+    :type data: dict
+    :return: None
+    """
+    object.nimi = data[prefix + '_nimi']
+    object.yritys = data[prefix + '_yritys']
+    object.ytunnus = data[prefix + '_ytunnus']
+    object.osoite = data[prefix + '_osoite']
+    object.postitoimipaikka = data[prefix + '_postitoimipaikka']
+    object.postinumero = data[prefix + '_postinumero']
+    object.puhelin = data[prefix + '_puhelin']
+    object.email = data[prefix + '_email']
 
 
 @view_config(route_name='order_submit')
 def view_order_submit(request):
+    """
+    View method that the ordering form is POSTed to
+    :param request: Pyramid request
+    :return: None
+    """
     try:
-        if len(request.POST['tilaaja_id']):
+        if len(request.POST['tilaaja_id']):  # Reusing existing object
             tilaaja = DBSession.query(Tilaaja).filter_by(id=int(request.POST['tilaaja_id'])).first()
             if not tilaaja:
                 return Response('Virhe ladatessa aikaisemman tilauksen tietoja')
+            if request.POST['tilaaja_edit'] == '1':  # Edit existing object?
+                update_object('tilaaja', tilaaja, request.POST)
         else:
             tilaaja = Tilaaja(date=datetime.datetime.now(),
                               nimi=request.POST['tilaaja_nimi'],
@@ -41,10 +74,12 @@ def view_order_submit(request):
                               email=request.POST['tilaaja_email'])
             DBSession.add(tilaaja)
 
-        if len(request.POST['kohde_id']):
+        if len(request.POST['kohde_id']):  # Reusing existing object
             kohde = DBSession.query(Kohde).filter_by(id=int(request.POST['kohde_id'])).first()
             if not kohde:
                 return Response('Virhe ladatessa aikaisemman tilauksen tietoja')
+            if request.POST['kohde_edit'] == '1':  # Edit existing object?
+                update_object('kohde', kohde, request.POST)
         else:
             kohde = Kohde(date=datetime.datetime.now(),
                           nimi=request.POST['kohde_nimi'],
@@ -57,8 +92,7 @@ def view_order_submit(request):
                           email=request.POST['kohde_email'])
             DBSession.add(kohde)
 
-        maksuaika = None
-        if (not 'maksuaika' in request.POST.keys()) or int(request.POST['maksuaika']) != 7:
+        if ('maksuaika' not in request.POST.keys()) or int(request.POST['maksuaika']) != 7:
             maksuaika = 14
         else:
             maksuaika = int(request.POST['maksuaika'])

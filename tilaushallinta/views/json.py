@@ -4,8 +4,8 @@ from pyramid.view import view_config
 from ..models import DBSession, Tilaaja, Kohde
 
 
-@view_config(route_name='json_newest_tilaajat', renderer='json')
-def view_newest_tilaajat(request):
+@view_config(route_name='json_tilaajat', renderer='json')
+def view_json_tilaajat(request):
     tilaajat = DBSession.query(Tilaaja).all()
     tilaajat_list = []
 
@@ -18,8 +18,8 @@ def view_newest_tilaajat(request):
     return tilaajat_list
 
 
-@view_config(route_name='json_newest_kohteet', renderer='json')
-def view_newest_kohteet(request):
+@view_config(route_name='json_kohteet', renderer='json')
+def view_json_kohteet(request):
     kohteet = DBSession.query(Kohde).all()
     kohteet_list = []
 

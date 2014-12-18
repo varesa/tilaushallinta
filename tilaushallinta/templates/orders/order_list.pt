@@ -18,12 +18,13 @@
             <table class="table table-hover">
                 <tr>
                     <th>#</th>
+                    <th>Tila</th>
                     <th>Tilaaja</th>
                     <th>Kohteen osoite</th>
                 </tr>
                 <tr tal:repeat="tilaus tilaukset" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
-                    <!--<td>${str(tilaus.id).zfill(3)}&nbsp;&nbsp;&nbsp;</td>-->
                     <td>${tilaus.date.strftime("%y%m%d-%H%M")}</td>
+                    <td>${tilaus.tila}</td>
                     <td>${tilaus.tilaaja.nimi}, ${tilaus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;</td>
                     <td>${tilaus.kohde.osoite}, ${tilaus.kohde.postinumero} ${tilaus.kohde.postitoimipaikka}</td>
                 </tr>
