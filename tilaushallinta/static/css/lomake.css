@@ -19,6 +19,11 @@
     padding: 15px;
 }
 
+.table_col_slim {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 .table_lomake tr td input, .table_lomake tr td textarea {
     width: 100%;
 }

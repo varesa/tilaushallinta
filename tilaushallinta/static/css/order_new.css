@@ -1,0 +1,41 @@
+ /* Container for the status & controls */
+#old_tilaaja_cont, #old_kohde_cont {
+    vertical-align: top;
+}
+
+/* Controls list */
+#old_tilaaja_controls, #old_kohde_controls {
+    display: none;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#old_tilaaja_controls ul, #old_kohde_controls ul {
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+    height: 3.1em;
+}
+
+#old_tilaaja_controls ul::after, #old_kohde_controls ul::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 0;
+    vertical-align: top;
+}
+
+#old_tilaaja_controls ul li, #old_kohde_controls ul li{
+    display: inline-block;
+    text-align: center;
+    padding: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    vertical-align: bottom;
+}
+
+/* State message */
+#old_tilaaja_state, #old_kohde_state {
+    padding-top: 0;
+    padding-bottom: 0;
+}

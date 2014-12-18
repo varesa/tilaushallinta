@@ -9,8 +9,9 @@
 
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" href="/static/css/lomake.css"/>
+        <link rel="stylesheet" href="/static/css/order_new.css"/>
         <script type="text/javascript" src="/static/js/form_input_validation.js"></script>
-        <script type="text/javascript" src="/static/js/neworder_history_modal.js"></script>
+        <script type="text/javascript" src="/static/js/neworder_history.js"></script>
     </metal:main>
 
     <div metal:fill-slot="content">
@@ -41,7 +42,9 @@
 
         <form id="lomake" method="POST" action="/tilaukset/submit" onsubmit="return check_input()">
             <input type="hidden" name="tilaaja_id">
+            <input type="hidden" name="tilaaja_edit">
             <input type="hidden" name="kohde_id">
+            <input type="hidden" name="kohde_edit">
             <table class="table_lomake">
                 <tr>
                     <td><h2>Uusi tilaus</h2></td>
@@ -51,8 +54,18 @@
                     <td><span class="colheader-left">Työn kohteen tiedot</span><span class="colheader-sub-right"><a onclick="show_history('kohde')">Valitse edellisistä</a></span></td>
                 </tr>
                 <tr>
-                    <td><metal:main metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
-                    <td><metal:main metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
+                    <td class="table_col_slim" class="old_tilaaja_cont">
+                        <span id="old_tilaaja_controls"><ul><li><a onclick="create_new_based_on('tilaaja')">Luo uusi käyttäen tätä pohjana&nbsp;&nbsp;</a></li><li><a onclick="edit_existing('tilaaja')">Muokkaa tätä (muokkaa kaikkia tilauksia)</a></li></ul></span>
+                        <span id="old_tilaaja_state"></span>
+                    </td>
+                    <td class="table_col_slim" class="old_kohde_cont">
+                        <span id="old_kohde_controls"><ul><li><a onclick="create_new_based_on('kohde')">Luo uusi käyttäen tätä pohjana&nbsp;&nbsp;</a></li><li><a onclick="edit_existing('kohde')">Muokkaa tätä (muokkaa kaikkia tilauksia)</a></li></ul></span>
+                        <span id="old_kohde_state"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table_col_slim"><metal:main metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
+                    <td class="table_col_slim"><metal:main metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
                 </tr>
                 <tr>
                     <td>Sähköiset laskutustiedot:<br><textarea name="slaskutus" tabindex="9"></textarea></td>
