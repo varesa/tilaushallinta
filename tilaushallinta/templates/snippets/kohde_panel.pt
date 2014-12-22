@@ -23,7 +23,7 @@
         Postinumero:<br><input name="kohde_postinumero"       value="${tilaus.kohde.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
-    <span class="required">
+    <span>
         Puhelin:<br><input name="kohde_puhelin"       value="${tilaus.kohde.puhelin|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
