@@ -50,13 +50,18 @@ function show_history(type) {
     selection_type = type;
 
     var url = "";
+    var data = {};
     if(type == "tilaaja") {
-        url = '/json/tilaajat'
+        url = '/json/tilaajat';
     } else {
-        url = '/json/kohteet'
+        url = '/json/kohteet';
+        if($("input[name=tilaaja_id]").val().length > 0) {
+            var id = parseInt($("input[name=tilaaja_id]").val());
+            data = {'tilaaja_id': id};
+        }
     }
 
-    $.get(url, populate_modal);
+    $.get(url, data, populate_modal);
     $('.modal').modal();
 
 }

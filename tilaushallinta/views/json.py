@@ -1,4 +1,3 @@
-from pyramid.response import Response
 from pyramid.view import view_config
 
 from ..models import DBSession, Tilaaja, Kohde
@@ -20,9 +19,17 @@ def view_json_tilaajat(request):
 
 @view_config(route_name='json_kohteet', renderer='json')
 def view_json_kohteet(request):
-    kohteet = DBSession.query(Kohde).all()
-    kohteet_list = []
+    kohteet = []
+    if 'tilaaja_id' in request.GET.keys():
+        tilaaja = DBSession.query(Tilaaja).filter_by(id=int(request.GET['tilaaja_id'])).first()
 
+        for tilaus in tilaaja.tilaukset:
+            if tilaus.kohde not in kohteet:
+                kohteet.append(tilaus.kohde)
+    else:
+        kohteet = DBSession.query(Kohde).all()
+
+    kohteet_list = []
     for kohde in kohteet:
         kohteet_list.append({'id': kohde.id,
                              'nimi': kohde.nimi, 'yritys': kohde.yritys, 'ytunnus': kohde.ytunnus,
