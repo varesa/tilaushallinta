@@ -4,30 +4,30 @@
     </span>
     <br tal:condition="not: compact"></br>
     <span>
-        Yritys:<br><input name="kohde_yritys"    value="${tilaus.kohde.yritys|None}" readonly="${None if not readonly else 'readonly'}">
+        Yritys:<br><input name="kohde_yritys"       value="${tilaus.kohde.yritys|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span>
-        Y-tunnus:<br><input name="kohde_ytunnus"   value="${tilaus.kohde.ytunnus|None}" readonly="${None if not readonly else 'readonly'}">
+        Y-tunnus:<br><input name="kohde_ytunnus"    value="${tilaus.kohde.ytunnus|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span class="required">
-        Osoite:<br><input name="kohde_osoite"    value="${tilaus.kohde.osoite|None}" readonly="${None if not readonly else 'readonly'}">
+        Osoite:<br><input name="kohde_osoite"       value="${tilaus.kohde.osoite|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span class="required">
-        Postitoimipaikka:<br><input name="kohde_postitoimipaikka"  value="${tilaus.kohde.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
+        Postitoimipaikka:<br><input name="kohde_postitoimipaikka"   value="${tilaus.kohde.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span class="required">
-        Postinumero:<br><input name="kohde_postinumero"       value="${tilaus.kohde.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
+        Postinumero:<br><input name="kohde_postinumero"             value="${tilaus.kohde.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span>
-        Puhelin:<br><input name="kohde_puhelin"       value="${tilaus.kohde.puhelin|None}" readonly="${None if not readonly else 'readonly'}">
+        Puhelin:<br><input name="kohde_puhelin"     value="${tilaus.kohde.puhelin|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span>
-        Sähköposti:<br><input name="kohde_email"     value="${tilaus.kohde.email|None}" readonly="${None if not readonly else 'readonly'}">
+        Sähköposti:<br><input name="kohde_email"    value="${tilaus.kohde.email|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
 </div>
