@@ -13,8 +13,11 @@ def configure_routes(config):
 
     config.add_route('order_new', '/tilaukset/uusi')
     config.add_route('order_submit', '/tilaukset/submit')
+
     config.add_route('order_list', '/tilaukset')
     config.add_route('order_details', '/tilaukset/{id}')
+    config.add_route('order_summary', '/tilaukset/{id}/yhteenveto')
+
     config.add_route('order_setstate', '/tilaukset/{id}/setstate')
 
     config.add_route('kohteet_list', '/kohteet')

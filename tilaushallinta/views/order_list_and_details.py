@@ -236,6 +236,12 @@ def view_order_details(request):
 
     return {'tilaus': tilaus, 'current_date': current_date}
 
+
+@view_config(route_name='order_summary')
+def view_order_summary(request):
+    return {}
+
+
 @view_config(route_name='order_setstate')
 def view_order_setstate(request):
     order_id = request.matchdict['id']
