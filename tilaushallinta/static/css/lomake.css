@@ -84,12 +84,18 @@
     height: 100%;
 }
 
+.paivaraportit_detailsline td {
+    border-top: none !important;
+}
+
 .raportti_col1 {
 
 }
 
 .raportti_col2 {
     width: 100px;
+    padding-top: 0px !important;
+    -webkit-padding-before: 8px !important;
 }
 
 

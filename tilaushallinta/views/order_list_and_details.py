@@ -56,7 +56,7 @@ def update_perustiedot(request, tilaus):
     tilaaja.osoite = request.POST['tilaaja_osoite']
     tilaaja.postitoimipaikka = request.POST['tilaaja_postitoimipaikka']
     tilaaja.postinumero = request.POST['tilaaja_postinumero']
-    tilaaja.puhelin = request.POST['tilaaja_puh']
+    tilaaja.puhelin = request.POST['tilaaja_puhelin']
     tilaaja.email = request.POST['tilaaja_email']
 
 
@@ -68,7 +68,7 @@ def update_perustiedot(request, tilaus):
     kohde.osoite = request.POST['kohde_osoite']
     kohde.postitoimipaikka = request.POST['kohde_postitoimipaikka']
     kohde.postinumero = request.POST['kohde_postinumero']
-    kohde.puhelin = request.POST['kohde_puh']
+    kohde.puhelin = request.POST['kohde_puhelin']
     kohde.email = request.POST['kohde_email']
 
 
@@ -81,10 +81,22 @@ def update_perustiedot(request, tilaus):
 
 
 def add_paivaraportti(tilaus):
-    tilaus.paivaraportit.append(Paivaraportti(date=datetime.datetime.now()))
+    """
+    Create a new Paivaraportti in the database
+    :param tilaus: The order in which to create the new report
+    :rtype: None
+    """
+    tilaus.paivaraportit.append(Paivaraportti(date=datetime.datetime.now(), hintaluokka=2))
 
 
 def raportit_form_to_dict(request):
+    """
+    Get data from request POST and put the values relevant to Paivaraportti objects in a dictionary
+    :param request: request to read POST data from
+    :type request: Request
+    :return: dictionary of dict[id][field] = value
+    :rtype: dict
+    """
     raportit = {}
     for key, value in request.POST.iteritems():
         if '-' not in key:
@@ -100,6 +112,13 @@ def raportit_form_to_dict(request):
 
 
 def string_to_float_or_zero(string):
+    """
+    Try to convert a string to an float, returns 0.0 on failure
+    :param string: String to convert
+    :type string: str
+    :return: float value of the string or 0.0
+    :rtype: float
+    """
     try:
         return float(string)
     except ValueError:
@@ -107,38 +126,45 @@ def string_to_float_or_zero(string):
 
 
 def string_to_int_or_zero(string):
+    """
+    Try to convert a string to an int, returns 0 on failure
+    :param string: String to convert
+    :type string: str
+    :return: integer value of the string or 0
+    :rtype: int
+    """
     try:
         return int(string)
     except ValueError:
         return 0
 
 
-def raportit_check_difference_dict_object(raportti_dict, raportti_object):
-    return compare_sets((
-        (raportti_dict['teksti'], raportti_object.teksti),
-        (string_to_float_or_zero(raportti_dict['matkat']), raportti_object.matkat),
-        (string_to_float_or_zero(raportti_dict['tunnit']), raportti_object.tunnit),
-        (string_to_float_or_zero(raportti_dict['muut']), raportti_object.muut)
-    ))
-
-
-def raportti_new_from_dict(raportti_dict, raportti_id, raportti_date):
-    return Paivaraportti(id=int(raportti_id), date=raportti_date,
-                         teksti=raportti_dict['teksti'],
-                         matkat=string_to_float_or_zero(raportti_dict['matkat']),
-                         tunnit=string_to_float_or_zero(raportti_dict['tunnit']),
-                         muut=string_to_float_or_zero(raportti_dict['muut']))
-
-
 def raportti_modify_from_dict(raportti_id, raportti_dict):
+    """
+    Modify a Paivaraportti object with data from a dictionary
+    :param raportti_id: id of the object to modify
+    :type raportti_id: int
+    :param raportti_dict: dictionary with the new data
+    :type raportti_dict: dict
+    :rtype: None
+    """
     raportti = DBSession.query(Paivaraportti).filter_by(id=raportti_id).first()
     raportti.teksti = raportti_dict['teksti']
+    raportti.hintaluokka = string_to_int_or_zero(raportti_dict['hintaluokka'])
     raportti.matkat = string_to_float_or_zero(raportti_dict['matkat'])
     raportti.tunnit = string_to_float_or_zero(raportti_dict['tunnit'])
-    raportti.muut = string_to_float_or_zero(raportti_dict['muut'])
+    raportti.muut   = string_to_float_or_zero(raportti_dict['muut'])
 
 
 def save_paivaraportit(request, tilaus):
+    """
+    Save the Paivaraportti data
+    :param request: Request from client containing new values as POST data
+    :type request: Request
+    :param tilaus: Tilaus object to save the data in
+    :type tilaus: Tilaus
+    :rtype: None
+    """
     raportit_request = raportit_form_to_dict(request)
 
     for raportti_id, raportti_new in raportit_request.items():

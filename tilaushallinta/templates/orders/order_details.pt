@@ -78,22 +78,37 @@
                         <?python
                             from operator import attrgetter
                         ?>
-                        <tr tal:repeat="raportti sorted(tilaus.paivaraportit, key=attrgetter('date'), reverse=False)">
-                            <td class="raportti_col1">${raportti.date.strftime("%d.%m.%y %H:%M")}<textarea name="${raportti.id}-teksti">${raportti.teksti}</textarea></td>
-                            <td class="raportti_col2">
-                                <table>
-                                    <tr>
-                                        <td>Tunnit:</td><td><input name="${raportti.id}-tunnit" value="${raportti.tunnit}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Matkat:</td><td><input name="${raportti.id}-matkat" value="${raportti.matkat}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Muut:</td><td><input name="${raportti.id}-muut" value="${raportti.muut}"></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
+                        <tal tal:repeat="raportti sorted(tilaus.paivaraportit, key=attrgetter('date'), reverse=False)">
+                            <tr class="paivaraportit_dateline">
+                                <td colspan="2">${raportti.date.strftime("%d.%m.%Y %H:%M")}</td>
+                            </tr>
+                            <tr class="paivaraportit_detailsline">
+                                <td class="raportti_col1"><textarea name="${raportti.id}-teksti" rows="4">${raportti.teksti}</textarea></td>
+                                <td class="raportti_col2">
+                                    <table>
+                                        <tr>
+                                            <td>Hintaluokka:&nbsp;</td>
+                                            <td>
+                                                <select name="${raportti.id}-hintaluokka">
+                                                    <option selected="${'selected' if raportti.hintaluokka == 1 else None}">1</option>
+                                                    <option selected="${'selected' if raportti.hintaluokka == 2 else None}">2</option>
+                                                    <option selected="${'selected' if raportti.hintaluokka == 3 else None}">3</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tunnit:&nbsp;</td><td><input name="${raportti.id}-tunnit" value="${raportti.tunnit}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Matkat:&nbsp;</td><td><input name="${raportti.id}-matkat" value="${raportti.matkat}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Muut:&nbsp;</td><td><input name="${raportti.id}-muut" value="${raportti.muut}"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tal>
                         <input type="hidden" name="data" value="paivaraportti">
                         <tr>
                             <td>
