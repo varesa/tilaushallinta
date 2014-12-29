@@ -17,9 +17,11 @@ class Paivaraportti(Base):
     id = Column(Integer, primary_key=True)
     date = Column(DateTime)
 
-    tilaus_id = Column(Integer, ForeignKey("tilaukset.id"))
+    tilaus_id = Column(Integer, ForeignKey("tilaukset.id"), default=2)
 
     teksti = Column(Text)
+
+    hintaluokka = Column(Integer, nullable=False)
 
     tunnit = Column(Float)
     matkat = Column(Float)
