@@ -1,0 +1,46 @@
+<!--!
+# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Copyright Esa Varemo 2014
+-->
+
+<metal:main metal:use-macro="load: admin_master.pt">
+    <metal:main metal:fill-slot="admin-head_custom">
+        <link rel="stylesheet" href="/static/css/misc.css"/>
+        <link rel="stylesheet" href="/static/css/admin_hintaluokat.css"/>
+    </metal:main>
+    <div metal:fill-slot="admin-content">
+        <div class="panel panel-default">
+            <div class="panel-heading">Hintaluokat</div>
+            <form method="POST">
+                <input type="hidden" name="data" value="yes">
+                <table class="table table-hover">
+                    <tr>
+                        <th></th>
+                        <th class="text_centered">&nbsp;&nbsp;1&nbsp;&nbsp;</th>
+                        <th class="text_centered">&nbsp;&nbsp;2&nbsp;&nbsp;</th>
+                        <th class="text_centered">&nbsp;&nbsp;3&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td>Tunnit (€/h)&nbsp;&nbsp;</td>
+                        <td><input name="1_tunnit" value="${hintaluokat[1].tunnit}">&nbsp;&nbsp;</td>
+                        <td><input name="2_tunnit" value="${hintaluokat[2].tunnit}">&nbsp;&nbsp;</td>
+                        <td><input name="3_tunnit" value="${hintaluokat[3].tunnit}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Matkat (€/km)&nbsp;&nbsp;</td>
+                        <td><input name="1_matkat" value="${hintaluokat[1].matkat}">&nbsp;&nbsp;</td>
+                        <td><input name="2_matkat" value="${hintaluokat[2].matkat}">&nbsp;&nbsp;</td>
+                        <td><input name="3_matkat" value="${hintaluokat[3].matkat}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="submit" value="Tallenna"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</metal:main>

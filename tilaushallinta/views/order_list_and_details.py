@@ -16,6 +16,7 @@ from ..models import Tilaus
 from ..models import Tavara
 from ..models import Paivaraportti
 
+from .utils import string_to_float_or_zero, string_to_int_or_zero
 
 @view_config(route_name='order_list', renderer='../templates/orders/order_list.pt')
 def view_tilaukset_list(request):
@@ -109,34 +110,6 @@ def raportit_form_to_dict(request):
         raportit[raportti_id][field] = value
 
     return raportit
-
-
-def string_to_float_or_zero(string):
-    """
-    Try to convert a string to an float, returns 0.0 on failure
-    :param string: String to convert
-    :type string: str
-    :return: float value of the string or 0.0
-    :rtype: float
-    """
-    try:
-        return float(string)
-    except ValueError:
-        return 0
-
-
-def string_to_int_or_zero(string):
-    """
-    Try to convert a string to an int, returns 0 on failure
-    :param string: String to convert
-    :type string: str
-    :return: integer value of the string or 0
-    :rtype: int
-    """
-    try:
-        return int(string)
-    except ValueError:
-        return 0
 
 
 def raportti_modify_from_dict(raportti_id, raportti_dict):

@@ -7,6 +7,7 @@
 <ul>
     <li><strong>Ylläpito</strong></li>
     <li><a href="/admin/users">Käyttäjät</a></li>
+    <li><a href="/admin/hintaluokat">Hintaluokat</a></li>
     <li><br></li>
     <li><strong>Kehitystyökalut</strong></li>
     <li><a href="/admin/db">Tietokanta</a></li>

@@ -36,6 +36,7 @@ def configure_routes(config):
     config.add_route('user_profile', '/profiili')
 
     config.add_route('admin', '/admin')
+    config.add_route('admin_hintaluokat', '/admin/hintaluokat')
     config.add_route('admin_users', '/admin/users')
     config.add_route('admin_users_new', '/admin/users/new')
     config.add_route('admin_users_edit', '/admin/users/{id}')

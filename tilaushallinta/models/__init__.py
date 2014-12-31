@@ -17,5 +17,6 @@ from .vkk import Vesikalustekartoitus, VKK_Asunto, VKK_Huone, VKK_Kaluste
 from .tilaaja import Tilaaja
 from .tilaus import Tilaus, Tavara, Paivaraportti
 from .users import User
+from .hintaluokka import Hintaluokka
 
 configure_mappers()

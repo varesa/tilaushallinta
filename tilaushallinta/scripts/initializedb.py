@@ -21,6 +21,7 @@ from pyramid.scripts.common import parse_vars
 from ..models import (
     DBSession,
     User,
+    Hintaluokka,
     Base,
     )
 
@@ -49,8 +50,15 @@ def main(argv=sys.argv):
     Base.metadata.create_all(engine)
 
     with transaction.manager:
+        # Create admin user if it doesn't exist
         if DBSession.query(User).filter_by(name='admin').count() == 0:
             admin = User(date=datetime.now(),
                          name='Admin', email='admin', admin=True)
             admin.set_password('adminpwd123')
             DBSession.add(admin)
+
+        # Create base rates if they don't exist
+        if DBSession.query(Hintaluokka).count() == 0:
+            DBSession.add(Hintaluokka(hintaluokka=1, tunnit=1, matkat=1))
+            DBSession.add(Hintaluokka(hintaluokka=2, tunnit=2, matkat=2))
+            DBSession.add(Hintaluokka(hintaluokka=3, tunnit=3, matkat=3))
