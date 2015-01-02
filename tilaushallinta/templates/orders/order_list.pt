@@ -8,6 +8,7 @@
     <metal:main metal:fill-slot="title">Tilauslista</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" type="text/css" href="/static/css/order_list.css">
     </metal:main>
 
     <metal:main metal:fill-slot="content">
@@ -24,7 +25,10 @@
                 </tr>
                 <tr tal:repeat="tilaus tilaukset" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
                     <td>${tilaus.date.strftime("%y%m%d-%H%M")}</td>
-                    <td>${tilaus.tila}</td>
+                    <td tal:condition="tilaus.tila == 'UUSI'"><span class="tilaus_tila tila_uusi">Uusi</span></td>
+                    <td tal:condition="tilaus.tila == 'HYVAKSYTTY'"><span class="tilaus_tila tila_hyvaksytty">Hyväksytty</span></td>
+                    <td tal:condition="tilaus.tila == 'ALOITETTU'"><span class="tilaus_tila tila_aloitettu">Aloitettu</span></td>
+                    <td tal:condition="tilaus.tila == 'VALMIS'"><span class="tilaus_tila tila_valmis">Valmis</span></td>
                     <td>${tilaus.tilaaja.nimi}, ${tilaus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;</td>
                     <td>${tilaus.kohde.osoite}, ${tilaus.kohde.postinumero} ${tilaus.kohde.postitoimipaikka}</td>
                 </tr>

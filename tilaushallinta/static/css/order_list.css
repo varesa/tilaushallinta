@@ -1,0 +1,24 @@
+.tilaus_tila {
+    border-radius: 5px;
+    padding: 5px;
+
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+.tila_uusi {
+    background-color: yellow;
+}
+
+.tila_hyvaksytty {
+    background-color: lightblue;
+}
+
+.tila_aloitettu {
+    background-color: lightgreen;
+}
+
+.tila_valmis {
+    background-color: lightgray;
+}
