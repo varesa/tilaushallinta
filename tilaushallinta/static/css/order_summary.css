@@ -7,6 +7,14 @@
     border: 0;
 }
 
+.block_right_aligned {
+    float: right;
+}
+
+.col_right_aligned {
+    text-align: right;
+}
+
 #kohde_nimi {
     font-size: 24pt;
 }
