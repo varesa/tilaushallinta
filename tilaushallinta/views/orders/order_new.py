@@ -1,7 +1,7 @@
 #
 # This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-# Copyright Esa Varemo 2014
+# Copyright Esa Varemo 2014-2015
 #
 
 import datetime
@@ -11,13 +11,13 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 
 
-from ..models import DBSession
-from ..models import Tilaaja
-from ..models import Kohde
-from ..models import Tilaus
+from tilaushallinta.models import DBSession
+from tilaushallinta.models import Tilaaja
+from tilaushallinta.models import Kohde
+from tilaushallinta.models import Tilaus
 
 
-@view_config(route_name='order_new', renderer='../templates/orders/order_new.pt')
+@view_config(route_name='order_new', renderer='../../templates/orders/order_new.pt')
 def view_order_new(request):
     """
     View method that shows the ordering form

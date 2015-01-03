@@ -3,28 +3,22 @@
 # Copyright Esa Varemo 2014-2015
 */
 
-.panel {
-    width: 600px;
-    margin: auto;
-    margin-top: 200px;
+.container .table tr td {
+    border: 0;
 }
 
-table {
+#kohde_nimi {
+    font-size: 24pt;
+}
+
+.col_middle {
+    text-align: right;
+}
+
+.col_subtotal table {
     width: 100%;
 }
 
-table tr td {
-    padding: 5px 10px 5px 10px;
-}
-
-input {
-    width: 100%;
-}
-
-#login_text {
-    text-align: center;
-}
-
-#table_login_form tr td{
-    padding-bottom: 16px;
+.col_subtotal table tr td {
+    text-align: right;
 }

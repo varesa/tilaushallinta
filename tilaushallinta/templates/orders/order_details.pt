@@ -1,14 +1,15 @@
 <!--!
 # This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-# Copyright Esa Varemo 2014
+# Copyright Esa Varemo 2014-2015
 -->
 
 <metal:main metal:use-macro="load: ../master.pt">
     <metal:main metal:fill-slot="title">Tilauksen tiedot</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
-        <link rel="stylesheet" href="/static/css/lomake.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/order_details.css">
         <script type="text/javascript" src="/static/js/order_state.js"></script>
     </metal:main>
 
@@ -17,7 +18,9 @@
             <div class="panel-body">
                 <div id="table_top">
                     <div id="table_title"><h2>Perustiedot</h2></div>
-                    <div id="table_order_status">Tila:
+                    <div id="order_actionbuttons">
+                        <button onclick="window.open('/tilaukset/${tilaus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        Tila:
                         <select id="order_state_select" onclick="order_state_changed()">
                             <option selected="${'selected' if tilaus.tila == 'UUSI' else None}" value="UUSI">Uusi</option>
                             <option selected="${'selected' if tilaus.tila == 'HYVAKSYTTY' else None}" value="HYVAKSYTTY">Hyväksytty</option>

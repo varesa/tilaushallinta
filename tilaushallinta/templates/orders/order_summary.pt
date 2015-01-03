@@ -1,24 +1,173 @@
+<!--
+# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Copyright Esa Varemo 2014-2015
+-->
+
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="/static/libs/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/order_summary.css">
 
+        <script type="text/javascript" src="/static/libs/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="/static/libs/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+
+        <title>Yhteenveto</title>
     </head>
     <body>
-        <div id="container">
+        <div class="container">
             <div id="footer">
-                <img src="/static/lsvtekniikka_header.png">
+                <img src="/static/lsvtekniikka_header.png" width="100%">
             </div>
+            <br><br>
 
-            <div id="details">
-
-            </div>
-
-            <div id="kuvaus">
-
-            </div>
-
-            <div id="raportit">
-
-            </div>
+            <table class="table">
+                <tr>
+                    <td class="colheader-left" colspan="2"><span id="kohde_nimi">Työn nimi</span></td>
+                    <td class="colheader-sub-right">Työn aloittaminen 1.1.2014-2015<br>Työn lopettaminen 1.1.2015</td>
+                </tr>
+                <tr>
+                    <td>Työn tilaaja</td>
+                </tr>
+<?python
+    luokka1 = False
+    luokka2 = False
+    luokka3 = False
+    for raportti in tilaus.paivaraportit:
+            if raportti.hintaluokka == 1:
+                    if not luokka1:
+                            luokka1 = {'tunnit': 0.0, 'matkat': 0.0, 'muut': 0.0}
+                    luokka1['tunnit'] += raportti.tunnit
+                    luokka1['matkat'] += raportti.matkat
+                    luokka1['muut']   += raportti.muut
+            if raportti.hintaluokka == 2:
+                    if not luokka2:
+                            luokka2 = {'tunnit': 0.0, 'matkat': 0.0, 'muut': 0.0}
+                    luokka2['tunnit'] += raportti.tunnit
+                    luokka2['matkat'] += raportti.matkat
+                    luokka2['muut']   += raportti.muut
+            if raportti.hintaluokka == 3:
+                    if not luokka3:
+                            luokka3 = {'tunnit': 0.0, 'matkat': 0.0, 'muut': 0.0}
+                    luokka3['tunnit'] += raportti.tunnit
+                    luokka3['matkat'] += raportti.matkat
+                    luokka3['muut']   += raportti.muut
+?>
+                <tr>
+                <td colspan="3"><hr></td>                           <!-- Separator -->
+                </tr>
+                <tr tal:condition="luokka1 != False">               <!-- Hintaluokk1 -->
+                    <td>
+                        <table>
+                            <tr>
+                                <td>Työtunnit:&nbsp;&nbsp;</td>
+                                <td>${luokka1['tunnit']} h</td>
+                            </tr>
+                            <tr>
+                                <td>Matkat:</td>
+                                <td>${luokka1['matkat']} km</td>
+                            </tr>
+                            <tr>
+                                <td>Muut:</td>
+                                <td>${luokka1['muut']} €</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="col_middle">
+                        Hintaluokka 1
+                    </td>
+                    <td class="col_subtotal">
+                        <table>
+                            <tr>
+                                <td>Tunnit: ${luokka1['tunnit']} €</td>
+                            </tr>
+                            <tr>
+                                <td>Matkat: ${luokka1['matkat']} €</td>
+                            </tr>
+                            <tr>
+                                <td>Muut: ${luokka1['muut']} €</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr tal:condition="False and luokka1 and luokka2">            <!-- Separator -->
+                    <td colspan="3"><hr></td>
+                </tr>
+                <tr tal:condition="luokka2 != False">               <!-- Hintaluokka 2 -->
+                    <td>
+                        <table>
+                            <tr>
+                                <td>Työtunnit:&nbsp;&nbsp;</td>
+                                <td>${luokka2['tunnit']} h</td>
+                            </tr>
+                            <tr>
+                                <td>Matkat:</td>
+                                <td>${luokka2['matkat']} km</td>
+                            </tr>
+                            <tr>
+                                <td>Muut:</td>
+                                <td>${luokka2['muut']} €</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="col_middle">
+                        Hintaluokka 2
+                    </td>
+                    <td class="col_subtotal">
+                        <table>
+                            <tr>
+                                <td>Tunnit: ${luokka2['tunnit']} €</td>
+                            </tr>
+                            <tr>
+                                <td>Matkat: ${luokka2['matkat']} €</td>
+                            </tr>
+                            <tr>
+                                <td>Muut: ${luokka2['muut']} €</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr tal:condition="False and luokka2 and luokka3">            <!-- Separator -->
+                    <td colspan="3"><hr></td>
+                </tr>
+                <tr tal:condition="luokka3 != False">               <!-- Hintaluokka3 -->
+                    <td>
+                        <table>
+                            <tr>
+                                <td>Työtunnit:&nbsp;&nbsp;</td>
+                                <td>${luokka3['tunnit']} h</td>
+                            </tr>
+                            <tr>
+                                <td>Matkat:</td>
+                                <td>${luokka3['matkat']} km</td>
+                            </tr>
+                            <tr>
+                                <td>Muut:</td>
+                                <td>${luokka3['muut']} €</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="col_middle">
+                        Hintaluokka 3
+                    </td>
+                    <td class="col_subtotal">
+                        <table>
+                            <tr>
+                                <td>Tunnit: ${luokka3['tunnit']} €</td>
+                            </tr>
+                            <tr>
+                                <td>Matkat: ${luokka3['matkat']} €</td>
+                            </tr>
+                            <tr>
+                                <td>Muut: ${luokka3['muut']} €</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"><hr></td>                       <!-- Separator -->
+                </tr>
+            </table>
 
         </div>
     </body>

@@ -1,7 +1,7 @@
 #
 # This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-# Copyright Esa Varemo 2014
+# Copyright Esa Varemo 2014-2015
 #
 
 import datetime
@@ -9,16 +9,16 @@ import datetime
 from pyramid.view import view_config
 from pyramid.response import Response
 
-from ..models import DBSession
-from ..models import Tilaaja
-from ..models import Kohde
-from ..models import Tilaus
-from ..models import Tavara
-from ..models import Paivaraportti
+from tilaushallinta.models import DBSession
+from tilaushallinta.models import Tilaaja
+from tilaushallinta.models import Kohde
+from tilaushallinta.models import Tilaus
+from tilaushallinta.models import Tavara
+from tilaushallinta.models import Paivaraportti
 
-from .utils import string_to_float_or_zero, string_to_int_or_zero
+from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero
 
-@view_config(route_name='order_list', renderer='../templates/orders/order_list.pt')
+@view_config(route_name='order_list', renderer='../../templates/orders/order_list.pt')
 def view_tilaukset_list(request):
     tilaukset = DBSession.query(Tilaus).all()
     return {"tilaukset": tilaukset}
@@ -196,7 +196,7 @@ def save_tavarat(request, tilaus):
             tavara_modify_from_dict(tavara_id, tavara_dict)
                     
 
-@view_config(route_name='order_details', renderer='../templates/orders/order_details.pt')
+@view_config(route_name='order_details', renderer='../../templates/orders/order_details.pt')
 def view_order_details(request):
     order_id = request.matchdict['id']
     tilaus = DBSession.query(Tilaus).filter_by(id=order_id).first()
@@ -234,11 +234,6 @@ def view_order_details(request):
         print(str(x) + ", .date= " + str(x.date))
 
     return {'tilaus': tilaus, 'current_date': current_date}
-
-
-@view_config(route_name='order_summary')
-def view_order_summary(request):
-    return {}
 
 
 @view_config(route_name='order_setstate')

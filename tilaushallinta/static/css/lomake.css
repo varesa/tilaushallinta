@@ -1,6 +1,6 @@
 /*
 # This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-# Author: Esa Varemo
+# Copyright Esa Varemo 2014-2015
 */
 
 
@@ -25,13 +25,6 @@
 #table_title h2 {
     margin-bottom: 0;
     padding-bottom: 0;
-}
-
-#table_order_status {
-    display: inline-block;
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
 
 .table_lomake tr {

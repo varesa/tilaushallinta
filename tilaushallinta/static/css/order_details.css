@@ -3,6 +3,9 @@
 # Copyright Esa Varemo 2014-2015
 */
 
-input[type=submit] {
-    width: 100%;
+#order_actionbuttons {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
