@@ -19,25 +19,30 @@
             <div id="footer">
                 <img src="/static/lsvtekniikka_header.png" width="100%">
             </div>
-            <br><br>
+            <hr>
 
             <table class="table">
                 <tr>
-                    <td class="colheader-left" colspan="2"><span id="kohde_nimi">Työn nimi</span></td>
+                    <td class="colheader-left" colspan="2"><span id="kohde_nimi">${tilaus.kohde.nimi}</span></td>
                     <td class="colheader-sub-right">
                         <table class="block_right_aligned">
                             <tr>
                                 <td>Työn aloittaminen&nbsp;&nbsp;</td>
-                                <td class="col_right_aligned">16.12.2014</td>
+                                <td class="col_right_aligned">${date_start.strftime("%d.%m.%Y")}</td>
                             </tr>
                             <tr>
                                 <td>Työn lopettaminen&nbsp;&nbsp;</td>
-                                <td class="col_right_aligned">1.1.2015</td>
+                                <td class="col_right_aligned">${date_end.strftime("%d.%m.%Y")}</td>
                             </tr>
                         </table>
                 </tr>
                 <tr>
-                    <td>Työn tilaaja</td>
+                    <td>
+                        <span tal:condition="len(tilaus.tilaaja.nimi)">${tilaus.tilaaja.nimi}<br></span>
+                        <span tal:condition="len(tilaus.tilaaja.yritys)">${tilaus.tilaaja.yritys}<br></span>
+                        <span>${tilaus.tilaaja.osoite}<br>
+                        ${tilaus.tilaaja.postinumero} ${tilaus.tilaaja.postitoimipaikka}</span>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3"><hr></td>                               <!-- Separator -->
@@ -65,13 +70,13 @@
                     <td class="col_subtotal">
                         <table>
                             <tr>
-                                <td>Tunnit: ${luokka1['tunnit']} €</td>
+                                <td>Tunnit: ${hinnat1['tunnit']} €</td>
                             </tr>
                             <tr>
-                                <td>Matkat: ${luokka1['matkat']} €</td>
+                                <td>Matkat: ${hinnat1['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${luokka1['muut']} €</td>
+                                <td>Muut: ${hinnat1['muut']} €</td>
                             </tr>
                         </table>
                     </td>
@@ -102,13 +107,13 @@
                     <td class="col_subtotal">
                         <table>
                             <tr>
-                                <td>Tunnit: ${luokka2['tunnit']} €</td>
+                                <td>Tunnit: ${hinnat2['tunnit']} €</td>
                             </tr>
                             <tr>
-                                <td>Matkat: ${luokka2['matkat']} €</td>
+                                <td>Matkat: ${hinnat2['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${luokka2['muut']} €</td>
+                                <td>Muut: ${hinnat2['muut']} €</td>
                             </tr>
                         </table>
                     </td>
@@ -139,19 +144,39 @@
                     <td class="col_subtotal">
                         <table>
                             <tr>
-                                <td>Tunnit: ${luokka3['tunnit']} €</td>
+                                <td>Tunnit: ${hinnat3['tunnit']} €</td>
                             </tr>
                             <tr>
-                                <td>Matkat: ${luokka3['matkat']} €</td>
+                                <td>Matkat: ${hinnat3['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${luokka3['muut']} €</td>
+                                <td>Muut: ${hinnat3['muut']} €</td>
                             </tr>
                         </table>
                     </td>
                 </tr>
-                <tr>
+                <tr tal:condition="False">
                     <td colspan="3"><hr></td>                               <!-- Separator -->
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="col_subtotal">Tavarat: ${hinta_tavarat} €</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><hr></td>
+                </tr>
+                <tr>
+                    <td>Asiakkaan viite: ${tilaus.viitenumero}</td>
+                    <td></td>
+                    <td class="col_subtotal">Loppusumma alv 0%: ${grand_total}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Työn kuvaus: <br>${tilaus.tyo}<hr><h3>Päiväraportit:</h3></td>
+                </tr>
+                <tr tal:repeat="raportti tilaus.paivaraportit">
+                    <td colspan="3"><b>${raportti.date.strftime("%d.%m.%Y")}</b><br>
+                    ${raportti.teksti}</td>
                 </tr>
             </table>
 
