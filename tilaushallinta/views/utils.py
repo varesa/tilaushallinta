@@ -14,7 +14,7 @@ def string_to_float_or_zero(string):
     :rtype: float
     """
     try:
-        return float(string)
+        return float(string.replace(',', '.'))
     except ValueError:
         return 0
 
