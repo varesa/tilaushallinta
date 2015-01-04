@@ -9,10 +9,10 @@ function order_state_changed() {
     var newstate = $("#order_state_select").val();
 
     if(oldstate != newstate) {
-        $("#table_order_status input").prop('disabled', false);
-        $("#table_order_status input").val("Vaihda");
+        $("#order_state_change").prop('disabled', false);
+        $("#order_state_change").val("Vaihda");
     } else {
-        $("#table_order_status input").prop('disabled', true);
+        $("#order_state_change").prop('disabled', true);
     }
 }
 
@@ -24,7 +24,7 @@ function order_change_state() {
 
     $("input[name='tilaus_originalstate']").val(newstate);
 
-    $("#table_order_status input").val("Vaihdettu");
-    $("#table_order_status input").prop('disabled', true);
+    $("#order_state_change").val("Vaihdettu");
+    $("#order_state_change").prop('disabled', true);
 
 }

@@ -27,7 +27,7 @@
                             <option selected="${'selected' if tilaus.tila == 'ALOITETTU' else None}" value="ALOITETTU">Aloitettu</option>
                             <option selected="${'selected' if tilaus.tila == 'VALMIS' else None}" value="VALMIS">Valmis</option>
                         </select>
-                        <input type="button" value="Vaihda" onclick="order_change_state()" disabled>
+                        <input id="order_state_change" type="button" value="Vaihda" onclick="order_change_state()" disabled>
                     </div>
                 </div>
                 <table class="table_lomake">
