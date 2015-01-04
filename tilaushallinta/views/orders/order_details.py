@@ -18,11 +18,6 @@ from tilaushallinta.models import Paivaraportti
 
 from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero
 
-@view_config(route_name='order_list', renderer='../../templates/orders/order_list.pt')
-def view_tilaukset_list(request):
-    tilaukset = DBSession.query(Tilaus).all()
-    return {"tilaukset": tilaukset}
-
 
 def compare_sets(list):
     difference = False
