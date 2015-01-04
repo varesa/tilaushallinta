@@ -31,6 +31,9 @@ def main(global_config, **settings):
     if '<password>' in settings['sqlalchemy.url']:
         with open('dbpassword') as pwd:
             settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<password>', pwd.readline().strip())
+    if '<host>' in settings['sqlalchemy.url']:
+        with open('dbhost') as host:
+            settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<host>', host.readline().strip())
 
     engine = engine_from_config(settings, 'sqlalchemy.', pool_recycle=3600)
     DBSession.configure(bind=engine)
