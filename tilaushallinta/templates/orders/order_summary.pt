@@ -70,13 +70,13 @@
                     <td class="col_subtotal">
                         <table>
                             <tr>
-                                <td>Tunnit: ${hinnat1['tunnit']} €</td>
+                                <td>Tunnit: ${'%.2f' % hinnat1['tunnit']} €</td>
                             </tr>
                             <tr>
-                                <td>Matkat: ${hinnat1['matkat']} €</td>
+                                <td>Matkat: ${'%.2f' % hinnat1['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${hinnat1['muut']} €</td>
+                                <td>Muut: ${'%.2f' % hinnat1['muut']} €</td>
                             </tr>
                         </table>
                     </td>
@@ -107,13 +107,13 @@
                     <td class="col_subtotal">
                         <table>
                             <tr>
-                                <td>Tunnit: ${hinnat2['tunnit']} €</td>
+                                <td>Tunnit: ${'%.2f' % hinnat2['tunnit']} €</td>
                             </tr>
                             <tr>
-                                <td>Matkat: ${hinnat2['matkat']} €</td>
+                                <td>Matkat: ${'%.2f' % hinnat2['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${hinnat2['muut']} €</td>
+                                <td>Muut: ${'%.2f' % hinnat2['muut']} €</td>
                             </tr>
                         </table>
                     </td>
@@ -144,13 +144,13 @@
                     <td class="col_subtotal">
                         <table>
                             <tr>
-                                <td>Tunnit: ${hinnat3['tunnit']} €</td>
+                                <td>Tunnit: ${'%.2f' % hinnat3['tunnit']} €</td>
                             </tr>
                             <tr>
-                                <td>Matkat: ${hinnat3['matkat']} €</td>
+                                <td>Matkat: ${'%.2f' % hinnat3['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${hinnat3['muut']} €</td>
+                                <td>Muut: ${'%.2f' % hinnat3['muut']} €</td>
                             </tr>
                         </table>
                     </td>
@@ -161,7 +161,7 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td class="col_subtotal">Tavarat: ${hinta_tavarat} €</td>
+                    <td class="col_subtotal">Tavarat: ${'%.2f' % hinta_tavarat} €</td>
                 </tr>
                 <tr>
                     <td colspan="3"><hr></td>
@@ -169,7 +169,7 @@
                 <tr>
                     <td>Asiakkaan viite: ${tilaus.viitenumero}</td>
                     <td></td>
-                    <td class="col_subtotal">Loppusumma alv 0%: ${grand_total}</td>
+                    <td class="col_subtotal">Loppusumma alv 0%: ${'%.2f' % grand_total} €</td>
                 </tr>
                 <tr>
                     <td colspan="2">Työn kuvaus: <br>${tilaus.tyo}<hr><h3>Päiväraportit:</h3></td>
