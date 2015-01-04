@@ -49,7 +49,7 @@
                 </tr>
                 <tr tal:condition="luokka1 != False">                       <!-- Hintaluokka1 -->
                     <td>
-                        <table>
+                        <table class="table_raportti_yksikot">
                             <tr>
                                 <td>Työtunnit:&nbsp;&nbsp;</td>
                                 <td>${luokka1['tunnit']} h</td>
@@ -86,7 +86,7 @@
                 </tr>
                 <tr tal:condition="luokka2 != False">                       <!-- Hintaluokka 2 -->
                     <td>
-                        <table>
+                        <table class="table_raportti_yksikot">
                             <tr>
                                 <td>Työtunnit:&nbsp;&nbsp;</td>
                                 <td>${luokka2['tunnit']} h</td>
@@ -123,7 +123,7 @@
                 </tr>
                 <tr tal:condition="luokka3 != False">                       <!-- Hintaluokka3 -->
                     <td>
-                        <table>
+                        <table class="table_raportti_yksikot">
                             <tr>
                                 <td>Työtunnit:&nbsp;&nbsp;</td>
                                 <td>${luokka3['tunnit']} h</td>
@@ -172,11 +172,34 @@
                     <td class="col_subtotal">Loppusumma alv 0%: ${'%.2f' % grand_total} €</td>
                 </tr>
                 <tr>
-                    <td colspan="2">Työn kuvaus: <br>${tilaus.tyo}<hr><h3>Päiväraportit:</h3></td>
+                    <td colspan="2">Työn kuvaus: <br>${tilaus.tyo}</td>
+                </tr>
+
+                <tr tal:condition="len(tilaus.paivaraportit)">
+                    <td colspan="3">
+                        <hr><h3>Päiväraportit:</h3>
+                    </td>
                 </tr>
                 <tr tal:repeat="raportti tilaus.paivaraportit">
-                    <td colspan="3"><b>${raportti.date.strftime("%d.%m.%Y")}</b><br>
-                    ${raportti.teksti}</td>
+                    <td colspan="3">
+                        <b>${raportti.date.strftime("%d.%m.%Y")}</b><br>
+                        ${raportti.teksti}
+                    </td>
+                </tr>
+
+                <tr tal:condition="len(tilaus.tavarat)">
+                    <td colspan="3">
+                        <hr><h3>Tavarat:</h3>
+                        <table id="table_tavarat">
+                            <tr tal:repeat="tavara tilaus.tavarat">
+                                <td>${tavara.koodi}</td>
+                                <td>${tavara.nimi}</td>
+                                <td class="col_right_aligned">${tavara.maara} kpl</td>
+                                <td class="col_right_aligned">${'%.2f' % tavara.hinta} €</td>
+                                <td class="col_right_aligned">${'%.2f' % (tavara.maara * tavara.hinta)} €</td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
 

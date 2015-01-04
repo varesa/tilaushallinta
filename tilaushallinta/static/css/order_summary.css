@@ -7,6 +7,10 @@
     border: 0;
 }
 
+.table_raportti_yksikot {
+    width: 75%;
+}
+
 .block_right_aligned {
     float: right;
 }
@@ -23,7 +27,7 @@
     text-align: right;
 }
 
-.col_subtotal table {
+.col_subtotal table , #table_tavarat{
     width: 100%;
 }
 
