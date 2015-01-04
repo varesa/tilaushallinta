@@ -40,8 +40,8 @@ def view_order_summary(request):
     tilaus = DBSession.query(Tilaus).filter_by(id=tilaus_id).first()
 
     if len(tilaus.paivaraportit) == 0:
-        date_start = '?'
-        date_end = '?'
+        date_start = None
+        date_end = None
     else:
         date_start = sorted(tilaus.paivaraportit, key=lambda raportti: raportti.date)[0].date
         date_end = sorted(tilaus.paivaraportit, key=lambda raportti: raportti.date, reverse=True)[0].date

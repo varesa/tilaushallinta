@@ -28,11 +28,11 @@
                         <table class="block_right_aligned">
                             <tr>
                                 <td>Työn aloittaminen&nbsp;&nbsp;</td>
-                                <td class="col_right_aligned">${date_start.strftime("%d.%m.%Y")}</td>
+                                <td class="col_right_aligned">${date_start.strftime("%d.%m.%Y") if date_start else '-'}</td>
                             </tr>
                             <tr>
                                 <td>Työn lopettaminen&nbsp;&nbsp;</td>
-                                <td class="col_right_aligned">${date_end.strftime("%d.%m.%Y")}</td>
+                                <td class="col_right_aligned">${date_end.strftime("%d.%m.%Y") if date_end else '-'}</td>
                             </tr>
                         </table>
                 </tr>
