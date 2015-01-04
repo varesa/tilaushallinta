@@ -6,11 +6,11 @@
 
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
-from ..models import DBSession, User
+from tilaushallinta.models import DBSession, User
 from datetime import datetime
 
 
-@view_config(route_name='admin_users', renderer='../templates/admin/admin_users.pt')
+@view_config(route_name='admin_users', renderer='../../templates/admin/admin_users.pt')
 def view_admin_users(request):
     users = DBSession.query(User).order_by(User.id.desc()).all()
 
@@ -29,7 +29,7 @@ err_missing_email = "Käyttäjän sähköpostiosoite puuttuu"
 err_missing_pass = "Käyttäjän salasana puuttuu"
 
 
-@view_config(route_name='admin_users_new', renderer='../templates/admin/admin_users_new.pt')
+@view_config(route_name='admin_users_new', renderer='../../templates/admin/admin_users_new.pt')
 def view_admin_users_new(request):
     errors = ""
 
@@ -69,7 +69,7 @@ def view_admin_users_new(request):
     return {}
 
 
-@view_config(route_name='admin_users_edit', renderer='../templates/admin/admin_users_edit.pt')
+@view_config(route_name='admin_users_edit', renderer='../../templates/admin/admin_users_edit.pt')
 def view_admin_users_edit(request):
     user = DBSession.query(User).filter_by(id=request.matchdict['id']).first()
 
