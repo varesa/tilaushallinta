@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
         <link rel="stylesheet" type="text/css" href="/static/css/order_details.css">
         <script type="text/javascript" src="/static/js/order_state.js"></script>
+        <script type="text/javascript" src="/static/js/order_edit_tilaaja_kohde.js"></script>
     </metal:main>
 
     <metal:main metal:fill-slot="content">
@@ -40,7 +41,14 @@
                         <input type="hidden" name="tilaus_originalstate" value="${tilaus.tila}">
                         
                         <tr>
-                            <td><h3>Laskutus</h3></td> <td><h3>Työ</h3></td>
+                            <td>
+                                <span class="colheader-left">Laskutus</span><span class="colheader-sub-right">
+                                        <a id="tilaaja_muokkaa" onclick="order_muokkaa('tilaaja')">Muokkaa</a></span>
+                            </td>
+                            <td>
+                                <span class="colheader-left">Työ</span><span class="colheader-sub-right">
+                                        <a id="kohde_muokkaa" onclick="order_muokkaa('kohde')">Muokkaa</a></span>
+                            </td>
                         </tr>
                         <tr>
                             <td><metal:main tal:define="readonly True" metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>

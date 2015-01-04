@@ -229,14 +229,3 @@ def view_order_details(request):
         print(str(x) + ", .date= " + str(x.date))
 
     return {'tilaus': tilaus, 'current_date': current_date}
-
-
-@view_config(route_name='order_setstate')
-def view_order_setstate(request):
-    order_id = request.matchdict['id']
-    newstate = request.POST['newstate']
-
-    tilaus = DBSession.query(Tilaus).filter_by(id=order_id).first()
-    tilaus.tila = newstate
-
-    return Response('OK')

@@ -18,6 +18,9 @@ def configure_routes(config):
     config.add_route('order_details', '/tilaukset/{id}')
     config.add_route('order_summary', '/tilaukset/{id}/yhteenveto')
 
+    config.add_route('update_tilaaja', '/update/tilaaja/{id}')
+    config.add_route('update_kohde', '/update/kohde/{id}')
+
     config.add_route('order_setstate', '/tilaukset/{id}/setstate')
 
     config.add_route('kohteet_list', '/kohteet')
