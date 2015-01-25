@@ -29,7 +29,10 @@
                     <td tal:condition="tilaus.tila == 'HYVAKSYTTY'"><span class="tilaus_tila tila_hyvaksytty">Hyväksytty</span></td>
                     <td tal:condition="tilaus.tila == 'ALOITETTU'"><span class="tilaus_tila tila_aloitettu">Aloitettu</span></td>
                     <td tal:condition="tilaus.tila == 'VALMIS'"><span class="tilaus_tila tila_valmis">Valmis</span></td>
-                    <td>${tilaus.tilaaja.nimi}, ${tilaus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;</td>
+                    <?python tilaaja = tilaus.tilaaja.nimi + ', ' + tilaus.tilaaja.yritys \
+                            if len(tilaus.tilaaja.nimi) and len(tilaus.tilaaja.yritys) \
+                            else tilaus.tilaaja.nimi + tilaus.tilaaja.yritys ?>
+                    <td>${tilaaja}&nbsp;&nbsp;&nbsp;</td>
                     <td>${tilaus.kohde.osoite}, ${tilaus.kohde.postinumero} ${tilaus.kohde.postitoimipaikka}</td>
                 </tr>
             </table>
