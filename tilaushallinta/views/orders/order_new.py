@@ -46,6 +46,8 @@ def update_object(prefix, object, data):
     object.postinumero = data[prefix + '_postinumero']
     object.puhelin = data[prefix + '_puhelin']
     object.email = data[prefix + '_email']
+    if prefix == 'tilaaja':
+        object.slaskutus = data[prefix + '_slaskutus']
 
 
 @view_config(route_name='order_submit')
@@ -71,7 +73,8 @@ def view_order_submit(request):
                               postitoimipaikka=request.POST['tilaaja_postitoimipaikka'],
                               postinumero=request.POST['tilaaja_postinumero'],
                               puhelin=request.POST['tilaaja_puhelin'],
-                              email=request.POST['tilaaja_email'])
+                              email=request.POST['tilaaja_email'],
+                              slaskutus=request.POST['tilaaja_slaskutus'])
             DBSession.add(tilaaja)
 
         if len(request.POST['kohde_id']):  # Reusing existing object

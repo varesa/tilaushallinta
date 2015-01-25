@@ -54,7 +54,9 @@
                             <td><metal:main tal:define="readonly True" metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
                             <td><metal:main tal:define="readonly True" metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
                         </tr>
-
+                        <tr>
+                            <td>Sähköiset laskutustiedot:<textarea name="tilaaja_slaskutus" readonly>${tilaus.tilaaja.slaskutus}</textarea></td>
+                        </tr>
                         <tr>
                             <td colspan="2">
                                 Muut yhteyshenkilöt:<br>

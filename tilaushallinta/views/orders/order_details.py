@@ -54,6 +54,7 @@ def update_perustiedot(request, tilaus):
     tilaaja.postinumero = request.POST['tilaaja_postinumero']
     tilaaja.puhelin = request.POST['tilaaja_puhelin']
     tilaaja.email = request.POST['tilaaja_email']
+    tilaaja.slaskutus = request.POST['tilaaja_slaskutus']
 
 
     kohde = DBSession.query(Kohde).filter_by(id=kohde_id).first()

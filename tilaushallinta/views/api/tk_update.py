@@ -28,6 +28,7 @@ def view_update_tilaaja(request):
     tilaaja.postitoimipaikka = vals['tilaaja_postitoimipaikka']
     tilaaja.puhelin = vals['tilaaja_puhelin']
     tilaaja.email = vals['tilaaja_email']
+    tilaaja.slaskutus = vals['tilaaja_slaskutus']
 
     return Response('Ok')
 
