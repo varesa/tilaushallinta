@@ -56,7 +56,8 @@
                             </tr>
                             <tr>
                                 <td>Matkat:</td>
-                                <td>${luokka1['matkat']} km</td>
+                                <?python trail = '&nbsp;&nbsp;' if luokka1['matkat'] == 1 else 'ä' ?>
+                                <td>${"%g" % luokka1['matkat']} käynti${structure: trail}</td>
                             </tr>
                             <tr>
                                 <td>Muut:</td>
@@ -93,7 +94,8 @@
                             </tr>
                             <tr>
                                 <td>Matkat:</td>
-                                <td>${luokka2['matkat']} km</td>
+                                <?python trail = '&nbsp;&nbsp;' if luokka2['matkat'] == 1 else 'ä' ?>
+                                <td>${"%g" % luokka2['matkat']} käynti${structure: trail}</td>
                             </tr>
                             <tr>
                                 <td>Muut:</td>
@@ -130,7 +132,8 @@
                             </tr>
                             <tr>
                                 <td>Matkat:</td>
-                                <td>${luokka3['matkat']} km</td>
+                                <?python trail = '&nbsp;&nbsp;' if luokka3['matkat'] == 1 else 'ä' ?>
+                                <td>${"%g" % luokka3['matkat']} käynti${structure: trail}</td>
                             </tr>
                             <tr>
                                 <td>Muut:</td>
