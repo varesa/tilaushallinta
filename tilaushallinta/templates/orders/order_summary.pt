@@ -23,9 +23,39 @@
 
             <table class="table">
                 <tr>
-                    <td class="colheader-left" colspan="2"><span id="kohde_nimi">${tilaus.kohde.nimi}</span></td>
+                    <td class="colheader-left" colspan="2">
+                        <table>
+                            <tr>
+                                <td style="min-width: 200pt;">
+                                    <span style="font-size: large;">Laskutus</span><br>
+                                </td>
+                                <td>
+                                    <span style="font-size: large;">Kohde</span><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: top;">
+                                    <span tal:condition="len(tilaus.tilaaja.nimi)">${tilaus.tilaaja.nimi}<br></span>
+                                    <span tal:condition="len(tilaus.tilaaja.yritys)">${tilaus.tilaaja.yritys}<br></span>
+                                    <span tal:condition="len(tilaus.tilaaja.ytunnus)">${tilaus.tilaaja.ytunnus}<br></span>
+                                    <span>${tilaus.tilaaja.osoite}<br>
+                                    ${tilaus.tilaaja.postinumero} ${tilaus.tilaaja.postitoimipaikka}</span>
+                                </td>
+                                <td style="vertical-align: top;">
+                                    <span tal:condition="len(tilaus.kohde.nimi)">${tilaus.kohde.nimi}<br></span>
+                                    <span tal:condition="len(tilaus.kohde.yritys)">${tilaus.kohde.yritys}<br></span>
+                                    <span tal:condition="len(tilaus.kohde.ytunnus)">${tilaus.kohde.ytunnus}<br></span>
+                                    <span>${tilaus.kohde.osoite}<br>
+                                    ${tilaus.kohde.postinumero} ${tilaus.kohde.postitoimipaikka}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                     <td class="colheader-sub-right">
                         <table class="block_right_aligned">
+                            <tr>
+                                <td colspan="2" class="col_right_aligned"><span style="font-size: larger;">Työnumero ${tilaus.date.strftime("%y%m%d-%H%M")}</span><br><br></td>
+                            </tr>
                             <tr>
                                 <td>Työn aloittaminen&nbsp;&nbsp;</td>
                                 <td class="col_right_aligned">${date_start.strftime("%d.%m.%Y") if date_start else '-'}</td>
@@ -38,10 +68,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <span tal:condition="len(tilaus.tilaaja.nimi)">${tilaus.tilaaja.nimi}<br></span>
-                        <span tal:condition="len(tilaus.tilaaja.yritys)">${tilaus.tilaaja.yritys}<br></span>
-                        <span>${tilaus.tilaaja.osoite}<br>
-                        ${tilaus.tilaaja.postinumero} ${tilaus.tilaaja.postitoimipaikka}</span>
+
                     </td>
                 </tr>
                 <tr>
