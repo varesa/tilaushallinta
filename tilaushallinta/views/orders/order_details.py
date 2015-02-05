@@ -159,7 +159,7 @@ def tavarat_form_to_dict(request):
 def tavara_new_from_dict(tavara_dict):
     return Tavara(date=datetime.datetime.now(),
                   koodi=tavara_dict['koodi'], nimi=tavara_dict['nimi'],
-                  maara=string_to_int_or_zero(tavara_dict['maara']), hinta=string_to_float_or_zero(tavara_dict['hinta']),
+                  maara=string_to_float_or_zero(tavara_dict['maara']), hinta=string_to_float_or_zero(tavara_dict['hinta']),
                   tyyppi=(
                       "" +
                       ('A' if ('A' in tavara_dict.keys()) else '') +
@@ -171,7 +171,7 @@ def tavara_modify_from_dict(tavara_id, tavara_dict):
     tavara = DBSession.query(Tavara).filter_by(id=tavara_id).first()
     tavara.koodi = tavara_dict['koodi']
     tavara.nimi = tavara_dict['nimi']
-    tavara.maara = string_to_int_or_zero(tavara_dict['maara'])
+    tavara.maara = string_to_float_or_zero(tavara_dict['maara'])
     tavara.hinta = string_to_float_or_zero(tavara_dict['hinta'])
     tavara.tyyppi = (
         "" +
