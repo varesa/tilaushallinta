@@ -30,7 +30,7 @@ def get_totals(raportit, hintaluokka_no):
         if raportti.hintaluokka == hintaluokka_no:
             totals['tunnit'] += raportti.tunnit * hintaluokka.tunnit
             totals['matkat'] += raportti.matkat * hintaluokka.matkat
-            totals['muut']   += raportti.muut
+            totals['muut']   += raportti.muut * hintaluokka.muut
     return totals
 
 
