@@ -28,10 +28,16 @@
                         <td><input name="3_tunnit" value="${hintaluokat[3].tunnit}">&nbsp;&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>Matkat (€/km)&nbsp;&nbsp;</td>
+                        <td>Matkat (€/käynti)&nbsp;&nbsp;</td>
                         <td><input name="1_matkat" value="${hintaluokat[1].matkat}">&nbsp;&nbsp;</td>
                         <td><input name="2_matkat" value="${hintaluokat[2].matkat}">&nbsp;&nbsp;</td>
                         <td><input name="3_matkat" value="${hintaluokat[3].matkat}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Muut (€/km)&nbsp;&nbsp;</td>
+                        <td><input name="1_muut" value="${hintaluokat[1].muut}">&nbsp;&nbsp;</td>
+                        <td><input name="2_muut" value="${hintaluokat[2].muut}">&nbsp;&nbsp;</td>
+                        <td><input name="3_muut" value="${hintaluokat[3].muut}">&nbsp;&nbsp;</td>
                     </tr>
                     <tr>
                         <td></td>

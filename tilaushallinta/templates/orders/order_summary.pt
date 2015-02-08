@@ -88,7 +88,7 @@
                             </tr>
                             <tr>
                                 <td>Muut:</td>
-                                <td>${luokka1['muut']} €</td>
+                                <td>${luokka1['muut']} km</td>
                             </tr>
                         </table>
                     </td>
@@ -126,7 +126,7 @@
                             </tr>
                             <tr>
                                 <td>Muut:</td>
-                                <td>${luokka2['muut']} €</td>
+                                <td>${luokka2['muut']} km</td>
                             </tr>
                         </table>
                     </td>
@@ -164,7 +164,7 @@
                             </tr>
                             <tr>
                                 <td>Muut:</td>
-                                <td>${luokka3['muut']} €</td>
+                                <td>${luokka3['muut']} km</td>
                             </tr>
                         </table>
                     </td>

@@ -16,3 +16,4 @@ class Hintaluokka(Base):
 
     tunnit = Column(Float)
     matkat = Column(Float)
+    muut = Column(Float)

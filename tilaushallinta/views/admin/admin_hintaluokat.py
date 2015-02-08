@@ -13,10 +13,11 @@ from tilaushallinta.views.utils import string_to_float_or_zero
 @view_config(route_name='admin_hintaluokat', renderer='../../templates/admin/admin_hintaluokat.pt')
 def view_admin_hintaluokat(request):
     if "data" in request.POST.keys():
-        for i in (1,2,3):
+        for i in (1, 2, 3):
             luokka = DBSession.query(Hintaluokka).filter_by(hintaluokka=i).first()
             luokka.tunnit = string_to_float_or_zero(request.POST[str(i) + '_tunnit'])
             luokka.matkat = string_to_float_or_zero(request.POST[str(i) + '_matkat'])
+            luokka.muut = string_to_float_or_zero(request.POST[str(i) + '_muut'])
 
     luokat = DBSession.query(Hintaluokka).all()
     luokat_dict = {}
