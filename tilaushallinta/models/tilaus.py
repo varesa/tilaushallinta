@@ -41,7 +41,7 @@ class Tavara(Base):
     nimi = Column(Text)
 
     hinta = Column(Float)
-    maara = Column(Integer)
+    maara = Column(Float)
 
     tyyppi = Column(Text)
 
