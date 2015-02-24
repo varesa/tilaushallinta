@@ -225,7 +225,7 @@
                             <tr tal:repeat="tavara tilaus.tavarat">
                                 <td>${tavara.koodi}</td>
                                 <td>${tavara.nimi}</td>
-                                <td class="col_right_aligned">${tavara.maara} kpl</td>
+                                <td class="col_right_aligned">${tavara.maara} ${tavara.yksikko}</td>
                                 <td class="col_right_aligned">${'%.2f' % tavara.hinta} €</td>
                                 <td class="col_right_aligned">${'%.2f' % (tavara.maara * tavara.hinta)} €</td>
                             </tr>

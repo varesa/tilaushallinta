@@ -122,7 +122,10 @@
     width: 75px;
 }
 
-.tavara_col5, .tavara_col6 {
+.tavara_col5 input {
+    width: 75px;
+}
+.tavara_col6, .tavara_col7 {
     text-align: right;
     width: 25px;
 }

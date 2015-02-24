@@ -22,6 +22,7 @@ from ..models import (
     DBSession,
     User,
     Hintaluokka,
+    Tavara,
     Base,
     )
 
@@ -62,3 +63,8 @@ def main(argv=sys.argv):
             DBSession.add(Hintaluokka(hintaluokka=1, tunnit=1, matkat=1))
             DBSession.add(Hintaluokka(hintaluokka=2, tunnit=2, matkat=2))
             DBSession.add(Hintaluokka(hintaluokka=3, tunnit=3, matkat=3))
+
+        # Set units for items that do not have them
+        for tavara in DBSession.query(Tavara).all():
+            if not tavara.yksikko or not len(tavara.yksikko):
+                tavara.yksikko = "kpl"

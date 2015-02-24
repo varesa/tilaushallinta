@@ -146,6 +146,7 @@
                             <th>Nimike</th>
                             <th>Hinta</th>
                             <th>Määrä</th>
+                            <th>Yksikkö</th>
                             <th>A</th>
                             <th>T</th>
                         </tr>
@@ -154,8 +155,9 @@
                             <td class="tavara_col2"><input name="${tavara.id}-nimi" value="${tavara.nimi}"></td>
                             <td class="tavara_col3"><input name="${tavara.id}-hinta" value="${tavara.hinta}"></td>
                             <td class="tavara_col4"><input name="${tavara.id}-maara" value="${tavara.maara}"></td>
-                            <td class="tavara_col5"><input name="${tavara.id}-A" type="checkbox" checked="${'checked' if 'A' in tavara.tyyppi else None}"></td>
-                            <td class="tavara_col6"><input name="${tavara.id}-T" type="checkbox" checked="${'checked' if 'T' in tavara.tyyppi else None}"></td>
+                            <td class="tavara_col5"><input name="${tavara.id}-yksikko" value="${tavara.yksikko}"></td>
+                            <td class="tavara_col6"><input name="${tavara.id}-A" type="checkbox" checked="${'checked' if 'A' in tavara.tyyppi else None}"></td>
+                            <td class="tavara_col7"><input name="${tavara.id}-T" type="checkbox" checked="${'checked' if 'T' in tavara.tyyppi else None}"></td>
                         </tr>
                         <a name="tavarat"></a>
                         <tr>
@@ -163,24 +165,27 @@
                             <td class="tavara_col2"><input name="n1-nimi"></td>
                             <td class="tavara_col3"><input name="n1-hinta"></td>
                             <td class="tavara_col4"><input name="n1-maara"></td>
-                            <td class="tavara_col5"><input name="n1-A" type="checkbox"></td>
-                            <td class="tavara_col6"><input name="n1-T" type="checkbox"></td>
+                            <td class="tavara_col5"><input name="n1-yksikko" value="kpl"></td>
+                            <td class="tavara_col6"><input name="n1-A" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n1-T" type="checkbox"></td>
                         </tr>
                         <tr>
                             <td class="tavara_col1"><input name="n2-koodi"></td>
                             <td class="tavara_col2"><input name="n2-nimi"></td>
                             <td class="tavara_col3"><input name="n2-hinta"></td>
                             <td class="tavara_col4"><input name="n2-maara"></td>
-                            <td class="tavara_col5"><input name="n2-A" type="checkbox"></td>
-                            <td class="tavara_col6"><input name="n2-T" type="checkbox"></td>
+                            <td class="tavara_col5"><input name="n2-yksikko" value="kpl"></td>
+                            <td class="tavara_col6"><input name="n2-A" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n2-T" type="checkbox"></td>
                         </tr>
                         <tr>
                             <td class="tavara_col1"><input name="n3-koodi"></td>
                             <td class="tavara_col2"><input name="n3-nimi"></td>
                             <td class="tavara_col3"><input name="n3-hinta"></td>
                             <td class="tavara_col4"><input name="n3-maara"></td>
-                            <td class="tavara_col5"><input name="n3-A" type="checkbox"></td>
-                            <td class="tavara_col6"><input name="n3-T" type="checkbox"></td>
+                            <td class="tavara_col5"><input name="n3-yksikko" value="kpl"></td>
+                            <td class="tavara_col6"><input name="n3-A" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n3-T" type="checkbox"></td>
                         </tr>
                         <tr>
                             <td colspan="6">

@@ -160,6 +160,7 @@ def tavara_new_from_dict(tavara_dict):
     return Tavara(date=datetime.datetime.now(),
                   koodi=tavara_dict['koodi'], nimi=tavara_dict['nimi'],
                   maara=string_to_float_or_zero(tavara_dict['maara']), hinta=string_to_float_or_zero(tavara_dict['hinta']),
+                  yksikko=tavara_dict['yksikko'],
                   tyyppi=(
                       "" +
                       ('A' if ('A' in tavara_dict.keys()) else '') +
@@ -173,6 +174,7 @@ def tavara_modify_from_dict(tavara_id, tavara_dict):
     tavara.nimi = tavara_dict['nimi']
     tavara.maara = string_to_float_or_zero(tavara_dict['maara'])
     tavara.hinta = string_to_float_or_zero(tavara_dict['hinta'])
+    tavara.yksikko = tavara_dict['yksikko']
     tavara.tyyppi = (
         "" +
         ('A' if ('A' in tavara_dict.keys()) else '') +
@@ -189,7 +191,15 @@ def save_tavarat(request, tilaus):
             DBSession.add(tavara)
             tilaus.tavarat.append(tavara)
         else:
-            tavara_modify_from_dict(tavara_id, tavara_dict)
+            if string_to_float_or_zero(tavara_dict['maara']) == 0:
+                print("Something with maara:0")
+                for t in tilaus.tavarat:
+                    if t.id == int(tavara_id):
+                        print("found it")
+                        tilaus.tavarat.remove(t)
+                        DBSession.delete(t)
+            else:
+                tavara_modify_from_dict(tavara_id, tavara_dict)
                     
 
 @view_config(route_name='order_details', renderer='../../templates/orders/order_details.pt')
