@@ -9,5 +9,3 @@ tilaushallinta.sqlite
 dbpassword
 dbhost
 auth_token
-
-alembic.ini

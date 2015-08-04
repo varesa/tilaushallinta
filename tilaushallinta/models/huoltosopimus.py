@@ -5,7 +5,7 @@
 #
 
 
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 
 from .meta import Base
@@ -30,3 +30,8 @@ class Huoltosopimus(Base):
     kohde = relationship("Kohde", backref="huoltosopimukset")
 
     muut_yhteysh = Column(Text)
+
+    tyyppi_ek = Column(Boolean)
+    tyyppi_ke = Column(Boolean)
+    tyyppi_sy = Column(Boolean)
+    tyyppi_tk = Column(Boolean)

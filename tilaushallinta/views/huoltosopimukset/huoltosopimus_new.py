@@ -29,24 +29,26 @@ def view_huoltosopimus_new(request):
 @view_config(route_name='huoltosopimus_submit')
 def view_huoltosopimus_submit(request):
     """
-    View method that the ordering form is POSTed to
+    View method that the form is POSTed to
     :param request: Pyramid request
+    :type request: pyramid.request.Request
     :return: None
     """
     try:
         tilaaja = get_tilaaja_from_r(request)
         kohde = get_kohde_from_r(request)
 
-        if ('maksuaika' not in request.POST.keys()) or int(request.POST['maksuaika']) != 7:
-            maksuaika = 14
-        else:
-            maksuaika = int(request.POST['maksuaika'])
+        tyyppi_ek = 'huolto_ek' in request.POST.keys()
+        tyyppi_ke = 'huolto_ke' in request.POST.keys()
+        tyyppi_sy = 'huolto_sy' in request.POST.keys()
+        tyyppi_tk = 'huolto_tk' in request.POST.keys()
 
         tilaus = Huoltosopimus(date=datetime.datetime.now(),
                                tilaaja=tilaaja, kohde=kohde,
                                muut_yhteysh=request.POST['muut_yhteysh'],
                                tyo=request.POST['tyo'],
-                               maksuaika=maksuaika,
+                               tyyppi_ek=tyyppi_ek, tyyppi_ke=tyyppi_ke,
+                               tyyppi_sy=tyyppi_sy, tyyppi_tk=tyyppi_tk,
                                viitenumero=request.POST['viitenumero'])
         DBSession.add(tilaus)
 
