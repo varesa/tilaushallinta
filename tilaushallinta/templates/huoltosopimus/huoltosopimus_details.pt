@@ -1,0 +1,200 @@
+<!--!
+# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Copyright Esa Varemo 2014-2015
+-->
+
+<metal:main metal:use-macro="load: ../master.pt">
+    <metal:main metal:fill-slot="title">Tilauksen tiedot</metal:main>
+
+    <metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/order_details.css">
+        <script type="text/javascript" src="/static/js/order_state.js"></script>
+        <script type="text/javascript" src="/static/js/order_edit_tilaaja_kohde.js"></script>
+    </metal:main>
+
+    <metal:main metal:fill-slot="content">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div id="table_top">
+                    <div id="table_title"><h2>Perustiedot</h2></div>
+                    <div id="order_actionbuttons">
+                        <button onclick="window.open('/tilaukset/${tilaus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        Tila:
+                        <select id="order_state_select" onclick="order_state_changed()">
+                            <option selected="${'selected' if tilaus.tila == 'UUSI' else None}" value="UUSI">Uusi</option>
+                            <option selected="${'selected' if tilaus.tila == 'HYVAKSYTTY' else None}" value="HYVAKSYTTY">Hyväksytty</option>
+                            <option selected="${'selected' if tilaus.tila == 'ALOITETTU' else None}" value="ALOITETTU">Aloitettu</option>
+                            <option selected="${'selected' if tilaus.tila == 'VALMIS' else None}" value="VALMIS">Valmis</option>
+                        </select>
+                        <input id="order_state_change" type="button" value="Vaihda" onclick="order_change_state()" disabled>
+                    </div>
+                </div>
+                <table class="table_lomake">
+                    <form method="post">
+                        <input type="hidden" name="data" value="perustiedot">
+                        
+                        <input type="hidden" name="tilaaja_id" value="${tilaus.tilaaja.id}">
+                        <input type="hidden" name="kohde_id" value="${tilaus.kohde.id}">
+                        <input type="hidden" name="tilaus_id" value="${tilaus.id}">
+                        <input type="hidden" name="tilaus_originalstate" value="${tilaus.tila}">
+                        
+                        <tr>
+                            <td>
+                                <span class="colheader-left">Laskutus</span><span class="colheader-sub-right">
+                                        <a id="tilaaja_muokkaa" onclick="order_muokkaa('tilaaja')">Muokkaa</a></span>
+                            </td>
+                            <td>
+                                <span class="colheader-left">Työ</span><span class="colheader-sub-right">
+                                        <a id="kohde_muokkaa" onclick="order_muokkaa('kohde')">Muokkaa</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><metal:main tal:define="readonly True" metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
+                            <td><metal:main tal:define="readonly True" metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
+                        </tr>
+                        <tr>
+                            <td>Sähköiset laskutustiedot:<textarea name="tilaaja_slaskutus" readonly>${tilaus.tilaaja.slaskutus}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Muut yhteyshenkilöt:<br>
+                                <textarea name="muut_yhteysh">${tilaus.muut_yhteysh}</textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">Työn kuvaus:<br><textarea name="tyo">${tilaus.tyo}</textarea></td>
+                        </tr>
+
+                        <tr>
+                            <td>Maksuaika: <input readonly type="number" class="short" name="maksuaika" value="${tilaus.maksuaika}"></td>
+                        </tr>
+                         <tr>
+                            <td colspan="2">Viitenumero:<br><input name="viitenumero" value="${tilaus.viitenumero}"></td>
+                        </tr>
+
+                        <tr>
+                            <td><input type="reset" value="Kumoa"><td><input type="submit" value="Päivitä"></td></td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Päiväraportit</h3>
+                <a name="paivaraportit"></a>
+                <table class="table" id="table_paivaraportit">
+                    <form method="post" action="#paivaraportit">
+                        <?python
+                            from operator import attrgetter
+                        ?>
+                        <tal tal:repeat="raportti sorted(tilaus.paivaraportit, key=attrgetter('date'), reverse=False)">
+                            <tr class="paivaraportit_dateline">
+                                <td colspan="2">${raportti.date.strftime("%d.%m.%Y %H:%M")}</td>
+                            </tr>
+                            <tr class="paivaraportit_detailsline">
+                                <td class="raportti_col1"><textarea name="${raportti.id}-teksti" rows="4">${raportti.teksti}</textarea></td>
+                                <td class="raportti_col2">
+                                    <table>
+                                        <tr>
+                                            <td>Hintaluokka:&nbsp;</td>
+                                            <td>
+                                                <select name="${raportti.id}-hintaluokka">
+                                                    <option selected="${'selected' if raportti.hintaluokka == 1 else None}">1</option>
+                                                    <option selected="${'selected' if raportti.hintaluokka == 2 else None}">2</option>
+                                                    <option selected="${'selected' if raportti.hintaluokka == 3 else None}">3</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tunnit:&nbsp;</td><td><input name="${raportti.id}-tunnit" value="${raportti.tunnit}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Matkat:&nbsp;</td><td><input name="${raportti.id}-matkat" value="${raportti.matkat}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Muut:&nbsp;</td><td><input name="${raportti.id}-muut" value="${raportti.muut}"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tal>
+                        <input type="hidden" name="data" value="paivaraportti">
+                        <tr>
+                            <td>
+                                <input type="submit" name="save" value="Tallenna">
+                            </td>
+                            <td>
+                                <input type="submit" name="add" value="Lisää">
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Tavarat</h3>
+                <form method="post" action="#tavarat">
+                    <input type="hidden" name="data" value="tavarat">
+                    <table class="table" id="table_tavarat">
+                        <tr>
+                            <th>Koodi</th>
+                            <th>Nimike</th>
+                            <th>Hinta</th>
+                            <th>Määrä</th>
+                            <th>Yksikkö</th>
+                            <th>A</th>
+                            <th>T</th>
+                        </tr>
+                        <tr tal:repeat="tavara tilaus.tavarat">
+                            <td class="tavara_col1"><input name="${tavara.id}-koodi" value="${tavara.koodi}"></td>
+                            <td class="tavara_col2"><input name="${tavara.id}-nimi" value="${tavara.nimi}"></td>
+                            <td class="tavara_col3"><input name="${tavara.id}-hinta" value="${tavara.hinta}"></td>
+                            <td class="tavara_col4"><input name="${tavara.id}-maara" value="${tavara.maara}"></td>
+                            <td class="tavara_col5"><input name="${tavara.id}-yksikko" value="${tavara.yksikko}"></td>
+                            <td class="tavara_col6"><input name="${tavara.id}-A" type="checkbox" checked="${'checked' if 'A' in tavara.tyyppi else None}"></td>
+                            <td class="tavara_col7"><input name="${tavara.id}-T" type="checkbox" checked="${'checked' if 'T' in tavara.tyyppi else None}"></td>
+                        </tr>
+                        <a name="tavarat"></a>
+                        <tr>
+                            <td class="tavara_col1"><input name="n1-koodi"></td>
+                            <td class="tavara_col2"><input name="n1-nimi"></td>
+                            <td class="tavara_col3"><input name="n1-hinta"></td>
+                            <td class="tavara_col4"><input name="n1-maara"></td>
+                            <td class="tavara_col5"><input name="n1-yksikko" value="kpl"></td>
+                            <td class="tavara_col6"><input name="n1-A" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n1-T" type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td class="tavara_col1"><input name="n2-koodi"></td>
+                            <td class="tavara_col2"><input name="n2-nimi"></td>
+                            <td class="tavara_col3"><input name="n2-hinta"></td>
+                            <td class="tavara_col4"><input name="n2-maara"></td>
+                            <td class="tavara_col5"><input name="n2-yksikko" value="kpl"></td>
+                            <td class="tavara_col6"><input name="n2-A" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n2-T" type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td class="tavara_col1"><input name="n3-koodi"></td>
+                            <td class="tavara_col2"><input name="n3-nimi"></td>
+                            <td class="tavara_col3"><input name="n3-hinta"></td>
+                            <td class="tavara_col4"><input name="n3-maara"></td>
+                            <td class="tavara_col5"><input name="n3-yksikko" value="kpl"></td>
+                            <td class="tavara_col6"><input name="n3-A" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n3-T" type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <button class="save_button">Tallenna</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </metal:main>
+</metal:main>

@@ -10,13 +10,14 @@ from pyramid.view import view_config
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 
+
 from tilaushallinta.models import DBSession
-from tilaushallinta.models import Tilaus
+from tilaushallinta.models import Huoltosopimus
 from tilaushallinta.views.misc.tilaaja_kohde import get_tilaaja_from_r, get_kohde_from_r
 
 
-@view_config(route_name='order_new', renderer='../../templates/orders/order_new.pt')
-def view_order_new(request):
+@view_config(route_name='huoltosopimus_new', renderer='../../templates/huoltosopimukset/order_new.pt')
+def view_huoltosopimus_new(request):
     """
     View method that shows the ordering form
     :param request: pyramid request
@@ -25,8 +26,8 @@ def view_order_new(request):
     return {}
 
 
-@view_config(route_name='order_submit')
-def view_order_submit(request):
+@view_config(route_name='huoltosopimus_submit')
+def view_huoltosopimus_submit(request):
     """
     View method that the ordering form is POSTed to
     :param request: Pyramid request
@@ -41,12 +42,12 @@ def view_order_submit(request):
         else:
             maksuaika = int(request.POST['maksuaika'])
 
-        tilaus = Tilaus(date=datetime.datetime.now(),
-                        tilaaja=tilaaja, kohde=kohde,
-                        muut_yhteysh=request.POST['muut_yhteysh'],
-                        tyo=request.POST['tyo'],
-                        maksuaika=maksuaika,
-                        viitenumero=request.POST['viitenumero'])
+        tilaus = Huoltosopimus(date=datetime.datetime.now(),
+                               tilaaja=tilaaja, kohde=kohde,
+                               muut_yhteysh=request.POST['muut_yhteysh'],
+                               tyo=request.POST['tyo'],
+                               maksuaika=maksuaika,
+                               viitenumero=request.POST['viitenumero'])
         DBSession.add(tilaus)
 
         return HTTPFound('/texts/tilattu')

@@ -1,0 +1,96 @@
+<!--!
+# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Copyright Esa Varemo 2014-2015
+-->
+
+<metal:main metal:use-macro="load: ../master.pt">
+    <metal:main metal:fill-slot="title">Tee tilaus</metal:main>
+
+    <metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" href="/static/css/lomake.css"/>
+        <link rel="stylesheet" href="/static/css/order_new.css"/>
+        <script type="text/javascript" src="/static/js/form_input_validation.js"></script>
+        <script type="text/javascript" src="/static/js/neworder_history.js"></script>
+    </metal:main>
+
+    <div metal:fill-slot="content">
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Aikaisemmat tilaukset</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="table_history" class="table table-striped">
+                            <tr>
+                                <th>&nbsp;&nbsp;</th>
+                                <th>Yhteyshenkilö/Yritys&nbsp;&nbsp;</th>
+                                <th>Osoite&nbsp;&nbsp;</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="load_order()">Valitse</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+        <form id="lomake" method="POST" action="/tilaukset/submit" onsubmit="return check_input()">
+            <input type="hidden" name="tilaaja_id">
+            <input type="hidden" name="tilaaja_edit">
+            <input type="hidden" name="kohde_id">
+            <input type="hidden" name="kohde_edit">
+            <table class="table_lomake">
+                <tr>
+                    <td><h2>Uusi tilaus</h2></td>
+                </tr>
+                <tr>
+                    <td><span class="colheader-left">Laskutustiedot / Tilaaja</span><span class="colheader-sub-right"><a onclick="show_history('tilaaja')">Valitse edellisistä</a></span></td>
+                    <td><span class="colheader-left">Työn kohteen tiedot</span><span class="colheader-sub-right"><a onclick="show_history('kohde')">Valitse edellisistä</a></span></td>
+                </tr>
+                <tr>
+                    <td class="table_col_slim" class="old_tilaaja_cont">
+                        <span id="old_tilaaja_controls"><ul><li><a onclick="create_new_based_on('tilaaja')">Luo uusi käyttäen tätä pohjana&nbsp;&nbsp;</a></li><li><a onclick="edit_existing('tilaaja')">Muokkaa tätä (muokkaa kaikkia tilauksia)</a></li></ul></span>
+                        <span id="old_tilaaja_state"></span>
+                    </td>
+                    <td class="table_col_slim" class="old_kohde_cont">
+                        <span id="old_kohde_controls"><ul><li><a onclick="create_new_based_on('kohde')">Luo uusi käyttäen tätä pohjana&nbsp;&nbsp;</a></li><li><a onclick="edit_existing('kohde')">Muokkaa tätä (muokkaa kaikkia tilauksia)</a></li></ul></span>
+                        <span id="old_kohde_state"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table_col_slim"><metal:main metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
+                    <td class="table_col_slim"><metal:main metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
+                </tr>
+                <tr>
+                    <td>Sähköiset laskutustiedot:<br><textarea name="tilaaja_slaskutus" tabindex="9"></textarea></td>
+                    <td><!--<input type="checkbox" id="checkbox_tiedot_samat" disabled> <label for="checkbox_tiedot_samat">Samat kuin laskutustiedot</label>--></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Muut yhteyshenkilöt:<br><textarea name="muut_yhteysh" tabindex="17"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="18"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2" tabindex="19">Viitenumero:<br><input name="viitenumero"></td>
+                </tr>
+                <tr>
+                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="20"> <label for="checkbox_ehdot">Olen lukenut ja hyväksyn <a href="/static/LSV_VASTUUNJAKO_2014.pdf" target="_blank">ehdot</a> sekä voimassa olevan <a href="/static/VELOITUSHINNASTO_3.7.2014.pdf" target="_blank">hinnaston</a></label></td>
+                    <td><input type="checkbox" id="checkbox_maksu" tabindex="21" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu (7pv netto)</label></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input type="submit"  tabindex="22" value="Tee tilaus"></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+</metal:main>

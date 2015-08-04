@@ -18,5 +18,6 @@ from .tilaaja import Tilaaja
 from .tilaus import Tilaus, Tavara, Paivaraportti
 from .users import User
 from .hintaluokka import Hintaluokka
+from .huoltosopimus import Huoltosopimus
 
 configure_mappers()
