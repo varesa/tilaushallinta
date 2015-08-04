@@ -19,14 +19,14 @@ class Huoltosopimus(Base):
 
     TILA_ACTIVE = "ACTIVE"
     TILA_INACTIVE = "INACTIVE"
-    tila = Column(String(15), nullable=False, default=TILA_UUSI)
+    tila = Column(String(15), nullable=False, default=TILA_ACTIVE)
 
     viitenumero = Column(Text)
 
     tilaaja_id = Column(Integer, ForeignKey("tilaajat.id"))
-    tilaaja = relationship("Tilaaja", backref="tilaukset")
+    tilaaja = relationship("Tilaaja", backref="huoltosopimukset")
 
     kohde_id = Column(Integer, ForeignKey("kohteet.id"))
-    kohde = relationship("Kohde", backref="tilaukset")
+    kohde = relationship("Kohde", backref="huoltosopimukset")
 
     muut_yhteysh = Column(Text)
