@@ -40,7 +40,7 @@
         </div><!-- /.modal -->
 
 
-        <form id="lomake" method="POST" action="/tilaukset/submit" onsubmit="return check_input()">
+        <form id="lomake" method="POST" action="/huoltosopimukset/submit" onsubmit="return check_input()">
             <input type="hidden" name="tilaaja_id">
             <input type="hidden" name="tilaaja_edit">
             <input type="hidden" name="kohde_id">

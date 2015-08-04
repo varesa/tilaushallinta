@@ -21,6 +21,7 @@ def view_huoltosopimus_new(request):
     """
     View method that shows the ordering form
     :param request: pyramid request
+    :type request: pyramid.request.Request
     :return: None
     """
     return {}
@@ -46,12 +47,11 @@ def view_huoltosopimus_submit(request):
         tilaus = Huoltosopimus(date=datetime.datetime.now(),
                                tilaaja=tilaaja, kohde=kohde,
                                muut_yhteysh=request.POST['muut_yhteysh'],
-                               tyo=request.POST['tyo'],
                                tyyppi_ek=tyyppi_ek, tyyppi_ke=tyyppi_ke,
                                tyyppi_sy=tyyppi_sy, tyyppi_tk=tyyppi_tk,
                                viitenumero=request.POST['viitenumero'])
         DBSession.add(tilaus)
 
-        return HTTPFound('/texts/tilattu')
+        return HTTPFound('/texts/sopimus_luotu')
     except KeyError:
         return Response("Virhe käsiteltäessä lomaketta")
