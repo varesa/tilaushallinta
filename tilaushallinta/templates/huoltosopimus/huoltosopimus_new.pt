@@ -47,7 +47,7 @@
             <input type="hidden" name="kohde_edit">
             <table class="table_lomake">
                 <tr>
-                    <td><h2>Uusi tilaus</h2></td>
+                    <td><h2>Uusi huoltosopimus</h2></td>
                 </tr>
                 <tr>
                     <td><span class="colheader-left">Laskutustiedot / Tilaaja</span><span class="colheader-sub-right"><a onclick="show_history('tilaaja')">Valitse edellisistä</a></span></td>
@@ -76,13 +76,21 @@
                 </tr>
 
                 <tr>
-                    <td class="required" colspan="2">Työn kuvaus:<br><textarea name="tyo" tabindex="18"></textarea></td>
+                    <td class="" colspan="2">
+                        Valitut huollot:<br>
+                        <input type="checkbox" name="huolto_ek" id="huolto_ek"> <label for="huolto_ek">EK??</label
+                            > <input type="checkbox" name="huolto_ke" id="huolto_ke"> <label for="huolto_ke">Keväthulto</label
+                            > <input type="checkbox" name="huolto_sy" id="huolto_sy"> <label for="huolto_sy">Syyshuolto</label
+                            > <input type="checkbox" name="huolto_tk" id="huolto_tk"> <label for="huolto_tk">TK??</label>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="2" tabindex="19">Viitenumero:<br><input name="viitenumero"></td>
+                    <td colspan="2" tabindex="19">Viitenumero: ??<br><input name="viitenumero"></td>
                 </tr>
                 <tr>
-                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="20"> <label for="checkbox_ehdot">Olen lukenut ja hyväksyn <a href="/static/LSV_VASTUUNJAKO_2014.pdf" target="_blank">ehdot</a> sekä voimassa olevan <a href="/static/VELOITUSHINNASTO_3.7.2014.pdf" target="_blank">hinnaston</a></label></td>
+                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="20"> <label for="checkbox_ehdot"
+                            >Olen lukenut ja hyväksyn huoltojen<a href="/static/LSV_VASTUUNJAKO_2014.pdf" target="_blank"> ehdot (linkkki!)</a>
+                        sekä voimassa olevan <a href="/static/VELOITUSHINNASTO_3.7.2014.pdf" target="_blank">hinnaston (linkki!)</a></label></td>
                     <td><input type="checkbox" id="checkbox_maksu" tabindex="21" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu (7pv netto)</label></td>
                 </tr>
 
