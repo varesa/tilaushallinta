@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 
 from .meta import Base
 
+
 class Huoltosopimus(Base):
     __versioned__ = {}
     __tablename__ = 'huoltosopimukset'

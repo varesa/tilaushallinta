@@ -49,7 +49,6 @@ def main(global_config, **settings):
             token_file.write(new_token)
             token = new_token
 
-
     authn_policy = AuthTktAuthenticationPolicy(secret=token, callback=get_user_groups, hashalg='sha512')
     authz_policy = ACLAuthorizationPolicy()
 

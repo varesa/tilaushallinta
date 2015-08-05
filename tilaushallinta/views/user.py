@@ -44,6 +44,7 @@ def view_admin_users(request):
         return Response('Virheellinen käyttäjä') # TODO #0181
     return {'user': user}
 
+
 err_missing_name = "Käyttäjän nimi puuttuu"
 err_missing_email = "Käyttäjän sähköpostiosoite puuttuu"
 err_missing_pass = "Käyttäjän salasana puuttuu"

@@ -13,6 +13,7 @@ err_no_username = "Anna sähköposti/tunnus\n"
 err_no_password = "Anna salasana\n"
 err_invalid_login = "Virheellinen sähköposti/salasana\n"
 
+
 @forbidden_view_config(renderer='../templates/login.pt')
 @view_config(route_name='login', renderer='../templates/login.pt', permission='open')
 def view_login(request):

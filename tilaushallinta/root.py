@@ -6,6 +6,7 @@
 
 from pyramid.security import Allow, Authenticated, Everyone
 
+
 class Root(object):
     __acl__ = [
         (Allow, Everyone,       'open'),
