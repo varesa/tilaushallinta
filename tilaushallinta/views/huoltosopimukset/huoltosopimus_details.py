@@ -15,6 +15,7 @@ from tilaushallinta.models import Kohde
 from tilaushallinta.models import Tilaus
 from tilaushallinta.models import Tavara
 from tilaushallinta.models import Paivaraportti
+from tilaushallinta.models.huoltosopimus import Huoltosopimus
 
 from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero
 
@@ -200,43 +201,11 @@ from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or
 #                         DBSession.delete(t)
 #             else:
 #                 tavara_modify_from_dict(tavara_id, tavara_dict)
-#
-#
-# @view_config(route_name='order_details', renderer='../../templates/orders/order_details.pt')
-# def view_order_details(request):
-#     order_id = request.matchdict['id']
-#     tilaus = DBSession.query(Tilaus).filter_by(id=order_id).first()
-#
-#     if 'data' in request.POST.keys():
-#
-#         #########################################################
-#         # Form data sent for updating the basic order information
-#         #########################################################
-#
-#         if request.POST['data'] == 'perustiedot':
-#             update_perustiedot(request, tilaus)
-#
-#         ###########################################
-#         # Form data sent for updating daily reports
-#         ###########################################
-#
-#         if request.POST['data'] == 'paivaraportti':
-#             if 'save' in request.POST.keys():
-#                 save_paivaraportit(request, tilaus)
-#             elif 'add' in request.POST.keys():
-#                 add_paivaraportti(tilaus)
-#             #update_paivaraportit(request, tilaus)
-#
-#         ############################################
-#         # Form data sent for updating the items list
-#         ############################################
-#
-#         if request.POST['data'] == 'tavarat':
-#             save_tavarat(request, tilaus)
-#
-#     current_date = datetime.datetime.now()
-#
-#     for x in tilaus.paivaraportit:
-#         print(str(x) + ", .date= " + str(x.date))
-#
-#     return {'tilaus': tilaus, 'current_date': current_date}
+
+
+@view_config(route_name='huoltosopimus_details', renderer='../../templates/huoltosopimus/huoltosopimus_details.pt')
+def view_huoltosopimus_details(request):
+    sopimus_id = request.matchdict['sopimus']
+    sopimus = DBSession.query(Huoltosopimus).filter_by(id=sopimus_id).first()
+
+    return {'huoltosopimus': sopimus}

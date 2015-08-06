@@ -23,12 +23,8 @@
                     <th>Tilaaja</th>
                     <th>Kohteen osoite</th>
                 </tr>
-                <tr tal:repeat="sopimus huoltosopimukset" onclick="window.location.href='/tilaukset/' + ${sopimus.id}">
+                <tr tal:repeat="sopimus huoltosopimukset" onclick="window.location.href='/huoltosopimukset/' + ${sopimus.id}">
                     <td>${sopimus.date.strftime("%y%m%d-%H%M")}</td>
-                    <!--<td tal:condition="sopimus.tila == 'UUSI'"><span class="sopimus_tila tila_uusi">Uusi</span></td>
-                    <td tal:condition="sopimus.tila == 'HYVAKSYTTY'"><span class="sopimus_tila tila_hyvaksytty">Hyväksytty</span></td>
-                    <td tal:condition="sopimus.tila == 'ALOITETTU'"><span class="sopimus_tila tila_aloitettu">Aloitettu</span></td>
-                    <td tal:condition="sopimus.tila == 'VALMIS'"><span class="sopimus_tila tila_valmis">Valmis</span></td>-->
                     <?python tilaaja = sopimus.tilaaja.nimi + ', ' + sopimus.tilaaja.yritys \
                             if len(sopimus.tilaaja.nimi) and len(sopimus.tilaaja.yritys) \
                             else sopimus.tilaaja.nimi + sopimus.tilaaja.yritys ?>

@@ -20,11 +20,14 @@
                 <div id="table_top">
                     <div id="table_title"><h2>Huollot</h2></div>
                     <div id="order_actionbuttons">
-                        <button></button>
+                        <button>Uusi Keväthuolto</button>
+                        <button>Uusi Syyshuolto</button>
+                        <button>EK ??</button>
+                        <button>TK ??</button>
                     </div>
                 </div>
                 <table class="table_lomake">
-                    <tr>
+                    <tr tal:repeat="huolto huoltosopimus.huollot">
                         <td>Things</td>
                     </tr>
                 </table>

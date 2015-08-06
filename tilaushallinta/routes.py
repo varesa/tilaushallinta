@@ -30,8 +30,8 @@ def configure_routes(config):
     config.add_route('huoltosopimus_submit', '/huoltosopimukset/submit')
 
     config.add_route('huoltosopimus_list', '/huoltosopimukset')
-    config.add_route('huoltosopimus_details', '/huoltosopimukset/{id}')
-    config.add_route('huoltosopimus_summary', '/huoltosopimukset/{id}/yhteenveto')
+    config.add_route('huoltosopimus_details', '/huoltosopimukset/{sopimus}')
+    #config.add_route('huoltosopimus_summary', '/huoltosopimukset/{id}/yhteenveto')
 
     # Tilaaja/kohde
     config.add_route('update_tilaaja', '/update/tilaaja/{id}')
