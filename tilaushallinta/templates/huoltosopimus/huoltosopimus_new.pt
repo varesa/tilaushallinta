@@ -88,10 +88,9 @@
                     <td colspan="2" tabindex="19">Viitenumero: ??<br><input name="viitenumero"></td>
                 </tr>
                 <tr>
-                    <td class="required"><input type="checkbox" id="checkbox_ehdot" tabindex="20"> <label for="checkbox_ehdot"
+                    <td class="required" colspan="2"><input type="checkbox" id="checkbox_ehdot" tabindex="20"> <label for="checkbox_ehdot"
                             >Olen lukenut ja hyväksyn<a href="/static/LSV_VASTUUNJAKO_2014.pdf" target="_blank"> ehdot</a>
                         sekä voimassa olevan <a href="/static/VELOITUSHINNASTO_3.7.2014.pdf" target="_blank">hinnaston</a></label>Linkit!!</td>
-                    <td><input type="checkbox" id="checkbox_maksu" tabindex="21" name="maksuaika" value="7"> <label for="checkbox_maksu">Nopea maksu (7pv netto)</label></td>
                 </tr>
 
                 <tr>
