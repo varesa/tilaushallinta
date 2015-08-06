@@ -19,7 +19,8 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
-    'bcrypt'
+    'bcrypt',
+    'alembic'
     ]
 
 setup(name='tilaushallinta',
