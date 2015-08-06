@@ -1,7 +1,10 @@
 from __future__ import with_statement
 from alembic import context
 from sqlalchemy import engine_from_config, pool
+from sqlalchemy.dialects import mysql
+from sqlalchemy import Boolean
 from logging.config import fileConfig
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -24,6 +27,15 @@ target_metadata = models.Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+
+def boolean_compare_type(context, inspected_column,
+        metadata_column, inspected_type, metadata_type):
+    if isinstance(inspected_type, mysql.TINYINT) and isinstance(metadata_type, Boolean):
+        return False
+    else:
+        return None
+
+
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
@@ -37,7 +49,7 @@ def run_migrations_offline():
 
     """
     url = config.get_main_option("sqlalchemy.url")
-    context.configure(url=url, target_metadata=target_metadata, compare_type=True)
+    context.configure(url=url, target_metadata=target_metadata, compare_type=boolean_compare_type)
 
     with context.begin_transaction():
         context.run_migrations()
@@ -58,7 +70,7 @@ def run_migrations_online():
     context.configure(
                 connection=connection,
                 target_metadata=target_metadata,
-                compare_type=True
+                compare_type=boolean_compare_type
                 )
 
     try:
