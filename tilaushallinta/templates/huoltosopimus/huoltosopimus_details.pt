@@ -18,12 +18,68 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="table_top">
+                    <div id="table_title"><h2>Perustiedot</h2></div>
+                    <div id="order_actionbuttons">
+                        <button onclick="window.open('/huoltosopimukset/${huoltosopimus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        Tila:
+                        <select id="order_state_select" onclick="order_state_changed()">
+                            <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_ACTIVE else None}" value="${huoltosopimus.TILA_ACTIVE}">Aktiivinen</option>
+                            <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_INACTIVE else None}" value="${huoltosopimus.TILA_INACTIVE}}">Inaktiivinen</option>
+                        </select>
+                        <input id="order_state_change" type="button" value="Vaihda" onclick="order_change_state()" disabled>
+                    </div>
+                </div>
+                <table class="table_lomake">
+                    <form method="post">
+                        <input type="hidden" name="data" value="perustiedot">
+
+                        <input type="hidden" name="tilaaja_id" value="${huoltosopimus.tilaaja.id}">
+                        <input type="hidden" name="kohde_id" value="${huoltosopimus.kohde.id}">
+                        <input type="hidden" name="huoltosopimus_id" value="${huoltosopimus.id}">
+                        <input type="hidden" name="huoltosopimus_originalstate" value="${huoltosopimus.tila}">
+
+                        <tr>
+                            <td>
+                                <span class="colheader-left">Laskutus</span><span class="colheader-sub-right">
+                                        <a id="tilaaja_muokkaa" onclick="order_muokkaa('tilaaja')">Muokkaa</a></span>
+                            </td>
+                            <td>
+                                <span class="colheader-left">Työ</span><span class="colheader-sub-right">
+                                        <a id="kohde_muokkaa" onclick="order_muokkaa('kohde')">Muokkaa</a></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <?python tilaus=huoltosopimus ?>
+                            <td><metal:main tal:define="readonly True; compact True"
+                                    metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
+                            <td><metal:main tal:define="readonly True; compact True"
+                                    metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
+                        </tr>
+                        <tr>
+                            <td>Sähköiset laskutustiedot:<textarea name="tilaaja_slaskutus" readonly>${huoltosopimus.tilaaja.slaskutus}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Muut yhteyshenkilöt:<br>
+                                <textarea name="muut_yhteysh">${huoltosopimus.muut_yhteysh}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="reset" value="Kumoa"><td><input type="submit" value="Päivitä"></td></td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div id="table_top">
                     <div id="table_title"><h2>Huollot</h2></div>
                     <div id="order_actionbuttons">
+                        <button>Ensimmäinen huolto</button>
                         <button>Uusi Keväthuolto</button>
                         <button>Uusi Syyshuolto</button>
-                        <button>EK ??</button>
-                        <button>TK ??</button>
+                        <button>Uusi Tarkastuskäynti</button>
                     </div>
                 </div>
                 <table class="table_lomake">
