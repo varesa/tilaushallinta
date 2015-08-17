@@ -15,11 +15,11 @@
         Osoite:<br><input name="tilaaja_osoite"    value="${tilaus.tilaaja.osoite|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
-    <span class="required">Postitoimipaikka:<br><input name="tilaaja_postitoimipaikka"  value="${tilaus.tilaaja.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
-    </span>
-    <br tal:condition="not: compact"></br>
     <span class="required">
         Postinumero:<br><input name="tilaaja_postinumero"       value="${tilaus.tilaaja.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
+    </span>
+    <br tal:condition="not: compact"></br>
+    <span class="required">Postitoimipaikka:<br><input name="tilaaja_postitoimipaikka"  value="${tilaus.tilaaja.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span class="required">

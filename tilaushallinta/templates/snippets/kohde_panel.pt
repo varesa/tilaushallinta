@@ -16,11 +16,11 @@
     </span>
     <br tal:condition="not: compact"></br>
     <span class="required">
-        Postitoimipaikka:<br><input name="kohde_postitoimipaikka"   value="${tilaus.kohde.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
+        Postinumero:<br><input name="kohde_postinumero"             value="${tilaus.kohde.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span class="required">
-        Postinumero:<br><input name="kohde_postinumero"             value="${tilaus.kohde.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
+        Postitoimipaikka:<br><input name="kohde_postitoimipaikka"   value="${tilaus.kohde.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
     <span>
