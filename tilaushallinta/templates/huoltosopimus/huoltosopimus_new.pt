@@ -78,19 +78,34 @@
                 <tr>
                     <td class="" colspan="2">
                         Valitut huollot:<br>
-                        <input type="checkbox" name="huolto_ek" id="huolto_ek"> <label for="huolto_ek">EK??</label
-                            > <input type="checkbox" name="huolto_ke" id="huolto_ke"> <label for="huolto_ke">Keväthulto</label
-                            > <input type="checkbox" name="huolto_sy" id="huolto_sy"> <label for="huolto_sy">Syyshuolto</label
-                            > <input type="checkbox" name="huolto_tk" id="huolto_tk"> <label for="huolto_tk">TK??</label>
+                        <table style="border: 1px;">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="huolto_ke" id="huolto_ke"> <label for="huolto_ke">Keväthuolto</label> &nbsp;&nbsp;
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="huolto_sy" id="huolto_sy"> <label for="huolto_sy">Syyshuolto</label> &nbsp;&nbsp;
+                                </td>
+                                <td class="col-border">
+                                    <input type="checkbox" name="huolto_tk" id="huolto_tk"> <label for="huolto_tk">Tarkastuskäynti</label>
+                                    <select>
+                                        <option>Kerran kahdessa viikossa</option>
+                                        <option>Kerran kuukaudessa</option>
+                                        <option>Kerran kahdessa kuukaudessa</option>
+                                        <option>Kerran kolmessa kuukaudessa</option>
+                                        <option>Kerran kuudessa kuukaudessa</option>
+                                    </select>
+                                    Alkaen: <input class="date">
+                                </td>
+                            </tr>
+                        </table>
+
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="2" tabindex="19">Viitenumero: ??<br><input name="viitenumero"></td>
                 </tr>
                 <tr>
                     <td class="required" colspan="2"><input type="checkbox" id="checkbox_ehdot" tabindex="20"> <label for="checkbox_ehdot"
                             >Olen lukenut ja hyväksyn<a href="/static/LSV_VASTUUNJAKO_2014.pdf" target="_blank"> ehdot</a>
-                        sekä voimassa olevan <a href="/static/VELOITUSHINNASTO_3.7.2014.pdf" target="_blank">hinnaston</a></label>Linkit!!</td>
+                        sekä voimassa olevan <a href="/static/VELOITUSHINNASTO_3.7.2014.pdf" target="_blank">hinnaston</a></label>Huoltosopimuksen linkit!!</td>
                 </tr>
 
                 <tr>

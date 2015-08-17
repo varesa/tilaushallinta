@@ -27,11 +27,11 @@
     padding-bottom: 0;
 }
 
-.table_lomake tr {
+.table_lomake>tr, .table_lomake>tbody>tr {
     width: 100%;
 }
 
-.table_lomake tr td {
+.table_lomake>tr>td, .table_lomake>tbody>tr>td {
     width: 50%;
     padding: 15px;
 }
@@ -43,6 +43,15 @@
 
 .table_lomake tr td input, .table_lomake tr td textarea {
     width: 100%;
+}
+
+.date {
+    width: 160px !important;
+}
+
+.col-border {
+    border: 1px solid lightgray;
+    padding: 3px;
 }
 
 .table_lomake tr td .short {
@@ -139,4 +148,3 @@
 .asterisk {
     color: red;
 }
-
