@@ -39,17 +39,18 @@ def view_huoltosopimus_submit(request):
         tilaaja = get_tilaaja_from_r(request)
         kohde = get_kohde_from_r(request)
 
-        tyyppi_ek = 'huolto_ek' in request.POST.keys()
         tyyppi_ke = 'huolto_ke' in request.POST.keys()
         tyyppi_sy = 'huolto_sy' in request.POST.keys()
         tyyppi_tk = 'huolto_tk' in request.POST.keys()
+        tk_interval_months = request.POST['huolto_tk_interval_months'] if tyyppi_tk else None
+        tk_starting_date = request.POST['huolto_tk_starting_date'] if tyyppi_tk else None
 
         tilaus = Huoltosopimus(date=datetime.datetime.now(),
                                tilaaja=tilaaja, kohde=kohde,
                                muut_yhteysh=request.POST['muut_yhteysh'],
-                               tyyppi_ek=tyyppi_ek, tyyppi_ke=tyyppi_ke,
-                               tyyppi_sy=tyyppi_sy, tyyppi_tk=tyyppi_tk,
-                               viitenumero=request.POST['viitenumero'])
+                               tyyppi_ke=tyyppi_ke, tyyppi_sy=tyyppi_sy, tyyppi_tk=tyyppi_tk,
+                               tk_interval_months=tk_interval_months, tk_starting_date=tk_starting_date
+                               )
         DBSession.add(tilaus)
 
         return HTTPFound('/texts/sopimus_luotu')

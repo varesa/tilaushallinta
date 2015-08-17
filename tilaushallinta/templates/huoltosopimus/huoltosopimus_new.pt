@@ -88,14 +88,14 @@
                                 </td>
                                 <td class="col-border">
                                     <input type="checkbox" name="huolto_tk" id="huolto_tk"> <label for="huolto_tk">Tarkastuskäynti</label>
-                                    <select>
-                                        <option>Kerran kahdessa viikossa</option>
-                                        <option>Kerran kuukaudessa</option>
-                                        <option>Kerran kahdessa kuukaudessa</option>
-                                        <option>Kerran kolmessa kuukaudessa</option>
-                                        <option>Kerran kuudessa kuukaudessa</option>
+                                    <select name="huolto_tk_interval_months">
+                                        <option value="0.5">Kerran kahdessa viikossa</option>
+                                        <option value="1">Kerran kuukaudessa</option>
+                                        <option value="2">Kerran kahdessa kuukaudessa</option>
+                                        <option value="3">Kerran kolmessa kuukaudessa</option>
+                                        <option value="6">Kerran kuudessa kuukaudessa</option>
                                     </select>
-                                    Alkaen: <input class="date">
+                                    Alkaen: <input class="date" name="huolto_tk_starting_date">
                                 </td>
                             </tr>
                         </table>
