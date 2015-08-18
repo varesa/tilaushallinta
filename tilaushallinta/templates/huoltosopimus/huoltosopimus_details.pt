@@ -15,18 +15,18 @@
     </metal:main>
 
     <metal:main metal:fill-slot="content">
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="perustiedot">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Perustiedot</h2></div>
+                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#perustiedot">&nbsp;Näytä/Piilota</a></h2></div>
                     <div id="order_actionbuttons">
                         <button onclick="window.open('/huoltosopimukset/${huoltosopimus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         Tila:
-                        <select id="order_state_select" onclick="order_state_changed()">
+                        <select id="state_select" onclick="state_changed()">
                             <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_ACTIVE else None}" value="${huoltosopimus.TILA_ACTIVE}">Aktiivinen</option>
-                            <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_INACTIVE else None}" value="${huoltosopimus.TILA_INACTIVE}}">Inaktiivinen</option>
+                            <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_INACTIVE else None}" value="${huoltosopimus.TILA_INACTIVE}">Inaktiivinen</option>
                         </select>
-                        <input id="order_state_change" type="button" value="Vaihda" onclick="order_change_state()" disabled>
+                        <input id="state_change" type="button" value="Vaihda" onclick="huoltosopimus_change_state()" disabled>
                     </div>
                 </div>
                 <table class="table_lomake">

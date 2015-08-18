@@ -13,12 +13,15 @@ from tilaushallinta.models import Tilaus
 from tilaushallinta.models.huoltosopimus import Huoltosopimus
 
 
-@view_config(route_name='order_setstate')
-def view_order_setstate(request):
-    order_id = request.matchdict['id']
+@view_config(route_name='huoltosopimus_setstate')
+def view_huoltosopimus_setstate(request):
+    sopimus_id = request.matchdict['id']
     newstate = request.POST['newstate']
 
-    order = DBSession.query(Tilaus).filter_by(id=order_id).first()
-    order.tila = newstate
+    sopimus = DBSession.query(Huoltosopimus).filter_by(id=sopimus_id).first()
+    print(sopimus)
+    print(newstate)
+    sopimus.tila = newstate
+    print(sopimus.tila)
 
     return Response('OK')

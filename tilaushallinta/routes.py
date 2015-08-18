@@ -34,6 +34,8 @@ def configure_routes(config):
     config.add_route('huolto_details', '/huoltosopimukset/{sopimus}/huolto/{huolto}')
     #config.add_route('huoltosopimus_summary', '/huoltosopimukset/{id}/yhteenveto')
 
+    config.add_route('huoltosopimus_setstate', '/huoltosopimukset/{id}/setstate')
+
     # Tilaaja/kohde
     config.add_route('update_tilaaja', '/update/tilaaja/{id}')
     config.add_route('update_kohde', '/update/kohde/{id}')
