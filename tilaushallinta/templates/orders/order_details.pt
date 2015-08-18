@@ -18,7 +18,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Perustiedot</h2></div>
+                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;Näytä/Piilota</a></h2></div>
                     <div id="order_actionbuttons">
                         <button onclick="window.open('/tilaukset/${tilaus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         Tila:
@@ -31,7 +31,7 @@
                         <input id="state_change" type="button" value="Vaihda" onclick="order_change_state()" disabled>
                     </div>
                 </div>
-                <table class="table_lomake">
+                <table class="table_lomake collapse in" id="table_perustiedot">
                     <form method="post">
                         <input type="hidden" name="data" value="perustiedot">
                         
