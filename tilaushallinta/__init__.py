@@ -18,6 +18,8 @@ from .models import (
     Base,
     )
 
+import db_env
+
 from .root import Root
 from .security import get_user_groups
 from .views.login_management import view_login
@@ -28,12 +30,8 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
 
-    if '<password>' in settings['sqlalchemy.url']:
-        with open('dbpassword') as pwd:
-            settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<password>', pwd.readline().strip())
-    if '<host>' in settings['sqlalchemy.url']:
-        with open('dbhost') as host:
-            settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<host>', host.readline().strip())
+    settings['sqlalchemy.url'] = db_env.substitute(settings['sqlalchemy.url'])
+
 
     engine = engine_from_config(settings, 'sqlalchemy.', pool_recycle=3600)
     DBSession.configure(bind=engine)

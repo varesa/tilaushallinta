@@ -5,7 +5,7 @@ from sqlalchemy.dialects import mysql
 from sqlalchemy import Boolean
 from logging.config import fileConfig
 
-
+import db_env
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -28,8 +28,23 @@ target_metadata = models.Base.metadata
 # ... etc.
 
 
+def fix_config_url():
+    """
+    Insert database host, user and password to alembic config.
+    """
+    url = config.get_main_option('sqlalchemy.url')
+    url = db_env.substitute(url)
+    config.set_main_option('sqlalchemy.url', url)
+
+
 def boolean_compare_type(context, inspected_column,
         metadata_column, inspected_type, metadata_type):
+    """
+    Custom type comparision to prevent migrations from attempting to convert TINYINTs to BOOLEANs as
+    mysql does the opposite.
+
+    When comparing other types falls back to default compare_type
+    """
     if isinstance(inspected_type, mysql.TINYINT) and isinstance(metadata_type, Boolean):
         return False
     else:
@@ -78,6 +93,8 @@ def run_migrations_online():
             context.run_migrations()
     finally:
         connection.close()
+
+fix_config_url()
 
 if context.is_offline_mode():
     run_migrations_offline()
