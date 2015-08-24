@@ -6,6 +6,9 @@ tilaushallinta.egg-info/*
 
 tilaushallinta.sqlite
 
-dbpassword
+
 dbhost
+dbuser
+dbpassword
+
 auth_token
