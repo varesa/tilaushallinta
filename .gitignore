@@ -1,14 +1,14 @@
 **/*.pyc
 **/__pycache__/
-.idea/*
-
 tilaushallinta.egg-info/*
 
-tilaushallinta.sqlite
+.idea/*
 
+tilaushallinta.sqlite
 
 dbhost
 dbuser
 dbpassword
+dbschema
 
 auth_token
