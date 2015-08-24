@@ -11,6 +11,8 @@ import transaction
 
 from sqlalchemy import engine_from_config
 
+import db_env
+
 from pyramid.paster import (
     get_appsettings,
     setup_logging,
@@ -42,9 +44,7 @@ def main(argv=sys.argv):
     setup_logging(config_uri)
     settings = get_appsettings(config_uri, options=options)
 
-    if '<password>' in settings['sqlalchemy.url']:
-        with open('dbpassword') as pwd:
-            settings['sqlalchemy.url'] = settings['sqlalchemy.url'].replace('<password>', pwd.readline().strip())
+    settings['sqlalchemy.url'] = db_env.substitute(settings['sqlalchemy.url'])
     
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
