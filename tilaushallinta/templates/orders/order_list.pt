@@ -16,52 +16,14 @@
             <div class="panel-heading">
                 Avoinna olevat tilaukset
             </div>
-            <table class="table table-hover">
-                <tr>
-                    <th>#</th>
-                    <th>Tila</th>
-                    <th>Tilaaja</th>
-                    <th>Kohteen osoite</th>
-                </tr>
-                <tr tal:repeat="tilaus tilaukset_auki" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
-                    <td>${tilaus.date.strftime("%y%m%d-%H%M")}</td>
-                    <td tal:condition="tilaus.tila == 'UUSI'"><span class="tilaus_tila tila_uusi">Uusi</span></td>
-                    <td tal:condition="tilaus.tila == 'HYVAKSYTTY'"><span class="tilaus_tila tila_hyvaksytty">Hyväksytty</span></td>
-                    <td tal:condition="tilaus.tila == 'ALOITETTU'"><span class="tilaus_tila tila_aloitettu">Aloitettu</span></td>
-                    <td tal:condition="tilaus.tila == 'VALMIS'"><span class="tilaus_tila tila_valmis">Valmis</span></td>
-                    <?python tilaaja = tilaus.tilaaja.nimi + ', ' + tilaus.tilaaja.yritys \
-                            if len(tilaus.tilaaja.nimi) and len(tilaus.tilaaja.yritys) \
-                            else tilaus.tilaaja.nimi + tilaus.tilaaja.yritys ?>
-                    <td>${tilaaja}&nbsp;&nbsp;&nbsp;</td>
-                    <td>${tilaus.kohde.osoite}, ${tilaus.kohde.postinumero} ${tilaus.kohde.postitoimipaikka}</td>
-                </tr>
-            </table>
+            <metal:main metal:use-macro="load: ../snippets/orders_table.pt" tal:define="tilaukset tilaukset_auki"></metal:main>
         </div>
         <br>
         <div class="panel panel-default">
             <div class="panel-heading">
                 Valmiit tilaukset
             </div>
-            <table class="table table-hover">
-                <tr>
-                    <th>#</th>
-                    <th>Tila</th>
-                    <th>Tilaaja</th>
-                    <th>Kohteen osoite</th>
-                </tr>
-                <tr tal:repeat="tilaus tilaukset_valmiit" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
-                    <td>${tilaus.date.strftime("%y%m%d-%H%M")}</td>
-                    <td tal:condition="tilaus.tila == 'UUSI'"><span class="tilaus_tila tila_uusi">Uusi</span></td>
-                    <td tal:condition="tilaus.tila == 'HYVAKSYTTY'"><span class="tilaus_tila tila_hyvaksytty">Hyväksytty</span></td>
-                    <td tal:condition="tilaus.tila == 'ALOITETTU'"><span class="tilaus_tila tila_aloitettu">Aloitettu</span></td>
-                    <td tal:condition="tilaus.tila == 'VALMIS'"><span class="tilaus_tila tila_valmis">Valmis</span></td>
-                    <?python tilaaja = tilaus.tilaaja.nimi + ', ' + tilaus.tilaaja.yritys \
-                            if len(tilaus.tilaaja.nimi) and len(tilaus.tilaaja.yritys) \
-                            else tilaus.tilaaja.nimi + tilaus.tilaaja.yritys ?>
-                    <td>${tilaaja}&nbsp;&nbsp;&nbsp;</td>
-                    <td>${tilaus.kohde.osoite}, ${tilaus.kohde.postinumero} ${tilaus.kohde.postitoimipaikka}</td>
-                </tr>
-            </table>
+            <metal:main metal:use-macro="load: ../snippets/orders_table.pt" tal:define="tilaukset tilaukset_valmiit"></metal:main>
         </div>
 
     </metal:main>

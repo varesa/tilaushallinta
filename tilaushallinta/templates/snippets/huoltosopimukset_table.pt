@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <!--<th>Tila</th>-->
+        <th>Tilaaja</th>
+        <th>Kohteen osoite</th>
+    </tr>
+    <tr tal:repeat="sopimus huoltosopimukset" onclick="window.location.href='/huoltosopimukset/' + ${sopimus.id}">
+        <td>${sopimus.date.strftime("%y%m%d-%H%M")}</td>
+        <?python tilaaja = sopimus.tilaaja.nimi + ', ' + sopimus.tilaaja.yritys \
+                if len(sopimus.tilaaja.nimi) and len(sopimus.tilaaja.yritys) \
+                else sopimus.tilaaja.nimi + sopimus.tilaaja.yritys ?>
+        <td>${tilaaja}&nbsp;&nbsp;&nbsp;</td>
+        <td>${sopimus.kohde.osoite}, ${sopimus.kohde.postinumero} ${sopimus.kohde.postitoimipaikka}</td>
+    </tr>
+</table>

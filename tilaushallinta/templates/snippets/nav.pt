@@ -20,8 +20,8 @@
 
         <li><a href="/tilaukset">Tilaukset</a></li>
         <li tal:condition="python: session_user.admin or session_user.vuosihuoltosopimukset"><a href="/huoltosopimukset">Huoltosopimukset</a></li>
-        <!--<li tal:condition="session_user.admin"><a href="#">VKKt</a></li>
-        <li><a href="/kohteet">Työkohteet</a></li>-->
+        <!--<li tal:condition="session_user.admin"><a href="#">VKKt</a></li>-->
+        <li><a href="/kohteet">Työkohteet</a></li>
         <li tal:condition="python: session_user and session_user.admin"><a href="/admin">Ylläpito</a></li>
     </ul>
 </div>
