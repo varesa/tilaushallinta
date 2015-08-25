@@ -26,6 +26,7 @@
                             <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_ACTIVE else None}" value="${huoltosopimus.TILA_ACTIVE}">Aktiivinen</option>
                             <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_INACTIVE else None}" value="${huoltosopimus.TILA_INACTIVE}">Inaktiivinen</option>
                         </select>
+                        <input type="hidden" name="state_original" value="${huoltosopimus.tila}">
                         <input id="state_change" type="button" value="Vaihda" onclick="huoltosopimus_change_state()" disabled>
                     </div>
                 </div>
@@ -35,8 +36,7 @@
 
                         <input type="hidden" name="tilaaja_id" value="${huoltosopimus.tilaaja.id}">
                         <input type="hidden" name="kohde_id" value="${huoltosopimus.kohde.id}">
-                        <input type="hidden" name="huoltosopimus_id" value="${huoltosopimus.id}">
-                        <input type="hidden" name="huoltosopimus_originalstate" value="${huoltosopimus.tila}">
+                        <input type="hidden" name="huoltosopimus_id" value="${huoltosopimus.id}"> <!-- also used by js:huoltosopimus_change_state() -->
 
                         <tr>
                             <td>
@@ -76,17 +76,15 @@
                 <div id="table_top">
                     <div id="table_title"><h2>Huollot</h2></div>
                     <div id="order_actionbuttons">
-                        <button>Ensimmäinen huolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/ek'">Ensimmäinen huolto</button>
                         <button>Uusi Keväthuolto</button>
                         <button>Uusi Syyshuolto</button>
                         <button>Uusi Tarkastuskäynti</button>
                     </div>
                 </div>
-                <table class="table_lomake">
-                    <tr tal:repeat="huolto huoltosopimus.huollot">
-                        <td>Things</td>
-                    </tr>
-                </table>
+                <div class="panel">
+                    <table metal:use-macro="load: ../snippets/huollot_table.pt" tal:define="huollot huoltosopimus.huollot"></table>
+                </div>
             </div>
         </div>
     </metal:main>

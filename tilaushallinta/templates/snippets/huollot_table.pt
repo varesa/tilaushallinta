@@ -1,0 +1,15 @@
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Tila</th>
+        <th>Pvm</th>
+        <th>Tyyppi</th>
+    </tr>
+    <tr tal:repeat="huolto huollot"
+            onclick="window.location.href='/huoltosopimukset/' + ${huolto.huoltosopimus.id} + '/huollot/' + ${huolto.id}">
+        <td>${huolto.date.strftime("%y%m%d-%H%M")}</td>
+        <td>${huolto.tila}</td>
+        <td>${huolto.date.strftime("%d.%m.%y")}&nbsp;&nbsp;&nbsp;</td>
+        <td>${huolto.tyyppi}</td>
+    </tr>
+</table>

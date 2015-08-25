@@ -28,17 +28,17 @@
                             <option selected="${'selected' if tilaus.tila == 'ALOITETTU' else None}" value="ALOITETTU">Aloitettu</option>
                             <option selected="${'selected' if tilaus.tila == 'VALMIS' else None}" value="VALMIS">Valmis</option>
                         </select>
+                        <input type="hidden" name="state_original" value="${tilaus.tila}">
                         <input id="state_change" type="button" value="Vaihda" onclick="order_change_state()" disabled>
                     </div>
                 </div>
                 <table class="table_lomake collapse in" id="table_perustiedot">
                     <form method="post">
                         <input type="hidden" name="data" value="perustiedot">
-                        
+
                         <input type="hidden" name="tilaaja_id" value="${tilaus.tilaaja.id}">
                         <input type="hidden" name="kohde_id" value="${tilaus.kohde.id}">
-                        <input type="hidden" name="tilaus_id" value="${tilaus.id}">
-                        <input type="hidden" name="state_original" value="${tilaus.tila}">
+                        <input type="hidden" name="tilaus_id" value="${tilaus.id}"> <!-- also used by js:order_change_state() -->
                         
                         <tr>
                             <td>

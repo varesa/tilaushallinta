@@ -19,7 +19,7 @@ from .tilaus import Tilaus, Tavara, Paivaraportti
 from .users import User
 from .hintaluokka import Hintaluokka
 from .huoltosopimus import Huoltosopimus
-from .huolto import Huolto
+from .huolto import Huolto, Huoltoraportti
 from .laiteluettelo import Laite, Laiteluettelo
 
 configure_mappers()

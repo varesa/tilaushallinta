@@ -17,6 +17,7 @@ from tilaushallinta.models import Tavara
 from tilaushallinta.models import Paivaraportti
 
 from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero
+from views.shared.update_tilaaja_kohde import update_tilaaja, update_kohde
 
 
 def compare_sets(list):
@@ -38,43 +39,17 @@ def remove_empty_tavarat(tavarat_tmp):
     return tavarat
 
 
-def update_perustiedot(request, tilaus):
-    tilaus_id = request.POST['tilaus_id']
-    tilaaja_id = request.POST['tilaaja_id']
-    kohde_id = request.POST['kohde_id']
+def update_perustiedot(request):
+    update_tilaaja(request.POST)
+    update_kohde(request.POST)
 
-
-    tilaaja = DBSession.query(Tilaaja).filter_by(id=tilaaja_id).first()
-
-    tilaaja.nimi = request.POST['tilaaja_nimi']
-    tilaaja.yritys = request.POST['tilaaja_yritys']
-    tilaaja.ytunnus = request.POST['tilaaja_ytunnus']
-    tilaaja.osoite = request.POST['tilaaja_osoite']
-    tilaaja.postitoimipaikka = request.POST['tilaaja_postitoimipaikka']
-    tilaaja.postinumero = request.POST['tilaaja_postinumero']
-    tilaaja.puhelin = request.POST['tilaaja_puhelin']
-    tilaaja.email = request.POST['tilaaja_email']
-    tilaaja.slaskutus = request.POST['tilaaja_slaskutus']
-
-
-    kohde = DBSession.query(Kohde).filter_by(id=kohde_id).first()
-
-    kohde.nimi = request.POST['kohde_nimi']
-    kohde.yritys = request.POST['kohde_yritys']
-    kohde.ytunnus = request.POST['kohde_ytunnus']
-    kohde.osoite = request.POST['kohde_osoite']
-    kohde.postitoimipaikka = request.POST['kohde_postitoimipaikka']
-    kohde.postinumero = request.POST['kohde_postinumero']
-    kohde.puhelin = request.POST['kohde_puhelin']
-    kohde.email = request.POST['kohde_email']
-
+    tilaus_id = request.matchdict['id']
+    tilaus = DBSession.query(Tilaus).filter_by(id=tilaus_id).first()
 
     tilaus.muut_yhteysh = request.POST['muut_yhteysh']
     tilaus.tyo = request.POST['tyo']
     tilaus.maksuaika = request.POST['maksuaika']
     tilaus.viitenumero = request.POST['viitenumero']
-
-    return tilaus
 
 
 def add_paivaraportti(tilaus):
@@ -214,7 +189,7 @@ def view_order_details(request):
         #########################################################
 
         if request.POST['data'] == 'perustiedot':
-            update_perustiedot(request, tilaus)
+            update_perustiedot(request)
 
         ###########################################
         # Form data sent for updating daily reports
@@ -225,7 +200,6 @@ def view_order_details(request):
                 save_paivaraportit(request, tilaus)
             elif 'add' in request.POST.keys():
                 add_paivaraportti(tilaus)
-            #update_paivaraportit(request, tilaus)
 
         ############################################
         # Form data sent for updating the items list

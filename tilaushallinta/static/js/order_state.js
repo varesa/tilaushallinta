@@ -5,16 +5,16 @@
  */
 
 var tilaus = {
-    original_state: "state_original",
-    button_id: "#state_change",
     baseurl: "/tilaukset/"
 };
 
 var huoltosopimus = {
-    original_state: "state_original",
-    button_id: "#state_change",
     baseurl: "/huoltosopimukset/"
 };
+
+var huolto = {
+    baseurl: "/huoltosopimukset/-1/huolto/"
+}
 
 function state_changed() {
     var oldstate = $("input[name='state_original']").val();
@@ -30,22 +30,28 @@ function state_changed() {
 
 function order_change_state() {
     var tilaus_id = $("input[name='tilaus_id']").val();
-    var newstate = $("#state_select").val();
-
-    change_state(tilaus, tilaus_id, newstate);
+    change_state(tilaus, tilaus_id);
 }
 
 function huoltosopimus_change_state() {
     var sopimus_id = $("input[name='huoltosopimus_id']").val();
-    var newstate = $("#state_select").val();
-
-    change_state(huoltosopimus, sopimus_id, newstate);
+    change_state(huoltosopimus, sopimus_id);
 }
 
-function change_state(type, id, newstate) {
-    $.post(type.baseurl + id + "/setstate", {newstate: newstate});
-    $("input[name='" + type.original_state + "']").val(newstate);
+function huolto_change_state() {
+    var huolto_id = $("input[name='huolto_id']").val();
+    change_state(huolto, huolto_id);
+}
 
-    $(type.button_id).val("Vaihdettu");
-    $(type.button_id).prop('disabled', true);
+var button_id = "#state_change";
+var original_state = "state_original";
+
+function change_state(type, id) {
+    var newstate = $("#state_select").val();
+
+    $.post(type.baseurl + id + "/setstate", {newstate: newstate});
+    $("input[name='" + original_state + "']").val(newstate);
+
+    $(button_id).val("Vaihdettu");
+    $(button_id).prop('disabled', true);
 }

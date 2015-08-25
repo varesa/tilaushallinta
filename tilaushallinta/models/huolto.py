@@ -41,15 +41,17 @@ class Huolto(Base):
     TILA_VALMIS = "VALMIS"
     tila = Column(String(15), nullable=False, default=TILA_UUSI)
 
-    viitenumero = Column(Text)
-
     huoltosopimus_id = Column(Integer, ForeignKey("huoltosopimukset.id"))
     huoltosopimus = relationship("Huoltosopimus", backref="huollot")
 
     tyyppi = Column(Text)
+    TYYPPI_EK = "ek"
+    TYYPPI_KE = "ke"
+    TYYPPI_SY = "sy"
+    TYYPPI_TK = "tk"
 
     huoltoraportit = relationship("Huoltoraportti")
 
     laiteluettelo_id = Column(Integer, ForeignKey("laiteluettelot.id"))
-    laiteluettelot = relationship("Laiteluettelo")
+    laiteluettelo = relationship("Laiteluettelo")
 
