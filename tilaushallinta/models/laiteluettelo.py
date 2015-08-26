@@ -20,12 +20,11 @@ class Laite(Base):
 
     tavaraluettelo_id = Column(Integer, ForeignKey("laiteluettelot.id"))
 
-    koodi = Column(Text)
     nimi = Column(Text)
+    tyyppitiedot = Column(Text)
 
-    hinta = Column(Float)
+    valmistusvuosi = Column(Float)
     maara = Column(Float)
-    yksikko = Column(Text)
 
     tyyppi = Column(Text)
 
