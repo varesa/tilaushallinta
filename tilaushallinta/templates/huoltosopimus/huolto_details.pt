@@ -104,11 +104,11 @@
                         </tr>
                         <tr tal:condition="huolto.laiteluettelo" tal:repeat="laite huolto.laiteluettelo.laitteet">
                             <td class="tavara_col1"><input name="${laite.id}-nimi" value="${laite.nimi}"></td>
-                            <td class="laite_col2"><input name="${laite.id}-tyyppitiedot" value="${laite.tyyppitiedot}"></td>
-                            <td class="laite_col3"><input name="${laite.id}-valmistusvuosi" value="${laite.valmistusvuosi}"></td>
-                            <td class="laite_col4"><input name="${laite.id}-maara" value="${laite.maara}"></td>
-                            <td class="laite_col6"><input name="${laite.id}-H" type="checkbox" checked="${'checked' if 'H' in laite.tyyppi else None}"></td>
-                            <td class="laite_col7"><input name="${laite.id}-K" type="checkbox" checked="${'checked' if 'K' in laite.tyyppi else None}"></td>
+                            <td class="tavara_col2"><input name="${laite.id}-tyyppitiedot" value="${laite.tyyppitiedot}"></td>
+                            <td class="tavara_col3"><input name="${laite.id}-valmistusvuosi" value="${laite.valmistusvuosi}"></td>
+                            <td class="tavara_col4"><input name="${laite.id}-maara" value="${laite.maara}"></td>
+                            <td class="tavara_col6"><input name="${laite.id}-H" type="checkbox" checked="${'checked' if 'H' in laite.tyyppi else None}"></td>
+                            <td class="tavara_col7"><input name="${laite.id}-K" type="checkbox" checked="${'checked' if 'K' in laite.tyyppi else None}"></td>
                         </tr>
                         <a name="tavarat"></a>
                         <tr>

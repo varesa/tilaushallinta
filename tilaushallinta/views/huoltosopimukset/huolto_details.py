@@ -180,7 +180,4 @@ def view_huolto_details(request):
 
     current_date = datetime.datetime.now()
 
-    for x in huolto.huoltoraportit:
-        print(str(x) + ", .date= " + str(x.date))
-
     return {'huolto': huolto, 'current_date': current_date}
