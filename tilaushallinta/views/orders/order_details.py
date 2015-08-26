@@ -7,11 +7,8 @@
 import datetime
 
 from pyramid.view import view_config
-from pyramid.response import Response
 
 from tilaushallinta.models import DBSession
-from tilaushallinta.models import Tilaaja
-from tilaushallinta.models import Kohde
 from tilaushallinta.models import Tilaus
 from tilaushallinta.models import Tavara
 from tilaushallinta.models import Paivaraportti
@@ -167,10 +164,8 @@ def save_tavarat(request, tilaus):
             tilaus.tavarat.append(tavara)
         else:
             if string_to_float_or_zero(tavara_dict['maara']) == 0:
-                print("Something with maara:0")
                 for t in tilaus.tavarat:
                     if t.id == int(tavara_id):
-                        print("found it")
                         tilaus.tavarat.remove(t)
                         DBSession.delete(t)
             else:
@@ -209,8 +204,5 @@ def view_order_details(request):
             save_tavarat(request, tilaus)
 
     current_date = datetime.datetime.now()
-
-    for x in tilaus.paivaraportit:
-        print(str(x) + ", .date= " + str(x.date))
 
     return {'tilaus': tilaus, 'current_date': current_date}

@@ -28,7 +28,7 @@ def compare_sets(sets):
 def remove_empty_laitteet(laitteet_tmp):
     laitteet = {}
     for laite_id, value in laitteet_tmp.items():
-        if value['koodi'] != "" or value['nimi'] != "" or value['maara'] != "" or value['hinta'] != "":
+        if value['nimi'] != "" or value['tyyppitiedot'] != "" or value['maara'] != "" or value['valmistusvuosi'] != "":
             laitteet[laite_id] = value
     return laitteet
 
@@ -114,27 +114,26 @@ def laitteet_form_to_dict(request):
 
 def laite_new_from_dict(laite_dict):
     return Laite(date=datetime.datetime.now(),
-                  koodi=laite_dict['koodi'], nimi=laite_dict['nimi'],
-                  maara=string_to_float_or_zero(laite_dict['maara']), hinta=string_to_float_or_zero(laite_dict['hinta']),
-                  yksikko=laite_dict['yksikko'],
-                  tyyppi=(
-                      "" +
-                      ('A' if ('A' in laite_dict.keys()) else '') +
-                      ('T' if ('T' in laite_dict.keys()) else '')
-                  ))
+                 nimi=laite_dict['nimi'], tyyppitiedot=laite_dict['tyyppitiedot'],
+                 maara=string_to_float_or_zero(laite_dict['maara']),
+                 valmistusvuosi=string_to_float_or_zero(laite_dict['valmistusvuosi']),
+                 tyyppi=(
+                    "" +
+                    ('H' if ('H' in laite_dict.keys()) else '') +
+                    ('K' if ('K' in laite_dict.keys()) else '')
+                 ))
 
 
 def laite_modify_from_dict(laite_id, laite_dict):
     laite = DBSession.query(Laite).filter_by(id=laite_id).first()
-    laite.koodi = laite_dict['koodi']
     laite.nimi = laite_dict['nimi']
+    laite.tyyppitiedot = laite_dict['tyyppitiedot']
     laite.maara = string_to_float_or_zero(laite_dict['maara'])
-    laite.hinta = string_to_float_or_zero(laite_dict['hinta'])
-    laite.yksikko = laite_dict['yksikko']
+    laite.valmistusvuosi = string_to_float_or_zero(laite_dict['valmistusvuosi'])
     laite.tyyppi = (
         "" +
-        ('A' if ('A' in laite_dict.keys()) else '') +
-        ('T' if ('T' in laite_dict.keys()) else '')
+        ('H' if ('H' in laite_dict.keys()) else '') +
+        ('K' if ('K' in laite_dict.keys()) else '')
     )
 
 
@@ -145,13 +144,11 @@ def save_laitteet(request, huolto):
         if 'n' in laite_id:                        # If 'n' -> we are creating a new item
             laite = laite_new_from_dict(laite_dict)
             DBSession.add(laite)
-            huolto.laitteet.append(laite)
+            huolto.laiteluettelo.laitteet.append(laite)
         else:
             if string_to_float_or_zero(laite_dict['maara']) == 0:
-                print("Something with maara:0")
                 for t in huolto.laitteet:
                     if t.id == int(laite_id):
-                        print("found it")
                         huolto.laitteet.remove(t)
                         DBSession.delete(t)
             else:

@@ -91,54 +91,49 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Laitteet</h3>
-                <form method="post" action="#tavarat">
-                    <input type="hidden" name="data" value="tavarat">
+                <form method="post" action="#laitteet">
+                    <input type="hidden" name="data" value="laitteet">
                     <table class="table" id="table_tavarat">
                         <tr>
-                            <th>Koodi</th>
-                            <th>Nimike</th>
-                            <th>Hinta</th>
+                            <th>Nimi</th>
+                            <th>Tyyppitiedot</th>
+                            <th>Valmistusvuosi</th>
                             <th>Määrä</th>
-                            <th>Yksikkö</th>
-                            <th>A</th>
-                            <th>T</th>
+                            <th>H</th>
+                            <th>K</th>
                         </tr>
-                        <tr tal:repeat="laite huolto.laiteluettelo">
-                            <td class="tavara_col1"><input name="${laite.id}-koodi" value="${laite.koodi}"></td>
-                            <td class="laite_col2"><input name="${laite.id}-nimi" value="${laite.nimi}"></td>
-                            <td class="laite_col3"><input name="${laite.id}-hinta" value="${laite.hinta}"></td>
+                        <tr tal:condition="huolto.laiteluettelo" tal:repeat="laite huolto.laiteluettelo.laitteet">
+                            <td class="tavara_col1"><input name="${laite.id}-nimi" value="${laite.nimi}"></td>
+                            <td class="laite_col2"><input name="${laite.id}-tyyppitiedot" value="${laite.tyyppitiedot}"></td>
+                            <td class="laite_col3"><input name="${laite.id}-valmistusvuosi" value="${laite.valmistusvuosi}"></td>
                             <td class="laite_col4"><input name="${laite.id}-maara" value="${laite.maara}"></td>
-                            <td class="laite_col5"><input name="${laite.id}-yksikko" value="${laite.yksikko}"></td>
-                            <td class="laite_col6"><input name="${laite.id}-A" type="checkbox" checked="${'checked' if 'A' in laite.tyyppi else None}"></td>
-                            <td class="laite_col7"><input name="${laite.id}-T" type="checkbox" checked="${'checked' if 'T' in laite.tyyppi else None}"></td>
+                            <td class="laite_col6"><input name="${laite.id}-H" type="checkbox" checked="${'checked' if 'H' in laite.tyyppi else None}"></td>
+                            <td class="laite_col7"><input name="${laite.id}-K" type="checkbox" checked="${'checked' if 'K' in laite.tyyppi else None}"></td>
                         </tr>
                         <a name="tavarat"></a>
                         <tr>
-                            <td class="tavara_col1"><input name="n1-koodi"></td>
-                            <td class="tavara_col2"><input name="n1-nimi"></td>
-                            <td class="tavara_col3"><input name="n1-hinta"></td>
+                            <td class="tavara_col1"><input name="n1-nimi"></td>
+                            <td class="tavara_col2"><input name="n1-tyyppitiedot"></td>
+                            <td class="tavara_col3"><input name="n1-valmistusvuosi"></td>
                             <td class="tavara_col4"><input name="n1-maara"></td>
-                            <td class="tavara_col5"><input name="n1-yksikko" value="kpl"></td>
-                            <td class="tavara_col6"><input name="n1-A" type="checkbox"></td>
-                            <td class="tavara_col7"><input name="n1-T" type="checkbox"></td>
+                            <td class="tavara_col6"><input name="n1-H" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n1-K" type="checkbox"></td>
                         </tr>
                         <tr>
-                            <td class="tavara_col1"><input name="n2-koodi"></td>
-                            <td class="tavara_col2"><input name="n2-nimi"></td>
-                            <td class="tavara_col3"><input name="n2-hinta"></td>
+                            <td class="tavara_col1"><input name="n2-nimi"></td>
+                            <td class="tavara_col2"><input name="n2-tyyppitiedot"></td>
+                            <td class="tavara_col3"><input name="n2-valmistusvuosi"></td>
                             <td class="tavara_col4"><input name="n2-maara"></td>
-                            <td class="tavara_col5"><input name="n2-yksikko" value="kpl"></td>
-                            <td class="tavara_col6"><input name="n2-A" type="checkbox"></td>
-                            <td class="tavara_col7"><input name="n2-T" type="checkbox"></td>
+                            <td class="tavara_col6"><input name="n2-H" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n2-K" type="checkbox"></td>
                         </tr>
                         <tr>
-                            <td class="tavara_col1"><input name="n3-koodi"></td>
-                            <td class="tavara_col2"><input name="n3-nimi"></td>
-                            <td class="tavara_col3"><input name="n3-hinta"></td>
+                            <td class="tavara_col1"><input name="n3-nimi"></td>
+                            <td class="tavara_col2"><input name="n3-tyyppitiedot"></td>
+                            <td class="tavara_col3"><input name="n3-valmistusvuosi"></td>
                             <td class="tavara_col4"><input name="n3-maara"></td>
-                            <td class="tavara_col5"><input name="n3-yksikko" value="kpl"></td>
-                            <td class="tavara_col6"><input name="n3-A" type="checkbox"></td>
-                            <td class="tavara_col7"><input name="n3-T" type="checkbox"></td>
+                            <td class="tavara_col6"><input name="n3-H" type="checkbox"></td>
+                            <td class="tavara_col7"><input name="n3-K" type="checkbox"></td>
                         </tr>
                         <tr>
                             <td colspan="6">
