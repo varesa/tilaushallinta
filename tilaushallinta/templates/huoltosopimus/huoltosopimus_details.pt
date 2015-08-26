@@ -77,9 +77,9 @@
                     <div id="table_title"><h2>Huollot</h2></div>
                     <div id="order_actionbuttons">
                         <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/ek'">Ensimmäinen huolto</button>
-                        <button>Uusi Keväthuolto</button>
-                        <button>Uusi Syyshuolto</button>
-                        <button>Uusi Tarkastuskäynti</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/ke'">Uusi Keväthuolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/sy'">Uusi Syyshuolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/tk'">Uusi Tarkastuskäynti</button>
                     </div>
                 </div>
                 <div class="panel">
