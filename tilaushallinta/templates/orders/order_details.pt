@@ -18,7 +18,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;Näytä/Piilota</a></h2></div>
+                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a></h2></div>
                     <div id="order_actionbuttons">
                         <button onclick="window.open('/tilaukset/${tilaus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         Tila:
