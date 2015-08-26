@@ -85,17 +85,17 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h3>Päiväraportit</h3>
-                <a name="paivaraportit"></a>
-                <table class="table" id="table_paivaraportit">
-                    <form method="post" action="#paivaraportit">
+                <a name="raportit"></a>
+                <table class="table" id="table_raportit">
+                    <form method="post" action="#raportit">
                         <?python
                             from operator import attrgetter
                         ?>
                         <tal tal:repeat="raportti sorted(tilaus.paivaraportit, key=attrgetter('date'), reverse=False)">
-                            <tr class="paivaraportit_dateline">
+                            <tr class="raportti_dateline">
                                 <td colspan="2">${raportti.date.strftime("%d.%m.%Y %H:%M")}</td>
                             </tr>
-                            <tr class="paivaraportit_detailsline">
+                            <tr class="raportti_detailsline">
                                 <td class="raportti_col1"><textarea name="${raportti.id}-teksti" rows="4">${raportti.teksti}</textarea></td>
                                 <td class="raportti_col2">
                                     <table>
