@@ -6,7 +6,7 @@
         <th>Tyyppi</th>
     </tr>
     <tr tal:repeat="huolto huollot"
-            onclick="window.location.href='/huoltosopimukset/' + ${huolto.huoltosopimus.id} + '/huollot/' + ${huolto.id}">
+            onclick="window.location.href='/huoltosopimukset/' + ${huolto.huoltosopimus.id} + '/huolto/' + ${huolto.id}">
         <td>${huolto.date.strftime("%y%m%d-%H%M")}</td>
         <td>${huolto.tila}</td>
         <td>${huolto.date.strftime("%d.%m.%y")}&nbsp;&nbsp;&nbsp;</td>
