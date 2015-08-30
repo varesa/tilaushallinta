@@ -7,6 +7,7 @@
 
 from pyramid.view import view_config
 from pyramid.response import Response
+from tilaushallinta.models.huolto import Huolto
 
 from tilaushallinta.models import DBSession
 from tilaushallinta.models import Tilaus
@@ -19,9 +20,17 @@ def view_huoltosopimus_setstate(request):
     newstate = request.POST['newstate']
 
     sopimus = DBSession.query(Huoltosopimus).filter_by(id=sopimus_id).first()
-    print(sopimus)
-    print(newstate)
     sopimus.tila = newstate
-    print(sopimus.tila)
+
+    return Response('OK')
+
+
+@view_config(route_name='huolto_setstate')
+def view_huoltos_setstate(request):
+    huolto_id = request.matchdict['id']
+    newstate = request.POST['newstate']
+
+    sopimus = DBSession.query(Huolto).filter_by(id=huolto_id).first()
+    sopimus.tila = newstate
 
     return Response('OK')
