@@ -152,3 +152,34 @@
 .asterisk {
     color: red;
 }
+
+
+.huolto-type .checkbox {
+    float: left;
+}
+
+.huolto-type > span {
+    float: left;
+    padding-top: 7px;
+}
+
+.huolto-type > label {
+    vertical-align: middle;
+}
+
+.huolto-type input {
+    float: left;
+}
+
+.huolto-type label {
+    float: left;
+}
+
+.huolto-type select {
+    float: left;
+    width: 180pt;
+}
+
+.input-group.date {
+    float: left;
+}

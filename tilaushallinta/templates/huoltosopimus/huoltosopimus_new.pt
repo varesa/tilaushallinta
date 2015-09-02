@@ -8,6 +8,9 @@
     <metal:main metal:fill-slot="title">Tee tilaus</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
+        <link rel="stylesheet" href="/static/libs/bootstrap-datepicker/css/bootstrap-datepicker3.css">
+        <script type="text/javascript" src="/static/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="/static/libs/bootstrap-datepicker/locales/bootstrap-datepicker.fi.min.js"></script>
         <link rel="stylesheet" href="/static/css/lomake.css"/>
         <link rel="stylesheet" href="/static/css/order_new.css"/>
         <script type="text/javascript" src="/static/js/form_input_validation.js"></script>
@@ -81,21 +84,30 @@
                         <table style="border: 1px;">
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="huolto_ke" id="huolto_ke"> <label for="huolto_ke">Keväthuolto</label> &nbsp;&nbsp;
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="huolto_ke"> Keväthuolto&nbsp;&nbsp;</label>
+                                    </div>
                                 </td>
                                 <td>
-                                    <input type="checkbox" name="huolto_sy" id="huolto_sy"> <label for="huolto_sy">Syyshuolto</label> &nbsp;&nbsp;
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="huolto_sy"> Syyshuolto&nbsp;&nbsp;</label>
+                                    </div>
                                 </td>
-                                <td class="col-border">
-                                    <input type="checkbox" name="huolto_tk" id="huolto_tk"> <label for="huolto_tk">Tarkastuskäynti</label>
-                                    <select name="huolto_tk_interval_months">
+                                <td class="col-border huolto-type form-horizontal">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="huolto_tk" id="huolto_tk">Tarkastuskäynti</label></div>
+                                    <span>&nbsp;&nbsp;</span>
+                                    <select class="form-control" name="huolto_tk_interval_months">
                                         <option value="0.5">Kerran kahdessa viikossa</option>
                                         <option value="1">Kerran kuukaudessa</option>
                                         <option value="2">Kerran kahdessa kuukaudessa</option>
                                         <option value="3">Kerran kolmessa kuukaudessa</option>
                                         <option value="6">Kerran kuudessa kuukaudessa</option>
                                     </select>
-                                    Alkaen: <input class="date" name="huolto_tk_starting_date">
+                                    <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" name="huolto_tk_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
