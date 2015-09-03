@@ -43,8 +43,15 @@ def view_huoltosopimus_submit(request):
         tyyppi_ke = 'huolto_ke' in request.POST.keys()
         tyyppi_sy = 'huolto_sy' in request.POST.keys()
         tyyppi_tk = 'huolto_tk' in request.POST.keys()
-        tk_interval_months = request.POST['huolto_tk_interval_months'] if tyyppi_tk else None
-        tk_starting_date = request.POST['huolto_tk_starting_date'] if tyyppi_tk else None
+        if tyyppi_tk:
+            tk_interval_months = request.POST['huolto_tk_interval_months']
+            try:
+                tk_starting_date = datetime.datetime.strptime(request.POST['huolto_tk_starting_date'], "%d.%m.%Y").date()
+            except ValueError:
+                return Response("Error parsing date")
+        else:
+            tk_interval_months = None
+            tk_starting_date = None
 
         tilaus = Huoltosopimus(date=datetime.datetime.now(),
                                tilaaja=tilaaja, kohde=kohde,
