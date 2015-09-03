@@ -73,6 +73,21 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-body">
+                <span>Tilatut huollot:</span>
+                <ul>
+                    <li tal:condition="huoltosopimus.tyyppi_ke"> Keväthuolto</li>
+                    <li tal:condition="huoltosopimus.tyyppi_sy"> Syyshuolto</li>
+                    <?python import datetime ?>
+                    <li tal:condition="huoltosopimus.tyyppi_tk"> Tarkastuskäynnit
+                            ${int(huoltosopimus.tk_interval_months) \
+                                    if int(huoltosopimus.tk_interval_months) == huoltosopimus.tk_interval_months \
+                                    else huoltosopimus.tk_interval_months} kk välein,
+                        alkaen ${datetime.datetime.strftime(huoltosopimus.tk_starting_date,"%d.%m.%Y")}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
                 <div id="table_top">
                     <div id="table_title"><h2>Huollot</h2></div>
                     <div id="order_actionbuttons">
