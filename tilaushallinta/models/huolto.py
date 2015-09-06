@@ -5,7 +5,7 @@
 #
 
 
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
 
 from .meta import Base
@@ -14,6 +14,20 @@ from .meta import Base
 class Huoltoraportti(Base):
     __versioned__ = {}
     __tablename__ = 'huoltorapotit'
+
+    id = Column(Integer, primary_key=True)
+    date = Column(DateTime)
+
+    huolto_id = Column(Integer, ForeignKey("huollot.id"))
+
+    teksti = Column(Text)
+
+    korjaustarve = Column(Boolean)
+
+
+class Lisatoimenpide(Base):
+    __versioned__ = {}
+    __tablename__ = 'lisatoimenpiteet'
 
     id = Column(Integer, primary_key=True)
     date = Column(DateTime)
@@ -51,6 +65,7 @@ class Huolto(Base):
     TYYPPI_TK = "tk"
 
     huoltoraportit = relationship("Huoltoraportti")
+    lisatoimenpiteet = relationship("Lisatoimenpide")
 
     laiteluettelo_id = Column(Integer, ForeignKey("laiteluettelot.id"))
     laiteluettelo = relationship("Laiteluettelo")

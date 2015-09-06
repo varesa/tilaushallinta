@@ -51,31 +51,64 @@
                             <tr class="raportti_detailsline">
                                 <td class="raportti_col1"><textarea name="${raportti.id}-teksti" rows="4">${raportti.teksti}</textarea></td>
                                 <td class="raportti_col2">
+                                    OK / NOT
+                                </td>
+                            </tr>
+                        </tal>
+                        <input type="hidden" name="data" value="huoltoraportti">
+                        <tr>
+                            <td>
+                                <input type="submit" name="save" value="Tallenna">
+                            </td>
+                            <td>
+                                <input type="submit" name="add" value="Lisää">
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3>Lisätoimenpiteet</h3>
+                <a name="raportit"></a>
+                <table class="table" id="table_raportit">
+                    <form method="post" action="#toimenpiteet">
+                        <?python
+                            from operator import attrgetter
+                        ?>
+                        <tal tal:repeat="toimenpide sorted(huolto.lisatoimenpiteet, key=attrgetter('date'), reverse=False)">
+                            <tr class="raportti_dateline">
+                                <td colspan="2">${toimenpide.date.strftime("%d.%m.%Y %H:%M")}</td>
+                            </tr>
+                            <tr class="raportti_detailsline">
+                                <td class="raportti_col1"><textarea name="${toimenpide.id}-teksti" rows="4">${toimenpide.teksti}</textarea></td>
+                                <td class="raportti_col2">
                                     <table>
                                         <tr>
                                             <td>Hintaluokka:&nbsp;</td>
                                             <td>
-                                                <select name="${raportti.id}-hintaluokka">
-                                                    <option selected="${'selected' if raportti.hintaluokka == 1 else None}">1</option>
-                                                    <option selected="${'selected' if raportti.hintaluokka == 2 else None}">2</option>
-                                                    <option selected="${'selected' if raportti.hintaluokka == 3 else None}">3</option>
+                                                <select name="${toimenpide.id}-hintaluokka">
+                                                    <option selected="${'selected' if toimenpide.hintaluokka == 1 else None}">1</option>
+                                                    <option selected="${'selected' if toimenpide.hintaluokka == 2 else None}">2</option>
+                                                    <option selected="${'selected' if toimenpide.hintaluokka == 3 else None}">3</option>
                                                 </select>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Tunnit:&nbsp;</td><td><input name="${raportti.id}-tunnit" value="${raportti.tunnit}"></td>
+                                            <td>Tunnit:&nbsp;</td><td><input name="${toimenpide.id}-tunnit" value="${toimenpide.tunnit}"></td>
                                         </tr>
                                         <tr>
-                                            <td>Matkat:&nbsp;</td><td><input name="${raportti.id}-matkat" value="${raportti.matkat}"></td>
+                                            <td>Matkat:&nbsp;</td><td><input name="${toimenpide.id}-matkat" value="${toimenpide.matkat}"></td>
                                         </tr>
                                         <tr>
-                                            <td>Muut:&nbsp;</td><td><input name="${raportti.id}-muut" value="${raportti.muut}"></td>
+                                            <td>Muut:&nbsp;</td><td><input name="${toimenpide.id}-muut" value="${toimenpide.muut}"></td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                         </tal>
-                        <input type="hidden" name="data" value="huoltoraportti">
+                        <input type="hidden" name="data" value="lisatoimenpiteet">
                         <tr>
                             <td>
                                 <input type="submit" name="save" value="Tallenna">
