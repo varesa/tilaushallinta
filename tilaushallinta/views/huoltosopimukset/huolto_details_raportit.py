@@ -6,9 +6,9 @@
 #
 
 import datetime
-from models import Huoltoraportti
+from tilaushallinta.models import Huoltoraportti
 from tilaushallinta import DBSession
-from views.utils import string_to_int_or_zero, string_to_float_or_zero
+from tilaushallinta.views.utils import string_to_int_or_zero, string_to_float_or_zero
 
 
 def add_huoltoraportti(huolto):

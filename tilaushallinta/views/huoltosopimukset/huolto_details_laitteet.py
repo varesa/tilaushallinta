@@ -6,9 +6,9 @@
 #
 
 import datetime
-from models import Laite
+from tilaushallinta.models import Laite
 from tilaushallinta import DBSession
-from views.utils import string_to_float_or_zero
+from tilaushallinta.views.utils import string_to_float_or_zero
 
 
 def remove_empty_laitteet(laitteet_tmp):
