@@ -11,9 +11,9 @@ from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession
 from tilaushallinta.models import Huolto
-from views.huoltosopimukset.huolto_details_laitteet import save_laitteet
-from views.huoltosopimukset.huolto_details_raportit import add_huoltoraportti, save_huoltoraportit
-from views.huoltosopimukset.huolto_details_toimenpiteet import add_lisatoimenpide, save_lisatoimenpiteet
+from tilaushallinta.views.huoltosopimukset.huolto_details_laitteet import save_laitteet
+from tilaushallinta.views.huoltosopimukset.huolto_details_raportit import add_huoltoraportti, save_huoltoraportit
+from tilaushallinta.views.huoltosopimukset.huolto_details_toimenpiteet import add_lisatoimenpide, save_lisatoimenpiteet
 
 
 def compare_sets(sets):
