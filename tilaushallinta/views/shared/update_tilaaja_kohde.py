@@ -20,7 +20,6 @@ def update_tilaaja(post_data):
     tilaaja.postinumero = post_data['tilaaja_postinumero']
     tilaaja.puhelin = post_data['tilaaja_puhelin']
     tilaaja.email = post_data['tilaaja_email']
-    tilaaja.slaskutus = post_data['tilaaja_slaskutus']
 
 
 def update_kohde(post_data):
@@ -35,3 +34,4 @@ def update_kohde(post_data):
     kohde.postinumero = post_data['kohde_postinumero']
     kohde.puhelin = post_data['kohde_puhelin']
     kohde.email = post_data['kohde_email']
+    kohde.slaskutus = post_data['kohde_slaskutus']

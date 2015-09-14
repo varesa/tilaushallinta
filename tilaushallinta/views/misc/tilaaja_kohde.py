@@ -32,7 +32,7 @@ def update_object(prefix, object, data):
     object.postinumero = data[prefix + '_postinumero']
     object.puhelin = data[prefix + '_puhelin']
     object.email = data[prefix + '_email']
-    if prefix == 'tilaaja':
+    if prefix == 'kohde':
         object.slaskutus = data[prefix + '_slaskutus']
 
 
@@ -59,8 +59,7 @@ def get_tilaaja_from_r(request):
                           postitoimipaikka=request.POST['tilaaja_postitoimipaikka'],
                           postinumero=request.POST['tilaaja_postinumero'],
                           puhelin=request.POST['tilaaja_puhelin'],
-                          email=request.POST['tilaaja_email'],
-                          slaskutus=request.POST['tilaaja_slaskutus'])
+                          email=request.POST['tilaaja_email'])
         DBSession.add(tilaaja)
     return tilaaja
 
@@ -88,6 +87,7 @@ def get_kohde_from_r(request):
                       postitoimipaikka=request.POST['kohde_postitoimipaikka'],
                       postinumero=request.POST['kohde_postinumero'],
                       puhelin=request.POST['kohde_puhelin'],
-                      email=request.POST['kohde_email'])
+                      email=request.POST['kohde_email'],
+                      slaskutus=request.POST['kohde__slaskutus'])
         DBSession.add(kohde)
     return kohde

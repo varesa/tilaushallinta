@@ -56,7 +56,8 @@
                                     metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
                         </tr>
                         <tr>
-                            <td>Sähköiset laskutustiedot:<textarea name="tilaaja_slaskutus" readonly>${huoltosopimus.tilaaja.slaskutus}</textarea></td>
+                            <td></td>
+                            <td>Sähköiset laskutustiedot:<textarea name="kohde_slaskutus" readonly>${huoltosopimus.kohde.slaskutus}</textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2">

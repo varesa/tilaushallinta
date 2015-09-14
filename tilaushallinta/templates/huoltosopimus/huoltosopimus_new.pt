@@ -71,7 +71,8 @@
                     <td class="table_col_slim"><metal:main metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
                 </tr>
                 <tr>
-                    <td>Sähköiset laskutustiedot:<br><textarea name="tilaaja_slaskutus" tabindex="9"></textarea></td>
+                    <td></td>
+                    <td>Sähköiset laskutustiedot:<br><textarea name="kohde_slaskutus" tabindex="9"></textarea></td>
                     <td><!--<input type="checkbox" id="checkbox_tiedot_samat" disabled> <label for="checkbox_tiedot_samat">Samat kuin laskutustiedot</label>--></td>
                 </tr>
                 <tr>
