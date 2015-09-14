@@ -3,7 +3,7 @@
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 #
-
+from _ast import In
 
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Float
 from sqlalchemy.orm import relationship
@@ -23,7 +23,7 @@ class Laite(Base):
     nimi = Column(Text)
     tyyppitiedot = Column(Text)
 
-    valmistusvuosi = Column(Float)
+    valmistusvuosi = Column(Integer)
     maara = Column(Float)
 
     tyyppi = Column(Text)
