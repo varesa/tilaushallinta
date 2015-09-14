@@ -33,7 +33,11 @@ class Huoltosopimus(Base):
     muut_yhteysh = Column(Text)
 
     tyyppi_ke = Column(Boolean)
+    ke_starting_date = Column(Date)
+
     tyyppi_sy = Column(Boolean)
+    sy_starting_date = Column(Date)
+
     tyyppi_tk = Column(Boolean)
     tk_interval_months = Column(Float)
     tk_starting_date = Column(Date)
