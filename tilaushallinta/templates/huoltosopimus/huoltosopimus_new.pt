@@ -82,21 +82,41 @@
                 <tr>
                     <td class="" colspan="2">
                         Valitut huollot:<br>
-                        <table style="border: 1px;">
+
+                        <table>
                             <tr>
-                                <td>
+                                <td class="huolto-type form-horizontal">
                                     <div class="checkbox">
                                         <label><input type="checkbox" name="huolto_ke"> Keväthuolto&nbsp;&nbsp;</label>
                                     </div>
+                                    <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" name="huolto_ke_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
                                 </td>
-                                <td>
+                            </tr>
+                            <tr>
+                                <td class="huolto-type form-horizontal">
                                     <div class="checkbox">
                                         <label><input type="checkbox" name="huolto_sy"> Syyshuolto&nbsp;&nbsp;</label>
                                     </div>
+                                    <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;&nbsp;</span>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" name="huolto_sy_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
                                 </td>
-                                <td class="col-border huolto-type form-horizontal">
+                            </tr>
+                            <tr>
+                                <td class="huolto-type form-horizontal">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="huolto_tk" id="huolto_tk">Tarkastuskäynti</label></div>
+                                        <label><input type="checkbox" name="huolto_tk" id="huolto_tk">Tarkastuskäynti</label>
+                                    </div>
+
+                                    <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" name="huolto_tk_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    </div>
+
                                     <span>&nbsp;&nbsp;</span>
                                     <select class="form-control" name="huolto_tk_interval_months">
                                         <option value="0.5">Kerran kahdessa viikossa</option>
@@ -105,13 +125,12 @@
                                         <option value="3">Kerran kolmessa kuukaudessa</option>
                                         <option value="6">Kerran kuudessa kuukaudessa</option>
                                     </select>
-                                    <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control" name="huolto_tk_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                                    </div>
                                 </td>
                             </tr>
                         </table>
+
+
+
 
                     </td>
                 </tr>

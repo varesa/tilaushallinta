@@ -41,7 +41,23 @@ def view_huoltosopimus_submit(request):
         kohde = get_kohde_from_r(request)
 
         tyyppi_ke = 'huolto_ke' in request.POST.keys()
+        if tyyppi_ke:
+            try:
+                ke_starting_date = datetime.datetime.strptime(request.POST['huolto_ke_starting_date'], "%d.%m.%Y").date()
+            except ValueError:
+                return Response("Error parsing date")
+        else:
+            ke_starting_date = None
+
         tyyppi_sy = 'huolto_sy' in request.POST.keys()
+        if tyyppi_sy:
+            try:
+                sy_starting_date = datetime.datetime.strptime(request.POST['huolto_tk_starting_date'], "%d.%m.%Y").date()
+            except ValueError:
+                return Response("Error parsing date")
+        else:
+            sy_starting_date = None
+
         tyyppi_tk = 'huolto_tk' in request.POST.keys()
         if tyyppi_tk:
             tk_interval_months = request.POST['huolto_tk_interval_months']
@@ -56,8 +72,10 @@ def view_huoltosopimus_submit(request):
         tilaus = Huoltosopimus(date=datetime.datetime.now(),
                                tilaaja=tilaaja, kohde=kohde,
                                muut_yhteysh=request.POST['muut_yhteysh'],
-                               tyyppi_ke=tyyppi_ke, tyyppi_sy=tyyppi_sy, tyyppi_tk=tyyppi_tk,
-                               tk_interval_months=tk_interval_months, tk_starting_date=tk_starting_date
+                               tyyppi_ke=tyyppi_ke, ke_starting_date=ke_starting_date,
+                               tyyppi_sy=tyyppi_sy, sy_starting_date=sy_starting_date,
+                               tyyppi_tk=tyyppi_tk, tk_starting_date=tk_starting_date,
+                               tk_interval_months=tk_interval_months,
                                )
         DBSession.add(tilaus)
 
