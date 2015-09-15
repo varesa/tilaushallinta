@@ -3,9 +3,8 @@
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 #
-from _ast import In
 
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Float
+from sqlalchemy import Column, Integer, Text, DateTime, ForeignKey, Float
 from sqlalchemy.orm import relationship
 
 from .meta import Base
