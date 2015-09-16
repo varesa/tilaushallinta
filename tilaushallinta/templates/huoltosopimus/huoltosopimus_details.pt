@@ -10,6 +10,8 @@
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
         <link rel="stylesheet" type="text/css" href="/static/css/order_details.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/order_list.css">
+
         <script type="text/javascript" src="/static/js/order_state.js"></script>
         <script type="text/javascript" src="/static/js/order_edit_tilaaja_kohde.js"></script>
     </metal:main>
@@ -99,7 +101,7 @@
                     </div>
                 </div>
                 <div class="panel">
-                    <table metal:use-macro="load: ../snippets/huollot_table.pt" tal:define="huollot huoltosopimus.huollot"></table>
+                    <table metal:use-macro="load: ../snippets/huoltosopimus_huollot_table.pt" tal:define="huollot huoltosopimus.huollot"></table>
                 </div>
             </div>
         </div>
