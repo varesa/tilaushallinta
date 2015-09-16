@@ -51,7 +51,9 @@
                             <tr class="raportti_detailsline">
                                 <td class="raportti_col1"><textarea name="${raportti.id}-teksti" rows="4">${raportti.teksti}</textarea></td>
                                 <td class="raportti_col2">
-                                    OK / NOT
+                                    <div class="checkbox raportti_kt">
+                                        <label><input type="checkbox" name="${raportti.id}-kt" checked="${'checked' if raportti.korjaustarve else None}"> KT</label>
+                                    </div>
                                 </td>
                             </tr>
                         </tal>
