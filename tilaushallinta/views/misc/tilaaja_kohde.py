@@ -88,6 +88,6 @@ def get_kohde_from_r(request):
                       postinumero=request.POST['kohde_postinumero'],
                       puhelin=request.POST['kohde_puhelin'],
                       email=request.POST['kohde_email'],
-                      slaskutus=request.POST['kohde__slaskutus'])
+                      slaskutus=request.POST['kohde_slaskutus'])
         DBSession.add(kohde)
     return kohde
