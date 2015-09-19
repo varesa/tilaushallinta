@@ -52,7 +52,7 @@ def view_huoltosopimus_submit(request):
         tyyppi_sy = 'huolto_sy' in request.POST.keys()
         if tyyppi_sy:
             try:
-                sy_starting_date = datetime.datetime.strptime(request.POST['huolto_tk_starting_date'], "%d.%m.%Y").date()
+                sy_starting_date = datetime.datetime.strptime(request.POST['huolto_sy_starting_date'], "%d.%m.%Y").date()
             except ValueError:
                 return Response("Error parsing date")
         else:
