@@ -24,7 +24,7 @@ def compare_sets(sets):
     return difference
 
 
-@view_config(route_name='huolto_details', renderer='../../templates/huoltosopimus/huolto_details.pt')
+@view_config(route_name='huolto_details', renderer='tilaushallinta.templates:huoltosopimus/huolto_details.pt')
 def view_huolto_details(request):
     huolto_id = request.matchdict['huolto']
     huolto = DBSession.query(Huolto).filter_by(id=huolto_id).first()

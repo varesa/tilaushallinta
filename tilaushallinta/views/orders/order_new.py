@@ -15,7 +15,7 @@ from tilaushallinta.models import Tilaus
 from tilaushallinta.views.misc.tilaaja_kohde import get_tilaaja_from_r, get_kohde_from_r
 
 
-@view_config(route_name='order_new', renderer='../../templates/orders/order_new.pt')
+@view_config(route_name='order_new', renderer='tilaushallinta.templates:orders/order_new.pt')
 def view_order_new(request):
     """
     View method that shows the ordering form

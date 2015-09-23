@@ -10,7 +10,7 @@ from tilaushallinta.models import DBSession
 from tilaushallinta.models.huoltosopimus import Huoltosopimus
 
 
-@view_config(route_name='huoltosopimus_list', renderer='../../templates/huoltosopimus/huoltosopimus_list.pt')
+@view_config(route_name='huoltosopimus_list', renderer='tilaushallinta.templates:huoltosopimus/huoltosopimus_list.pt')
 def view_huoltosopimukset_list(request):
     huoltosopimukset = DBSession.query(Huoltosopimus).order_by(Huoltosopimus.date.desc()).all()
     return {"huoltosopimukset": huoltosopimukset}

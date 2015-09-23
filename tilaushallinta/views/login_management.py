@@ -14,8 +14,8 @@ err_no_password = "Anna salasana\n"
 err_invalid_login = "Virheellinen sähköposti/salasana\n"
 
 
-@forbidden_view_config(renderer='../templates/login.pt')
-@view_config(route_name='login', renderer='../templates/login.pt', permission='open')
+@forbidden_view_config(renderer='tilaushallinta.templates:login.pt')
+@view_config(route_name='login', renderer='tilaushallinta.templates:login.pt', permission='open')
 def view_login(request):
     warning = ""
     if request.matched_route.path != "/login":
