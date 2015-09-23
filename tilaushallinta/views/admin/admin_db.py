@@ -13,7 +13,7 @@ from sqlalchemy.exc import NoSuchTableError
 from tilaushallinta.models import Base, DBSession
 
 
-@view_config(route_name='admin_db', renderer='../../templates/admin/admin_db_database.pt')
+@view_config(route_name='admin_db', renderer='tilaushallinta.templates:admin/admin_db_database.pt')
 def view_admin_db(request):
     models = []
     for table in Base.metadata.tables.keys():
@@ -22,7 +22,7 @@ def view_admin_db(request):
     return {'models': models}
 
 
-@view_config(route_name='admin_db_model', renderer='../../templates/admin/admin_db_model.pt')
+@view_config(route_name='admin_db_model', renderer='tilaushallinta.templates:admin/admin_db_model.pt')
 def view_admin_db_model(request):
     try:
         model = request.matchdict['name']
@@ -37,7 +37,7 @@ def view_admin_db_model(request):
         return Response("Virheellinen kysely")
 
 
-@view_config(route_name='admin_db_row', renderer='../../templates/admin/admin_db_row.pt')
+@view_config(route_name='admin_db_row', renderer='tilaushallinta.templates:admin/admin_db_row.pt')
 def view_admin_db_row(request):
     try:
         model = request.matchdict['name']

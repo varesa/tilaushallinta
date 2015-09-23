@@ -28,7 +28,7 @@ def change_password(user, newpassword):
     return msg_changed
 
 
-@view_config(route_name='user_profile', renderer='../templates/user_profile.pt')
+@view_config(route_name='user_profile', renderer='tilaushallinta.templates:user_profile.pt')
 def view_admin_users(request):
     email = authenticated_userid(request)
     user = DBSession.query(User).filter_by(email=email).first()

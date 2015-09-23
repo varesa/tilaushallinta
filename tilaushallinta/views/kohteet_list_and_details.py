@@ -10,13 +10,13 @@ from ..models import DBSession
 from ..models import Kohde
 
 
-@view_config(route_name='kohteet_list', renderer='../templates/kohteet/kohde_list.pt')
+@view_config(route_name='kohteet_list', renderer='tilaushallinta.templates:kohteet/kohde_list.pt')
 def view_kohteet_list(request):
     kohteet = DBSession.query(Kohde).all()
     return {"kohteet": kohteet}
 
 
-@view_config(route_name='kohteet_details', renderer='../templates/kohteet/kohde_details.pt')
+@view_config(route_name='kohteet_details', renderer='tilaushallinta.templates:kohteet/kohde_details.pt')
 def view_kohde_details(request):
     id = request.matchdict['id']
     kohde = DBSession.query(Kohde).filter_by(id=id).first()

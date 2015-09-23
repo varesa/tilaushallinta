@@ -172,7 +172,7 @@ def save_tavarat(request, tilaus):
                 tavara_modify_from_dict(tavara_id, tavara_dict)
                     
 
-@view_config(route_name='order_details', renderer='../../templates/orders/order_details.pt')
+@view_config(route_name='order_details', renderer='tilaushallinta.templates:orders/order_details.pt')
 def view_order_details(request):
     order_id = request.matchdict['id']
     tilaus = DBSession.query(Tilaus).filter_by(id=order_id).first()

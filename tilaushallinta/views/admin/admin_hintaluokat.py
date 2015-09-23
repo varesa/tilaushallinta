@@ -10,7 +10,7 @@ from tilaushallinta.models import DBSession, Hintaluokka
 
 from tilaushallinta.views.utils import string_to_float_or_zero
 
-@view_config(route_name='admin_hintaluokat', renderer='../../templates/admin/admin_hintaluokat.pt')
+@view_config(route_name='admin_hintaluokat', renderer='tilaushallinta.templates:admin/admin_hintaluokat.pt')
 def view_admin_hintaluokat(request):
     if "data" in request.POST.keys():
         for i in (1, 2, 3):

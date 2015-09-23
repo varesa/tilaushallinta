@@ -24,7 +24,7 @@ def update_perustiedot(request):
     sopimus.muut_yhteysh = request.POST['muut_yhteysh']
 
 
-@view_config(route_name='huoltosopimus_details', renderer='../../templates/huoltosopimus/huoltosopimus_details.pt')
+@view_config(route_name='huoltosopimus_details', renderer='tilaushallinta.templates:huoltosopimus/huoltosopimus_details.pt')
 def view_huoltosopimus_details(request):
     sopimus_id = request.matchdict['sopimus']
     sopimus = DBSession.query(Huoltosopimus).filter_by(id=sopimus_id).first()
