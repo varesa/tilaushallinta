@@ -24,3 +24,7 @@
 .lisatoimenpide>.veloitus {
     float: right;
 }
+
+.money_total {
+    text-align: right;
+}

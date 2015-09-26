@@ -64,6 +64,9 @@ class Huolto(Base):
     TYYPPI_SY = "sy"
     TYYPPI_TK = "tk"
 
+    hintaluokka_id = Column(Integer, ForeignKey("huoltohintaluokat.hintaluokka"))
+    hintaluokka = relationship("HuoltoHintaluokka", backref="huollot")
+
     huoltoraportit = relationship("Huoltoraportti")
     lisatoimenpiteet = relationship("Lisatoimenpide")
 

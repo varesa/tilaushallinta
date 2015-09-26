@@ -27,6 +27,7 @@ from tilaushallinta.models import (
     Hintaluokka,
     Tavara,
     Base,
+    Huolto
     )
 
 from tilaushallinta.models.hintaluokka import HuoltoHintaluokka, LisatoimenpideHintaluokka
@@ -81,3 +82,7 @@ def main(argv=sys.argv):
         for tavara in DBSession.query(Tavara).all():
             if not tavara.yksikko or not len(tavara.yksikko):
                 tavara.yksikko = "kpl"
+        
+        for huolto in DBSession.query(Huolto).all():
+            if not huolto.hintaluokka:
+                huolto.hintaluokka = DBSession.query(HuoltoHintaluokka).filter_by(hintaluokka=1).first()

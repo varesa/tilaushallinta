@@ -10,7 +10,7 @@ import datetime
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
-from tilaushallinta.models import DBSession, Huoltosopimus, Huolto
+from tilaushallinta.models import DBSession, Huoltosopimus, Huolto, HuoltoHintaluokka
 from tilaushallinta.models.laiteluettelo import Laiteluettelo, Laite
 
 
@@ -31,8 +31,10 @@ def view_huolto_new(request):
                                                 valmistusvuosi=laite.valmistusvuosi, maara=laite.maara,
                                                 tyyppi=laite.tyyppi))
 
+    hintaluokka = DBSession.query(HuoltoHintaluokka).filter_by(hintaluokka=1).first()
+
     huolto = Huolto(date=datetime.datetime.now(),
-                    tila=Huolto.TILA_UUSI, tyyppi=huolto_tyyppi,
+                    tila=Huolto.TILA_UUSI, tyyppi=huolto_tyyppi, hintaluokka=hintaluokka,
                     huoltosopimus=sopimus, laiteluettelo=laiteluettelo)
     huolto_id = DBSession.query(Huolto).order_by(Huolto.id.desc()).first().id
     print(huolto.id)

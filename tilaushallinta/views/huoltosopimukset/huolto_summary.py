@@ -8,19 +8,7 @@
 from pyramid.view import view_config
 from models.hintaluokka import LisatoimenpideHintaluokka
 
-from tilaushallinta.models import DBSession, Huolto, Hintaluokka
-
-
-def get_quantities(raportit, hintaluokka):
-    quantities = False
-    for raportti in raportit:
-        if raportti.hintaluokka == hintaluokka:
-            if not quantities:
-                quantities = {'tunnit': 0.0, 'matkat': 0.0, 'muut': 0.0}
-            quantities['tunnit'] += raportti.tunnit
-            quantities['matkat'] += raportti.matkat
-            quantities['muut']   += raportti.muut
-    return quantities
+from tilaushallinta.models import DBSession, Huolto, HuoltoHintaluokka
 
 
 def get_toimenpiteet_total(raportit):
@@ -51,17 +39,18 @@ def view_huolto_summary(request):
         date_start = sorted(huolto.huoltoraportit, key=lambda raportti: raportti.date)[0].date
         date_end = sorted(huolto.huoltoraportit, key=lambda raportti: raportti.date, reverse=True)[0].date
 
-    """luokka1 = get_quantities(huolto.paivaraportit, 1)
-    luokka2 = get_quantities(huolto.paivaraportit, 2)
-    luokka3 = get_quantities(huolto.paivaraportit, 3)"""
+    if huolto.tyyppi == huolto.TYYPPI_EK:
+        huolto_total = huolto.hintaluokka.ek
+    elif huolto.tyyppi == huolto.TYYPPI_KE:
+        huolto_total = huolto.hintaluokka.ke
+    elif huolto.tyyppi == huolto.TYYPPI_SY:
+        huolto_total = huolto.hintaluokka.sy
+    elif huolto.tyyppi == huolto.TYYPPI_TK:
+        huolto_total = huolto.hintaluokka.tk
 
     toimenpiteet_total = get_toimenpiteet_total(huolto.lisatoimenpiteet)
 
-    """total_tavarat = 0.0
-    for tavara in huolto.tavarat:
-        total_tavarat += tavara.maara * tavara.hinta
-
-    grand_total = sum(hinnat1.values()) + sum(hinnat2.values()) + sum(hinnat3.values()) + total_tavarat"""
+    grand_total = huolto_total + toimenpiteet_total
 
     hintaluokat = DBSession.query(LisatoimenpideHintaluokka).all()
     hl_keyed = {}
@@ -69,9 +58,7 @@ def view_huolto_summary(request):
         hl_keyed[hl.hintaluokka] = hl
 
     return {
-            'huolto': huolto, 'date_start': date_start, 'date_end': date_end,
-            'hintaluokat': hl_keyed, 'toimenpiteet_total': toimenpiteet_total
-            #'luokka1': luokka1, 'luokka2': luokka2, 'luokka3': luokka3,
-            #'hinnat1': hinnat1, 'hinnat2': hinnat2, 'hinnat3': hinnat3,
-            #'hinta_tavarat': total_tavarat, 'grand_total': grand_total
-           }
+        'huolto': huolto, 'date_start': date_start, 'date_end': date_end, 'hintaluokat': hl_keyed,
+        'toimenpiteet_total': toimenpiteet_total, 'huolto_total': huolto_total,
+        'grand_total': grand_total
+        }

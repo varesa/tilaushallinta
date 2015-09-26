@@ -68,9 +68,19 @@
                         </table>
                 </tr>
                 <tr>
-                    <td>
-
-                    </td>
+                    <td colspan="3"><hr></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>Huolto - EK<span style="float: right;">${huolto_total} €</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>Lisätoimenpiteet<span style="float: right;">${toimenpiteet_total} €</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td><b>Loppusumma (ALV 0%)</b><b style="float: right;">${grand_total} €</b></td>
                 </tr>
 
                 <tr tal:condition="len(huolto.huoltoraportit)">
@@ -124,7 +134,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" style="text-align: right;">Lisatoimenpiteiden summa (ALV 0%): ${toimenpiteet_total}</td>
+                    <td colspan="3" class="money_total">Lisatoimenpiteet (ALV 0%): ${toimenpiteet_total}</td>
                 </tr>
 
             </table>
