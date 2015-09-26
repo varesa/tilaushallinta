@@ -17,7 +17,7 @@ from .vkk import Vesikalustekartoitus, VKK_Asunto, VKK_Huone, VKK_Kaluste
 from .tilaaja import Tilaaja
 from .tilaus import Tilaus, Tavara, Paivaraportti
 from .users import User
-from .hintaluokka import Hintaluokka
+from .hintaluokka import Hintaluokka, HuoltoHintaluokka, LisatoimenpideHintaluokka
 from .huoltosopimus import Huoltosopimus
 from .huolto import Huolto, Huoltoraportti, Lisatoimenpide
 from .laiteluettelo import Laite, Laiteluettelo

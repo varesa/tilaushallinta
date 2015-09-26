@@ -31,10 +31,11 @@ def configure_routes(config):
 
     config.add_route('huoltosopimus_list', '/huoltosopimukset')
     config.add_route('huoltosopimus_details', '/huoltosopimukset/{sopimus}')
-    config.add_route('huolto_new', '/huoltosopimukset/{sopimus}/huolto/uusi/{tyyppi}')
-    config.add_route('huolto_details', '/huoltosopimukset/{sopimus}/huolto/{huolto}')
-    #config.add_route('huoltosopimus_summary', '/huoltosopimukset/{id}/yhteenveto')
 
+    config.add_route('huolto_new', '/huoltosopimukset/{sopimus}/huolto/uusi/{tyyppi}')
+
+    config.add_route('huolto_details', '/huoltosopimukset/{sopimus}/huolto/{huolto}')
+    config.add_route('huolto_summary', '/huoltosopimukset/{sopimus}/huolto/{huolto}/yhteenveto')
 
     config.add_route('huoltosopimus_setstate', '/huoltosopimukset/{id}/setstate')
     config.add_route('huolto_setstate', '/huoltosopimukset/{sopimus}/huolto/{id}/setstate')

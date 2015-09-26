@@ -8,7 +8,7 @@ from pyramid.events import subscriber
 from pyramid.events import BeforeRender
 from pyramid.security import authenticated_userid
 
-from ..models import DBSession, User
+from tilaushallinta.models import DBSession, User
 
 
 @subscriber(BeforeRender)

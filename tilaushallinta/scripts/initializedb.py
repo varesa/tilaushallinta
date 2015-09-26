@@ -1,5 +1,6 @@
 #
-# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# This source code is licensed under the terms of the
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 #
@@ -20,13 +21,15 @@ from pyramid.paster import (
 
 from pyramid.scripts.common import parse_vars
 
-from ..models import (
+from tilaushallinta.models import (
     DBSession,
     User,
     Hintaluokka,
     Tavara,
     Base,
     )
+
+from tilaushallinta.models.hintaluokka import HuoltoHintaluokka, LisatoimenpideHintaluokka
 
 
 def usage(argv):
@@ -60,9 +63,19 @@ def main(argv=sys.argv):
 
         # Create base rates if they don't exist
         if DBSession.query(Hintaluokka).count() == 0:
-            DBSession.add(Hintaluokka(hintaluokka=1, tunnit=1, matkat=1))
-            DBSession.add(Hintaluokka(hintaluokka=2, tunnit=2, matkat=2))
-            DBSession.add(Hintaluokka(hintaluokka=3, tunnit=3, matkat=3))
+            DBSession.add(Hintaluokka(hintaluokka=1, tunnit=1, matkat=1, muut=1))
+            DBSession.add(Hintaluokka(hintaluokka=2, tunnit=2, matkat=2, muut=2))
+            DBSession.add(Hintaluokka(hintaluokka=3, tunnit=3, matkat=3, muut=3))
+
+        if DBSession.query(HuoltoHintaluokka).count() == 0:
+            DBSession.add(HuoltoHintaluokka(hintaluokka=1, ek=1, ke=1, sy=1, tk=1))
+            DBSession.add(HuoltoHintaluokka(hintaluokka=2, ek=2, ke=2, sy=2, tk=2))
+            DBSession.add(HuoltoHintaluokka(hintaluokka=3, ek=3, ke=3, sy=3, tk=3))
+
+        if DBSession.query(LisatoimenpideHintaluokka).count() == 0:
+            DBSession.add(LisatoimenpideHintaluokka(hintaluokka=1, tunnit=1, matkat=1, muut=1))
+            DBSession.add(LisatoimenpideHintaluokka(hintaluokka=2, tunnit=2, matkat=2, muut=2))
+            DBSession.add(LisatoimenpideHintaluokka(hintaluokka=3, tunnit=3, matkat=3, muut=3))
 
         # Set units for items that do not have them
         for tavara in DBSession.query(Tavara).all():

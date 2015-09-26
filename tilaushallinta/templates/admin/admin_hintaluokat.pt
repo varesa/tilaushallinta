@@ -1,5 +1,6 @@
 <!--!
-# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# This source code is licensed under the terms of the
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 -->
@@ -11,9 +12,9 @@
     </metal:main>
     <div metal:fill-slot="admin-content">
         <div class="panel panel-default">
-            <div class="panel-heading">Hintaluokat</div>
+            <div class="panel-heading">Tilaukset</div>
             <form method="POST">
-                <input type="hidden" name="data" value="yes">
+                <input type="hidden" name="data" value="tilaus">
                 <table class="table table-hover">
                     <tr>
                         <th></th>
@@ -23,21 +24,105 @@
                     </tr>
                     <tr>
                         <td>Tunnit (€/h)&nbsp;&nbsp;</td>
-                        <td><input name="1_tunnit" value="${hintaluokat[1].tunnit}">&nbsp;&nbsp;</td>
-                        <td><input name="2_tunnit" value="${hintaluokat[2].tunnit}">&nbsp;&nbsp;</td>
-                        <td><input name="3_tunnit" value="${hintaluokat[3].tunnit}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_1_tunnit" value="${tilausluokat[1].tunnit}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_2_tunnit" value="${tilausluokat[2].tunnit}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_3_tunnit" value="${tilausluokat[3].tunnit}">&nbsp;&nbsp;</td>
                     </tr>
                     <tr>
                         <td>Matkat (€/käynti)&nbsp;&nbsp;</td>
-                        <td><input name="1_matkat" value="${hintaluokat[1].matkat}">&nbsp;&nbsp;</td>
-                        <td><input name="2_matkat" value="${hintaluokat[2].matkat}">&nbsp;&nbsp;</td>
-                        <td><input name="3_matkat" value="${hintaluokat[3].matkat}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_1_matkat" value="${tilausluokat[1].matkat}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_2_matkat" value="${tilausluokat[2].matkat}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_3_matkat" value="${tilausluokat[3].matkat}">&nbsp;&nbsp;</td>
                     </tr>
                     <tr>
                         <td>Muut (€/km)&nbsp;&nbsp;</td>
-                        <td><input name="1_muut" value="${hintaluokat[1].muut}">&nbsp;&nbsp;</td>
-                        <td><input name="2_muut" value="${hintaluokat[2].muut}">&nbsp;&nbsp;</td>
-                        <td><input name="3_muut" value="${hintaluokat[3].muut}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_1_muut" value="${tilausluokat[1].muut}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_2_muut" value="${tilausluokat[2].muut}">&nbsp;&nbsp;</td>
+                        <td><input name="tilaus_3_muut" value="${tilausluokat[3].muut}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="submit" value="Tallenna"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Huollot</div>
+            <form method="POST">
+                <input type="hidden" name="data" value="huolto">
+                <table class="table table-hover">
+                    <tr>
+                        <th></th>
+                        <th class="text_centered">&nbsp;&nbsp;1&nbsp;&nbsp;</th>
+                        <th class="text_centered">&nbsp;&nbsp;2&nbsp;&nbsp;</th>
+                        <th class="text_centered">&nbsp;&nbsp;3&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td>EK (€)&nbsp;&nbsp;</td>
+                        <td><input name="huolto_1_ek" value="${huoltoluokat[1].ek}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_2_ek" value="${huoltoluokat[2].ek}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_3_ek" value="${huoltoluokat[3].ek}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>KE (€)&nbsp;&nbsp;</td>
+                        <td><input name="huolto_1_ke" value="${huoltoluokat[1].ke}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_2_ke" value="${huoltoluokat[2].ke}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_3_ke" value="${huoltoluokat[3].ke}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>SY (€)&nbsp;&nbsp;</td>
+                        <td><input name="huolto_1_sy" value="${huoltoluokat[1].sy}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_2_sy" value="${huoltoluokat[2].sy}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_3_sy" value="${huoltoluokat[3].sy}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>TK (€)&nbsp;&nbsp;</td>
+                        <td><input name="huolto_1_tk" value="${huoltoluokat[1].tk}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_2_tk" value="${huoltoluokat[2].tk}">&nbsp;&nbsp;</td>
+                        <td><input name="huolto_3_tk" value="${huoltoluokat[3].tk}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="submit" value="Tallenna"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Huollon lisätoimenpiteet</div>
+            <form method="POST">
+                <input type="hidden" name="data" value="toimenpide">
+                <table class="table table-hover">
+                    <tr>
+                        <th></th>
+                        <th class="text_centered">&nbsp;&nbsp;1&nbsp;&nbsp;</th>
+                        <th class="text_centered">&nbsp;&nbsp;2&nbsp;&nbsp;</th>
+                        <th class="text_centered">&nbsp;&nbsp;3&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr>
+                        <td>Tunnit (€/h)&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_1_tunnit" value="${toimenpideluokat[1].tunnit}">&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_2_tunnit" value="${toimenpideluokat[2].tunnit}">&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_3_tunnit" value="${toimenpideluokat[3].tunnit}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Matkat (€/käynti)&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_1_matkat" value="${toimenpideluokat[1].matkat}">&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_2_matkat" value="${toimenpideluokat[2].matkat}">&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_3_matkat" value="${toimenpideluokat[3].matkat}">&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Muut (€/km)&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_1_muut" value="${toimenpideluokat[1].muut}">&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_2_muut" value="${toimenpideluokat[2].muut}">&nbsp;&nbsp;</td>
+                        <td><input name="toimenpide_3_muut" value="${toimenpideluokat[3].muut}">&nbsp;&nbsp;</td>
                     </tr>
                     <tr>
                         <td></td>

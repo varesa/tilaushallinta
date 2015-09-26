@@ -17,3 +17,24 @@ class Hintaluokka(Base):
     tunnit = Column(Float)
     matkat = Column(Float)
     muut = Column(Float)
+
+
+class HuoltoHintaluokka(Base):
+    __tablename__ = 'huoltohintaluokat'
+
+    hintaluokka = Column(Integer, primary_key=True)
+
+    ek = Column(Float)
+    ke = Column(Float)
+    sy = Column(Float)
+    tk = Column(Float)
+
+
+class LisatoimenpideHintaluokka(Base):
+    __tablename__ = 'lisatoimenpidehintaluokat'
+
+    hintaluokka = Column(Integer, primary_key=True)
+
+    tunnit = Column(Float)
+    matkat = Column(Float)
+    muut = Column(Float)
