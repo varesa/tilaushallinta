@@ -1,15 +1,16 @@
 #
-# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# This source code is licensed under the terms of the
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 #
 
 from pyramid.view import view_config
-from models.hintaluokka import HuoltoHintaluokka, LisatoimenpideHintaluokka
 
-from tilaushallinta.models import DBSession, Hintaluokka
+from tilaushallinta.models import DBSession, Hintaluokka, HuoltoHintaluokka, LisatoimenpideHintaluokka
 
 from tilaushallinta.views.utils import string_to_float_or_zero
+
 
 @view_config(route_name='admin_hintaluokat', renderer='tilaushallinta.templates:admin/admin_hintaluokat.pt')
 def view_admin_hintaluokat(request):
@@ -51,4 +52,8 @@ def view_admin_hintaluokat(request):
     for luokka in toimenpideluokat:
         toimenpideluokat_dict[luokka.hintaluokka] = luokka
 
-    return {'tilausluokat': tilausluokat_dict, 'huoltoluokat': huoltoluokat_dict, 'toimenpideluokat': toimenpideluokat_dict}
+    return {
+        'tilausluokat': tilausluokat_dict,
+        'huoltoluokat': huoltoluokat_dict,
+        'toimenpideluokat': toimenpideluokat_dict
+    }
