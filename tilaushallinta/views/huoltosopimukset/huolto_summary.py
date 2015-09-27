@@ -6,9 +6,8 @@
 #
 
 from pyramid.view import view_config
-from models.hintaluokka import LisatoimenpideHintaluokka
 
-from tilaushallinta.models import DBSession, Huolto, HuoltoHintaluokka
+from tilaushallinta.models import DBSession, Huolto, LisatoimenpideHintaluokka
 
 
 def get_toimenpiteet_total(raportit):
