@@ -6,17 +6,17 @@
 #
 
 import datetime
-from tilaushallinta.models import Huoltoraportti
+from tilaushallinta.models import MaintenanceReport
 from tilaushallinta import DBSession
 
 
 def add_huoltoraportti(huolto):
     """
-    Create a new Huoltoraportti in the database
+    Create a new MaintenanceReport in the database
     :param huolto: The order in which to create the new report
     :rtype: None
     """
-    huolto.huoltoraportit.append(Huoltoraportti(date=datetime.datetime.now()))
+    huolto.huoltoraportit.append(MaintenanceReport(date=datetime.datetime.now()))
 
 
 def form_to_dict(request):
@@ -43,14 +43,14 @@ def form_to_dict(request):
 
 def raportti_modify_from_dict(raportti_id, raportti_dict):
     """
-    Modify a Huoltoraportti object with data from a dictionary
+    Modify a MaintenanceReport object with data from a dictionary
     :param raportti_id: id of the object to modify
     :type raportti_id: int
     :param raportti_dict: dictionary with the new data
     :type raportti_dict: dict
     :rtype: None
     """
-    raportti = DBSession.query(Huoltoraportti).filter_by(id=raportti_id).first()
+    raportti = DBSession.query(MaintenanceReport).filter_by(id=raportti_id).first()
     raportti.teksti = raportti_dict['teksti']
 
     if 'kt' in raportti_dict:
@@ -62,11 +62,11 @@ def raportti_modify_from_dict(raportti_id, raportti_dict):
 
 def save_huoltoraportit(request, huolto):
     """
-    Save the Huoltoraportti data
+    Save the MaintenanceReport data
     :param request: Request from client containing new values as POST data
     :type request: Request
-    :param huolto: Huolto object to save the data in
-    :type huolto: Huolto
+    :param huolto: MaintenanceJob object to save the data in
+    :type huolto: MaintenanceJob
     :rtype: None
     """
     raportit_request = form_to_dict(request)

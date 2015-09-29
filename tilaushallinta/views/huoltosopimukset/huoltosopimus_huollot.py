@@ -8,11 +8,11 @@
 from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession
-from tilaushallinta.models import Huolto
+from tilaushallinta.models import MaintenanceJob
 
 
 @view_config(route_name='huoltosopimus_huollot', renderer='tilaushallinta.templates:maintenance_contract/maintenance_job_list.pt')
 def view_huollot_list(request):
-    huollot_auki = DBSession.query(Huolto).filter(Huolto.tila != (Huolto.TILA_VALMIS)).order_by(Huolto.date.desc()).all()
-    huollot_valmiit = DBSession.query(Huolto).filter(Huolto.tila == (Huolto.TILA_VALMIS)).order_by(Huolto.date.desc()).all()
+    huollot_auki = DBSession.query(MaintenanceJob).filter(MaintenanceJob.tila != (MaintenanceJob.TILA_VALMIS)).order_by(MaintenanceJob.date.desc()).all()
+    huollot_valmiit = DBSession.query(MaintenanceJob).filter(MaintenanceJob.tila == (MaintenanceJob.TILA_VALMIS)).order_by(MaintenanceJob.date.desc()).all()
     return {"huollot_auki": huollot_auki, "huollot_valmiit": huollot_valmiit}

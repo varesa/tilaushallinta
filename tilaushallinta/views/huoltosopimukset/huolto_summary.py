@@ -7,7 +7,7 @@
 
 from pyramid.view import view_config
 
-from tilaushallinta.models import DBSession, Huolto, LisatoimenpideHintaluokka
+from tilaushallinta.models import DBSession, MaintenanceJob, LisatoimenpideHintaluokka
 
 
 def get_toimenpiteet_total(raportit):
@@ -29,7 +29,7 @@ def get_toimenpiteet_total(raportit):
 @view_config(route_name='huolto_summary', renderer="tilaushallinta.templates:maintenance_contract/maintenance_job/maintenance_job_summary.pt")
 def view_huolto_summary(request):
     huolto_id = request.matchdict['huolto']
-    huolto = DBSession.query(Huolto).filter_by(id=huolto_id).first()
+    huolto = DBSession.query(MaintenanceJob).filter_by(id=huolto_id).first()
 
     if len(huolto.huoltoraportit) == 0:
         date_start = None

@@ -1,5 +1,6 @@
 #
-# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# This source code is licensed under the terms of the
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 #
@@ -11,7 +12,7 @@ from sqlalchemy.orm import relationship
 from .meta import Base
 
 
-class Huoltoraportti(Base):
+class MaintenanceReport(Base):
     __versioned__ = {}
     __tablename__ = 'huoltorapotit'
 
@@ -25,7 +26,7 @@ class Huoltoraportti(Base):
     korjaustarve = Column(Boolean)
 
 
-class Lisatoimenpide(Base):
+class MaintenanceOperation(Base):
     __versioned__ = {}
     __tablename__ = 'lisatoimenpiteet'
 
@@ -43,7 +44,7 @@ class Lisatoimenpide(Base):
     muut = Column(Float)
 
 
-class Huolto(Base):
+class MaintenanceJob(Base):
     __versioned__ = {}
     __tablename__ = 'huollot'
 
@@ -67,7 +68,7 @@ class Huolto(Base):
     hintaluokka_id = Column(Integer, ForeignKey("huoltohintaluokat.hintaluokka"))
     hintaluokka = relationship("HuoltoHintaluokka", backref="huollot")
 
-    huoltoraportit = relationship("Huoltoraportti")
+    huoltoraportit = relationship("MaintenanceReport")
     lisatoimenpiteet = relationship("Lisatoimenpide")
 
     laiteluettelo_id = Column(Integer, ForeignKey("laiteluettelot.id"))

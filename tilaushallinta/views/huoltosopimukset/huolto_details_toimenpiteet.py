@@ -64,8 +64,8 @@ def save_lisatoimenpiteet(request, huolto):
     Save the Lisatoimenpide data
     :param request: Request from client containing new values as POST data
     :type request: Request
-    :param huolto: Huolto object to save the data in
-    :type huolto: Huolto
+    :param huolto: MaintenanceJob object to save the data in
+    :type huolto: MaintenanceJob
     :rtype: None
     """
     toimenpiteet_request = toimenpiteet_form_to_dict(request)

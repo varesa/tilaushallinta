@@ -10,7 +10,7 @@ import datetime
 from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession
-from tilaushallinta.models import Huolto
+from tilaushallinta.models import MaintenanceJob
 from tilaushallinta.views.huoltosopimukset.huolto_details_laitteet import save_laitteet
 from tilaushallinta.views.huoltosopimukset.huolto_details_raportit import add_huoltoraportti, save_huoltoraportit
 from tilaushallinta.views.huoltosopimukset.huolto_details_toimenpiteet import add_lisatoimenpide, save_lisatoimenpiteet
@@ -27,7 +27,7 @@ def compare_sets(sets):
 @view_config(route_name='huolto_details', renderer='tilaushallinta.templates:maintenance_contract/maintenance_job/maintenance_job_details.pt')
 def view_huolto_details(request):
     huolto_id = request.matchdict['huolto']
-    huolto = DBSession.query(Huolto).filter_by(id=huolto_id).first()
+    huolto = DBSession.query(MaintenanceJob).filter_by(id=huolto_id).first()
 
     if 'data' in request.POST.keys():
         ###########################################

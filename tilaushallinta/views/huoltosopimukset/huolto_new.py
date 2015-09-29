@@ -10,7 +10,7 @@ import datetime
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
-from tilaushallinta.models import DBSession, Huoltosopimus, Huolto, HuoltoHintaluokka
+from tilaushallinta.models import DBSession, Huoltosopimus, MaintenanceJob, HuoltoHintaluokka
 from tilaushallinta.models.laiteluettelo import Laiteluettelo, Laite
 
 
@@ -24,7 +24,7 @@ def view_huolto_new(request):
 
     laiteluettelo = Laiteluettelo(date=datetime.datetime.now(),
                                   huoltosopimus=sopimus)
-    huolto_last = DBSession.query(Huolto).filter_by(huoltosopimus=sopimus).order_by(Huolto.date.desc()).first()
+    huolto_last = DBSession.query(MaintenanceJob).filter_by(huoltosopimus=sopimus).order_by(MaintenanceJob.date.desc()).first()
     if huolto_last:
         for laite in huolto_last.laiteluettelo.laitteet:
             laiteluettelo.laitteet.append(Laite(date=laite.date, nimi=laite.nimi, tyyppitiedot=laite.tyyppitiedot,
@@ -33,10 +33,10 @@ def view_huolto_new(request):
 
     hintaluokka = DBSession.query(HuoltoHintaluokka).filter_by(hintaluokka=1).first()
 
-    huolto = Huolto(date=datetime.datetime.now(),
-                    tila=Huolto.TILA_UUSI, tyyppi=huolto_tyyppi, hintaluokka=hintaluokka,
+    huolto = MaintenanceJob(date=datetime.datetime.now(),
+                    tila=MaintenanceJob.TILA_UUSI, tyyppi=huolto_tyyppi, hintaluokka=hintaluokka,
                     huoltosopimus=sopimus, laiteluettelo=laiteluettelo)
-    huolto_id = DBSession.query(Huolto).order_by(Huolto.id.desc()).first().id
+    huolto_id = DBSession.query(MaintenanceJob).order_by(MaintenanceJob.id.desc()).first().id
     print(huolto.id)
     return HTTPFound(location="/huoltosopimukset/" + str(sopimus_id) + "/huolto/" + str(huolto_id))
 
