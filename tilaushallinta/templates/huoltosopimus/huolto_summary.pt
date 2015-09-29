@@ -111,7 +111,7 @@
                         <hr><h3>Lisätoimenpiteet:</h3>
                     </td>
                 </tr>
-                <tr tal:repeat="raportti huolto.lisatoimenpiteet">
+                <tr tal:condition="len(huolto.lisatoimenpiteet)" tal:repeat="raportti huolto.lisatoimenpiteet">
                     <td class="lisatoimenpide" colspan="3">
                         <div style="float: left">
                             <?python teksti_formated = raportti.teksti.replace('\n', '<br>') ?>
@@ -140,7 +140,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr tal:condition="len(huolto.lisatoimenpiteet)">
                     <td colspan="3" class="money_total">Lisatoimenpiteet (ALV 0%): ${toimenpiteet_total}</td>
                 </tr>
 
