@@ -19,6 +19,22 @@ def string_to_float_or_zero(string):
         return 0
 
 
+def string_to_float_or_value(string, value):
+    """
+    Try to convert a string to an float, returns value on failure
+    :param string: String to convert
+    :type string: str
+    :param value: Default value
+    :type value: float
+    :return: float value of the string or value
+    :rtype: float
+    """
+    try:
+        return float(string.replace(',', '.'))
+    except ValueError:
+        return value
+
+
 def string_to_int_or_zero(string):
     """
     Try to convert a string to an int, returns 0 on failure
@@ -31,3 +47,19 @@ def string_to_int_or_zero(string):
         return int(string)
     except ValueError:
         return 0
+
+
+def string_to_int_or_value(string, value):
+    """
+    Try to convert a string to an int, returns 0 on failure
+    :param string: String to convert
+    :type string: str
+    :param value: Default value
+    :type value: int
+    :return: integer value of the string or 0
+    :rtype: int
+    """
+    try:
+        return int(string)
+    except ValueError:
+        return value

@@ -1,5 +1,6 @@
 #
-# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# This source code is licensed under the terms of the
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 #
@@ -15,6 +16,7 @@ from tilaushallinta.models import Paivaraportti
 
 from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero
 from tilaushallinta.views.shared.update_tilaaja_kohde import update_tilaaja, update_kohde
+from views.utils import string_to_float_or_value
 
 
 def compare_sets(list):
@@ -131,7 +133,7 @@ def tavarat_form_to_dict(request):
 def tavara_new_from_dict(tavara_dict):
     return Tavara(date=datetime.datetime.now(),
                   koodi=tavara_dict['koodi'], nimi=tavara_dict['nimi'],
-                  maara=string_to_float_or_zero(tavara_dict['maara']), hinta=string_to_float_or_zero(tavara_dict['hinta']),
+                  maara=string_to_float_or_value(tavara_dict['maara'], 1), hinta=string_to_float_or_zero(tavara_dict['hinta']),
                   yksikko=tavara_dict['yksikko'],
                   tyyppi=(
                       "" +
