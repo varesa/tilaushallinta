@@ -75,7 +75,7 @@
                     <?python
                             tyyppi = "Virhe"
                             tyyppi = "Ensimmäinen huolto" if huolto.tyyppi == huolto.TYYPPI_EK else tyyppi
-                            tyyppi = "Keväthulto" if huolto.tyyppi == huolto.TYYPPI_KE else tyyppi
+                            tyyppi = "Keväthuolto" if huolto.tyyppi == huolto.TYYPPI_KE else tyyppi
                             tyyppi = "Syyshuolto" if huolto.tyyppi == huolto.TYYPPI_SY else tyyppi
                             tyyppi = "Tarkastuskäynti" if huolto.tyyppi == huolto.TYYPPI_TK else tyyppi
                     ?>
