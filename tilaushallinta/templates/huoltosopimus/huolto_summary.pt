@@ -72,7 +72,14 @@
                 </tr>
                 <tr>
                     <td colspan="2"></td>
-                    <td>Huolto - EK<span style="float: right;">${huolto_total} €</span></td>
+                    <?python
+                            tyyppi = "Virhe"
+                            tyyppi = "Ensimmäinen huolto" if huolto.tyyppi == huolto.TYYPPI_EK else tyyppi
+                            tyyppi = "Keväthulto" if huolto.tyyppi == huolto.TYYPPI_KE else tyyppi
+                            tyyppi = "Syyshuolto" if huolto.tyyppi == huolto.TYYPPI_SY else tyyppi
+                            tyyppi = "Tarkastuskäynti" if huolto.tyyppi == huolto.TYYPPI_TK else tyyppi
+                    ?>
+                    <td>${tyyppi}<span style="float: right;">${huolto_total} €</span></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
