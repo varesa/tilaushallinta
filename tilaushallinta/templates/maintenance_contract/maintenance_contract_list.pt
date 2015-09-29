@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014-2015
 -->
 
-<metal:main metal:use-macro="load: ../master.pt">
+<metal:main metal:use-macro="load: tilaushallinta.templates:/master.pt">
     <metal:main metal:fill-slot="title">Tilauslista</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
@@ -16,7 +16,7 @@
             <div class="panel-heading">
                 Huoltosopimukset
             </div>
-            <table metal:use-macro="load: ../snippets/huoltosopimukset_table.pt"></table>
+            <table metal:use-macro="load: tilaushallinta.templates:/snippets/huoltosopimukset_table.pt"></table>
         </div>
     </metal:main>
 </metal:main>

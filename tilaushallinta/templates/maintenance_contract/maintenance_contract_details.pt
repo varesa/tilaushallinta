@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014-2015
 -->
 
-<metal:main metal:use-macro="load: ../master.pt">
+<metal:main metal:use-macro="load: tilaushallinta.templates:/master.pt">
     <metal:main metal:fill-slot="title">Tilauksen tiedot</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
@@ -22,23 +22,22 @@
                 <div id="table_top">
                     <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a></h2></div>
                     <div id="order_actionbuttons">
-                        <!--<button onclick="window.open('/huoltosopimukset/${huoltosopimus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
                         Tila:
                         <select id="state_select" onclick="state_changed()">
-                            <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_ACTIVE else None}" value="${huoltosopimus.TILA_ACTIVE}">Aktiivinen</option>
-                            <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_INACTIVE else None}" value="${huoltosopimus.TILA_INACTIVE}">Inaktiivinen</option>
+                            <option selected="${'selected' if contract.tila == contract.TILA_ACTIVE else None}" value="${contract.TILA_ACTIVE}">Aktiivinen</option>
+                            <option selected="${'selected' if contract.tila == contract.TILA_INACTIVE else None}" value="${contract.TILA_INACTIVE}">Inaktiivinen</option>
                         </select>
-                        <input type="hidden" name="state_original" value="${huoltosopimus.tila}">
-                        <input id="state_change" type="button" value="Vaihda" onclick="huoltosopimus_change_state()" disabled>
+                        <input type="hidden" name="state_original" value="${contract.tila}">
+                        <input id="state_change" type="button" value="Vaihda" onclick="contract_change_state()" disabled>
                     </div>
                 </div>
                 <table class="table_lomake collapse in" id="table_perustiedot">
                     <form method="post">
                         <input type="hidden" name="data" value="perustiedot">
 
-                        <input type="hidden" name="tilaaja_id" value="${huoltosopimus.tilaaja.id}">
-                        <input type="hidden" name="kohde_id" value="${huoltosopimus.kohde.id}">
-                        <input type="hidden" name="huoltosopimus_id" value="${huoltosopimus.id}"> <!-- also used by js:huoltosopimus_change_state() -->
+                        <input type="hidden" name="tilaaja_id" value="${contract.tilaaja.id}">
+                        <input type="hidden" name="kohde_id" value="${contract.kohde.id}">
+                        <input type="hidden" name="contract_id" value="${contract.id}"> <!-- also used by js:contract_change_state() -->
 
                         <tr>
                             <td>
@@ -51,20 +50,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <?python tilaus=huoltosopimus ?>
+                            <?python tilaus=contract ?>
                             <td><metal:main tal:define="readonly True; compact True"
-                                    metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
+                                    metal:use-macro="load: tilaushallinta.templates:/snippets/tilaaja_panel.pt"></metal:main></td>
                             <td><metal:main tal:define="readonly True; compact True"
-                                    metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
+                                    metal:use-macro="load: tilaushallinta.templates:/snippets/kohde_panel.pt"></metal:main></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Sähköiset laskutustiedot:<textarea name="kohde_slaskutus" readonly>${huoltosopimus.kohde.slaskutus}</textarea></td>
+                            <td>Sähköiset laskutustiedot:<textarea name="kohde_slaskutus" readonly>${contract.kohde.slaskutus}</textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 Muut yhteyshenkilöt:<br>
-                                <textarea name="muut_yhteysh">${huoltosopimus.muut_yhteysh}</textarea>
+                                <textarea name="muut_yhteysh">${contract.muut_yhteysh}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -78,14 +77,14 @@
             <div class="panel-body">
                 <span>Tilatut huollot:</span>
                 <ul>
-                    <li tal:condition="huoltosopimus.tyyppi_ke"> Keväthuolto</li>
-                    <li tal:condition="huoltosopimus.tyyppi_sy"> Syyshuolto</li>
+                    <li tal:condition="contract.tyyppi_ke"> Keväthuolto</li>
+                    <li tal:condition="contract.tyyppi_sy"> Syyshuolto</li>
                     <?python import datetime ?>
-                    <li tal:condition="huoltosopimus.tyyppi_tk"> Tarkastuskäynnit
-                            ${int(huoltosopimus.tk_interval_months) \
-                                    if int(huoltosopimus.tk_interval_months) == huoltosopimus.tk_interval_months \
-                                    else huoltosopimus.tk_interval_months} kk välein,
-                        alkaen ${datetime.datetime.strftime(huoltosopimus.tk_starting_date,"%d.%m.%Y")}</li>
+                    <li tal:condition="contract.tyyppi_tk"> Tarkastuskäynnit
+                            ${int(contract.tk_interval_months) \
+                                    if int(contract.tk_interval_months) == contract.tk_interval_months \
+                                    else contract.tk_interval_months} kk välein,
+                        alkaen ${datetime.datetime.strftime(contract.tk_starting_date,"%d.%m.%Y")}</li>
                 </ul>
             </div>
         </div>
@@ -94,14 +93,14 @@
                 <div id="table_top">
                     <div id="table_title"><h2>Huollot</h2></div>
                     <div id="order_actionbuttons">
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/ek'">Ensimmäinen huolto</button>
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/ke'">Uusi Keväthuolto</button>
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/sy'">Uusi Syyshuolto</button>
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/tk'">Uusi Tarkastuskäynti</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${contract.id}/huolto/uusi/ek'">Ensimmäinen huolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${contract.id}/huolto/uusi/ke'">Uusi Keväthuolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${contract.id}/huolto/uusi/sy'">Uusi Syyshuolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${contract.id}/huolto/uusi/tk'">Uusi Tarkastuskäynti</button>
                     </div>
                 </div>
                 <div class="panel">
-                    <table metal:use-macro="load: ../snippets/huoltosopimus_huollot_table.pt" tal:define="huollot huoltosopimus.huollot"></table>
+                    <table metal:use-macro="load: tilaushallinta.templates:/snippets/huoltosopimus_huollot_table.pt" tal:define="huollot contract.huollot"></table>
                 </div>
             </div>
         </div>

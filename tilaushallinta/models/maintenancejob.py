@@ -69,7 +69,7 @@ class MaintenanceJob(Base):
     hintaluokka = relationship("HuoltoHintaluokka", backref="huollot")
 
     huoltoraportit = relationship("MaintenanceReport")
-    lisatoimenpiteet = relationship("Lisatoimenpide")
+    lisatoimenpiteet = relationship("MaintenanceOperation")
 
     laiteluettelo_id = Column(Integer, ForeignKey("laiteluettelot.id"))
     laiteluettelo = relationship("Laiteluettelo")

@@ -6,14 +6,14 @@
 #
 
 import datetime
-from tilaushallinta.models import Lisatoimenpide
+from tilaushallinta.models import MaintenanceOperation
 from tilaushallinta import DBSession
 from tilaushallinta.views.utils import string_to_int_or_zero, string_to_float_or_zero
 
 
 def add_lisatoimenpide(huolto):
     """
-    Create a new Lisatoimenpide in the database
+    Create a new MaintenanceOperation in the database
     :param huolto: The order in which to create the new report
     :rtype: None
     """
@@ -22,7 +22,7 @@ def add_lisatoimenpide(huolto):
 
 def toimenpiteet_form_to_dict(request):
     """
-    Get data from request POST and put the values relevant to Lisatoimenpide objects in a dictionary
+    Get data from request POST and put the values relevant to MaintenanceOperation objects in a dictionary
     :param request: request to read POST data from
     :type request: Request
     :return: dictionary of dict[id][field] = value
@@ -44,7 +44,7 @@ def toimenpiteet_form_to_dict(request):
 
 def toimenpide_modify_from_dict(toimenpide_id, toimenpide_dict):
     """
-    Modify a Lisatoimenpide object with data from a dictionary
+    Modify a MaintenanceOperation object with data from a dictionary
     :param toimenpide_id: id of the object to modify
     :type toimenpide_id: int
     :param toimenpide_dict: dictionary with the new data
@@ -61,7 +61,7 @@ def toimenpide_modify_from_dict(toimenpide_id, toimenpide_dict):
 
 def save_lisatoimenpiteet(request, huolto):
     """
-    Save the Lisatoimenpide data
+    Save the MaintenanceOperation data
     :param request: Request from client containing new values as POST data
     :type request: Request
     :param huolto: MaintenanceJob object to save the data in

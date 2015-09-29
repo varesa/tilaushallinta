@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014-2015
 -->
 
-<metal:main metal:use-macro="load: ../master.pt">
+<metal:main metal:use-macro="load: tilaushallinta.templates:/master.pt">
     <metal:main metal:fill-slot="title">Tilauksen tiedot</metal:main>
 
     <metal:main metal:fill-slot="head_custom">

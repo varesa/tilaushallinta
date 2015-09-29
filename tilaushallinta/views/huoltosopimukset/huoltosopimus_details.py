@@ -26,11 +26,11 @@ def update_perustiedot(request):
 
 @view_config(route_name='huoltosopimus_details', renderer='tilaushallinta.templates:maintenance_contract/maintenance_contract_details.pt')
 def view_huoltosopimus_details(request):
-    sopimus_id = request.matchdict['sopimus']
-    sopimus = DBSession.query(Huoltosopimus).filter_by(id=sopimus_id).first()
+    contract_id = request.matchdict['sopimus']
+    contract = DBSession.query(Huoltosopimus).filter_by(id=contract_id).first()
 
     if 'data' in request.POST.keys():
         if request.POST['data'] == 'perustiedot':
             update_perustiedot(request)
 
-    return {'maintenance_contract': sopimus}
+    return {'contract': contract}

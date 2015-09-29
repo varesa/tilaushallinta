@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014-2015
 -->
 
-<metal:main metal:use-macro="load: ../master.pt">
+<metal:main metal:use-macro="load: tilaushallinta.templates:/master.pt">
     <metal:main metal:fill-slot="title">Tilauslista</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
@@ -16,14 +16,14 @@
             <div class="panel-heading">
                 Avoinna olevat tilaukset
             </div>
-            <metal:main metal:use-macro="load: ../snippets/orders_table.pt" tal:define="tilaukset tilaukset_auki"></metal:main>
+            <metal:main metal:use-macro="load: tilaushallinta.templates:/snippets/orders_table.pt" tal:define="tilaukset tilaukset_auki"></metal:main>
         </div>
         <br>
         <div class="panel panel-default">
             <div class="panel-heading">
                 Valmiit tilaukset
             </div>
-            <metal:main metal:use-macro="load: ../snippets/orders_table.pt" tal:define="tilaukset tilaukset_valmiit"></metal:main>
+            <metal:main metal:use-macro="load: tilaushallinta.templates:/snippets/orders_table.pt" tal:define="tilaukset tilaukset_valmiit"></metal:main>
         </div>
 
     </metal:main>

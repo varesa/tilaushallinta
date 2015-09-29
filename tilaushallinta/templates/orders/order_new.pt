@@ -4,7 +4,7 @@
 # Copyright Esa Varemo 2014-2015
 -->
 
-<metal:main metal:use-macro="load: ../master.pt">
+<metal:main metal:use-macro="load: tilaushallinta.templates:/master.pt">
     <metal:main metal:fill-slot="title">Tee tilaus</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
@@ -64,8 +64,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="table_col_slim"><metal:main metal:use-macro="load: ../snippets/tilaaja_panel.pt"></metal:main></td>
-                    <td class="table_col_slim"><metal:main metal:use-macro="load: ../snippets/kohde_panel.pt"></metal:main></td>
+                    <td class="table_col_slim"><metal:main metal:use-macro="load: tilaushallinta.templates:/snippets/tilaaja_panel.pt"></metal:main></td>
+                    <td class="table_col_slim"><metal:main metal:use-macro="load: tilaushallinta.templates:/snippets/kohde_panel.pt"></metal:main></td>
                 </tr>
                 <tr>
                     <td>Sähköiset laskutustiedot:<br><textarea name="kohde_slaskutus" tabindex="9"></textarea></td>
