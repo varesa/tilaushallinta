@@ -26,7 +26,7 @@ def get_toimenpiteet_total(raportit):
     return total
 
 
-@view_config(route_name='huolto_summary', renderer="tilaushallinta.templates:maintenance_contract/maintenance_job/huolto_summary.pt")
+@view_config(route_name='huolto_summary', renderer="tilaushallinta.templates:maintenance_contract/maintenance_job/maintenance_job_summary.pt")
 def view_huolto_summary(request):
     huolto_id = request.matchdict['huolto']
     huolto = DBSession.query(Huolto).filter_by(id=huolto_id).first()

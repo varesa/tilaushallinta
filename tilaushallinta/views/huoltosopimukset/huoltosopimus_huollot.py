@@ -11,7 +11,7 @@ from tilaushallinta.models import DBSession
 from tilaushallinta.models import Huolto
 
 
-@view_config(route_name='huoltosopimus_huollot', renderer='tilaushallinta.templates:maintenance_contract/huolto_list.pt')
+@view_config(route_name='huoltosopimus_huollot', renderer='tilaushallinta.templates:maintenance_contract/maintenance_job_list.pt')
 def view_huollot_list(request):
     huollot_auki = DBSession.query(Huolto).filter(Huolto.tila != (Huolto.TILA_VALMIS)).order_by(Huolto.date.desc()).all()
     huollot_valmiit = DBSession.query(Huolto).filter(Huolto.tila == (Huolto.TILA_VALMIS)).order_by(Huolto.date.desc()).all()
