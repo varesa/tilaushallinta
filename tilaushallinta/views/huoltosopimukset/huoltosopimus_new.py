@@ -17,7 +17,7 @@ from tilaushallinta.models import Huoltosopimus
 from tilaushallinta.views.misc.tilaaja_kohde import get_tilaaja_from_r, get_kohde_from_r
 
 
-@view_config(route_name='huoltosopimus_new', renderer='tilaushallinta.templates:huoltosopimus/huoltosopimus_new.pt')
+@view_config(route_name='huoltosopimus_new', renderer='tilaushallinta.templates:maintenance_contract/huoltosopimus_new.pt')
 def view_huoltosopimus_new(request):
     """
     View method that shows the ordering form
