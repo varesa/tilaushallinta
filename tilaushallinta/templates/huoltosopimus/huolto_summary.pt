@@ -79,15 +79,15 @@
                             tyyppi = "Syyshuolto" if huolto.tyyppi == huolto.TYYPPI_SY else tyyppi
                             tyyppi = "Tarkastuskäynti" if huolto.tyyppi == huolto.TYYPPI_TK else tyyppi
                     ?>
-                    <td>${tyyppi}<span style="float: right;">${huolto_total} €</span></td>
+                    <td>${tyyppi}<span style="float: right;">${"%.2f" % huolto_total} €</span></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
-                    <td>Lisätoimenpiteet<span style="float: right;">${toimenpiteet_total} €</span></td>
+                    <td>Lisätoimenpiteet<span style="float: right;">${"%.2f" % toimenpiteet_total} €</span></td>
                 </tr>
                 <tr>
                     <td colspan="2"></td>
-                    <td><b>Loppusumma (ALV 0%)</b><b style="float: right;">${grand_total} €</b></td>
+                    <td><b>Loppusumma (ALV 0%)</b><b style="float: right;">${"%.2f" % grand_total} €</b></td>
                 </tr>
 
                 <tr tal:condition="len(huolto.huoltoraportit)">
@@ -141,7 +141,7 @@
                     </td>
                 </tr>
                 <tr tal:condition="len(huolto.lisatoimenpiteet)">
-                    <td colspan="3" class="money_total">Lisatoimenpiteet (ALV 0%): ${toimenpiteet_total}</td>
+                    <td colspan="3" class="money_total">Lisatoimenpiteet (ALV 0%): ${"%.2f" % toimenpiteet_total}</td>
                 </tr>
 
             </table>
