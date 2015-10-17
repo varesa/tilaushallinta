@@ -119,15 +119,17 @@
                             ${structure: teksti_formated}
                         </div>
                         <div class="veloitus">
-                            Hintaluokka ${raportti.hintaluokka}<br>
+                            <span tal:condition="raportti.tunnit or raportti.matkat">Hintaluokka ${raportti.hintaluokka}<br></span>
                             <table>
                                 <tr tal:condition="raportti.tunnit">
-                                    <td>Tunnit: ${raportti.tunnit} h&nbsp;</td>
+                                    <td>Tunnit: </td>
+                                    <td>${raportti.tunnit} h&nbsp;</td>
                                     <td>*&nbsp;</td>
                                     <td>${"%.2f" % hintaluokat[raportti.hintaluokka].tunnit} €</td>
                                 </tr>
                                 <tr tal:condition="raportti.matkat">
-                                    <td>Matkat: ${raportti.matkat} käyntiä&nbsp;</td>
+                                    <td>Matkat: </td>
+                                    <td>${raportti.matkat} käyntiä&nbsp;</td>
                                     <td>*&nbsp;</td>
                                     <td>${"%.2f" % hintaluokat[raportti.hintaluokka].matkat} €</td>
                                 </tr>
