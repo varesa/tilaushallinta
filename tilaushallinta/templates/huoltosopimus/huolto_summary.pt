@@ -113,13 +113,12 @@
                 </tr>
                 <tr tal:condition="len(huolto.lisatoimenpiteet)" tal:repeat="raportti huolto.lisatoimenpiteet">
                     <td class="lisatoimenpide" colspan="3">
-                        <div style="float: left">
+                        <div>
                             <?python teksti_formated = raportti.teksti.replace('\n', '<br>') ?>
                             <b>${raportti.date.strftime("%d.%m.%Y")}</b><br>
                             ${structure: teksti_formated}
                         </div>
-                        <div class="veloitus">
-                            <span tal:condition="raportti.tunnit or raportti.matkat">Hintaluokka ${raportti.hintaluokka}<br></span>
+                        <div class="veloitus"><span tal:condition="raportti.tunnit or raportti.matkat">Hintaluokka ${raportti.hintaluokka}<br></span>
                             <table>
                                 <tr tal:condition="raportti.tunnit">
                                     <td>Tunnit: </td>
