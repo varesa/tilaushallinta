@@ -121,20 +121,20 @@
                         <div class="veloitus">
                             Hintaluokka ${raportti.hintaluokka}<br>
                             <table>
-                                <tr>
+                                <tr tal:condition="raportti.tunnit">
                                     <td>Tunnit: ${raportti.tunnit} h&nbsp;</td>
                                     <td>*&nbsp;</td>
                                     <td>${"%.2f" % hintaluokat[raportti.hintaluokka].tunnit} €</td>
                                 </tr>
-                                <tr>
+                                <tr tal:condition="raportti.matkat">
                                     <td>Matkat: ${raportti.matkat} käyntiä&nbsp;</td>
                                     <td>*&nbsp;</td>
                                     <td>${"%.2f" % hintaluokat[raportti.hintaluokka].matkat} €</td>
                                 </tr>
-                                <tr>
-                                    <td>Muut: ${raportti.muut} km&nbsp;</td>
-                                    <td>*&nbsp;</td>
-                                    <td>${"%.2f" % hintaluokat[raportti.hintaluokka].muut} €</td>
+                                <tr tal:condition="raportti.muut">
+                                    <td>Muut:&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                    <td>${"%.2f" % raportti.muut} €</td>
                                 </tr>
                             </table>
                         </div>
