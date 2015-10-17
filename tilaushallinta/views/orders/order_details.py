@@ -16,7 +16,7 @@ from tilaushallinta.models import Paivaraportti
 
 from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero
 from tilaushallinta.views.shared.update_tilaaja_kohde import update_tilaaja, update_kohde
-from views.utils import string_to_float_or_value
+from tilaushallinta.views.utils import string_to_float_or_value
 
 
 def compare_sets(list):
