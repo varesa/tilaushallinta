@@ -20,9 +20,9 @@
         <div class="panel panel-default" id="perustiedot">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a></h2></div>
+                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp<span style="font-size: 15pt;">${huoltosopimus.kohde.osoite}, ${huoltosopimus.kohde.postinumero}, ${huoltosopimus.kohde.postitoimipaikka}</span></h2></div>
                     <div id="order_actionbuttons">
-                        <!--<button onclick="window.open('/huoltosopimukset/${huoltosopimus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
                         Tila:
                         <select id="state_select" onclick="state_changed()">
                             <option selected="${'selected' if huoltosopimus.tila == huoltosopimus.TILA_ACTIVE else None}" value="${huoltosopimus.TILA_ACTIVE}">Aktiivinen</option>

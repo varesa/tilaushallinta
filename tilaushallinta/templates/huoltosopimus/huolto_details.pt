@@ -18,7 +18,8 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Huolto</h2></div>
+                    <div id="table_title"><h2>Huolto
+                    &nbsp;&nbsp;&nbsp;&nbsp<span style="font-size: 15pt;">${huolto.tyyppi.upper()}: ${huolto.huoltosopimus.kohde.osoite}, ${huolto.huoltosopimus.kohde.postinumero}, ${huolto.huoltosopimus.kohde.postitoimipaikka}</span></h2></div>
                     <div id="order_actionbuttons">
                         <button onclick="window.open('/huoltosopimukset/${huolto.huoltosopimus.id}/huolto/${huolto.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         Tila:
