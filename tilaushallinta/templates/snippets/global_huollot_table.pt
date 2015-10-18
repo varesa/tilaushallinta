@@ -4,8 +4,8 @@
         <th>Tila</th>
         <th>Pvm</th>
         <th>Tyyppi</th>
-        <th>Tilaaja</th>
         <th>Kohde</th>
+        <th>Kohteen osoite</th>
     </tr>
     <tr tal:repeat="huolto huollot"
             onclick="window.location.href='/huoltosopimukset/' + ${huolto.huoltosopimus.id} + '/huolto/' + ${huolto.id}">
@@ -19,10 +19,10 @@
         <td>${huolto.date.strftime("%d.%m.%y")}&nbsp;&nbsp;&nbsp;</td>
         <td>${huolto.tyyppi}</td>
         
-        <?python tilaaja = huolto.huoltosopimus.tilaaja.nimi + ', ' + huolto.huoltosopimus.tilaaja.yritys \
-                if len(huolto.huoltosopimus.tilaaja.nimi) and len(huolto.huoltosopimus.tilaaja.yritys) \
-                else huolto.huoltosopimus.tilaaja.nimi + huolto.huoltosopimus.tilaaja.yritys ?>
-        <td>${tilaaja}&nbsp;&nbsp;&nbsp;</td>
+        <?python kohde = huolto.huoltosopimus.kohde.nimi + ', ' + huolto.huoltosopimus.kohde.yritys \
+                if len(huolto.huoltosopimus.kohde.nimi) and len(huolto.huoltosopimus.kohde.yritys) \
+                else huolto.huoltosopimus.kohde.nimi + huolto.huoltosopimus.kohde.yritys ?>
+        <td>${kohde}&nbsp;&nbsp;&nbsp;</td>
         
         <td>${huolto.huoltosopimus.kohde.osoite}, ${huolto.huoltosopimus.kohde.postinumero} ${huolto.huoltosopimus.kohde.postitoimipaikka}</td>
     </tr>

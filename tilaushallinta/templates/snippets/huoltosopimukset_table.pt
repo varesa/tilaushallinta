@@ -2,15 +2,15 @@
     <tr>
         <th>#</th>
         <!--<th>Tila</th>-->
-        <th>Tilaaja</th>
+        <th>Kohde</th>
         <th>Kohteen osoite</th>
     </tr>
     <tr tal:repeat="sopimus huoltosopimukset" onclick="window.location.href='/huoltosopimukset/' + ${sopimus.id}">
         <td>${sopimus.date.strftime("%y%m%d-%H%M")}</td>
-        <?python tilaaja = sopimus.tilaaja.nimi + ', ' + sopimus.tilaaja.yritys \
-                if len(sopimus.tilaaja.nimi) and len(sopimus.tilaaja.yritys) \
-                else sopimus.tilaaja.nimi + sopimus.tilaaja.yritys ?>
-        <td>${tilaaja}&nbsp;&nbsp;&nbsp;</td>
+        <?python kohde = sopimus.kohde.nimi + ', ' + sopimus.kohde.yritys \
+                if len(sopimus.kohde.nimi) and len(sopimus.kohde.yritys) \
+                else sopimus.kohde.nimi + sopimus.kohde.yritys ?>
+        <td>${kohde}&nbsp;&nbsp;&nbsp;</td>
         <td>${sopimus.kohde.osoite}, ${sopimus.kohde.postinumero} ${sopimus.kohde.postitoimipaikka}</td>
     </tr>
 </table>
