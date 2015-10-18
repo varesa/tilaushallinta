@@ -88,7 +88,6 @@
 
 #table_raportit tr td textarea, #table_raportit tr td input{
     width: 100%;
-    height: 100%;
 }
 
 .raportti_detailsline td {
