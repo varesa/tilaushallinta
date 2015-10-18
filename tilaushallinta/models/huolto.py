@@ -52,6 +52,7 @@ class Huolto(Base):
 
     TILA_UUSI = "UUSI"
     TILA_ALOITETTU = "ALOITETTU"
+    TILA_KORJATTAVAA = "KORJATTAVAA"
     TILA_VALMIS = "VALMIS"
     tila = Column(String(15), nullable=False, default=TILA_UUSI)
 

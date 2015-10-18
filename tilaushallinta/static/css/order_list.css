@@ -24,6 +24,10 @@
     background-color: lightgreen;
 }
 
+.tila_korjattavaa {
+    background-color: lightcoral;
+}
+
 .tila_valmis {
     background-color: lightgray;
 }

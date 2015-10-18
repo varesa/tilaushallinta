@@ -13,6 +13,7 @@
         
         <td tal:condition="huolto.tila == 'UUSI'"><span class="tilaus_tila tila_uusi">Uusi</span></td>
         <td tal:condition="huolto.tila == 'ALOITETTU'"><span class="tilaus_tila tila_aloitettu">Aloitettu</span></td>
+        <td tal:condition="huolto.tila == 'KORJATTAVAA'"><span class="tilaus_tila tila_korjattavaa">Korjattavaa</span></td>
         <td tal:condition="huolto.tila == 'VALMIS'"><span class="tilaus_tila tila_valmis">Valmis</span></td>
         
         <td>${huolto.date.strftime("%d.%m.%y")}&nbsp;&nbsp;&nbsp;</td>
