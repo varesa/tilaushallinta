@@ -14,9 +14,8 @@ from tilaushallinta.models import Tilaus
 from tilaushallinta.models import Tavara
 from tilaushallinta.models import Paivaraportti
 
-from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero
+from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero, string_to_float_or_value
 from tilaushallinta.views.shared.update_tilaaja_kohde import update_tilaaja, update_kohde
-from views.utils import string_to_float_or_value
 
 
 def compare_sets(list):
@@ -57,7 +56,8 @@ def add_paivaraportti(tilaus):
     :param tilaus: The order in which to create the new report
     :rtype: None
     """
-    tilaus.paivaraportit.append(Paivaraportti(date=datetime.datetime.now(), hintaluokka=2))
+    tilaus.paivaraportit.append(Paivaraportti(date=datetime.datetime.now(), hintaluokka=2,
+                                              tunnit=0.0, matkat=0.0, muut=0.0))
 
 
 def raportit_form_to_dict(request):

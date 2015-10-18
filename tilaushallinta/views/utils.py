@@ -1,5 +1,6 @@
 #
-# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# This source code is licensed under the terms of the
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 # Copyright Esa Varemo 2014-2015
 #
@@ -51,7 +52,7 @@ def string_to_int_or_zero(string):
 
 def string_to_int_or_value(string, value):
     """
-    Try to convert a string to an int, returns 0 on failure
+    Try to convert a string to an int, returns value on failure
     :param string: String to convert
     :type string: str
     :param value: Default value
