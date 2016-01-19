@@ -23,9 +23,15 @@ def view_huoltosopimus_new(request):
     View method that shows the ordering form
     :param request: pyramid request
     :type request: pyramid.request.Request
-    :return: None
+    :return: Dictionary to renderer
     """
-    return {}
+
+    userid = authenticated_userid(request)
+    user = DBSession.query(User).filter_by(email=userid).first()
+
+    mandatory = False if user.admin else True
+
+    return {'mandatory': mandatory}
 
 
 @view_config(route_name='huoltosopimus_submit')

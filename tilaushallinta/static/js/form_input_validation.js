@@ -7,7 +7,10 @@
 
 // Enable date pickers
 $(document).ready(function() {
-    $('.input-group.date').datepicker({language: 'fi'});
+    var date_inputs = $('.input-group.date');
+    if(date_inputs.length) {
+        date_inputs.datepicker({language: 'fi'});
+    }
 });
 
 // Add asterisks to fields that have been marked as required

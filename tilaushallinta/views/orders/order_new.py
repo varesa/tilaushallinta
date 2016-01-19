@@ -9,9 +9,10 @@ import datetime
 from pyramid.view import view_config
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
+from pyramid.security import authenticated_userid
 
 from tilaushallinta.models import DBSession
-from tilaushallinta.models import Tilaus
+from tilaushallinta.models import Tilaus, User
 from tilaushallinta.views.misc.tilaaja_kohde import get_tilaaja_from_r, get_kohde_from_r
 
 
@@ -20,9 +21,15 @@ def view_order_new(request):
     """
     View method that shows the ordering form
     :param request: pyramid request
-    :return: None
+    :return: Dictionary to renderer
     """
-    return {}
+
+    userid = authenticated_userid(request)
+    user = DBSession.query(User).filter_by(email=userid).first()
+
+    mandatory = False if user.admin else True
+
+    return {'mandatory': mandatory}
 
 
 @view_config(route_name='order_submit')
@@ -30,7 +37,7 @@ def view_order_submit(request):
     """
     View method that the ordering form is POSTed to
     :param request: Pyramid request
-    :return: None
+    :return: HTTPFound redirect or Response
     """
     try:
         tilaaja = get_tilaaja_from_r(request)

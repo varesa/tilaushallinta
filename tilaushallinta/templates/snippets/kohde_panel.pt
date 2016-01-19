@@ -1,4 +1,6 @@
-<div tal:define="compact compact|False; readonly readonly|False; required requred|False">
+<div tal:define="compact compact|False; readonly readonly|False; mandatory mandatory|False">
+
+    <span id="DEBG">${mandatory}</span>
     <span>
         Nimi:<br><input name="kohde_nimi"      value="${tilaus.kohde.nimi|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
@@ -11,15 +13,15 @@
         Y-tunnus:<br><input name="kohde_ytunnus"    value="${tilaus.kohde.ytunnus|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
-    <span class="required">
+    <span class="${'required' if mandatory else None}">
         Osoite:<br><input name="kohde_osoite"       value="${tilaus.kohde.osoite|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
-    <span class="required">
+    <span class="${'required' if mandatory else None}">
         Postinumero:<br><input name="kohde_postinumero"             value="${tilaus.kohde.postinumero|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
-    <span class="required">
+    <span class="${'required' if mandatory else None}">
         Postitoimipaikka:<br><input name="kohde_postitoimipaikka"   value="${tilaus.kohde.postitoimipaikka|None}" readonly="${None if not readonly else 'readonly'}">
     </span>
     <br tal:condition="not: compact"></br>
