@@ -15,7 +15,6 @@ requires = [
     'pyramid_tm',
     'SQLAlchemy',
     'SQLAlchemy-Continuum',
-    'mysql-connector-python',
     'transaction',
     'zope.sqlalchemy',
     'waitress',
