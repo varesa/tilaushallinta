@@ -9,6 +9,8 @@ from pyramid.httpexceptions import HTTPFound
 from tilaushallinta.models import DBSession, User
 from datetime import datetime
 
+from tilaushallinta.models.tilaaja import Tilaaja
+
 
 @view_config(route_name='admin_users', renderer='tilaushallinta.templates:admin/admin_users.pt')
 def view_admin_users(request):
@@ -24,9 +26,9 @@ def view_admin_users(request):
     latest.reverse()
     return {'users': latest}
 
-err_missing_name = "Käyttäjän nimi puuttuu"
+err_missing_name  = "Käyttäjän nimi puuttuu"
 err_missing_email = "Käyttäjän sähköpostiosoite puuttuu"
-err_missing_pass = "Käyttäjän salasana puuttuu"
+err_missing_pass  = "Käyttäjän salasana puuttuu"
 
 
 @view_config(route_name='admin_users_new', renderer='tilaushallinta.templates:admin/admin_users_new.pt')
@@ -72,6 +74,14 @@ def view_admin_users_new(request):
 @view_config(route_name='admin_users_edit', renderer='tilaushallinta.templates:admin/admin_users_edit.pt')
 def view_admin_users_edit(request):
     user = DBSession.query(User).filter_by(id=request.matchdict['id']).first()
+
+    if len(request.POST):
+        user.name = request.POST['name']
+        user.email = request.POST['email']
+        if request.POST['password'] != '1231231234':
+            user.set_password(request.POST['password'])
+        if request.POST['client_id']:
+            user.tilaaja = DBSession.query(Tilaaja).filter_by(id=int(request.POST['client_id'])).first()
 
     locked = True if user.email == "admin" else False
     return {'user': user, 'locked': locked}

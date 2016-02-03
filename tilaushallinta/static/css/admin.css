@@ -36,3 +36,7 @@ html, body {
 .content .table, .content .btn-group {
     min-width: 600px;
 }
+
+.modal .table {
+    min-width: unset;
+}

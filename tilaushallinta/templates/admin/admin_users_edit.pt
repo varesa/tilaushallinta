@@ -7,8 +7,34 @@
 <metal:main metal:use-macro="load: admin_master.pt">
     <metal:main metal:fill-slot="admin-head_custom">
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
+        <script type="text/javascript" src="/static/js/admin_users_edit.js"></script>
     </metal:main>
+
     <div metal:fill-slot="admin-content">
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Valitse tilaaja</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table id="table_history" class="table table-striped">
+                            <tr>
+                                <th>&nbsp;&nbsp;</th>
+                                <th>Yhteyshenkilö/Yritys&nbsp;&nbsp;</th>
+                                <th>Osoite&nbsp;&nbsp;</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="set_client()" data-dismiss="modal">Valitse</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
         <h2>Muokkaa käyttäjää</h2>
         <form method="post">
             <input type="hidden" name="data" value="user">
@@ -30,7 +56,12 @@
                     <td tal:condition="not: user.vuosihuoltosopimukset"><input type="checkbox" name="vuosihuoltosopimukset" id="vhs">&nbsp;&nbsp;&nbsp;<label for="checkbox_vhs">Huoltosopimukset</label></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Muokkaa"> </td>
+                    <td tal:condition="user.tilaaja" colspan="2">Tilaaja: ${" ".join((user.tilaaja.nimi, user.tilaaja.yritys))}</td>
+                    <td tal:condition="not: user.tilaaja" colspan="2" id="client_name">Tilaaja: <a onclick="show_clients()">Yhdistä</a></td>
+                    <input type="hidden" name="client_id" id="client_id">
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Tallenna"> </td>
                 </tr>
             </table>
         </form>
