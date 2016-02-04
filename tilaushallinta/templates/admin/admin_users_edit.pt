@@ -7,6 +7,7 @@
 <metal:main metal:use-macro="load: admin_master.pt">
     <metal:main metal:fill-slot="admin-head_custom">
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/modal_scroll.css">
         <script type="text/javascript" src="/static/js/admin_users_edit.js"></script>
     </metal:main>
 

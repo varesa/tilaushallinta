@@ -13,6 +13,7 @@
         <script type="text/javascript" src="/static/libs/bootstrap-datepicker/locales/bootstrap-datepicker.fi.min.js"></script>
         <link rel="stylesheet" href="/static/css/lomake.css"/>
         <link rel="stylesheet" href="/static/css/order_new.css"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/modal_scroll.css">
         <script type="text/javascript" src="/static/js/form_input_validation.js"></script>
         <script type="text/javascript" src="/static/js/neworder_history.js"></script>
     </metal:main>
