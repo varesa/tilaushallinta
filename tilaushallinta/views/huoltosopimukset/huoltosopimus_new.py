@@ -7,13 +7,14 @@
 
 import datetime
 
+from pyramid.security import authenticated_userid
 from pyramid.view import view_config
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 
 
 from tilaushallinta.models import DBSession
-from tilaushallinta.models import Huoltosopimus
+from tilaushallinta.models import Huoltosopimus, User
 from tilaushallinta.views.misc.tilaaja_kohde import get_tilaaja_from_r, get_kohde_from_r
 
 

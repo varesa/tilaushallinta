@@ -14,16 +14,40 @@
     <metal:main metal:fill-slot="content">
         <div class="panel panel-default">
             <div class="panel-heading">
+                Tulevat huollot (30pv)
+            </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>Pvm</th>
+                    <th>Tyyppi</th>
+                    <th>Kohde</th>
+                    <th>Kohteen osoite</th>
+                </tr>
+                <tr tal:repeat="huolto huollot_tulevat" onclick="window.location.href='/huoltosopimukset/'">
+                    <td>${huolto['date'].strftime("%d.%m.%y")}</td>
+                    <td>${huolto['tyyppi']}</td>
+                    <?python kohde = huolto['contract'].kohde.nimi + ', ' + huolto['contract'].kohde.yritys \
+                            if len(huolto['contract'].kohde.nimi) and len(huolto['contract'].kohde.yritys) \
+                            else huolto['contract'].kohde.nimi + huolto['contract'].kohde.yritys ?>
+                    <td>${kohde}&nbsp;&nbsp;&nbsp;</td>
+                    
+                    <td>${huolto['contract'].kohde.osoite}, ${huolto['contract'].kohde.postinumero} ${huolto['contract'].kohde.postitoimipaikka}</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
                 Avoinna olevat huollot
             </div>
-            <metal:main metal:use-macro="load: ../snippets/global_huollot_table.pt" tal:define="huollot huollot_auki"></metal:main>
+            <metal:main metal:use-macro="load: ../snippets/global_huollot_table.pt" tal:define="huollot huollot_auki"/>
         </div>
         <br>
         <div class="panel panel-default">
             <div class="panel-heading">
                 Valmiit huollot
             </div>
-            <metal:main metal:use-macro="load: ../snippets/global_huollot_table.pt" tal:define="huollot huollot_valmiit"></metal:main>
+            <metal:main metal:use-macro="load: ../snippets/global_huollot_table.pt" tal:define="huollot huollot_valmiit"/>
         </div>
 
     </metal:main>
