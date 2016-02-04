@@ -76,16 +76,25 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-body">
+                <?python
+                        from tilaushallinta.views.utils import get_next_date
+                ?>
                 <span>Tilatut huollot:</span>
                 <ul>
-                    <li tal:condition="huoltosopimus.tyyppi_ke"> Keväthuolto</li>
-                    <li tal:condition="huoltosopimus.tyyppi_sy"> Syyshuolto</li>
+                    <li tal:condition="huoltosopimus.tyyppi_ke"> Keväthuolto,
+                        alkaen ${huoltosopimus.ke_starting_date.strftime("%d.%m.%Y")},
+                        seuraava ${get_next_date(huoltosopimus.ke_starting_date, 12).strftime("%d.%m.%Y")}</li>
+                    <li tal:condition="huoltosopimus.tyyppi_sy"> Syyshuolto,
+                        alkaen ${huoltosopimus.sy_starting_date.strftime("%d.%m.%Y")},
+                        seuraava ${get_next_date(huoltosopimus.sy_starting_date, 12).strftime("%d.%m.%Y")}</li>
                     <?python import datetime ?>
                     <li tal:condition="huoltosopimus.tyyppi_tk"> Tarkastuskäynnit
                             ${int(huoltosopimus.tk_interval_months) \
                                     if int(huoltosopimus.tk_interval_months) == huoltosopimus.tk_interval_months \
                                     else huoltosopimus.tk_interval_months} kk välein,
-                        alkaen ${datetime.datetime.strftime(huoltosopimus.tk_starting_date,"%d.%m.%Y")}</li>
+                        alkaen ${huoltosopimus.tk_starting_date.strftime("%d.%m.%Y")}.
+                        Seuraava ${get_next_date(huoltosopimus.tk_starting_date, huoltosopimus.tk_interval_months).strftime("%d.%m.%Y")}
+                    </li>
                 </ul>
             </div>
         </div>

@@ -2,8 +2,9 @@
 # This source code is licensed under the terms of the
 # Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 # To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
-# Copyright Esa Varemo 2014-2015
+# Copyright Esa Varemo 2014-2016
 #
+import datetime
 
 
 def string_to_float_or_zero(string):
@@ -64,3 +65,46 @@ def string_to_int_or_value(string, value):
         return int(string)
     except ValueError:
         return value
+
+
+def get_next_date(date, interval_months):
+    """
+    Get the first date that is `date + x*interval` that's in the future
+    :param date: Starting date
+    :type date: datetime.date
+    :param interval_months: Interval in months
+    :type interval_months: int
+    :return: first date in future
+    :rtype: datetime.date
+    """
+    interval = datetime.timedelta(days=interval_months * (365/12.0))
+    while date < datetime.date.today():  # Move date to future
+        date += interval
+    return date
+
+
+def check_next_date_in_30d(orig_date, interval):
+    """
+    Check if the first date in future is within 30 days of today
+    :param orig_date: Starting date
+    :type orig_date: datetime.date
+    :param interval: Date interval in months
+    :type interval: int
+    :return: Is next date withing 30 days?
+    :rtype: bool
+    """
+
+    today = datetime.date.today()
+    date = orig_date
+    if date > today:                              # Date is in future
+        if (date - today) < datetime.timedelta(days=30):  # and close enough
+            return True
+        else:
+            return False                                  # Far away...
+
+    date = get_next_date(date, interval)
+
+    if (date - today) < datetime.timedelta(days=30):
+        return True
+    else:
+        return False
