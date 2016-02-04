@@ -3,6 +3,12 @@
 # Copyright Esa Varemo 2014-2015
 */
 
+/* Modal scrolling */
+.modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
 /* Container for the status & controls */
 #old_tilaaja_cont, #old_kohde_cont {
     vertical-align: top;
