@@ -34,7 +34,7 @@ def main(global_config, **settings):
     settings['sqlalchemy.url'] = db_env.substitute(settings['sqlalchemy.url'])
 
 
-    engine = engine_from_config(settings, 'sqlalchemy.', pool_recycle=3600)
+    engine = engine_from_config(settings, 'sqlalchemy.', pool_recycle=600)
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
 
