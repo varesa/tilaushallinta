@@ -21,6 +21,10 @@ def view_huolto_new(request):
 
     huolto_tyyppi = request.matchdict['tyyppi']
 
+    if huolto_tyyppi == Huolto.TYYPPI_muu:
+        msg = request.POST['muu_selite']
+    else:
+        msg = ""
 
     laiteluettelo = Laiteluettelo(date=datetime.datetime.now(),
                                   huoltosopimus=sopimus)
@@ -34,8 +38,8 @@ def view_huolto_new(request):
     hintaluokka = DBSession.query(HuoltoHintaluokka).filter_by(hintaluokka=1).first()
 
     huolto = Huolto(date=datetime.datetime.now(),
-                    tila=Huolto.TILA_UUSI, tyyppi=huolto_tyyppi, hintaluokka=hintaluokka,
-                    huoltosopimus=sopimus, laiteluettelo=laiteluettelo)
+                    tila=Huolto.TILA_UUSI, tyyppi=huolto_tyyppi, tyyppi_muu_selite=msg,
+                    hintaluokka=hintaluokka, huoltosopimus=sopimus, laiteluettelo=laiteluettelo)
     huolto_id = DBSession.query(Huolto).order_by(Huolto.id.desc()).first().id
     print(huolto.id)
     return HTTPFound(location="/huoltosopimukset/" + str(sopimus_id) + "/huolto/" + str(huolto_id))

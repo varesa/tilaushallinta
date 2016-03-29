@@ -9,3 +9,7 @@
     bottom: 0;
     right: 0;
 }
+
+#huolto-muu-modal input {
+    width: 100%;
+}
