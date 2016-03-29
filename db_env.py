@@ -2,16 +2,16 @@ import os
 import sys
 
 var_host = "DBHOST"
-file_host= "dbhost"
+file_host= "config/dbhost"
 
 var_user = "DBUSER"
-file_user = "dbuser"
+file_user = "config/dbuser"
 
 var_pass = "DBPASS"
-file_pass = "dbpassword"
+file_pass = "config/dbpassword"
 
 var_schema = "DBSCHEMA"
-file_schema = "dbschema"
+file_schema = "config/dbschema"
 
 
 def _get_value(var_name, file_name):
