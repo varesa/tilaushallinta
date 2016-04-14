@@ -31,3 +31,7 @@
 .tila_valmis {
     background-color: lightgray;
 }
+
+.huolto_late {
+    color: red;
+}

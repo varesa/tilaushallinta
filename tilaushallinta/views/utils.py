@@ -83,6 +83,26 @@ def get_next_date(date, interval_months):
     return date
 
 
+def get_closest_date(date, interval_months):
+    """
+    Get the closest date to today from `date + x*interval`. Can be in the future or in the past
+    :param date: Starting date
+    :type date: datetime.date
+    :param interval_months: Interval in months
+    :type interval_months: int
+    :return: closest date on interval
+    :rtype: datetime.date
+    """
+    now = datetime.date.today()
+    next = get_next_date(date, interval_months)
+    if abs((next - now).days) > (interval_months * 365/12 / 2):
+        closest = next - datetime.timedelta(interval_months * (365/12))  # Have not passed half-way to next date
+    else:
+        closest = next                                                   # Past half-way
+
+    return closest
+
+
 def check_next_date_in_30d(orig_date, interval):
     """
     Check if the first date in future is within 30 days of today

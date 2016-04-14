@@ -23,7 +23,7 @@
                     <th>Kohde</th>
                     <th>Kohteen osoite</th>
                 </tr>
-                <tr tal:repeat="huolto huollot_tulevat" onclick="window.location.href='/huoltosopimukset/${huolto['contract'].id}'">
+                <tr tal:repeat="huolto huollot_tulevat" onclick="window.location.href='/huoltosopimukset/${huolto['contract'].id}'" class="${'huolto_late' if huolto.late else ''}">
                     <td>${huolto['date'].strftime("%d.%m.%y")}</td>
                     <td>${huolto['tyyppi']}</td>
                     <?python kohde = huolto['contract'].kohde.nimi + ', ' + huolto['contract'].kohde.yritys \
