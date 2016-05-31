@@ -20,6 +20,7 @@ def configure_routes(config):
     config.add_route('order_new', '/tilaukset/uusi')
     config.add_route('order_submit', '/tilaukset/submit')
 
+    config.add_route('order_list_json', '/tilaukset/json')
     config.add_route('order_list', '/tilaukset')
     config.add_route('order_details', '/tilaukset/{id}')
     config.add_route('order_summary', '/tilaukset/{id}/yhteenveto')

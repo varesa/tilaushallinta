@@ -9,9 +9,21 @@
 
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" type="text/css" href="/static/css/order_list.css">
+        <script type="text/javascript" src="/static/libs/lunr.min.js"></script>
+        <script type="text/javascript" src="/static/js/order_search.js"></script>
     </metal:main>
 
     <metal:main metal:fill-slot="content">
+        <div id="search-panel" class="panel panel-default">
+            <div class="panel-heading">
+                Haku: <input id="order_search_field" type="text">
+            </div>
+            <div id="search-panel-body" class="panel-body" style="display: none;">
+                <table id="search-results" class="table table-hover">
+
+                </table>
+            </div>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 Avoinna olevat tilaukset

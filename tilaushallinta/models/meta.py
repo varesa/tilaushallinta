@@ -9,4 +9,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from zope.sqlalchemy import ZopeTransactionExtension
 
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
+""":type: sqlalchemy.orm.Session"""
+
 Base = declarative_base()
