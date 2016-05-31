@@ -36,11 +36,11 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.nimi)">${huolto.huoltosopimus.tilaaja.nimi}<br></span>
-                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.yritys)">${huolto.huoltosopimus.tilaaja.yritys}<br></span>
-                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.ytunnus)">${huolto.huoltosopimus.tilaaja.ytunnus}<br></span>
-                                    <span>${huolto.huoltosopimus.tilaaja.osoite}<br>
-                                    ${huolto.huoltosopimus.tilaaja.postinumero} ${huolto.huoltosopimus.tilaaja.postitoimipaikka}</span>
+                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.nimi)">${huolto.huoltosopimus.tilaaja.nimi}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.yritys)">${huolto.huoltosopimus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.ytunnus)">${huolto.huoltosopimus.tilaaja.ytunnus}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span>${huolto.huoltosopimus.tilaaja.osoite}&nbsp;&nbsp;&nbsp;<br>
+                                    ${huolto.huoltosopimus.tilaaja.postinumero} ${huolto.huoltosopimus.tilaaja.postitoimipaikka}&nbsp;&nbsp;&nbsp;</span>
                                 </td>
                                 <td style="vertical-align: top;">
                                     <span tal:condition="len(huolto.huoltosopimus.kohde.nimi)">${huolto.huoltosopimus.kohde.nimi}<br></span>
@@ -67,10 +67,10 @@
                             </tr>
                         </table>
                 </tr>
-                <tr>
+                <tr tal:condition="show_prices">
                     <td colspan="3"><hr></td>
                 </tr>
-                <tr>
+                <tr tal:condition="show_prices">
                     <td colspan="2"></td>
                     <?python
                             tyyppi = "Virhe"
@@ -81,11 +81,11 @@
                     ?>
                     <td>${tyyppi}<span style="float: right;">${"%.2f" % huolto_total} €</span></td>
                 </tr>
-                <tr>
+                <tr tal:condition="show_prices">
                     <td colspan="2"></td>
                     <td>Lisätoimenpiteet<span style="float: right;">${"%.2f" % toimenpiteet_total} €</span></td>
                 </tr>
-                <tr>
+                <tr tal:condition="show_prices">
                     <td colspan="2"></td>
                     <td><b>Loppusumma (ALV 0%)</b><b style="float: right;">${"%.2f" % grand_total} €</b></td>
                 </tr>
@@ -118,22 +118,23 @@
                             <b>${raportti.date.strftime("%d.%m.%Y")}</b><br>
                             ${structure: teksti_formated}
                         </div>
-                        <div class="veloitus"><span tal:condition="raportti.tunnit or raportti.matkat">Hintaluokka ${raportti.hintaluokka}<br></span>
+                        <div tal:condition="show_prices" class="veloitus"><span tal:condition="raportti.tunnit or raportti.matkat">Hintaluokka ${raportti.hintaluokka}<br></span>
                             <table>
                                 <tr tal:condition="raportti.tunnit">
-                                    <td>Tunnit: </td>
+                                    <td>Tunnit: &nbsp;</td>
                                     <td>${raportti.tunnit} h&nbsp;</td>
                                     <td>*&nbsp;</td>
                                     <td>${"%.2f" % hintaluokat[raportti.hintaluokka].tunnit} €</td>
                                 </tr>
                                 <tr tal:condition="raportti.matkat">
-                                    <td>Matkat: </td>
+                                    <td>Matkat: &nbsp;</td>
                                     <td>${raportti.matkat} käyntiä&nbsp;</td>
                                     <td>*&nbsp;</td>
                                     <td>${"%.2f" % hintaluokat[raportti.hintaluokka].matkat} €</td>
                                 </tr>
                                 <tr tal:condition="raportti.muut">
-                                    <td>Muut:&nbsp;</td>
+                                    <td>Muut: &nbsp;</td>
+                                    <td></td>
                                     <td>&nbsp;</td>
                                     <td>${"%.2f" % raportti.muut} €</td>
                                 </tr>
@@ -142,7 +143,7 @@
                     </td>
                 </tr>
                 <tr tal:condition="len(huolto.lisatoimenpiteet)">
-                    <td colspan="3" class="money_total">Lisatoimenpiteet (ALV 0%): ${"%.2f" % toimenpiteet_total}</td>
+                    <td tal:condition="show_prices" colspan="3" class="money_total">Lisatoimenpiteet (ALV 0%): ${"%.2f" % toimenpiteet_total}</td>
                 </tr>
 
             </table>

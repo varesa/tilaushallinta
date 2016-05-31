@@ -28,6 +28,15 @@ def get_toimenpiteet_total(raportit):
 
 @view_config(route_name='huolto_summary', renderer="tilaushallinta.templates:huoltosopimus/huolto_summary.pt")
 def view_huolto_summary(request):
+    return huolto_summary(request, True)
+
+
+@view_config(route_name='huolto_summary_priceless', renderer="tilaushallinta.templates:huoltosopimus/huolto_summary.pt")
+def view_huolto_summary_priceless(request):
+    return huolto_summary(request, False)
+
+
+def huolto_summary(request, show_prices):
     huolto_id = request.matchdict['huolto']
     huolto = DBSession.query(Huolto).filter_by(id=huolto_id).first()
 
@@ -59,5 +68,5 @@ def view_huolto_summary(request):
     return {
         'huolto': huolto, 'date_start': date_start, 'date_end': date_end, 'hintaluokat': hl_keyed,
         'toimenpiteet_total': toimenpiteet_total, 'huolto_total': huolto_total,
-        'grand_total': grand_total
+        'grand_total': grand_total, 'show_prices': show_prices
         }

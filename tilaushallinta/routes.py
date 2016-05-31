@@ -24,6 +24,7 @@ def configure_routes(config):
     config.add_route('order_list', '/tilaukset')
     config.add_route('order_details', '/tilaukset/{id}')
     config.add_route('order_summary', '/tilaukset/{id}/yhteenveto')
+    config.add_route('order_summary_priceless', '/tilaukset/{id}/yhteenveto_hinnaton')
 
     config.add_route('order_setstate', '/tilaukset/{id}/setstate')
 
@@ -38,6 +39,7 @@ def configure_routes(config):
 
     config.add_route('huolto_details', '/huoltosopimukset/{sopimus}/huolto/{huolto}')
     config.add_route('huolto_summary', '/huoltosopimukset/{sopimus}/huolto/{huolto}/yhteenveto')
+    config.add_route('huolto_summary_priceless', '/huoltosopimukset/{sopimus}/huolto/{huolto}/yhteenveto_hinnaton')
 
     config.add_route('huoltosopimus_setstate', '/huoltosopimukset/{id}/setstate')
     config.add_route('huolto_setstate', '/huoltosopimukset/{sopimus}/huolto/{id}/setstate')

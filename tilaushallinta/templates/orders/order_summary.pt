@@ -35,11 +35,11 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <span tal:condition="len(tilaus.tilaaja.nimi)">${tilaus.tilaaja.nimi}<br></span>
-                                    <span tal:condition="len(tilaus.tilaaja.yritys)">${tilaus.tilaaja.yritys}<br></span>
-                                    <span tal:condition="len(tilaus.tilaaja.ytunnus)">${tilaus.tilaaja.ytunnus}<br></span>
-                                    <span>${tilaus.tilaaja.osoite}<br>
-                                    ${tilaus.tilaaja.postinumero} ${tilaus.tilaaja.postitoimipaikka}</span>
+                                    <span tal:condition="len(tilaus.tilaaja.nimi)">${tilaus.tilaaja.nimi}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span tal:condition="len(tilaus.tilaaja.yritys)">${tilaus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span tal:condition="len(tilaus.tilaaja.ytunnus)">${tilaus.tilaaja.ytunnus}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span>${tilaus.tilaaja.osoite}&nbsp;&nbsp;&nbsp;<br>
+                                    ${tilaus.tilaaja.postinumero} ${tilaus.tilaaja.postitoimipaikka}&nbsp;&nbsp;&nbsp;</span>
                                 </td>
                                 <td style="vertical-align: top;">
                                     <span tal:condition="len(tilaus.kohde.nimi)">${tilaus.kohde.nimi}<br></span>
@@ -93,9 +93,10 @@
                         </table>
                     </td>
                     <td class="col_middle">
-                        Hintaluokka 1
+                        <span tal:condition="show_prices">Hintaluokka 1</span>
+                        <span tal:condition="not: show_prices">Luokka 1</span>
                     </td>
-                    <td class="col_subtotal">
+                    <td tal:condition="show_prices" class="col_subtotal">
                         <table>
                             <tr>
                                 <td>Tunnit: ${'%.2f' % hinnat1['tunnit']} €</td>
@@ -131,9 +132,10 @@
                         </table>
                     </td>
                     <td class="col_middle">
-                        Hintaluokka 2
+                        <span tal:condition="show_prices">Hintaluokka 2</span>
+                        <span tal:condition="not: show_prices">Luokka 2</span>
                     </td>
-                    <td class="col_subtotal">
+                    <td tal:condition="show_prices" class="col_subtotal">
                         <table>
                             <tr>
                                 <td>Tunnit: ${'%.2f' % hinnat2['tunnit']} €</td>
@@ -169,9 +171,10 @@
                         </table>
                     </td>
                     <td class="col_middle">
-                        Hintaluokka 3
+                        <span tal:condition="show_prices">Hintaluokka 3</span>
+                        <span tal:condition="not: show_prices">Luokka 3</span>
                     </td>
-                    <td class="col_subtotal">
+                    <td tal:condition="show_prices" class="col_subtotal">
                         <table>
                             <tr>
                                 <td>Tunnit: ${'%.2f' % hinnat3['tunnit']} €</td>
@@ -191,7 +194,7 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td class="col_subtotal">Tavarat: ${'%.2f' % hinta_tavarat} €</td>
+                    <td tal:condition="show_prices" class="col_subtotal">Tavarat: ${'%.2f' % hinta_tavarat} €</td>
                 </tr>
                 <tr>
                     <td colspan="3"><hr></td>
@@ -199,7 +202,7 @@
                 <tr>
                     <td>Asiakkaan viite: ${tilaus.viitenumero}</td>
                     <td></td>
-                    <td class="col_subtotal">Loppusumma alv 0%: ${'%.2f' % grand_total} €</td>
+                    <td tal:condition="show_prices" class="col_subtotal">Loppusumma alv 0%: ${'%.2f' % grand_total} €</td>
                 </tr>
                 <tr>
                     <td colspan="2">Työn kuvaus: <br>${tilaus.tyo}</td>
@@ -226,8 +229,8 @@
                                 <td>${tavara.koodi}</td>
                                 <td>${tavara.nimi}</td>
                                 <td class="col_right_aligned">${tavara.maara} ${tavara.yksikko}</td>
-                                <td class="col_right_aligned">${'%.2f' % tavara.hinta} €</td>
-                                <td class="col_right_aligned">${'%.2f' % (tavara.maara * tavara.hinta)} €</td>
+                                <td tal:condition="show_prices" class="col_right_aligned">${'%.2f' % tavara.hinta} €</td>
+                                <td tal:condition="show_prices" class="col_right_aligned">${'%.2f' % (tavara.maara * tavara.hinta)} €</td>
                             </tr>
                         </table>
                     </td>

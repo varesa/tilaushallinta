@@ -5,7 +5,7 @@
 -->
 
 <metal:main metal:use-macro="load: ../master.pt">
-    <metal:main metal:fill-slot="title">Tilauksen tiedot</metal:main>
+    <metal:main metal:fill-slot="title">Huollon tiedot</metal:main>
 
     <metal:main metal:fill-slot="head_custom">
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
@@ -22,6 +22,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp<span style="font-size: 15pt;">${huolto.tyyppi.upper()}<span tal:condition="huolto.tyyppi_muu_selite"> (${huolto.tyyppi_muu_selite})</span>: ${huolto.huoltosopimus.kohde.osoite}, ${huolto.huoltosopimus.kohde.postinumero}, ${huolto.huoltosopimus.kohde.postitoimipaikka}</span></h2></div>
                     <div id="order_actionbuttons">
                         <button onclick="window.open('/huoltosopimukset/${huolto.huoltosopimus.id}/huolto/${huolto.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button onclick="window.open('/huoltosopimukset/${huolto.huoltosopimus.id}/huolto/${huolto.id}/yhteenveto_hinnaton');">Hinnaton</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         Tila:
                         <select id="state_select" onclick="state_changed()">
                             <option selected="${'selected' if huolto.tila == 'UUSI' else None}" value="UUSI">Uusi</option>

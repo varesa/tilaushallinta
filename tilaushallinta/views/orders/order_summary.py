@@ -36,6 +36,15 @@ def get_totals(raportit, hintaluokka_no):
 
 @view_config(route_name='order_summary', renderer="../../templates/orders/order_summary.pt")
 def view_order_summary(request):
+    return summary(request, True)
+
+
+@view_config(route_name='order_summary_priceless', renderer="../../templates/orders/order_summary.pt")
+def view_order_summary_priceless(request):
+    return summary(request, False)
+
+
+def summary(request, show_prices):
     tilaus_id = request.matchdict['id']
     tilaus = DBSession.query(Tilaus).filter_by(id=tilaus_id).first()
 
@@ -50,20 +59,28 @@ def view_order_summary(request):
     luokka2 = get_quantities(tilaus.paivaraportit, 2)
     luokka3 = get_quantities(tilaus.paivaraportit, 3)
 
-    hinnat1 = get_totals(tilaus.paivaraportit, 1)
-    hinnat2 = get_totals(tilaus.paivaraportit, 2)
-    hinnat3 = get_totals(tilaus.paivaraportit, 3)
+    if show_prices:
+        hinnat1 = get_totals(tilaus.paivaraportit, 1)
+        hinnat2 = get_totals(tilaus.paivaraportit, 2)
+        hinnat3 = get_totals(tilaus.paivaraportit, 3)
 
-    total_tavarat = 0.0
-    for tavara in tilaus.tavarat:
-        total_tavarat += tavara.maara * tavara.hinta
+        total_tavarat = 0.0
+        for tavara in tilaus.tavarat:
+            total_tavarat += tavara.maara * tavara.hinta
 
-    grand_total = sum(hinnat1.values()) + sum(hinnat2.values()) + sum(hinnat3.values()) + total_tavarat
+        grand_total = sum(hinnat1.values()) + sum(hinnat2.values()) + sum(hinnat3.values()) + total_tavarat
 
-    return {
+        return {
             'tilaus': tilaus, 'date_start': date_start, 'date_end': date_end,
             'luokka1': luokka1, 'luokka2': luokka2, 'luokka3': luokka3,
             'hinnat1': hinnat1, 'hinnat2': hinnat2, 'hinnat3': hinnat3,
-            'hinta_tavarat': total_tavarat, 'grand_total': grand_total
-           }
+            'show_prices': True, 'hinta_tavarat': total_tavarat, 'grand_total': grand_total
+        }
+    else:
+        return {
+            'tilaus': tilaus, 'date_start': date_start, 'date_end': date_end,
+            'luokka1': luokka1, 'luokka2': luokka2, 'luokka3': luokka3,
+            'show_prices': False
+        }
+
 
