@@ -11,9 +11,15 @@
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
         <link rel="stylesheet" type="text/css" href="/static/css/order_details.css">
         <link rel="stylesheet" type="text/css" href="/static/css/order_list.css">
+        
+        <link rel="stylesheet" href="/static/libs/bootstrap-datepicker/css/bootstrap-datepicker3.css">
+        <script type="text/javascript" src="/static/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="/static/libs/bootstrap-datepicker/locales/bootstrap-datepicker.fi.min.js"></script>
+        <script type="text/javascript" src="/static/js/datepicker.js"></script>
 
         <script type="text/javascript" src="/static/js/order_state.js"></script>
         <script type="text/javascript" src="/static/js/order_edit_tilaaja_kohde.js"></script>
+        <script type="text/javascript" src="/static/js/contract_edit_jobs.js"></script>
     </metal:main>
 
     <metal:main metal:fill-slot="content">
@@ -93,27 +99,87 @@
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-body">
+            <div id="maintenance-show" class="panel-body">
                 <?python
                         from tilaushallinta.views.utils import get_next_date
                 ?>
-                <span>Tilatut huollot:</span>
+                <span>Tilatut huollot: <a onclick="edit_jobs()">Muokkaa</a></span>
                 <ul>
                     <li tal:condition="huoltosopimus.tyyppi_ke"> Keväthuolto,
-                        alkaen ${huoltosopimus.ke_starting_date.strftime("%d.%m.%Y")},
-                        seuraava ${get_next_date(huoltosopimus.ke_starting_date, 12).strftime("%d.%m.%Y")}</li>
+                        alkaen ${huoltosopimus.ke_starting_date.strftime('%d.%m.%Y')},
+                        seuraava ${get_next_date(huoltosopimus.ke_starting_date, 12).strftime('%d.%m.%Y')}</li>
                     <li tal:condition="huoltosopimus.tyyppi_sy"> Syyshuolto,
-                        alkaen ${huoltosopimus.sy_starting_date.strftime("%d.%m.%Y")},
-                        seuraava ${get_next_date(huoltosopimus.sy_starting_date, 12).strftime("%d.%m.%Y")}</li>
+                        alkaen ${huoltosopimus.sy_starting_date.strftime('%d.%m.%Y')},
+                        seuraava ${get_next_date(huoltosopimus.sy_starting_date, 12).strftime('%d.%m.%Y')}</li>
                     <?python import datetime ?>
                     <li tal:condition="huoltosopimus.tyyppi_tk"> Tarkastuskäynnit
                             ${int(huoltosopimus.tk_interval_months) \
                                     if int(huoltosopimus.tk_interval_months) == huoltosopimus.tk_interval_months \
                                     else huoltosopimus.tk_interval_months} kk välein,
-                        alkaen ${huoltosopimus.tk_starting_date.strftime("%d.%m.%Y")}.
-                        Seuraava ${get_next_date(huoltosopimus.tk_starting_date, huoltosopimus.tk_interval_months).strftime("%d.%m.%Y")}
+                        alkaen ${huoltosopimus.tk_starting_date.strftime('%d.%m.%Y')}.
+                        Seuraava ${get_next_date(huoltosopimus.tk_starting_date, huoltosopimus.tk_interval_months).strftime('%d.%m.%Y')}
                     </li>
                 </ul>
+            </div>
+            <div id="maintenance-edit" class="panel-body" style="display: none;">
+                Valitut huollot:<br>
+                <form method="POST">
+                    <input type="hidden" name="data" value="jobs">
+                    <table>
+                        <tr>
+                            <td class="huolto-type form-horizontal">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="huolto_ke" checked="${'checked' if huoltosopimus.tyyppi_ke else None}"> Keväthuolto&nbsp;&nbsp;</label>
+                                </div>
+                            </td><td class="huolto-type form-horizontal">
+                                <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
+                                <div class="input-group date">
+                                    <input tal:condition="huoltosopimus.tyyppi_ke" type="text" class="form-control" name="huolto_ke_starting_date" value="${huoltosopimus.ke_starting_date.strftime('%d.%m.%Y')}">
+                                    <input tal:condition="not: huoltosopimus.tyyppi_ke" type="text" class="form-control" name="huolto_ke_starting_date">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="huolto-type form-horizontal">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="huolto_sy" checked="${'checked' if huoltosopimus.tyyppi_sy else None}"> Syyshuolto&nbsp;&nbsp;</label>
+                                </div>
+                            </td><td class="huolto-type form-horizontal">
+                                <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
+                                <div class="input-group date">
+                                    <input tal:condition="huoltosopimus.tyyppi_sy" type="text" class="form-control" name="huolto_sy_starting_date" value="${huoltosopimus.sy_starting_date.strftime('%d.%m.%Y')}">
+                                    <input tal:condition="not: huoltosopimus.tyyppi_sy" type="text" class="form-control" name="huolto_sy_starting_date">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="huolto-type form-horizontal">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="huolto_tk" id="huolto_tk" checked="${'checked' if huoltosopimus.tyyppi_tk else None}">Tarkastuskäynti&nbsp;&nbsp;</label>
+                                </div>
+                            </td><td class="huolto-type form-horizontal">
+                                <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
+                                <div class="input-group date">
+                                    <input tal:condition="huoltosopimus.tyyppi_tk" type="text" class="form-control" name="huolto_tk_starting_date" value="${huoltosopimus.tk_starting_date.strftime('%d.%m.%Y')}">
+                                    <input tal:condition="not: huoltosopimus.tyyppi_tk" type="text" class="form-control" name="huolto_tk_starting_date">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                </div>
+                            </td><td class="huolto-type form-horizontal">
+                                <span>&nbsp;&nbsp;</span>
+                                <select class="form-control" name="huolto_tk_interval_months">
+                                    <option selected="${'selected' if huoltosopimus.tk_interval_months == 0.5 else None}" value="0.5">Kerran kahdessa viikossa</option>
+                                    <option selected="${'selected' if huoltosopimus.tk_interval_months == 1 else None}" value="1">Kerran kuukaudessa</option>
+                                    <option selected="${'selected' if huoltosopimus.tk_interval_months == 2 else None}" value="2">Kerran kahdessa kuukaudessa</option>
+                                    <option selected="${'selected' if huoltosopimus.tk_interval_months == 3 else None}" value="3">Kerran kolmessa kuukaudessa</option>
+                                    <option selected="${'selected' if huoltosopimus.tk_interval_months == 6 else None}" value="6">Kerran kuudessa kuukaudessa</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Tallenna">
+                </form>
             </div>
         </div>
         <div class="panel panel-default">

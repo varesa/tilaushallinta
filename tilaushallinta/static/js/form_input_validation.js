@@ -4,15 +4,6 @@
  * Copyright Esa Varemo 2014-2016
  */
 
-
-// Enable date pickers
-$(document).ready(function() {
-    var date_inputs = $('.input-group.date');
-    if(date_inputs.length) {
-        date_inputs.datepicker({language: 'fi'});
-    }
-});
-
 // Add asterisks to fields that have been marked as required
 $(document).ready(function() {
     var pattern =  /([^<]*)(.*)/;

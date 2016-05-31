@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="/static/libs/bootstrap-datepicker/css/bootstrap-datepicker3.css">
         <script type="text/javascript" src="/static/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="/static/libs/bootstrap-datepicker/locales/bootstrap-datepicker.fi.min.js"></script>
+        <script type="text/javascript" src="/static/js/datepicker.js"></script>
         <link rel="stylesheet" href="/static/css/lomake.css"/>
         <link rel="stylesheet" href="/static/css/order_new.css"/>
         <link rel="stylesheet" type="text/css" href="/static/css/modal_scroll.css">
@@ -90,6 +91,8 @@
                                     <div class="checkbox">
                                         <label><input type="checkbox" name="huolto_ke"> Keväthuolto&nbsp;&nbsp;</label>
                                     </div>
+                                </td>
+                                <td class="huolto-type form-horizontal">
                                     <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
                                     <div class="input-group date">
                                         <input type="text" class="form-control" name="huolto_ke_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
@@ -101,7 +104,9 @@
                                     <div class="checkbox">
                                         <label><input type="checkbox" name="huolto_sy"> Syyshuolto&nbsp;&nbsp;</label>
                                     </div>
-                                    <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;&nbsp;</span>
+                                </td>
+                                <td class="huolto-type form-horizontal">
+                                    <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
                                     <div class="input-group date">
                                         <input type="text" class="form-control" name="huolto_sy_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                     </div>
@@ -110,9 +115,10 @@
                             <tr>
                                 <td class="huolto-type form-horizontal">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" name="huolto_tk" id="huolto_tk">Tarkastuskäynti</label>
+                                        <label><input type="checkbox" name="huolto_tk" id="huolto_tk">Tarkastuskäynti&nbsp;&nbsp;</label>
                                     </div>
-
+                                </td>
+                                <td class="huolto-type form-horizontal">
                                     <span>&nbsp;&nbsp;Alkaen:&nbsp;&nbsp;</span>
                                     <div class="input-group date">
                                         <input type="text" class="form-control" name="huolto_tk_starting_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
