@@ -153,14 +153,14 @@
                             <th>A</th>
                             <th>T</th>
                         </tr>
-                        <tr tal:repeat="tavara tilaus.tavarat">
-                            <td class="tavara_col1"><input name="${tavara.id}-koodi" value="${tavara.koodi}"></td>
-                            <td class="tavara_col2"><input name="${tavara.id}-nimi" value="${tavara.nimi}"></td>
-                            <td class="tavara_col3"><input name="${tavara.id}-hinta" value="${tavara.hinta}"></td>
-                            <td class="tavara_col4"><input name="${tavara.id}-maara" value="${tavara.maara}"></td>
-                            <td class="tavara_col5"><input name="${tavara.id}-yksikko" value="${tavara.yksikko}"></td>
-                            <td class="tavara_col6"><input name="${tavara.id}-A" type="checkbox" checked="${'checked' if 'A' in tavara.tyyppi else None}"></td>
-                            <td class="tavara_col7"><input name="${tavara.id}-T" type="checkbox" checked="${'checked' if 'T' in tavara.tyyppi else None}"></td>
+                        <tr tal:repeat="part parts">
+                            <td class="tavara_col1"><input name="${part.id}-koodi" value="${part.koodi}"></td>
+                            <td class="tavara_col2"><input name="${part.id}-nimi" value="${part.nimi}"></td>
+                            <td class="tavara_col3"><input name="${part.id}-hinta" value="${part.hinta}"></td>
+                            <td class="tavara_col4"><input name="${part.id}-maara" value="${part.maara}"></td>
+                            <td class="tavara_col5"><input name="${part.id}-yksikko" value="${part.yksikko}"></td>
+                            <td class="tavara_col6"><input name="${part.id}-A" type="checkbox" checked="${'checked' if 'A' in part.tyyppi else None}"></td>
+                            <td class="tavara_col7"><input name="${part.id}-T" type="checkbox" checked="${'checked' if 'T' in part.tyyppi else None}"></td>
                         </tr>
                         <a name="tavarat"></a>
                         <tr>

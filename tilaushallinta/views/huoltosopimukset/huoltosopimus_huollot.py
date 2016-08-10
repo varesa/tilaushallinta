@@ -12,8 +12,7 @@ from pyramid.view import view_config
 from tilaushallinta.models import DBSession
 from tilaushallinta.models import Huolto
 from tilaushallinta.models.huoltosopimus import Huoltosopimus
-
-from tilaushallinta.views.utils import check_next_date_in_30d, get_next_date, get_closest_date
+from tilaushallinta.views.shared.utils import get_closest_date
 
 STATUS_NONE = 0
 STATUS_CLOSE = 1

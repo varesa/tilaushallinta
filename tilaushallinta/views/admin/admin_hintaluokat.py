@@ -8,8 +8,7 @@
 from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession, Hintaluokka, HuoltoHintaluokka, LisatoimenpideHintaluokka
-
-from tilaushallinta.views.utils import string_to_float_or_zero
+from tilaushallinta.views.shared.utils import string_to_float_or_zero
 
 
 @view_config(route_name='admin_hintaluokat', renderer='tilaushallinta.templates:admin/admin_hintaluokat.pt')

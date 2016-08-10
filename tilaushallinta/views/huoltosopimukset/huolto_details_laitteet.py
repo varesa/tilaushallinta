@@ -6,71 +6,67 @@
 #
 
 import datetime
-from tilaushallinta.models import Laite
+
 from tilaushallinta import DBSession
-from tilaushallinta.views.utils import string_to_float_or_zero
+from tilaushallinta.models import Laite
+from tilaushallinta.views.shared.form_item_lists import save_changes
+from tilaushallinta.views.shared.utils import string_to_float_or_zero, string_to_float_or_value
 
 
-def remove_empty_laitteet(laitteet_tmp):
-    laitteet = {}
-    for laite_id, value in laitteet_tmp.items():
-        if value['nimi'] != "" or value['tyyppitiedot'] != "" or value['maara'] != "" or value['valmistusvuosi'] != "":
-            laitteet[laite_id] = value
-    return laitteet
-
-
-def laitteet_form_to_dict(request):
-    laitteet = {}
-    for key, value in request.POST.iteritems():
-        if '-' not in key:
-            continue
-
-        laite_id, field = key.split('-')
-        if laite_id not in laitteet.keys():
-            laitteet[laite_id] = {}
-
-        laitteet[laite_id][field] = value
-    return laitteet
-
-
-def laite_new_from_dict(laite_dict):
+def device_new_from_dict(device_dict):
     return Laite(date=datetime.datetime.now(),
-                 nimi=laite_dict['nimi'], tyyppitiedot=laite_dict['tyyppitiedot'],
-                 maara=string_to_float_or_zero(laite_dict['maara']),
-                 valmistusvuosi=string_to_float_or_zero(laite_dict['valmistusvuosi']),
+                 nimi=device_dict['nimi'], tyyppitiedot=device_dict['tyyppitiedot'],
+                 maara=string_to_float_or_value(device_dict['maara'], 1),
+                 valmistusvuosi=string_to_float_or_zero(device_dict['valmistusvuosi']),
                  tyyppi=(
                     "" +
-                    ('H' if ('H' in laite_dict.keys()) else '') +
-                    ('K' if ('K' in laite_dict.keys()) else '')
+                    ('H' if ('H' in device_dict.keys()) else '') +
+                    ('K' if ('K' in device_dict.keys()) else '')
                  ))
 
 
-def laite_modify_from_dict(laite_id, laite_dict):
-    laite = DBSession.query(Laite).filter_by(id=laite_id).first()
-    laite.nimi = laite_dict['nimi']
-    laite.tyyppitiedot = laite_dict['tyyppitiedot']
-    laite.maara = string_to_float_or_zero(laite_dict['maara'])
-    laite.valmistusvuosi = string_to_float_or_zero(laite_dict['valmistusvuosi'])
+def device_new(job, device_dict):
+    device = device_new_from_dict(device_dict)
+    DBSession.add(device)
+    job.laiteluettelo.laitteet.append(device)
+
+
+def device_modify(job, device_dict):
+    laite = DBSession.query(Laite).filter_by(id=device_dict['id']).first()
+    laite.nimi = device_dict['nimi']
+    laite.tyyppitiedot = device_dict['tyyppitiedot']
+    laite.maara = string_to_float_or_zero(device_dict['maara'])
+    laite.valmistusvuosi = string_to_float_or_zero(device_dict['valmistusvuosi'])
     laite.tyyppi = (
         "" +
-        ('H' if ('H' in laite_dict.keys()) else '') +
-        ('K' if ('K' in laite_dict.keys()) else '')
+        ('H' if ('H' in device_dict.keys()) else '') +
+        ('K' if ('K' in device_dict.keys()) else '')
     )
 
 
-def save_laitteet(request, huolto):
-    laitteet = remove_empty_laitteet(laitteet_form_to_dict(request))
+def device_delete(job, device_dict):
+    for device in job.laiteluettelo.laitteet:
+        if device.id == int(device_dict['id']):
+            job.laiteluettelo.laitteet.remove(device)
+            DBSession.delete(device)
 
-    for laite_id, laite_dict in laitteet.items():  # Loop throug received list of items
-        if 'n' in laite_id:                        # If 'n' -> we are creating a new item
-            laite = laite_new_from_dict(laite_dict)
-            DBSession.add(laite)
-            huolto.laiteluettelo.laitteet.append(laite)
-        else:
-            if string_to_float_or_zero(laite_dict['maara']) == 0:
-                for t in huolto.laitteet:
-                    if t.id == int(laite_id):
-                        huolto.laitteet.remove(t)
-                        DBSession.delete(t)
-            else:
-                laite_modify_from_dict(laite_id, laite_dict)
+
+def save_devices(request, job):
+    save_changes(request, job,
+                 ['nimi', 'tyyppitiedot', 'maara', 'valmistusvuosi'],
+                 device_new, device_modify, device_delete)
+    # laitteet = remove_empty(form_to_dict(request), ['nimi', 'tyyppitiedot', 'maara', 'valmistusvuosi'])
+    #
+    # for laite_id, laite_dict in laitteet.items():  # Loop throug received list of items
+    #     if 'n' in laite_id:                        # If 'n' -> we are creating a new item
+    #         laite = device_new_from_dict(laite_dict)
+    #         DBSession.add(laite)
+    #         huolto.laiteluettelo.laitteet.append(laite)
+    #     else:
+    #         if string_to_float_or_zero(laite_dict['maara']) == 0:
+    #             for t in huolto.laitteet:
+    #                 if t.id == int(laite_id):
+    #                     huolto.laitteet.remove(t)
+    #                     DBSession.delete(t)
+    #         else:
+    #             laite_modify_from_dict(laite_id, laite_dict)

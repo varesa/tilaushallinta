@@ -11,7 +11,7 @@ from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession
 from tilaushallinta.models import Huolto
-from tilaushallinta.views.huoltosopimukset.huolto_details_laitteet import save_laitteet
+from tilaushallinta.views.huoltosopimukset.huolto_details_laitteet import save_devices
 from tilaushallinta.views.huoltosopimukset.huolto_details_raportit import add_huoltoraportti, save_huoltoraportit
 from tilaushallinta.views.huoltosopimukset.huolto_details_toimenpiteet import add_lisatoimenpide, save_lisatoimenpiteet
 
@@ -55,7 +55,7 @@ def view_huolto_details(request):
         ############################################
 
         if request.POST['data'] == 'laitteet':
-            save_laitteet(request, huolto)
+            save_devices(request, huolto)
 
     current_date = datetime.datetime.now()
 

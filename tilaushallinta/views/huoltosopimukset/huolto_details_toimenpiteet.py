@@ -6,9 +6,10 @@
 #
 
 import datetime
-from tilaushallinta.models import Lisatoimenpide
+
 from tilaushallinta import DBSession
-from tilaushallinta.views.utils import string_to_int_or_zero, string_to_float_or_zero
+from tilaushallinta.models import Lisatoimenpide
+from tilaushallinta.views.shared.utils import string_to_int_or_zero, string_to_float_or_zero
 
 
 def add_lisatoimenpide(huolto):

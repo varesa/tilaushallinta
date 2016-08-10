@@ -10,12 +10,11 @@ import datetime
 from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession
-from tilaushallinta.models import Tilaus
-from tilaushallinta.models import Tavara
 from tilaushallinta.models import Paivaraportti
-
-from tilaushallinta.views.utils import string_to_float_or_zero, string_to_int_or_zero, string_to_float_or_value
+from tilaushallinta.models import Tilaus
+from tilaushallinta.views.orders.order_parts import save_parts
 from tilaushallinta.views.shared.update_tilaaja_kohde import update_tilaaja, update_kohde
+from tilaushallinta.views.shared.utils import string_to_float_or_zero, string_to_int_or_zero
 
 
 def compare_sets(list):
@@ -24,17 +23,6 @@ def compare_sets(list):
         if val1 != val2:
             difference = True
     return difference
-
-
-def remove_empty_tavarat(tavarat_tmp):
-    tavarat = {}
-    for tavara_id, value in tavarat_tmp.items():
-        if (value['koodi'] != "" or
-            value['nimi'] != "" or
-            value['maara'] != "" or
-            value['hinta'] != ""):
-            tavarat[tavara_id] = value
-    return tavarat
 
 
 def update_perustiedot(request):
@@ -116,64 +104,6 @@ def save_paivaraportit(request, tilaus):
                 raportti_modify_from_dict(raportti_id, raportti_new)
 
 
-def tavarat_form_to_dict(request):
-    tavarat = {}
-    for key, value in request.POST.iteritems():
-        if '-' not in key:
-            continue
-
-        tavara_id, field = key.split('-')
-        if tavara_id not in tavarat.keys():
-            tavarat[tavara_id] = {}
-
-        tavarat[tavara_id][field] = value
-    return tavarat
-
-
-def tavara_new_from_dict(tavara_dict):
-    return Tavara(date=datetime.datetime.now(),
-                  koodi=tavara_dict['koodi'], nimi=tavara_dict['nimi'],
-                  maara=string_to_float_or_value(tavara_dict['maara'], 1), hinta=string_to_float_or_zero(tavara_dict['hinta']),
-                  yksikko=tavara_dict['yksikko'],
-                  tyyppi=(
-                      "" +
-                      ('A' if ('A' in tavara_dict.keys()) else '') +
-                      ('T' if ('T' in tavara_dict.keys()) else '')
-                  ))
-
-
-def tavara_modify_from_dict(tavara_id, tavara_dict):
-    tavara = DBSession.query(Tavara).filter_by(id=tavara_id).first()
-    tavara.koodi = tavara_dict['koodi']
-    tavara.nimi = tavara_dict['nimi']
-    tavara.maara = string_to_float_or_zero(tavara_dict['maara'])
-    tavara.hinta = string_to_float_or_zero(tavara_dict['hinta'])
-    tavara.yksikko = tavara_dict['yksikko']
-    tavara.tyyppi = (
-        "" +
-        ('A' if ('A' in tavara_dict.keys()) else '') +
-        ('T' if ('T' in tavara_dict.keys()) else '')
-    )
-
-
-def save_tavarat(request, tilaus):
-    tavarat = remove_empty_tavarat(tavarat_form_to_dict(request))
-
-    for tavara_id, tavara_dict in tavarat.items():  # Loop throug received list of items
-        if 'n' in tavara_id:                        # If 'n' -> we are creating a new item
-            tavara = tavara_new_from_dict(tavara_dict)
-            DBSession.add(tavara)
-            tilaus.tavarat.append(tavara)
-        else:
-            if string_to_float_or_zero(tavara_dict['maara']) == 0:
-                for t in tilaus.tavarat:
-                    if t.id == int(tavara_id):
-                        tilaus.tavarat.remove(t)
-                        DBSession.delete(t)
-            else:
-                tavara_modify_from_dict(tavara_id, tavara_dict)
-                    
-
 @view_config(route_name='order_details', renderer='tilaushallinta.templates:orders/order_details.pt')
 def view_order_details(request):
     order_id = request.matchdict['id']
@@ -203,8 +133,8 @@ def view_order_details(request):
         ############################################
 
         if request.POST['data'] == 'tavarat':
-            save_tavarat(request, tilaus)
+            save_parts(request, tilaus)
 
     current_date = datetime.datetime.now()
 
-    return {'tilaus': tilaus, 'current_date': current_date}
+    return {'tilaus': tilaus, 'current_date': current_date, 'parts': sorted(tilaus.tavarat, key=lambda part: part.koodi)}
