@@ -28,6 +28,7 @@
                             <option selected="${'selected' if huolto.tila == 'UUSI' else None}" value="UUSI">Uusi</option>
                             <option selected="${'selected' if huolto.tila == 'ALOITETTU' else None}" value="ALOITETTU">Aloitettu</option>
                             <option selected="${'selected' if huolto.tila == 'KORJATTAVAA' else None}" value="KORJATTAVAA">Korjattavaa</option>
+                            <option selected="${'selected' if huolto.tila == 'ODOTTAA' else None}" value="ODOTTAA">Odottaa</option>
                             <option selected="${'selected' if huolto.tila == 'VALMIS' else None}" value="VALMIS">Valmis</option>
                         </select>
                         <input type="hidden" name="huolto_id" value="${huolto.id}">

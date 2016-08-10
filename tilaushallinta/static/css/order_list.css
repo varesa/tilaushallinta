@@ -28,6 +28,10 @@
     background-color: lightcoral;
 }
 
+.tila_odottaa {
+    background-color: pink;
+}
+
 .tila_valmis {
     background-color: lightgray;
 }
