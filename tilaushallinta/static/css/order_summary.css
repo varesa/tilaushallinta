@@ -36,3 +36,7 @@
 .col_subtotal, .col_subtotal table tr td {
     text-align: right;
 }
+
+.tilaaja-text {
+    padding-right: 200px;
+}

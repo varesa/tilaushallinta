@@ -36,10 +36,10 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: top;">
-                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.nimi)">${huolto.huoltosopimus.tilaaja.nimi}&nbsp;&nbsp;&nbsp;<br></span>
-                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.yritys)">${huolto.huoltosopimus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;<br></span>
-                                    <span tal:condition="len(huolto.huoltosopimus.tilaaja.ytunnus)">${huolto.huoltosopimus.tilaaja.ytunnus}&nbsp;&nbsp;&nbsp;<br></span>
-                                    <span>${huolto.huoltosopimus.tilaaja.osoite}&nbsp;&nbsp;&nbsp;<br>
+                                    <span class="tilaaja-text" tal:condition="len(huolto.huoltosopimus.tilaaja.nimi)">${huolto.huoltosopimus.tilaaja.nimi}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span class="tilaaja-text" tal:condition="len(huolto.huoltosopimus.tilaaja.yritys)">${huolto.huoltosopimus.tilaaja.yritys}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span class="tilaaja-text" tal:condition="len(huolto.huoltosopimus.tilaaja.ytunnus)">${huolto.huoltosopimus.tilaaja.ytunnus}&nbsp;&nbsp;&nbsp;<br></span>
+                                    <span class="tilaaja-text">${huolto.huoltosopimus.tilaaja.osoite}&nbsp;&nbsp;&nbsp;<br>
                                     ${huolto.huoltosopimus.tilaaja.postinumero} ${huolto.huoltosopimus.tilaaja.postitoimipaikka}&nbsp;&nbsp;&nbsp;</span>
                                 </td>
                                 <td style="vertical-align: top;">
