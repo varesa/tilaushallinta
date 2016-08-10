@@ -11,6 +11,7 @@ var orders = [];
 function create_index() {
     index = lunr(function () {
         this.ref('id');
+        this.field('id2');
         this.field('reference');
         this.field('tila');
         
@@ -35,7 +36,7 @@ function index_order(order) {
     }
     index.add({
         id:  order.id,
-        id2: order.i2,
+        id2: order.id2,
         reference: order.reference,
         date: order.date,
         tila: order.tila,
