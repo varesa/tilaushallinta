@@ -55,18 +55,3 @@ def save_devices(request, job):
     save_changes(request, job,
                  ['nimi', 'tyyppitiedot', 'maara', 'valmistusvuosi'],
                  device_new, device_modify, device_delete)
-    # laitteet = remove_empty(form_to_dict(request), ['nimi', 'tyyppitiedot', 'maara', 'valmistusvuosi'])
-    #
-    # for laite_id, laite_dict in laitteet.items():  # Loop throug received list of items
-    #     if 'n' in laite_id:                        # If 'n' -> we are creating a new item
-    #         laite = device_new_from_dict(laite_dict)
-    #         DBSession.add(laite)
-    #         huolto.laiteluettelo.laitteet.append(laite)
-    #     else:
-    #         if string_to_float_or_zero(laite_dict['maara']) == 0:
-    #             for t in huolto.laitteet:
-    #                 if t.id == int(laite_id):
-    #                     huolto.laitteet.remove(t)
-    #                     DBSession.delete(t)
-    #         else:
-    #             laite_modify_from_dict(laite_id, laite_dict)
