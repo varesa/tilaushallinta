@@ -18,8 +18,18 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp<span style="font-size: 15pt;">${tilaus.kohde.osoite}, ${tilaus.kohde.postinumero}, ${tilaus.kohde.postitoimipaikka}</span></h2></div>
+                    <?python
+                            from tilaushallinta.utils.address import join_address
+                            address = join_address(tilaus.kohde.osoite, tilaus.kohde.postinumero, tilaus.kohde.postitoimipaikka)
+                    ?>
+                    <div id="table_title">
+                        <div style="display: inline-block">
+                            <div style="display: inline-block; vertical-align: top;">
+                                <span style="font-size: 20pt;">Perustiedot</span><a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a>
+                            </div>
+                    &nbsp;&nbsp;&nbsp;     &nbsp<span class="title_short" style="font-size: 14pt; margin-top: 10px;">${address}</span>
+                        </div>
+                    </div>
                     <div id="order_actionbuttons">
                         <button onclick="window.open('/tilaukset/${tilaus.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         <button onclick="window.open('/tilaukset/${tilaus.id}/yhteenveto_hinnaton');">Hinnaton</button>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,6 +45,7 @@
                         <input id="state_change" type="button" value="Vaihda" onclick="order_change_state()" disabled>
                     </div>
                 </div>
+                <div style="height: 10px;"></div>
                 <table class="table_lomake collapse in" id="table_perustiedot">
                     <form method="post">
                         <input type="hidden" name="data" value="perustiedot">

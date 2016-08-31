@@ -13,3 +13,15 @@
 #huolto-muu-modal input {
     width: 100%;
 }
+
+#table_title {
+    top: 0;
+}
+
+#table_title span {
+    display: inline-block;
+}
+
+#table_title .title_short {
+    max-width: 200px;
+}

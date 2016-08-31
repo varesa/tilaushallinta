@@ -10,6 +10,10 @@
     <tr tal:repeat="huolto huollot"
             onclick="window.location.href='/huoltosopimukset/' + ${huolto.huoltosopimus.id} + '/huolto/' + ${huolto.id}">
         <td>${huolto.date.strftime("%y%m%d-%H%M")}</td>
+        <?python
+                from tilaushallinta.utils.address import join_address
+                address = join_address(huolto.huoltosopimus.kohde.osoite, huolto.huoltosopimus.kohde.postinumero, huolto.huoltosopimus.kohde.postitoimipaikka)
+        ?>
         
         <td tal:condition="huolto.tila == 'UUSI'"><span class="tilaus_tila tila_uusi">Uusi</span></td>
         <td tal:condition="huolto.tila == 'ALOITETTU'"><span class="tilaus_tila tila_aloitettu">Aloitettu</span></td>
@@ -25,6 +29,6 @@
                 else huolto.huoltosopimus.kohde.nimi + huolto.huoltosopimus.kohde.yritys ?>
         <td>${kohde}&nbsp;&nbsp;&nbsp;</td>
         
-        <td>${huolto.huoltosopimus.kohde.osoite}, ${huolto.huoltosopimus.kohde.postinumero} ${huolto.huoltosopimus.kohde.postitoimipaikka}</td>
+        <td>${address}</td>
     </tr>
 </table>

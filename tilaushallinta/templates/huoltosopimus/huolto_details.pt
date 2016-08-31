@@ -18,8 +18,21 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Huolto
-                    &nbsp;&nbsp;&nbsp;&nbsp<span style="font-size: 15pt;">${huolto.tyyppi.upper()}<span tal:condition="huolto.tyyppi_muu_selite"> (${huolto.tyyppi_muu_selite})</span>: ${huolto.huoltosopimus.kohde.osoite}, ${huolto.huoltosopimus.kohde.postinumero}, ${huolto.huoltosopimus.kohde.postitoimipaikka}</span></h2></div>
+                    <div id="table_title">
+                        <?python
+                                from tilaushallinta.utils.address import join_address
+                                address = join_address(huolto.huoltosopimus.kohde.osoite, huolto.huoltosopimus.kohde.postinumero, huolto.huoltosopimus.kohde.postitoimipaikka)
+                        ?>
+                        <div style="display: inline-block">
+                            <div style="display: inline-block; vertical-align: top;">
+                                <span style="font-size: 20pt;">Huolto</span>
+                                <span style="font-size: 15pt;">${huolto.tyyppi.upper()}
+                                    <tal tal:condition="huolto.tyyppi_muu_selite"> (${huolto.tyyppi_muu_selite})</tal>
+                                </span>
+                            </div>
+                    &nbsp;&nbsp;&nbsp;     &nbsp<span style="font-size: 14pt; margin-top: 10px;">${address}</span>
+                        </div>
+                    </div>
                     <div id="order_actionbuttons">
                         <button onclick="window.open('/huoltosopimukset/${huolto.huoltosopimus.id}/huolto/${huolto.id}/yhteenveto');">Näytä yhteenveto</button>&nbsp;&nbsp;&nbsp;&nbsp;
                         <button onclick="window.open('/huoltosopimukset/${huolto.huoltosopimus.id}/huolto/${huolto.id}/yhteenveto_hinnaton');">Hinnaton</button>&nbsp;&nbsp;&nbsp;&nbsp;

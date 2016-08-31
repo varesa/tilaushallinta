@@ -44,8 +44,18 @@
         <div class="panel panel-default" id="perustiedot">
             <div class="panel-body">
                 <div id="table_top">
-                    <div id="table_title"><h2>Perustiedot<a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp<span style="font-size: 15pt;">${huoltosopimus.kohde.osoite}, ${huoltosopimus.kohde.postinumero}, ${huoltosopimus.kohde.postitoimipaikka}</span></h2></div>
+                    <?python
+                            from tilaushallinta.utils.address import join_address
+                            address = join_address(huoltosopimus.kohde.osoite, huoltosopimus.kohde.postinumero, huoltosopimus.kohde.postitoimipaikka)
+                    ?>
+                    <div id="table_title">
+                        <div style="display: inline-block">
+                            <div style="display: inline-block; vertical-align: top;">
+                                <span style="font-size: 20pt;">Perustiedot</span><a style="font-size: 10pt;" data-toggle="collapse" href="#table_perustiedot">&nbsp;&nbsp;&nbsp;Näytä/Piilota</a>
+                            </div>
+                    &nbsp;&nbsp;&nbsp;     &nbsp<span style="font-size: 14pt; margin-top: 10px;">${address}</span>
+                        </div>
+                    </div>
                     <div id="order_actionbuttons">
                         Tila:
                         <select id="state_select" onclick="state_changed()">
@@ -56,6 +66,7 @@
                         <input id="state_change" type="button" value="Vaihda" onclick="huoltosopimus_change_state()" disabled>
                     </div>
                 </div>
+                <div style="height: 10px;"></div>
                 <table class="table_lomake collapse in" id="table_perustiedot">
                     <form method="post">
                         <input type="hidden" name="data" value="perustiedot">

@@ -6,6 +6,10 @@
         <th>Kohteen osoite</th>
     </tr>
     <tr tal:repeat="tilaus tilaukset" onclick="window.location.href='/tilaukset/' + ${tilaus.id}">
+        <?python
+                from tilaushallinta.utils.address import join_address
+                address = join_address(tilaus.kohde.osoite, tilaus.kohde.postinumero, tilaus.kohde.postitoimipaikka)
+        ?>
         <td>${tilaus.date.strftime("%y%m%d-%H%M")}</td>
         <td tal:condition="tilaus.tila == 'UUSI'"><span class="tilaus_tila tila_uusi">Uusi</span></td>
         <td tal:condition="tilaus.tila == 'HYVAKSYTTY'"><span class="tilaus_tila tila_hyvaksytty">Hyväksytty</span></td>
@@ -16,6 +20,6 @@
                 if len(tilaus.tilaaja.nimi) and len(tilaus.tilaaja.yritys) \
                 else tilaus.tilaaja.nimi + tilaus.tilaaja.yritys ?>
         <td>${tilaaja}&nbsp;&nbsp;&nbsp;</td>
-        <td>${tilaus.kohde.osoite}, ${tilaus.kohde.postinumero} ${tilaus.kohde.postitoimipaikka}</td>
+        <td>${address}</td>
     </tr>
 </table>
