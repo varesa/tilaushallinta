@@ -64,6 +64,7 @@ def configure_routes(config):
 
     # Admin
     config.add_route('admin', '/admin')
+    config.add_route('admin_anonymize', '/admin/anonymize')
     config.add_route('admin_hintaluokat', '/admin/hintaluokat')
     config.add_route('admin_users', '/admin/users')
     config.add_route('admin_users_new', '/admin/users/new')
