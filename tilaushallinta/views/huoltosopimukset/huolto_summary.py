@@ -55,6 +55,8 @@ def huolto_summary(request, show_prices):
         huolto_total = huolto.hintaluokka.sy
     elif huolto.tyyppi == huolto.TYYPPI_TK:
         huolto_total = huolto.hintaluokka.tk
+    else:
+        huolto_total = 0
 
     toimenpiteet_total = get_toimenpiteet_total(huolto.lisatoimenpiteet)
 
