@@ -65,7 +65,8 @@ class Huolto(Base):
     TYYPPI_KE = "ke"
     TYYPPI_SY = "sy"
     TYYPPI_TK = "tk"
-    TYYPPI_muu = "muu"
+    TYYPPI_muu = "muu"  # TODO: Check for usages and remove
+    TYYPPI_MUU = "muu"
 
     tyyppi_muu_selite = Column(Text)
 
