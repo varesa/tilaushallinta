@@ -5,6 +5,12 @@ from sqlalchemy.dialects import mysql
 from sqlalchemy import Boolean
 from logging.config import fileConfig
 
+import os.path
+import sys
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+sys.path.append(parent_dir)
+
 import db_env
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
