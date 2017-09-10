@@ -11,5 +11,6 @@
     <li><br></li>
     <li><strong>Kehitystyökalut</strong></li>
     <li><a href="/admin/db">Tietokanta</a></li>
+    <li><a href="/admin/normalize_reminders">Normalisoi muistutukset</a></li>
     <li><a href="/assertfail">Aiheuta poikkeus</a></li>
 </ul>

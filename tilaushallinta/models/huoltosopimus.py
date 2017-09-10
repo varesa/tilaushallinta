@@ -70,9 +70,9 @@ class Huoltosopimus(Base):
             self.sy_next_date += relativedelta(months=self.sy_interval_months)
         elif maintenance_type == Huolto.TYYPPI_TK:
             if self.tk_interval_months >= 1:
-                self.tk_interval_months += \
-                    relativedelta(months=self.tk_interval_months)
+                self.tk_next_date += \
+                    relativedelta(months=int(self.tk_interval_months))
             else:
-                self.tk_interval_months += \
+                self.tk_next_date += \
                     relativedelta(weeks=int(self.tk_interval_months * DAYS_PER_MONTH / DAYS_PER_WEEK))
 
