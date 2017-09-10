@@ -4,12 +4,16 @@
 # Copyright Esa Varemo 2014-2016
 #
 
+from dateutil.relativedelta import relativedelta
 
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Boolean, Float, Date
 from sqlalchemy.orm import relationship
 
 from .meta import Base
+from .huolto import Huolto
 
+DAYS_PER_WEEK = 7
+DAYS_PER_MONTH = 365 / 12
 
 class Huoltosopimus(Base):
     __versioned__ = {}
@@ -18,26 +22,56 @@ class Huoltosopimus(Base):
     id = Column(Integer, primary_key=True)
     date = Column(DateTime, nullable=False)
 
+    # Contract states
     TILA_ACTIVE = "ACTIVE"
     TILA_INACTIVE = "INACTIVE"
+
+    # State
     tila = Column(String(15), nullable=False, default=TILA_ACTIVE)
 
+    # Optional reference number
     viitenumero = Column(Text)
 
+    # Customer
     tilaaja_id = Column(Integer, ForeignKey("tilaajat.id"))
     tilaaja = relationship("Tilaaja", backref="huoltosopimukset")
 
+    # Work location
     kohde_id = Column(Integer, ForeignKey("kohteet.id"))
     kohde = relationship("Kohde", backref="huoltosopimukset")
 
+    # Other contact details
     muut_yhteysh = Column(Text)
 
+    # Maintenance type: Keväthuolto
     tyyppi_ke = Column(Boolean)
     ke_starting_date = Column(Date)
+    ke_next_date = Column(Date)
+    ke_interval_months = 12
 
+    # Maintenance type: Syyshuolto
     tyyppi_sy = Column(Boolean)
     sy_starting_date = Column(Date)
+    sy_next_date = Column(Date)
+    sy_interval_months = 12
 
+    # Maintenance type: Tarkastuskäynti
     tyyppi_tk = Column(Boolean)
-    tk_interval_months = Column(Float)
     tk_starting_date = Column(Date)
+    tk_next_date = Column(Date)
+    tk_interval_months = Column(Float)
+
+
+    def advance_date(self, maintenance_type):
+        if type == Huolto.TYYPPI_KE:
+            self.ke_next_date += relativedelta(months=self.ke_interval_months)
+        elif type == Huolto.TYYPPI_SY:
+            self.sy_next_date += relativedelta(months=self.sy_interval_months)
+        elif type == Huolto.TYYPPI_TK:
+            if self.tk_interval_months >= 1:
+                self.tk_interval_months += \
+                    relativedelta(months=self.tk_interval_months)
+            else:
+                self.tk_interval_months += \
+                    relativedelta(weeks=int(self.tk_interval_months * DAYS_PER_MONTH / DAYS_PER_WEEK))
+

@@ -18,33 +18,60 @@ STATUS_NONE = 0
 STATUS_CLOSE = 1
 STATUS_LATE = 2
 
+REMINDER_DAYS_BEFORE = 30
+
 
 def get_status(contract, type):
+    """
+    Get the next scheduled date for a specific maintenance type
+    and whether it is late or not.
+
+    :param contract: Maintenance contract to check the status of
+    :type contract: Huoltosopimus
+    :param type: Type of the maintenance job to check
+    :type type: int
+    :return: Status of the maintenance job
+    :rtype: int
+    """
+
     if type == Huolto.TYYPPI_KE:
-        starting_date = contract.ke_starting_date
-        interval = 12
+        if contract.ke_next_date:
+            remind_date = contract.ke_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
+        else:
+            remind_date = datetime.datetime(year=2000, month=1, day=1)
+        if datetime.datetime.now() > remind_date:
+            if datetime.datetime.now() > contract.ke_next_date:
+                return STATUS_LATE, contract.ke_next_date
+            else:
+                return STATUS_CLOSE, contract.ke_next_date
+        else:
+            return STATUS_NONE
+
     if type == Huolto.TYYPPI_SY:
-        starting_date = contract.sy_starting_date
-        interval = 12
+        if contract.sy_next_date:
+            remind_date = contract.sy_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
+        else:
+            remind_date = datetime.datetime(year=2000, month=1, day=1)
+        if datetime.datetime.now() > remind_date:
+            if datetime.datetime.now() > contract.sy_next_date:
+                return STATUS_LATE, contract.sy_next_date
+            else:
+                return STATUS_CLOSE, contract.sy_next_date
+        else:
+            return STATUS_NONE
+
     if type == Huolto.TYYPPI_TK:
-        starting_date = contract.tk_starting_date
-        interval = contract.tk_interval_months
-
-    closest = get_closest_date(starting_date, interval)
-    now = datetime.date.today()
-
-    for maintenance in contract.huollot:
-        if abs((maintenance.date - datetime.datetime.now()).days) < (30 * interval / 2):
-            return STATUS_NONE, closest  # Already completed, no action required
-
-    distance = (closest - now).days
-    if distance < 0:
-        return STATUS_LATE, closest
-
-    if distance < 30:
-        return STATUS_CLOSE, closest
-    else:
-        return STATUS_NONE, closest
+        if contract.tk_next_date:
+            remind_date = contract.tk_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
+        else:
+            remind_date = datetime.datetime(year=2000, month=1, day=1)
+        if datetime.datetime.now() > remind_date:
+            if datetime.datetime.now() > contract.tk_next_date:
+                return STATUS_LATE, contract.tk_next_date
+            else:
+                return STATUS_CLOSE, contract.tk_next_date
+        else:
+            return STATUS_NONE
 
 
 @view_config(route_name='huoltosopimus_huollot', renderer='tilaushallinta.templates:huoltosopimus/huolto_list.pt')
