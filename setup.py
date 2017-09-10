@@ -9,6 +9,8 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'alembic',
+    'bcrypt',
     'pyramid',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
@@ -17,10 +19,8 @@ requires = [
     'SQLAlchemy',
     'SQLAlchemy-Continuum',
     'transaction',
-    'zope.sqlalchemy',
     'waitress',
-    'bcrypt',
-    'alembic'
+    'zope.sqlalchemy',
     ]
 
 setup(name='tilaushallinta',
