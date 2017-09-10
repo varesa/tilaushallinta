@@ -15,6 +15,7 @@ from .huolto import Huolto
 DAYS_PER_WEEK = 7
 DAYS_PER_MONTH = 365 / 12
 
+
 class Huoltosopimus(Base):
     __versioned__ = {}
     __tablename__ = 'huoltosopimukset'
@@ -61,13 +62,13 @@ class Huoltosopimus(Base):
     tk_next_date = Column(Date)
     tk_interval_months = Column(Float)
 
-
     def advance_date(self, maintenance_type):
-        if type == Huolto.TYYPPI_KE:
+        if maintenance_type == Huolto.TYYPPI_KE:
+            print(self.ke_next_date)
             self.ke_next_date += relativedelta(months=self.ke_interval_months)
-        elif type == Huolto.TYYPPI_SY:
+        elif maintenance_type == Huolto.TYYPPI_SY:
             self.sy_next_date += relativedelta(months=self.sy_interval_months)
-        elif type == Huolto.TYYPPI_TK:
+        elif maintenance_type == Huolto.TYYPPI_TK:
             if self.tk_interval_months >= 1:
                 self.tk_interval_months += \
                     relativedelta(months=self.tk_interval_months)

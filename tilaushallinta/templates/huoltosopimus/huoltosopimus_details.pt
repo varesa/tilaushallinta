@@ -198,10 +198,10 @@
                 <div id="table_top">
                     <div id="table_title"><h2>Huollot</h2></div>
                     <div id="order_actionbuttons">
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/ek'">Ensimmäinen huolto</button>
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/ke'">Uusi Keväthuolto</button>
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/sy'">Uusi Syyshuolto</button>
-                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/uusi/tk'">Uusi Tarkastuskäynti</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/new/ek'">Ensimmäinen huolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/new/ke'">Uusi Keväthuolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/new/sy'">Uusi Syyshuolto</button>
+                        <button onClick="window.location.href='/huoltosopimukset/${huoltosopimus.id}/huolto/new/tk'">Uusi Tarkastuskäynti</button>
                         <button data-toggle="modal" data-target="#huolto-muu-modal">Uusi Muu huolto</button>
                     </div>
                 </div>

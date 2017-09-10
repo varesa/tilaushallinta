@@ -16,19 +16,20 @@ from tilaushallinta.models.laiteluettelo import Laiteluettelo, Laite
 
 @view_config(route_name='huolto_new')
 def view_huolto_new(request):
-    sopimus_id = request.matchdict['sopimus']
-    sopimus = DBSession.query(Huoltosopimus).filter_by(id=sopimus_id).first()
+    contract_id = request.matchdict['contract']
+    contract = DBSession.query(Huoltosopimus).filter_by(id=contract_id).first()
+    """:type contract: Huoltosopimus"""
 
-    huolto_tyyppi = request.matchdict['tyyppi']
+    maintenance_type = request.matchdict['type']
 
-    if huolto_tyyppi == Huolto.TYYPPI_muu:
+    if maintenance_type == Huolto.TYYPPI_muu:
         msg = request.POST['muu_selite']
     else:
         msg = ""
 
     laiteluettelo = Laiteluettelo(date=datetime.datetime.now(),
-                                  huoltosopimus=sopimus)
-    huolto_last = DBSession.query(Huolto).filter_by(huoltosopimus=sopimus).order_by(Huolto.date.desc()).first()
+                                  huoltosopimus=contract)
+    huolto_last = DBSession.query(Huolto).filter_by(huoltosopimus=contract).order_by(Huolto.date.desc()).first()
     if huolto_last:
         for laite in huolto_last.laiteluettelo.laitteet:
             laiteluettelo.laitteet.append(Laite(date=laite.date, nimi=laite.nimi, tyyppitiedot=laite.tyyppitiedot,
@@ -38,9 +39,10 @@ def view_huolto_new(request):
     hintaluokka = DBSession.query(HuoltoHintaluokka).filter_by(hintaluokka=1).first()
 
     huolto = Huolto(date=datetime.datetime.now(),
-                    tila=Huolto.TILA_UUSI, tyyppi=huolto_tyyppi, tyyppi_muu_selite=msg,
-                    hintaluokka=hintaluokka, huoltosopimus=sopimus, laiteluettelo=laiteluettelo)
+                    tila=Huolto.TILA_UUSI, tyyppi=maintenance_type, tyyppi_muu_selite=msg,
+                    hintaluokka=hintaluokka, huoltosopimus=contract, laiteluettelo=laiteluettelo)
     huolto_id = DBSession.query(Huolto).order_by(Huolto.id.desc()).first().id
-    print(huolto.id)
-    return HTTPFound(location="/huoltosopimukset/" + str(sopimus_id) + "/huolto/" + str(huolto_id))
 
+    contract.advance_date(maintenance_type)
+
+    return HTTPFound(location="/huoltosopimukset/" + str(contract_id) + "/huolto/" + str(huolto_id))

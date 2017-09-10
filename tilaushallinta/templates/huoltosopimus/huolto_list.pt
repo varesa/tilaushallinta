@@ -32,6 +32,11 @@
                     <td>${kohde}&nbsp;&nbsp;&nbsp;</td>
                     
                     <td>${huolto['contract'].kohde.osoite}, ${huolto['contract'].kohde.postinumero} ${huolto['contract'].kohde.postitoimipaikka}</td>
+                    <td>
+                        <a href="/huoltosopimukset/${huolto['contract'].id}/huolto/cancel_reminder/${huolto.tyyppi}"
+                        style="color: red; font-size: 80%;">Poista muistutus</a>&nbsp;&nbsp;&nbsp;
+                        <a href="/huoltosopimukset/${huolto['contract'].id}/huolto/new/${huolto.tyyppi}">Luo huolto</a>
+                    </td>
                 </tr>
             </table>
         </div>

@@ -35,7 +35,8 @@ def configure_routes(config):
     config.add_route('huoltosopimus_list', '/huoltosopimukset')
     config.add_route('huoltosopimus_details', '/huoltosopimukset/{sopimus}')
 
-    config.add_route('huolto_new', '/huoltosopimukset/{sopimus}/huolto/uusi/{tyyppi}')
+    config.add_route('huolto_new', '/huoltosopimukset/{contract}/huolto/new/{type}')
+    config.add_route('huolto_cancel_reminder', '/huoltosopimukset/{contract}/huolto/cancel_reminder/{type}')
 
     config.add_route('huolto_details', '/huoltosopimukset/{sopimus}/huolto/{huolto}')
     config.add_route('huolto_summary', '/huoltosopimukset/{sopimus}/huolto/{huolto}/yhteenveto')

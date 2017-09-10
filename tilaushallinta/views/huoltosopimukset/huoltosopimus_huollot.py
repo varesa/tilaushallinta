@@ -35,43 +35,46 @@ def get_status(contract, type):
     """
 
     if type == Huolto.TYYPPI_KE:
-        if contract.ke_next_date:
-            remind_date = contract.ke_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
-        else:
-            remind_date = datetime.datetime(year=2000, month=1, day=1)
-        if datetime.datetime.now() > remind_date:
-            if datetime.datetime.now() > contract.ke_next_date:
+        if not contract.ke_next_date:
+            contract.ke_next_date = contract.ke_starting_date
+
+        remind_date = contract.ke_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
+
+        if datetime.date.today() > remind_date:
+            if datetime.date.today() > contract.ke_next_date:
                 return STATUS_LATE, contract.ke_next_date
             else:
                 return STATUS_CLOSE, contract.ke_next_date
         else:
-            return STATUS_NONE
+            return STATUS_NONE, contract.ke_next_date
 
     if type == Huolto.TYYPPI_SY:
-        if contract.sy_next_date:
-            remind_date = contract.sy_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
-        else:
-            remind_date = datetime.datetime(year=2000, month=1, day=1)
-        if datetime.datetime.now() > remind_date:
-            if datetime.datetime.now() > contract.sy_next_date:
+        if not contract.sy_next_date:
+            contract.sy_next_date = contract.sy_starting_date
+
+        remind_date = contract.sy_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
+
+        if datetime.date.today() > remind_date:
+            if datetime.date.today() > contract.sy_next_date:
                 return STATUS_LATE, contract.sy_next_date
             else:
                 return STATUS_CLOSE, contract.sy_next_date
         else:
-            return STATUS_NONE
+            return STATUS_NONE, contract.sy_next_date
 
     if type == Huolto.TYYPPI_TK:
-        if contract.tk_next_date:
-            remind_date = contract.tk_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
-        else:
-            remind_date = datetime.datetime(year=2000, month=1, day=1)
-        if datetime.datetime.now() > remind_date:
-            if datetime.datetime.now() > contract.tk_next_date:
+        if not contract.tk_next_date:
+            contract.tk_next_date = contract.tk_starting_date
+
+        remind_date = contract.tk_next_date - datetime.timedelta(days=REMINDER_DAYS_BEFORE)
+
+        if datetime.date.today() > remind_date:
+            if datetime.date.today() > contract.tk_next_date:
                 return STATUS_LATE, contract.tk_next_date
             else:
                 return STATUS_CLOSE, contract.tk_next_date
         else:
-            return STATUS_NONE
+            return STATUS_NONE, contract.tk_next_date
 
 
 @view_config(route_name='huoltosopimus_huollot', renderer='tilaushallinta.templates:huoltosopimus/huolto_list.pt')
