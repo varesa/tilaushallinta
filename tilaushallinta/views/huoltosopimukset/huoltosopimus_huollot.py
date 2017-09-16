@@ -6,7 +6,9 @@
 #
 
 import datetime
+from operator import itemgetter
 
+from enchant._enchant import dict_get_error
 from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession
@@ -106,6 +108,9 @@ def view_huollot_list(request):
             elif status == STATUS_LATE:
                 huollot_tulevat.append({"tyyppi": Huolto.TYYPPI_TK, "date": date, "late": True,
                                         "contract": contract})
+
+    huollot_tulevat = sorted(huollot_tulevat, key=itemgetter("date"))
+
 
     huollot_auki = DBSession.query(Huolto)\
         .filter(Huolto.tila != Huolto.TILA_VALMIS).order_by(Huolto.date.desc()).all()
