@@ -80,7 +80,7 @@
                             tyyppi = "Tarkastuskäynti" if huolto.tyyppi == huolto.TYYPPI_TK else tyyppi
                             tyyppi = "Muu huolto" if huolto.tyyppi == huolto.TYYPPI_MUU else tyyppi
                     ?>
-                    <td tal:condition="">${tyyppi}<span style="float: right;">${"%.2f" % huolto_total} €</span></td>
+                    <td>${tyyppi}<span style="float: right;">${"%.2f" % huolto_total} €</span></td>
                 </tr>
                 <tr tal:condition="show_prices">
                     <td colspan="2"></td>
