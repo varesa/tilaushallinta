@@ -71,10 +71,15 @@ def view_huoltosopimus_details(request):
 
             sopimus.tyyppi_ke = tyyppi_ke
             sopimus.ke_starting_date = ke_starting_date
+            sopimus.ke_next_date = ke_starting_date
+
             sopimus.tyyppi_sy = tyyppi_sy
             sopimus.sy_starting_date = sy_starting_date
+            sopimus.sy_next_date = sy_starting_date
+
             sopimus.tyyppi_tk = tyyppi_tk
             sopimus.tk_starting_date = tk_starting_date
+            sopimus.tk_next_date = tk_starting_date
             sopimus.tk_interval_months = tk_interval_months
 
     return {'huoltosopimus': sopimus}
