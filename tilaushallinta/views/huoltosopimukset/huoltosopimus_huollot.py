@@ -8,7 +8,6 @@
 import datetime
 from operator import itemgetter
 
-from enchant._enchant import dict_get_error
 from pyramid.view import view_config
 
 from tilaushallinta.models import DBSession
