@@ -111,9 +111,6 @@
         </div>
         <div class="panel panel-default">
             <div id="maintenance-show" class="panel-body">
-                <?python
-                        from tilaushallinta.views.shared.utils import get_next_date
-                ?>
                 <span>Tilatut huollot: <a onclick="edit_jobs()">Muokkaa</a></span>
                 <ul>
                     <li tal:condition="huoltosopimus.tyyppi_ke"> Keväthuolto,
