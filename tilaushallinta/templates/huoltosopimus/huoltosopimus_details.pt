@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="/static/css/lomake.css">
         <link rel="stylesheet" type="text/css" href="/static/css/order_details.css">
         <link rel="stylesheet" type="text/css" href="/static/css/order_list.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/modal_scroll.css">
         
         <link rel="stylesheet" href="/static/libs/bootstrap-datepicker/css/bootstrap-datepicker3.css">
         <script type="text/javascript" src="/static/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
