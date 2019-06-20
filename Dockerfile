@@ -22,7 +22,7 @@ WORKDIR /tilaushallinta/
 
 USER root
 RUN pip3.6 install -e .
-
+RUN pip3.6 install mysql-connector-python
 
 # Run
 
