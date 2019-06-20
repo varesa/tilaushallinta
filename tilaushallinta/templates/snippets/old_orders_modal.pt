@@ -1,0 +1,29 @@
+<!--!
+# This source code is licensed under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
+# Copyright Esa Varemo 2014-2019
+-->
+
+<div id="old-orders-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Tilaajat</h4>
+            </div>
+            <div class="modal-body" style="height: 80vh; overflow-y: scroll">
+                <table id="table_history" class="table table-striped">
+                    <tr>
+                        <th>&nbsp;&nbsp;</th>
+                        <th>Yhteyshenkilö/Yritys&nbsp;&nbsp;</th>
+                        <th>Osoite&nbsp;&nbsp;</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="${callback}">Valitse</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
+            </div>
+        </div>
+    </div>
+</div>

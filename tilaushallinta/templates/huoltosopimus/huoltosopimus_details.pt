@@ -20,9 +20,11 @@
         <script type="text/javascript" src="/static/js/order_state.js"></script>
         <script type="text/javascript" src="/static/js/order_edit_tilaaja_kohde.js"></script>
         <script type="text/javascript" src="/static/js/contract_edit_jobs.js"></script>
+        <script type="text/javascript" src="/static/js/neworder_history.js"></script>
     </metal:main>
 
     <metal:main metal:fill-slot="content">
+        <metal:main metal:use-macro="load: ../snippets/old_orders_modal.pt" tal:define="callback string: load_order()"></metal:main>
         <div id="huolto-muu-modal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -78,6 +80,8 @@
                         <tr>
                             <td>
                                 <span class="colheader-left">Laskutus</span><span class="colheader-sub-right">
+
+                                        <a onclick="show_history('tilaaja')">Vaihda</a> /
                                         <a id="tilaaja_muokkaa" onclick="order_muokkaa('tilaaja')">Muokkaa</a></span>
                             </td>
                             <td>

@@ -62,7 +62,7 @@ function show_history(type) {
     }
 
     $.get(url, data, populate_modal);
-    $('.modal').modal();
+    $('#old-orders-modal').modal();
 
 }
 

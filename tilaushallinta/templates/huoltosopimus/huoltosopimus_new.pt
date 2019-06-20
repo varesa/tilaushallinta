@@ -20,30 +20,7 @@
     </metal:main>
 
     <div metal:fill-slot="content">
-        <div class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title">Aikaisemmat tilaukset</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table id="table_history" class="table table-striped">
-                            <tr>
-                                <th>&nbsp;&nbsp;</th>
-                                <th>Yhteyshenkilö/Yritys&nbsp;&nbsp;</th>
-                                <th>Osoite&nbsp;&nbsp;</th>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="load_order()">Valitse</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
+        <metal:main metal:use-macro="load: ../snippets/old_orders_modal.pt" tal:define="callback string: load_order()"></metal:main>
 
         <form id="lomake" method="POST" action="/huoltosopimukset/submit" onsubmit="return check_input()">
             <input type="hidden" name="tilaaja_id">

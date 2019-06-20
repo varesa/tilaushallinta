@@ -17,11 +17,14 @@ from tilaushallinta.views.shared.update_tilaaja_kohde import update_kohde, updat
 
 
 def update_perustiedot(request):
+    # Update or change the client
     update_tilaaja(request.POST)
     update_kohde(request.POST)
 
     sopimus_id = request.matchdict['sopimus']
     sopimus = DBSession.query(Huoltosopimus).filter_by(id=sopimus_id).first()
+    sopimus.tilaaja_id = request.POST['tilaaja_id']
+
 
     sopimus.muut_yhteysh = request.POST['muut_yhteysh']
 
