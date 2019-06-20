@@ -21,7 +21,7 @@ RUN git clone https://github.com/varesa/tilaushallinta.git tilaushallinta
 WORKDIR /tilaushallinta/
 
 USER root
-RUN pip3.6 install --allow-external mysql-connector-python -e .
+RUN pip3.6 install -e .
 
 
 # Run
