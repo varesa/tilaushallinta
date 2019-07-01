@@ -12,3 +12,4 @@ dbpassword
 dbschema
 
 auth_token
+venv
