@@ -1,4 +1,5 @@
-FROM registry.esav.fi/base/python3
+# libmariadb3 on debian is too old, see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=962597
+FROM python:3.8-alpine
 
 MAINTAINER Esa Varemo <esa@kuivanto.fi>
 
@@ -6,27 +7,16 @@ EXPOSE 6544
 
 WORKDIR /
 
-# Download the app
+ADD . /tilaushallinta
+WORKDIR /tilaushallinta
 
-RUN useradd lsvtekniikka
+RUN addgroup -S tilausapp && \
+    adduser -G tilausapp -S tilausapp && \
+    chown tilausapp:tilausapp /tilaushallinta && \
+    apk add gcc python3-dev libffi-dev musl-dev mariadb-dev mariadb-connector-c && \
+    pip install -e .
 
-RUN mkdir tilaushallinta && chown lsvtekniikka:lsvtekniikka tilaushallinta
-
-USER lsvtekniikka
-RUN git clone https://github.com/varesa/tilaushallinta.git tilaushallinta
-
-
-# Install the app
-
-WORKDIR /tilaushallinta/
-
-USER root
-RUN pip3.6 install -e .
-RUN pip3.6 install mysql-connector-python
-
-# Run
-
-USER lsvtekniikka
+USER tilausapp
 CMD ["pserve", "development_mysql.ini"]
 
 VOLUME /tilaushallinta/config
