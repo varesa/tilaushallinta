@@ -32,7 +32,7 @@ function populate_modal(data) {
 
         var addressrow = data[i]['osoite'] + ", " + data[i]['postinumero'] + ' ' + data[i]['postitoimipaikka'];
 
-        $('#table_history').append("<tr class=\"row_data\">" +
+        $('#history-table').append("<tr class=\"row_data\">" +
             "<td><input type=\"radio\" name=\"client_select\" value=" + i + "></td>" +
             "<td>" + namerow + "</td>" +
             "<td>" + addressrow +  "</td>" +

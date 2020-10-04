@@ -32,7 +32,7 @@ function populate_modal(data) {
 
         var addressrow = data[i]['osoite'] + ", " + data[i]['postinumero'] + ' ' + data[i]['postitoimipaikka'];
 
-        $('#table_history').append("<tr class=\"row_data\">" +
+        $('#history-table').append("<tr class=\"row_data\">" +
             "<td><input type=\"radio\" name=\"history_selector\" value=" + i + "></td>" +
             "<td>" + namerow + "</td>" +
             "<td>" + addressrow +  "</td>" +
@@ -40,12 +40,55 @@ function populate_modal(data) {
     }
 }
 
+function testSearchMatch(query, text) {
+    const query_tokens = query.toLowerCase().replace(/[^0-9a-zöäå ]/gi, '').split(' ');
+    const text_tokens = text.toLowerCase().replace(/[^0-9a-zöäå ]/gi, '').split(' ');
+
+    let search_success = true;
+
+    query_tokens.forEach(function (query_token) {
+        let token_found = false;
+
+        text_tokens.forEach(function (text_token) {
+            if (text_token.includes(query_token)) {
+                console.log('found', query_token, 'in', text_token);
+                token_found = true;
+            }
+        })
+
+        if (!token_found) {
+            console.log('failed to find', query_token);
+            search_success = false;
+        }
+    })
+    return search_success;
+}
+
+function historyFilterItems() {
+    console.log('filter');
+    const searchValue = $('#history-search').val();
+    const rows = $('#history-table > tbody > tr');
+    rows.each(function(index, row) {
+        if (testSearchMatch(searchValue, row.innerText)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+            console.log('Hiding ', row, ' - ', row.style.display);
+        }
+    });
+}
+
 function show_history(type) {
     /*
     Show the popup window for choosing from existing objects
     triggered by a user click in the form
      */
+
+    // Remove rows from previous call
     $('.row_data').remove();
+
+    // Empty the search field
+    $('#history-search').val('');
 
     selection_type = type;
 
@@ -63,7 +106,6 @@ function show_history(type) {
 
     $.get(url, data, populate_modal);
     $('#old-orders-modal').modal();
-
 }
 
 function load_order() {
@@ -103,7 +145,8 @@ function load_order() {
 }
 
 /*
-Editing the existing object / creating a new one based on it
+ * Editing the existing object / creating a new one based on it.
+ * Callbacks to the user clicking buttons on the "New order" screen
  */
 
 function edit_existing(type) {
