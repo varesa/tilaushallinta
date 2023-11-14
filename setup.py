@@ -17,6 +17,7 @@ requires = [
     'pyramid_debugtoolbar',
     'pyramid_tm',
     'pyramid_exclog',
+    'python-dateutil',
     'SQLAlchemy',
     'SQLAlchemy-Continuum',
     'transaction',
