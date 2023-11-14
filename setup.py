@@ -21,7 +21,7 @@ requires = [
     'SQLAlchemy ~= 1.3.19',
     'SQLAlchemy-Continuum ~= 1.3.11',
     'transaction ~= 3.0',
-    'waitress ~= 1.4',
+    'waitress ~= 2.1.2',
     'zope.sqlalchemy ~= 1.3',
     ]
 
