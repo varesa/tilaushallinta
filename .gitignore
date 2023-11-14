@@ -13,3 +13,4 @@ dbschema
 
 auth_token
 venv
+*.sql
