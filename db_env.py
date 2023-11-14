@@ -4,7 +4,7 @@ import sys
 var_host = "DBHOST"
 file_host = "config/dbhost"
 
-var_port = "PORT"
+var_port = "DBPORT"
 file_port = "config/dbport"
 
 var_user = "DBUSER"
