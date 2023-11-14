@@ -14,6 +14,7 @@ from .meta import Base
 
 
 class User(Base):
+    __versioned__ = {}
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)

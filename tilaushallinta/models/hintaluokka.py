@@ -10,6 +10,7 @@ from .meta import Base
 
 
 class Hintaluokka(Base):
+    __versioned__ = {}
     __tablename__ = 'hintaluokat'
 
     hintaluokka = Column(Integer, primary_key=True)
@@ -20,6 +21,7 @@ class Hintaluokka(Base):
 
 
 class HuoltoHintaluokka(Base):
+    __versioned__ = {}
     __tablename__ = 'huoltohintaluokat'
 
     hintaluokka = Column(Integer, primary_key=True)
@@ -31,6 +33,7 @@ class HuoltoHintaluokka(Base):
 
 
 class LisatoimenpideHintaluokka(Base):
+    __versioned__ = {}
     __tablename__ = 'lisatoimenpidehintaluokat'
 
     hintaluokka = Column(Integer, primary_key=True)
