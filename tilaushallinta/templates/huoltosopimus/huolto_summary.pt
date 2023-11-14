@@ -134,10 +134,10 @@
                                     <td>${"%.2f" % hintaluokat[raportti.hintaluokka].matkat} €</td>
                                 </tr>
                                 <tr tal:condition="raportti.muut">
-                                    <td>Kilometrit: &nbsp;</td>
-                                    <td>${raportti.muut} km</td>
-                                    <td>* </td>
-                                    <td>${"%.2f" % hintaluokat[raportti.hintaluokka].muut} €</td>
+                                    <td>Muut: &nbsp;</td>
+                                    <td></td>
+                                    <td>&nbsp;</td>
+                                    <td>${"%.2f" % raportti.muut} €</td>
                                 </tr>
                             </table>
                         </div>
