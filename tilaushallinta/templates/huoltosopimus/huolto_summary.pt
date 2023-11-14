@@ -100,7 +100,7 @@
                     <td class="huoltoraportti" colspan="3">
                         <div class="korjaustarve" tal:condition="raportti.korjaustarve">!&nbsp;</div>
                         <div class="text">
-                            <?python teksti_formated = raportti.teksti.replace('\n', '<br>') ?>
+                            <?python teksti_formated = (raportti.teksti or "").replace('\n', '<br>') ?>
                             <b>${raportti.date.strftime("%d.%m.%Y")}</b><br>
                             ${structure: teksti_formated}
                         </div>
@@ -115,7 +115,7 @@
                 <tr tal:condition="len(huolto.lisatoimenpiteet)" tal:repeat="raportti huolto.lisatoimenpiteet">
                     <td class="lisatoimenpide" colspan="3">
                         <div>
-                            <?python teksti_formated = raportti.teksti.replace('\n', '<br>') ?>
+                            <?python teksti_formated = (raportti.teksti or "").replace('\n', '<br>') ?>
                             <b>${raportti.date.strftime("%d.%m.%Y")}</b><br>
                             ${structure: teksti_formated}
                         </div>

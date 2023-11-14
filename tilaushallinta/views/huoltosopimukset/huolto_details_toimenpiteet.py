@@ -19,7 +19,8 @@ def add_lisatoimenpide(huolto):
     :rtype: None
     """
     huolto.lisatoimenpiteet.append(Lisatoimenpide(date=datetime.datetime.now(), hintaluokka=1,
-                                                  tunnit=0.0, matkat=0.0, muut=0.0))
+                                                  tunnit=0.0, matkat=0.0, muut=0.0,
+                                                  teksti=""))
 
 
 def toimenpiteet_form_to_dict(request):
