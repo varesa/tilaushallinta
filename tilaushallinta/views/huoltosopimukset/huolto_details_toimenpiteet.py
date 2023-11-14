@@ -18,7 +18,7 @@ def add_lisatoimenpide(huolto):
     :param huolto: The order in which to create the new report
     :rtype: None
     """
-    huolto.lisatoimenpiteet.append(Lisatoimenpide(date=datetime.datetime.now(), hintaluokka=2,
+    huolto.lisatoimenpiteet.append(Lisatoimenpide(date=datetime.datetime.now(), hintaluokka=1,
                                                   tunnit=0.0, matkat=0.0, muut=0.0))
 
 
