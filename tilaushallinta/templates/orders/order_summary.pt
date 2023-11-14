@@ -87,7 +87,7 @@
                                 <td>${"%g" % luokka1['matkat']} käynti${structure: trail}</td>
                             </tr>
                             <tr>
-                                <td>Muut:</td>
+                                <td>Kilometrit:</td>
                                 <td>${luokka1['muut']} km</td>
                             </tr>
                         </table>
@@ -105,7 +105,7 @@
                                 <td>Matkat: ${'%.2f' % hinnat1['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${'%.2f' % hinnat1['muut']} €</td>
+                                <td>Kilometrit: ${'%.2f' % hinnat1['muut']} €</td>
                             </tr>
                         </table>
                     </td>
@@ -126,7 +126,7 @@
                                 <td>${"%g" % luokka2['matkat']} käynti${structure: trail}</td>
                             </tr>
                             <tr>
-                                <td>Muut:</td>
+                                <td>Kilometrit:</td>
                                 <td>${luokka2['muut']} km</td>
                             </tr>
                         </table>
@@ -144,7 +144,7 @@
                                 <td>Matkat: ${'%.2f' % hinnat2['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${'%.2f' % hinnat2['muut']} €</td>
+                                <td>Kilometrit: ${'%.2f' % hinnat2['muut']} €</td>
                             </tr>
                         </table>
                     </td>
@@ -165,7 +165,7 @@
                                 <td>${"%g" % luokka3['matkat']} käynti${structure: trail}</td>
                             </tr>
                             <tr>
-                                <td>Muut:</td>
+                                <td>Kilometrit:</td>
                                 <td>${luokka3['muut']} km</td>
                             </tr>
                         </table>
@@ -183,7 +183,7 @@
                                 <td>Matkat: ${'%.2f' % hinnat3['matkat']} €</td>
                             </tr>
                             <tr>
-                                <td>Muut: ${'%.2f' % hinnat3['muut']} €</td>
+                                <td>Kilometrit: ${'%.2f' % hinnat3['muut']} €</td>
                             </tr>
                         </table>
                     </td>
